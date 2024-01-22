@@ -28,7 +28,7 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,9 @@ INSTALLED_APPS = [
 
     # DRF
     'rest_framework',
+    'rest_framework.authtoken',
+    
+    'authentication',
     
     # social login
     'django.contrib.sites',
