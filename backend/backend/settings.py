@@ -16,11 +16,14 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+# my_settings.py 불러오기
+from my_settings import SECRET_KEY, DATABASES
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#xb)dtq5v@=c*o0-w5+ii-a#nax!5s(p_4agjs=1godw@(=h6b'
+SECRET_KEY = SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +34,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -74,16 +76,8 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', # mysqlclient librarly 설치
-        'NAME': 'fubao',
-        'USER': 'root',
-        'PASSWORD': 'rootroot', # mariaDB 설치 시 입력한 root 비밀번호 입력
-        'HOST': 'localhost',
-        'PORT': '' # 안적으면 기본 포트 번호(3306)
-    }
-}
+DATABASES = DATABASES
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
