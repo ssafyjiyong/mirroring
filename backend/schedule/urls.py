@@ -3,5 +3,6 @@ from django.urls import path
 from .views import ScheduleAPIView
 
 urlpatterns=[
-    path('',ScheduleAPIView)
+    path('',ScheduleAPIView.as_view()),
+    path('delete/<int:pk>',ScheduleAPIView.as_view()),
 ]
