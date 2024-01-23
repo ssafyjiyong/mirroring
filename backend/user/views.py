@@ -1,8 +1,10 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, permissions
+from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
-# Import the validate_password function
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.password_validation import validate_password  
+
 from .models import User
 from .serializers import UserSerializer
 
@@ -35,7 +37,26 @@ class UserSignUpView(generics.CreateAPIView):
 #         return Response({'id': user.id, 'username': user.username, 'email': user.email}, status=status.HTTP_201_CREATED)
 #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# # 로그인
+# 로그인
+class UserSignInView(APIView):
+    permission_classes = [permissions.AllowAny]
+
+    def post(self, request, *args, **kwargs):
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if not email or not password:
+            return Response({'detail': 'Both email and password are required'}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            login(request, user)
+            serializer = UserSerializer(user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        
 # @api_view(['POST'])
 # @permission_classes([AllowAny])
 # def signin(request):
