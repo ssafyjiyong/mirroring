@@ -28,12 +28,30 @@ SECRET_KEY = SECRET_KEY
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # local
+    'user',
+
+    # DRF
+    'rest_framework',
+    'rest_framework.authtoken',
+    
+    # social login
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
+    
+    # cors-headers
+    'corsheaders',
+    
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +61,12 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # allauth
+    'allauth.account.middleware.AccountMiddleware',
+    
+    # corsheaders
+    'corsheaders.middleware.CorsMiddleware',
+        
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -101,9 +125,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
@@ -119,3 +143,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 커스텀 유저 모델
+AUTH_USER_MODEL = 'user.User'
+
+#allauth
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+AUTHENTICATION_BACKENDS = (
+    # allauth와 상관없이 관리자는 기존 로그인 방식을 사용
+    "django.contrib.auth.backends.ModelBackend",
+
+    # 일반 유저는 allauth 인증 사용
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+# 로그인 시 email을 사용
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # -> username, email, username_email 지정 가능
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USERNAME_VERIFICATION = None
+
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+
+# admin site
+SITE_ID = 1
