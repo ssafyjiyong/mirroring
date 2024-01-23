@@ -4,5 +4,5 @@ from .models import Schedule
 class ScheduleAllSerializer(serializers.ModelSerializer):
     class Meta:
         model=Schedule
-        fields=('id','schedule_date','schedule_location','schedule_fishing_method','schedule_fishing_Area','schedule_done')
+        fields=('id','method_id','area_id','date','location','done')
 
