@@ -21,6 +21,7 @@ from rest_framework import routers
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from dj_rest_auth.jwt_auth import JWTCookieAuthentication
 
 router = routers.DefaultRouter()
 
@@ -40,6 +41,9 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('user/', include(('user.urls', 'user'))),
+    # social login
+    path('user/', include('allauth.urls')),
+    path('user/', include('dj_rest_auth.urls')),
 ]
 
 if settings.DEBUG:

@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # my_settings.py 불러오기
-from my_settings import SECRET_KEY, DATABASES
+from my_settings import SECRET_KEY, DATABASES, SOCIAL_AUTH_GOOGLE_CLIENT_ID, SOCIAL_AUTH_GOOGLE_SECRET_KEY
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     
     # cors-headers
     'corsheaders',
@@ -157,6 +157,9 @@ AUTHENTICATION_BACKENDS = (
 
     # 일반 유저는 allauth 인증 사용
     "allauth.account.auth_backends.AuthenticationBackend",
+
+    # google login
+    'social_core.backends.google.GoogleOAuth2',
 )
 
 # 로그인 시 email을 사용
@@ -170,6 +173,44 @@ ACCOUNT_USERNAME_VERIFICATION = None
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
+# JWT 사용
+REST_USE_JWT = True
 
-# admin site
-SITE_ID = 1
+# JWT 인가 사용 설정
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ),
+}
+
+# # JWT 환경 설정
+# from datetime import timedelta
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME': timedelta(hours=2),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS': False,
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }
+
+# social login
+SITE_ID = 2
+SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': {
+            'profile',
+            'email',
+
+        },
+        'AUTH_PARAMS': {
+            'access_type': 'online'
+        }
+    }
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = SOCIAL_AUTH_GOOGLE_SECRET_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = SOCIAL_AUTH_GOOGLE_CLIENT_ID
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
