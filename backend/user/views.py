@@ -1,3 +1,7 @@
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from rest_framework import generics, status, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -77,6 +81,38 @@ class UserSignInView(APIView):
 #         return Response(serializer.data, status=status.HTTP_200_OK)
 #     else:
 #         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+
+# google login
+class GoogleLoginView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        # 사용자를 Google OAuth 로그인 페이지로 리다이렉트
+        return HttpResponseRedirect(reverse('social:begin', args=['google-oauth2']))
+
+class GoogleCallbackView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        # Google에서 앱을 승인한 후 콜백 처리
+        user = request.user
+        if user.is_authenticated:
+            # 사용자가 이미 인증되었으면 리다이렉트
+            return HttpResponseRedirect(reverse('/'))
+
+        # 사용자가 인증되지 않은 경우 인증 처리 수행
+        return _handle_authentication(request)
+
+def _handle_authentication(request):
+    # 사용자가 앱을 승인한 후 인증 프로세스 완료
+    user = request.user
+    if user.is_authenticated:
+        # 사용자가 인증되었으면 리다이렉트
+        return HttpResponseRedirect(reverse('/'))
+
+    # 인증에 실패한 경우 애플리케이션의 요구에 맞게 처리
+    return render(request, 'authentication_failed.html')
+
 
 # # 로그아웃
 class UserSignOutView(APIView):
