@@ -93,6 +93,13 @@ class UserSignOutView(APIView):
 #     return Response({'detail': 'Successfully logged out'}, status=status.HTTP_200_OK)
 
 # # 회원 탈퇴
+class DeleteUserView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def delete(self, request, *args, **kwargs):
+        user = request.user
+        user.delete()
+        return Response({'detail': 'Successfully deleted'}, status=status.HTTP_204_NO_CONTENT)
 # @api_view(['DELETE'])
 # @permission_classes([IsAuthenticated])
 # def deleteid(request):
