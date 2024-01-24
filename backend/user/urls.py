@@ -9,9 +9,9 @@ urlpatterns = [
     path('signin/', views.UserSignInView.as_view(), name='signin'),
 
     # 로그아웃
-    # path('signout/', views.UserSignOutView.as_view(), name='signout'),
+    path('signout/', views.UserSignOutView.as_view(), name='signout'),
     
-    # # 회원 탈퇴
+    # 회원 탈퇴
     # path('deleteid/', views.UserDeleteView.as_view(), name='deleteid'),
     
     # # 회원정보 수정

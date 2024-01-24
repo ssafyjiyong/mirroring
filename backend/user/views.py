@@ -79,6 +79,13 @@ class UserSignInView(APIView):
 #         return Response({'detail': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 # # 로그아웃
+class UserSignOutView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return Response({'detail': 'Successfully logged out'}, status=status.HTTP_200_OK)
+
 # @api_view(['POST'])
 # @permission_classes([IsAuthenticated])
 # def signout(request):
