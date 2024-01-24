@@ -1,8 +1,8 @@
 from django.urls import path
 
-from .views import ScheduleAPIView
-
+from .views import ScheduleDeleteAPIView,SchedulesAPIView,ScheduleDoneAPIView
 urlpatterns=[
-    path('',ScheduleAPIView.as_view()),
-    path('delete/<int:pk>',ScheduleAPIView.as_view()),
+    path('post/',SchedulesAPIView.as_view()),
+    path('delete/<int:pk>',ScheduleDeleteAPIView.as_view()),
+    path('put/<int:pk>',ScheduleDoneAPIView.as_view())
 ]

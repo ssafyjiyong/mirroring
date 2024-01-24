@@ -6,3 +6,7 @@ class ScheduleAllSerializer(serializers.ModelSerializer):
         model=schedule
         fields=('id','user','method','area','date','location','done')
 
+class ScheduleDoneSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=schedule
+        fields=('id','done')
