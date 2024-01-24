@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = 'user'
+
 urlpatterns = [
     # 회원 가입
     path('signup/', views.UserSignUpView.as_view(), name='signup'),
