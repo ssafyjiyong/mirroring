@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'user',
 
     # DRF
+    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     
@@ -58,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'schedule',
+    'information',
 ]
 
 MIDDLEWARE = [
