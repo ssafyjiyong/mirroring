@@ -30,7 +30,8 @@ class ScheduleDeleteAPIView(APIView):
         return Response(request.data,status=status.HTTP_200_OK)
     
     
-class ScheduleDoneAPIView(APIView):  
+class ScheduleDoneAPIView(APIView):
+    #해당 일정 완료 처리  
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
     def put(self, request,pk):
         object=get_object_or_404(schedule,id=pk)
