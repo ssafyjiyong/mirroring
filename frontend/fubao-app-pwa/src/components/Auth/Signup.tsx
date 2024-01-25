@@ -46,8 +46,24 @@ export default function SignUp() {
 
   const API_URL = "http://127.0.0.1:8000";
 
+  const signUp = (payload: SignUpPayload) => {
+    return axios
+      .post(`${API_URL}/users/signup/`, payload)
+      .then((response:any) => {
+        return response;
+      })
+      .catch((error: any) => {
+        Swal.fire({
+          title: "회원가입 에러",
+          icon: "error",
+          confirmButtonColor: "#682cd48c",
+          confirmButtonText: "확인",
+        });
+      });
+  };
+
   const signUpUser = (payload: SignUpPayload) => {
-    signUp(payload).then((response) => {
+    signUp(payload).then((response:any) => {
       Swal.fire({
         title: "회원가입 완료. \n 로그인 하시겠습니까?",
         icon: "success",
@@ -64,27 +80,11 @@ export default function SignUp() {
     });
   };
 
-  const signUp = (payload: SignUpPayload) => {
-    return axios
-      .post(`${API_URL}/users/signup/`, payload)
-      .then((response) => {
-        return response;
-      })
-      .catch((error: any) => {
-        Swal.fire({
-          title: "회원가입 에러",
-          icon: "error",
-          confirmButtonColor: "#682cd48c",
-          confirmButtonText: "확인",
-        });
-      });
-  };
-
   // 비밀번호 확인을 위한 state
   const [password, setPassword] = React.useState("");
   const [confirmPassword, setConfirmPassword] = React.useState("");
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event:any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
@@ -169,7 +169,7 @@ export default function SignUp() {
                   id="password"
                   autoComplete="new-password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e:any) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -182,7 +182,7 @@ export default function SignUp() {
                   id="confirmPassword"
                   autoComplete="new-password"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e:any) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
