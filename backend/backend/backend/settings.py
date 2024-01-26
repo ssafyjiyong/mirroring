@@ -15,9 +15,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# my_settings.py 불러오기
-from my_settings import SECRET_KEY, DATABASES, SOCIAL_AUTH_GOOGLE_CLIENT_ID, SOCIAL_AUTH_GOOGLE_SECRET_KEY
 
+# my_settings.py 불러오기
+from my_settings import SECRET_KEY, DATABASES
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -34,43 +34,40 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    # APP
     'user',
-    
-    # CORSHEADERS
-    'corsheaders',
-    
+
     # DRF
-    'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
     
-    # REST_AUTH
-    'dj_rest_auth',
-    'dj_rest_auth.registration',
+    'authentication',
+    
+    # social login
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # 'allauth.socialaccount.providers.google',
     
-    # ORIGIN APPS
+    # cors-headers
+    'corsheaders',
+    
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'schedule',
-    'information',
 ]
 
 MIDDLEWARE = [
-    # ALLAUTH
+    # allauth
     'allauth.account.middleware.AccountMiddleware',
     
     # corsheaders
     'corsheaders.middleware.CorsMiddleware',
-    
-    # ORIGIN MIDDLEWARE
+        
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,67 +145,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
-# DRF auth settings
-# Token 인증을 기본으로 사용하도록 설정
-REST_FRAMEWORK = {
-'DEFAULT_AUTHENTICATION_CLASSES': [
-'rest_framework.authentication.TokenAuthentication',
-]
-}
-
-# 사용자
+# 커스텀 유저 모델
 AUTH_USER_MODEL = 'user.User'
-ACCOUNT_ADAPTER = 'user.adapters.CustomAccountAdapter'
-
-# 기본 인증 백엔드와 allauth 패키지에서 제공하는 인증 백엔드를 모두 사용하겠다는 설정.
-AUTHENTICATION_BACKENDS = (
-    # allauth와 상관없이 관리자는 기존 로그인 방식을 사용
-    "django.contrib.auth.backends.ModelBackend",
-
-    # 일반 유저는 allauth 인증 사용
-    "allauth.account.auth_backends.AuthenticationBackend",
-
-    # google login
-    # 'social_core.backends.google.GoogleOAuth2',
-)
-
-# 로그인 시 email을 사용
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # -> username, email, username_email 지정 가능
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = None
-ACCOUNT_UNIQUE_EMAIL = True
-
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_USERNAME_VERIFICATION = None
-
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
-
-
-# JWT 인가 사용 설정
-REST_FRAMEWORK = {
-    "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated",
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-    ),
-}
-
-REST_AUTH = {
-    'SESSION_LOGIN': False,
-    # 'REGISTER_SERIALIZER': 'user.serializers.CustomRegisterSerializer',
-}
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'user.serializers.CustomRegisterSerializer',
-}
-
-
-REST_USE_JWT = True
-JWT_AUTH_COOKIE = 'my-app-auth'
-JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
