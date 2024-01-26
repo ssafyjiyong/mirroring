@@ -15,11 +15,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-interface SignUpPayload {
-  email: string;
-  password: string;
-}
-
 function Copyright(props: any) {
   return (
     <Typography
@@ -29,7 +24,7 @@ function Copyright(props: any) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="#">
         Fubao
       </Link>{" "}
       {new Date().getFullYear()}
@@ -38,47 +33,10 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
-export default function SignUp() {
+const SignUp = () => {
+  const defaultTheme = createTheme()
   const navigate = useNavigate();
-
   const API_URL = "http://127.0.0.1:8000";
-
-  const signUp = (payload: SignUpPayload) => {
-    return axios
-      .post(`${API_URL}/users/signup/`, payload)
-      .then((response:any) => {
-        return response;
-      })
-      .catch((error: any) => {
-        Swal.fire({
-          title: "회원가입 에러",
-          icon: "error",
-          confirmButtonColor: "#682cd48c",
-          confirmButtonText: "확인",
-        });
-      });
-  };
-
-  const signUpUser = (payload: SignUpPayload) => {
-    signUp(payload).then((response:any) => {
-      Swal.fire({
-        title: "회원가입 완료. \n 로그인 하시겠습니까?",
-        icon: "success",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "네",
-        cancelButtonText: "아니요",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          goToLogin();
-        }
-      });
-    });
-  };
 
   // 비밀번호 확인을 위한 state
   const [password, setPassword] = React.useState("");
@@ -88,6 +46,18 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
+
+    // 이메일 형식 확인
+    if (!email.includes('@') || !email.includes('.')) {
+      Swal.fire({
+        title: "이메일 형식 오류",
+        text: "형식이 이메일이 아닙니다.",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
 
     // 비밀번호 일치 확인
     if (password !== confirmPassword) {
@@ -101,24 +71,52 @@ export default function SignUp() {
       return;
     }
 
-    console.log(email, password)
+    // 비밀번호 글자수 확인
+    if (password.length < 8) {
+      Swal.fire({
+        title: "비밀번호 재입력",
+        text: "비밀번호는 최소 8글자 이상이어야 합니다.",
+        icon: "error",
+        confirmButtonColor: "#3085d6",
+        confirmButtonText: "확인",
+      });
+      return;
+    }
 
-    const payload = {
-      email: email,
-      password: password,
-    };
-
-    console.log("Sending payload:", payload);
-    signUpUser(payload);
+    axios.post(`${API_URL}/users/signup/`, { email, password })
+      .then(response => {
+        Swal.fire({
+          title: "회원가입 완료. \n 로그인 하시겠습니까?",
+          icon: "success",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "네",
+          cancelButtonText: "아니요",
+        }).then(result => {
+          if (result.isConfirmed) {
+            navigate("/login");
+          }
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          title: "회원가입 에러",
+          text: "회원가입에 실패했습니다. 다시 시도해주세요.",
+          icon: "error",
+          confirmButtonColor: "#682cd48c",
+          confirmButtonText: "확인",
+        });
+      });
   };
 
   const goBack = () => {
-    navigate(-1); // 이전 페이지로 돌아가기
-  };
+      navigate(-1); // 이전 페이지로 돌아가기
+    };
 
   const goToLogin = () => {
-    navigate("/login");
-  };
+      navigate("/login");
+    };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -207,4 +205,6 @@ export default function SignUp() {
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default SignUp
