@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # my_settings.py 불러오기
-from my_settings import SECRET_KEY, DATABASES
+from my_settings import SECRET_KEY, DATABASES, SOCIAL_AUTH_GOOGLE_CLIENT_ID, SOCIAL_AUTH_GOOGLE_SECRET_KEY
 
 
 # Quick-start development settings - unsuitable for production
@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django.contrib.sites',
     
     # ORIGIN APPS
     'django.contrib.admin',
@@ -60,6 +59,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'schedule',
+    'information',
 ]
 
 MIDDLEWARE = [
