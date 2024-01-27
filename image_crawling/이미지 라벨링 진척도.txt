@@ -3,7 +3,7 @@
 1. 참돔 (red sea bream)
 2. 농어 (sea bass)
 3. 전갱이 (horse mackerel)
-4. 숭어 (mugil cephalus)
+4. 숭어 (mugil cephalus) => 진행중
 5. 참고등어 (scomber japonicus)
 6. 넙치 (flatfish) => 완료
 7. 우럭 (korean rockfish) => 완료
