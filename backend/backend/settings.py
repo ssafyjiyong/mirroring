@@ -36,6 +36,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # local
     'user',
+    'fish',
 
     # DRF
     'drf_yasg',
