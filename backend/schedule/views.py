@@ -20,6 +20,12 @@ class NewScheduleAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ScheduleAPIView(APIView):
+    # 일정 조회(단일)
+    @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
+    def get(self, request, pk):
+        schedule_instance = get_object_or_404(schedule, id=pk)
+        serializer = ScheduleAllSerializer(schedule_instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     # 일정 수정
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
