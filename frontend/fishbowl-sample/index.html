@@ -50,114 +50,43 @@
         scene.add(directionalLight);
 
         // GLTFLoader 인스턴스 생성
-        const loader = new GLTFLoader();
-        let xpos = -1.5;
-        let ypos = 0;
-        let sw = 3;
-        let ysw = 1;
-        let cnt = 0;
+        const loader1 = new GLTFLoader();
+        const loader2 = new GLTFLoader();
 
-        // 3D 모델 로드 및 씬에 추가
-        loader.load('animated_low_poly_fish/scene.gltf', function (gltf) {
-            const model = gltf.scene;  // gltf.scene을 직접 사용
+        // 3D 모델 로드 및 씬에 추가 (첫 번째 모델)
+        loader1.load('animated_low_poly_fish/scene.gltf', function (gltf1) {
+            const model1 = gltf1.scene;
 
-            // 로드한 모델의 크기와 중심을 기반으로 카메라 위치 및 타겟 조정
-            const box = new THREE.Box3().setFromObject(model);
-            const center = box.getCenter(new THREE.Vector3());
-            const size = box.getSize(new THREE.Vector3());
+            // 위치, 회전 또는 필요한 다른 속성에 따라 조정
+            model1.position.set(0, 0, 0); // 예시 위치, 필요에 따라 조정
+            scene.add(model1);
 
-            // 카메라 위치 및 타겟 조정
-            camera.position.copy(center);
-            camera.position.x += size.x * 10; // 적절한 시점을 위해 이 값을 조정할 수 있음
-            camera.lookAt(center);
-            model.rotation.y += 1.5;
+            // 애니메이션 등 추가 설정 가능
 
-            //위치 잡는거
-            //model.position.set(0, 0, 0);
-
-            // 씬에 모델 추가
-            scene.add(model);
-
-            // Morph 애니메이션 처리
-            const animations = gltf.animations;
-            const mixer = new THREE.AnimationMixer(model);
-
-            // 모든 애니메이션을 믹서에 추가하고 재생
-            animations.forEach((animation) => {
-                const action = mixer.clipAction(animation);
-                action.play();
-            });
-
-
-
-            // 애니메이션 업데이트 함수 정의
-            function animate() {
-                requestAnimationFrame(animate);
-
-                // 믹서 업데이트
-                mixer.update(0.016); // 보통 60FPS 기준으로 업데이트
-
-                // 모델 회전
-                //model.rotation.y += 0.005;
-
-                // 렌더링
-                renderer.render(scene, camera);
-                //xpos = 1;
-                // for (step = 0; step < 2; step = step + 0.1) {
-                //     console.log(step);
-                // }
-                if (xpos < -1.5) {
-                    sw = 1;
-                    xpos += 0.01;
-                }
-                else if (xpos > 2) {
-                    sw = 2;
-                    xpos -= 0.01;
-                }
-                else if (model.rotation.y > 3.5) {
-                    sw = 3;
-                    model.rotation.y -= 0.125;
-                }
-                else if (model.rotation.y < 1.5) {
-                    sw = 4;
-                    model.rotation.y += 0.125;
-                }
-
-                if (ypos > 2) {
-                    ysw = 2;
-                }
-                else if (ypos < -2) {
-                    ysw = 1;
-                }
-
-                if (sw == 1) {
-                    model.rotation.y -= 0.125;
-                }
-                else if (sw == 2) {
-                    model.rotation.y += 0.125;
-                }
-                else if (sw == 3) {
-                    xpos -= 0.01;
-                }
-                else if (sw == 4) {
-                    xpos += 0.01;
-                }
-
-                if (ysw == 1) {
-                    ypos += 0.01;
-                }
-                else if (ysw == 2) {
-                    ypos -= 0.01;
-                }
-                //console.log(sw);
-                //console.log(xpos);
-                console.log(model.rotation.y);
-                model.position.set(0, ypos, xpos);
-            }
-
-            // 애니메이션 시작
-            animate();
+            animate(); // 애니메이션 시작
         });
+
+        // 3D 모델 로드 및 씬에 추가 (두 번째 모델)
+        loader2.load('koifish/scene.gltf', function (gltf2) {
+            const model2 = gltf2.scene;
+
+            // 위치, 회전 또는 필요한 다른 속성에 따라 조정
+            model2.position.set(0, 0, -1); // 예시 위치, 필요에 따라 조정
+            scene.add(model2);
+
+            // 애니메이션 등 추가 설정 가능
+
+            animate(); // 애니메이션 시작
+        });
+
+        // 애니메이션 업데이트 함수 정의
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 모든 모델에 대한 애니메이션 및 업데이트 작업 수행
+
+            renderer.render(scene, camera);
+        }
     </script>
 </body>
 
