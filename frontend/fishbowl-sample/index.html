@@ -8,7 +8,7 @@
 
 <body>
     <!-- 렌더링할 3D 모델을 표시할 캔버스 -->
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="800" height="800"></canvas>
 
     <!-- 모듈 import를 위한 importmap 설정 -->
     <script type="importmap">
@@ -38,7 +38,7 @@
         camera.position.set(0, 0, 15)
 
         // 배경을 흰색으로 설정
-        scene.background = new THREE.Color('');
+        scene.background = new THREE.Color('black');
 
         // 빛 설정
         const ambientLight = new THREE.AmbientLight(0xffffff, 3); // 주변 조명
@@ -53,28 +53,56 @@
         const loader1 = new GLTFLoader();
         const loader2 = new GLTFLoader();
 
+        let mixer1; // mixer 변수를 외부에서 정의
+        let model1; // model1 변수를 외부에서 정의
+
+        let mixer2; // mixer 변수를 외부에서 정의
+        let model2; // model2 변수를 외부에서 정의
+
         // 3D 모델 로드 및 씬에 추가 (첫 번째 모델)
         loader1.load('animated_low_poly_fish/scene.gltf', function (gltf1) {
-            const model1 = gltf1.scene;
+            model1 = gltf1.scene;
 
             // 위치, 회전 또는 필요한 다른 속성에 따라 조정
             model1.position.set(0, 0, 0); // 예시 위치, 필요에 따라 조정
+
+            // 씬에 모델 추가
             scene.add(model1);
 
             // 애니메이션 등 추가 설정 가능
+
+            const animations1 = gltf1.animations;
+            mixer1 = new THREE.AnimationMixer(model1); // mixer 초기화
+
+            // 모든 애니메이션을 믹서에 추가하고 재생
+            animations1.forEach((animation) => {
+                const action = mixer1.clipAction(animation);
+                action.play();
+            });
 
             animate(); // 애니메이션 시작
         });
 
         // 3D 모델 로드 및 씬에 추가 (두 번째 모델)
         loader2.load('koifish/scene.gltf', function (gltf2) {
-            const model2 = gltf2.scene;
+            model2 = gltf2.scene;
 
             // 위치, 회전 또는 필요한 다른 속성에 따라 조정
-            model2.position.set(0, 0, -1); // 예시 위치, 필요에 따라 조정
+            model2.position.set(-5, 2, -40); // 예시 위치, 필요에 따라 조정
+
+            // 씬에 모델 추가
             scene.add(model2);
 
             // 애니메이션 등 추가 설정 가능
+
+            const animations2 = gltf2.animations;
+            mixer2 = new THREE.AnimationMixer(model2); // mixer 초기화
+
+            // 모든 애니메이션을 믹서에 추가하고 재생
+            animations2.forEach((animation) => {
+                const action = mixer2.clipAction(animation);
+                action.play();
+            });
 
             animate(); // 애니메이션 시작
         });
@@ -83,8 +111,16 @@
         function animate() {
             requestAnimationFrame(animate);
 
-            // 모든 모델에 대한 애니메이션 및 업데이트 작업 수행
+            if (mixer1) {
+                mixer1.update(0.016); // 보통 60FPS 기준으로 업데이트
+            }
 
+            if (mixer2) {
+                mixer2.update(0.016); // 보통 60FPS 기준으로 업데이트
+            }
+
+            // 모든 모델에 대한 애니메이션 및 업데이트 작업 수행
+            //console.log("HI");
             renderer.render(scene, camera);
         }
     </script>
