@@ -52,24 +52,34 @@
         // GLTFLoader 인스턴스 생성
         const loader1 = new GLTFLoader();
         const loader2 = new GLTFLoader();
+        const loader3 = new GLTFLoader();
 
         let xpos1 = -1.5;
         let ypos1 = 0;
         let sw1 = 3;
         let ysw1 = 1;
         let cnt1 = 0;
+        let xrsw1 = 1;
+        let yrsw1 = 1;
+        let xrand1, yrand1;
 
         let xpos2 = -10;
         let ypos2 = 0;
         let sw2 = 4;
         let ysw2 = 1;
         let cnt2 = 0;
+        let xrsw2 = 1;
+        let yrsw2 = 1;
+        let xrand2, yrand2;
 
         let mixer1; // mixer 변수를 외부에서 정의
         let model1; // model1 변수를 외부에서 정의
 
         let mixer2; // mixer 변수를 외부에서 정의
         let model2; // model2 변수를 외부에서 정의
+
+        let mixer3; // mixer 변수를 외부에서 정의
+        let model3; // model2 변수를 외부에서 정의
 
         // 3D 모델 로드 및 씬에 추가 (첫 번째 모델)
         loader1.load('animated_low_poly_fish/scene.gltf', function (gltf1) {
@@ -118,13 +128,21 @@
                 const action = mixer2.clipAction(animation);
                 action.play();
             });
-
             animate(); // 애니메이션 시작
         });
 
         // 애니메이션 업데이트 함수 정의
         function animate() {
             requestAnimationFrame(animate);
+
+            if (xrsw2 == 1) {
+                xrsw2 = 0;
+                xrand2 = ((Math.random() * (10 + 10)) - 10).toFixed(1);
+            }
+            if (yrsw2 == 1) {
+                yrsw2 = 0;
+                yrand2 = ((Math.random() * (10 + 10)) - 10).toFixed(1);
+            }
 
             if (mixer1) {
                 mixer1.update(0.016); // 보통 60FPS 기준으로 업데이트
@@ -140,7 +158,7 @@
                     sw1 = 3;
                     model1.rotation.y -= 0.1;
                 }
-                else if (model1.rotation.y < -3.5) {
+                else if (model1.rotation.y < -4) {
                     sw1 = 4;
                     model1.rotation.y += 0.1;
                 }
@@ -182,10 +200,12 @@
                 if (xpos2 > 10) {
                     sw2 = 1;
                     xpos2 -= 0.02;
+                    xrsw2 = 1;
                 }
                 else if (xpos2 < -10) {
                     sw2 = 2;
                     xpos2 += 0.02;
+                    xrsw2 = 1;
                 }
                 else if (model2.rotation.y > 0) {
                     sw2 = 3;
@@ -223,8 +243,10 @@
                     ypos2 -= 0.005;
                 }
                 //console.log(sw);
-                console.log(xpos2);
+                //console.log(xpos2);
                 //console.log(model2.rotation.y);
+                //const rand1 = ((Math.random() * (10 + 10)) - 10).toFixed(1);
+                console.log(xrand2);
                 model2.position.set(xpos2, ypos2, -40);
             }
 
