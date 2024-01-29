@@ -6,3 +6,8 @@ class FishSerializer(serializers.ModelSerializer):
         model = fish
         fields = "__all__"
 
+class UserFishSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = user_fish
+        fields = '__all__'
+        read_only_fields = ('user', 'fish')
