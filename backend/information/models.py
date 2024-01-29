@@ -11,7 +11,7 @@ class fishing_area(models.Model):
     title=models.CharField(max_length=10)
     document=models.TextField()
     
-class fising_method(models.Model):
+class fishing_method(models.Model):
     #id=models.IntegerField(primary_key=True)
     title=models.CharField(max_length=10)
     document=models.TextField()
