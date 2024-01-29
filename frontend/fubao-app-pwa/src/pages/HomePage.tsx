@@ -21,6 +21,7 @@ function HomePage() {
       justifyContent: 'center',
       height: '100vh'
     }}>
+      <p>테스트</p>
       {/* {isLoggedIn ? <Initial /> : <Login />} */}
       {isLoggedIn && <Initial />}
     </div>
