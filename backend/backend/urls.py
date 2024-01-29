@@ -26,6 +26,7 @@ urlpatterns = [
     path('user/', include('user.urls')),
     path('user/', include('allauth.urls')),
     path('user/', include('user.urls')),
+    path('fish/', include('fish.urls')),
     path('information/',include('information.urls')),
 
     # swagger

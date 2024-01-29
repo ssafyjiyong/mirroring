@@ -36,6 +36,9 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # local
     'user',
+    'fish',
+    'schedule',
+    'information',
 
     # DRF
     'drf_yasg',
@@ -59,8 +62,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'schedule',
-    'information',
 ]
 
 MIDDLEWARE = [
