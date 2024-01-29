@@ -10,6 +10,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     class Meta:
         model = User
         fields = ['email', 'password', 'name', 'nickname', 'age', 'gender', 'profile_img']
+        read_only_fields = ('token', )
         
     name = serializers.CharField(required=False, max_length=10)
     age = serializers.IntegerField(required=False, allow_null=True)
@@ -54,3 +55,9 @@ class CustomRegisterSerializer(RegisterSerializer):
         adapter.save_user(request, user, self)
         self.custom_signup(request, user)
         return user
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img']
+        read_only_fields = ('email', 'date_joined', 'is_superuser'),
