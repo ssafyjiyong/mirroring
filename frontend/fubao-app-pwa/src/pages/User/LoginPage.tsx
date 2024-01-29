@@ -1,8 +1,11 @@
+import { Fragment } from 'react';
 import Login from '../../components/User/Login';
 
 const LoginPage = () => {
   return (
-    <Login />
+    <div>
+      <Login />
+    </div>
     )
   }
   
