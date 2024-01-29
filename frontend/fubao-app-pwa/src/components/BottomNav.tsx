@@ -2,7 +2,9 @@ import React from 'react'
 
 const BottomNav = () => {
   return (
-    <div>BottomNav</div>
+  <div>
+    <p>BottomNav</p>
+  </div>
   )
 }
 
