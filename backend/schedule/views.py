@@ -42,5 +42,5 @@ class ScheduleAPIView(APIView):
     def delete(self, request, pk):
         schedule_instance = schedule.objects.get(id=pk)
         schedule_instance.delete()
-        return Response(request.data, status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
