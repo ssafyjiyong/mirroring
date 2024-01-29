@@ -105,7 +105,7 @@ def weatherAPI(lat,lon):
         
     for item in dictionay['response']['body']['items']['item']:
     
-        if len(temp)>=6:
+        if len(pcp)>=6:
             continue
             
         if item['category']=="TMP":
