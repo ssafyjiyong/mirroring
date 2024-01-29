@@ -3,10 +3,10 @@ from .models import schedule
 
 class ScheduleAllSerializer(serializers.ModelSerializer):
     class Meta:
-        model=schedule
-        fields=('id','user','method','area','date','location','done')
+        model = schedule
+        fields = "__all__"
 
 class ScheduleDoneSerializer(serializers.ModelSerializer):
     class Meta:
-        model=schedule
-        fields=('id','done')
+        model = schedule
+        fields = ('id', 'done')
