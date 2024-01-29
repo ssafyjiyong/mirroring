@@ -1,3 +1,5 @@
+#한줄 실행: 커서 맨 앞에 위치한 후 "ctrl+shift+f9"
+#파일 경로는 본인이 저장한 각 csv 파일 경로
 select * from schedule_schedule;
 
 select * from information_fishing_area;
