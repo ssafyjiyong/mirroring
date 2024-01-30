@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'fish',
     'schedule',
     'information',
+    'location',
 
     # DRF
     'drf_yasg',
