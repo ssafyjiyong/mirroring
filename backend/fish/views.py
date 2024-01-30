@@ -29,6 +29,10 @@ class MyFishListView(APIView):
         fishlist = user_fish.objects.all()
         seriarizer = UserFishSerializer(fishlist, many=True)
         return Response(seriarizer.data)
+    
+    @swagger_auto_schema(responses={"201": UserFishSerializer})
+    def post(self, request):
+        pass
 
 class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishSerializer})
