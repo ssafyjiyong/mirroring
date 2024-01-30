@@ -6,12 +6,29 @@ from rest_framework.generics import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
 
 from .serializers import FishSerializer, UserFishSerializer
-from .models import fish
+from .models import fish, user_fish
 
 # Create your views here.
-class FishView(APIView):
+class FishListView(APIView):
     @swagger_auto_schema(responses={"200": FishSerializer})
     def get(self, request):
         fishlist = fish.objects.all()
         serializer = FishSerializer(fishlist, many=True)
         return Response(serializer.data)
+
+class FishView(APIView):
+    @swagger_auto_schema(responses={"200": FishSerializer})
+    def get(self, request, pk):
+        fishpk = get_object_or_404(fish, pk=pk)
+        serializer = FishSerializer(fishpk)
+        return Response(serializer.data)
+
+class MyFishListView(APIView):
+    @swagger_auto_schema(responses={"200": UserFishSerializer})
+    def get(self, request):
+        fishlist = user_fish.objects.all()
+        seriarizer = UserFishSerializer(fishlist, many=True)
+        return Response(seriarizer.data)
+
+class MyFishView(APIView):
+    pass

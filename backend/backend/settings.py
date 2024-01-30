@@ -76,6 +76,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # allauth
     'allauth.account.middleware.AccountMiddleware',
+    
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -179,3 +180,9 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
 # admin site
 SITE_ID = 1
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
