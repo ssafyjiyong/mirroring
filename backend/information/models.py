@@ -11,7 +11,7 @@ class fishing_area(models.Model):
     title=models.CharField(max_length=10)
     document=models.TextField()
     
-class fising_method(models.Model):
+class fishing_method(models.Model):
     #id=models.IntegerField(primary_key=True)
     title=models.CharField(max_length=10)
     document=models.TextField()
@@ -24,15 +24,15 @@ class fishing_equipment(models.Model):
 class release_fish(models.Model):
     #id=models.IntegerField(primary_key=True)
     name_kor=models.CharField(max_length=40)
-    name_end=models.CharField(max_length=50, null=True, blank=True)
-    standard=models.FloatField()
+    name_eng=models.CharField(max_length=50, null=True, blank=True)
+    standard=models.FloatField(null=True)
     
 class prohibit_fish(models.Model):
     #id=models.IntegerField(primary_key=True)
     name_kor=models.CharField(max_length=40)
-    name_end=models.CharField(max_length=50,null=True,blank=True)
-    standard_start=models.DateField()
-    standard_end=models.DateField()
+    name_eng=models.CharField(max_length=50,null=True,blank=True)
+    standard_start=models.DateField(null=True)
+    standard_end=models.DateField(null=True)
     
     
     
