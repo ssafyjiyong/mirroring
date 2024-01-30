@@ -31,4 +31,26 @@ class MyFishListView(APIView):
         return Response(seriarizer.data)
 
 class MyFishView(APIView):
-    pass
+    @swagger_auto_schema(responses={"200": UserFishSerializer})
+    def get(self, request, pk):
+        myfish = get_object_or_404(user_fish, pk=pk)
+        seriarizer = UserFishSerializer(myfish)
+        return Response(seriarizer.data)
+    
+    @swagger_auto_schema(responses={"200": UserFishSerializer})
+    def put(self, request, pk):
+        myfish = get_object_or_404(user_fish, pk=pk)
+        serializer = UserFishSerializer(myfish, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @swagger_auto_schema(responses={"200": UserFishSerializer})
+    def patch(self, request, pk):
+        myfish = get_object_or_404(user_fish, pk=pk)
+        serializer = UserFishSerializer(myfish, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
