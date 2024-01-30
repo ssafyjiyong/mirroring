@@ -1,12 +1,46 @@
+/* SpoqaHanSansNeo-Regular */
 @font-face {
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: "SpoqaHanSansNeo";
   font-weight: normal;
-  src: url("./fonts/SpoqaHanSansNeo-Regular.otf") format("truetype");
+  font-display: swap;
+  src: url("./fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2");
+}
+
+/* SpoqaHanSansNeo-Bold */
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-weight: bold;
+  font-display: swap;
+  src: url("./fonts/SpoqaHanSansNeo-Bold.woff2") format("woff2");
+}
+
+/* SpoqaHanSansNeo-Light */
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-weight: 300; /* Light 스타일을 위한 보통의 font-weight 값 */
+  font-display: swap;
+  src: url("./fonts/SpoqaHanSansNeo-Light.woff2") format("woff2");
+}
+
+/* SpoqaHanSansNeo-Medium */
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-weight: 500; /* Medium 스타일을 위한 보통의 font-weight 값 */
+  font-display: swap;
+  src: url("./fonts/SpoqaHanSansNeo-Medium.woff2") format("woff2");
+}
+
+/* SpoqaHanSansNeo-Thin */
+@font-face {
+  font-family: "SpoqaHanSansNeo";
+  font-weight: 100; /* Thin 스타일을 위한 보통의 font-weight 값 */
+  font-display: swap;
+  src: url("./fonts/SpoqaHanSansNeo-Thin.woff2") format("woff2");
 }
 
 body {
   margin: 0;
-  font-family: "SpoqaHanSansNeo-Regular", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "SpoqaHanSansNeo", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
