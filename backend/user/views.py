@@ -2,6 +2,8 @@ from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateAPIView
 from dj_rest_auth.registration.views import RegisterView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
 from .serializers import CustomRegisterSerializer, UserSerializer
 
 # Create your views here.
@@ -23,3 +25,8 @@ class UserProfileView(RetrieveUpdateAPIView):
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        user = self.get_object()
+        user.delete()
+        return Response({"detail": "User deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
