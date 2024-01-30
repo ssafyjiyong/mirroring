@@ -39,13 +39,15 @@ const SignUp = () => {
   const API_URL = "http://127.0.0.1:8000";
 
   // 비밀번호 확인을 위한 state
-  const [password, setPassword] = React.useState("");
-  const [confirmPassword, setConfirmPassword] = React.useState("");
+  const [password1, setPassword] = React.useState("");
+  const [password2, setConfirmPassword] = React.useState("");
 
   const handleSubmit = (event:any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
+    const nickname = data.get("nickname") as string;
+
 
     // 이메일 형식 확인
     if (!email.includes('@') || !email.includes('.')) {
@@ -60,7 +62,7 @@ const SignUp = () => {
     }
 
     // 비밀번호 일치 확인
-    if (password !== confirmPassword) {
+    if (password1 !== password2) {
       Swal.fire({
         title: "비밀번호 불일치",
         text: "비밀번호가 일치하지 않습니다.",
@@ -72,7 +74,7 @@ const SignUp = () => {
     }
 
     // 비밀번호 글자수 확인
-    if (password.length < 8) {
+    if (password1.length < 8) {
       Swal.fire({
         title: "비밀번호 재입력",
         text: "비밀번호는 최소 8글자 이상이어야 합니다.",
@@ -83,7 +85,7 @@ const SignUp = () => {
       return;
     }
 
-    axios.post(`${API_URL}/users/signup/`, { email, password })
+    axios.post(`${API_URL}/user/register/`, { email, password1, password2, nickname })
       .then(response => {
         Swal.fire({
           title: "회원가입 완료. \n 로그인 하시겠습니까?",
@@ -161,26 +163,36 @@ const SignUp = () => {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="비밀번호"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                  value={password}
-                  onChange={(e:any) => setPassword(e.target.value)}
+                  id="nickname"
+                  label="닉네임"
+                  name="nickname"
+                  autoComplete="nickname"
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  name="confirmPassword"
+                  name="password1"
+                  label="비밀번호"
+                  type="password"
+                  id="password1"
+                  autoComplete="new-password"
+                  value={password1}
+                  onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password2"
                   label="비밀번호 확인"
                   type="password"
-                  id="confirmPassword"
+                  id="password2"
                   autoComplete="new-password"
-                  value={confirmPassword}
-                  onChange={(e:any) => setConfirmPassword(e.target.value)}
+                  value={password2}
+                  onChange={(e:React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
             </Grid>

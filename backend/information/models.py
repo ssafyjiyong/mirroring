@@ -32,7 +32,7 @@ class prohibit_fish(models.Model):
     name_kor=models.CharField(max_length=40)
     name_eng=models.CharField(max_length=50,null=True,blank=True)
     standard_start=models.DateField(null=True)
-    standard_end=models.DateField(nulll=True)
+    standard_end=models.DateField(null=True)
     
     
     
