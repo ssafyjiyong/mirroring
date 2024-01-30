@@ -29,7 +29,7 @@ class ScheduleAPIView(APIView):
     
     # 일정 수정
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
-    def put(self, request,pk):
+    def put(self, request, pk):
         schedule_instance = get_object_or_404(schedule, id=pk)
         serializer = ScheduleDoneSerializer(schedule_instance, data=request.data)
         if serializer.is_valid():

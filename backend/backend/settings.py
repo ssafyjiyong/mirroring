@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # DRF
     'drf_yasg',
     'rest_framework',
+    'rest_framework_simplejwt',
     'rest_framework.authtoken',
     
     # social login
@@ -96,9 +97,11 @@ REST_FRAMEWORK = {
     ],
     # permission
     # API 접근에 대한 기본 권한 설정. 모든 요청 허용
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ],
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',  # 인증된 요청인지 확인
+        'rest_framework.permissions.IsAdminUser',  # 관리자만 접근 가능
+        'rest_framework.permissions.AllowAny',  # 누구나 접근 가능
+    ),
 }
 
 ROOT_URLCONF = 'backend.urls'
@@ -202,8 +205,13 @@ REST_AUTH = {
 # admin site
 SITE_ID = 1
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
+REST_USE_JWT = True
+
+from datetime import timedelta
+SIMPLE_JWT = {
+    'SIGNING_KEY': SECRET_KEY,
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': False,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
