@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     
     # social login
+    'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -54,6 +55,9 @@ INSTALLED_APPS = [
     
     # cors-headers
     'corsheaders',
+    
+    # django-extensions
+    'django_extensions',
     
     # django
     'django.contrib.admin',
@@ -83,6 +87,19 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
 ]
+
+REST_FRAMEWORK = {
+    # Authentication
+    # Token 인증을 기본으로 사용하도록 설정
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # permission
+    # API 접근에 대한 기본 권한 설정. 모든 요청 허용
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -177,6 +194,10 @@ ACCOUNT_USERNAME_VERIFICATION = None
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
+REST_AUTH = {
+    'SESSION_LOGIN': False,
+    'REGISTER_SERIALIZER': 'user.serializers.CustomRegisterSerializer',
+}
 
 # admin site
 SITE_ID = 1
