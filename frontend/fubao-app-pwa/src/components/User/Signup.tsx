@@ -48,6 +48,7 @@ const SignUp = () => {
     const email = data.get("email") as string;
     const nickname = data.get("nickname") as string;
 
+
     // 이메일 형식 확인
     if (!email.includes('@') || !email.includes('.')) {
       Swal.fire({
