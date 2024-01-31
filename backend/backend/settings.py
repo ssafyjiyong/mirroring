@@ -205,7 +205,12 @@ REST_AUTH = {
 # admin site
 SITE_ID = 1
 
+# REST_USE_JWT: JWT 사용 여부
+# JWT_AUTH_COOKIE: 호출할 Cookie Key값
+# JWT_AUTH_REFRESH_COOKIE: Refresh Token Cookie Key 값 (사용하는 경우)
 REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
 from datetime import timedelta
 SIMPLE_JWT = {
