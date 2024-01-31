@@ -3,11 +3,13 @@ from rest_framework.views import APIView
 import json
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 
 from .weather import weatherAPI
 from .sunset import sunsetAPI
 
 class weatherSunsetAPIView(APIView):
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         data=json.loads(request.body)       
         
