@@ -115,18 +115,18 @@ def calculate_sunset_sunrise(latitude, longitude, timezone):
 
     return ret_sunrise, ret_sunset
 
-def makeGrid(clat, clon):
-    lat_result=clat.split("-")
-    lat=int(lat_result[0])+float(lat_result[1])/60+float(lat_result[2][:-2])/3600
+# def makeGrid(clat, clon):
+    # lat_result=clat.split("-")
+    # lat=int(lat_result[0])+float(lat_result[1])/60+float(lat_result[2][:-2])/3600
     
-    lon_result=clon.split("-")
-    lon=int(lon_result[0])+float(lon_result[1])/60+float(lon_result[2][:-2])/3600
+    # lon_result=clon.split("-")
+    # lon=int(lon_result[0])+float(lon_result[1])/60+float(lon_result[2][:-2])/3600
     
-    return round(lat,7),round(lon,7)
+    # return round(lat,7),round(lon,7)
 
 def sunsetAPI(clan, clon):
-    lan,lon=makeGrid(clan,clon)
+    # lan,lon=makeGrid(clan,clon)
     
-    sunrise, sunset = calculate_sunset_sunrise(lan, lon, 9)
+    sunrise, sunset = calculate_sunset_sunrise(float(clan), float(clon), 9)
     
     return sunrise,sunset

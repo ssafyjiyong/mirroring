@@ -39,19 +39,18 @@ if first == 0 :
     ro = re * sf / math.pow(ro, sn)
     first = 1
     
-#시분초->위도 경도로 바꾸기 
-def make_grid(clat, clon):
-    lat_result=clat.split("-")
-    lat=int(lat_result[0])+float(lat_result[1])/60+float(lat_result[2][:-2])/3600
+# #시분초->위도 경도로 바꾸기 
+# def make_grid(clat, clon):
+#     lat_result=clat.split("-")
+#     lat=int(lat_result[0])+float(lat_result[1])/60+float(lat_result[2][:-2])/3600
     
-    lon_result=clon.split("-")
-    lon=int(lon_result[0])+float(lon_result[1])/60+float(lon_result[2][:-2])/3600
+#     lon_result=clon.split("-")
+#     lon=int(lon_result[0])+float(lon_result[1])/60+float(lon_result[2][:-2])/3600
     
-    return round(lat,7),round(lon,7)
+#     return round(lat,7),round(lon,7)
 
 #위도 경도를 x,y로 바꾸기
 def map_to_grid(lat, lon, code = 0 ):
-    lat,lon=make_grid(lat,lon)
     
     ra = math.tan(PI * 0.25 + lat * DEGRAD * 0.5)
     ra = re * sf / pow(ra, sn)
@@ -79,7 +78,7 @@ pcp=list()
 
 def weatherAPI(lat,lon):
 #1. 실제 위도 경도로 바꾸고(도분초->위도경도), 2. 위도 경도를 x,y로 바꾸기 
-    x,y= map_to_grid(lat,lon)
+    x,y= map_to_grid(float(lat),float(lon))
         
     #현재날짜로 설정 
     now = datetime.now().date()
