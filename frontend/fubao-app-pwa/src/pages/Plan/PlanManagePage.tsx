@@ -68,24 +68,34 @@ const PlanManagePage = () => {
           </AlignDiv>
           <AlignDiv>
             <Span>장소: </Span>
-            <Input type="text" placeholder="장소 (예시 부산항)" />
+            <Input type="text" placeholder="원래 등록한 값" />
           </AlignDiv>
           <AlignDiv>
             <Span>포인트: </Span>
-            <Input type="text" placeholder="포인트 (예시 방파제)" />
+            <Input type="text" placeholder="원래 등록한 값" />
           </AlignDiv>
           <AlignDiv>
             <Span>방법: </Span>
-            <Input type="text" placeholder="방법 (예시 찌낚시)" />
+            <Input type="text" placeholder="원래 등록한 값" />
           </AlignDiv>
+          <div>
           <Button
-            onClick={function () {}}
             size="md"
             variant="solid"
-            style={{ margin: "2em" }}
+            style={{ margin: "2em", marginRight: "0.2em" }}
+            type="submit"
           >
-            등록하기
+            수정하기
           </Button>
+          <Button
+            size="md"
+            variant="solid"
+            color="danger"
+            style={{ margin: "2em", marginLeft: "0.2em" }}
+          >
+            삭제하기
+          </Button>
+          </div>
         </RegisterBox>
       </form>
     </Container>
