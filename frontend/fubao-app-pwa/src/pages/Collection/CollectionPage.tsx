@@ -1,6 +1,7 @@
 import React from "react";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const InfoBox = styled.div`
@@ -21,7 +22,7 @@ const FishBox = styled.div`
 const FishName = styled.p`
   font-size: 1em;
   margin: 0.1em;
-  `;
+`;
 
 const CollectionPage = () => {
   return (
@@ -58,66 +59,175 @@ const CollectionPage = () => {
 
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>감성돔</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>고등어</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>광어</FishName>
-          </InfoBox>
+          <Link to="/detail/감성돔/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>감성돔</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/고등어/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>고등어</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/광어/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>광어</FishName>
+            </InfoBox>
+          </Link>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>농어</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>전갱이</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>숭어</FishName>
-          </InfoBox>
+          <Link to="/detail/농어/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>농어</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/전갱이/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>전갱이</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/숭어/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>숭어</FishName>
+            </InfoBox>
+          </Link>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>우럭</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>돌돔</FishName>
-          </InfoBox>
-          <InfoBox>
-            <FishBox>
-              <img src="" alt="" />
-            </FishBox>
-            <FishName>참돔</FishName>
-          </InfoBox>
+          <Link to="/detail/우럭/1" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>우럭</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/돌돔/2" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>돌돔</FishName>
+            </InfoBox>
+          </Link>
+          <Link to="/detail/참돔/2" style={{ textDecoration: "none" }}>
+            <InfoBox>
+              <FishBox>
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon icon="star" size="1x" color="#FFC107" />
+                <FontAwesomeIcon
+                  icon={["far", "star"]}
+                  size="1x"
+                  color="#FFC107"
+                />
+                <img src="" alt="" />
+              </FishBox>
+              <FishName>참돔</FishName>
+            </InfoBox>
+          </Link>
         </div>
 
         <div style={{ display: "flex" }}></div>
