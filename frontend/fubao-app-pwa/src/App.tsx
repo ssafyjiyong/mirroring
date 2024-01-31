@@ -26,30 +26,30 @@ import MapPage from "./pages/Map/MapPage";
 
 function App() {
   return (
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/camera" element={<CameraPage />} />
-          <Route path="/result" element={<ResultPage />} />
-          <Route path="/collection" element={<CollectionPage />} />
-          <Route path="/detail" element={<DetailPage />} />
-          <Route path="/fishbowl" element={<FishBowlPage />} />
-          <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
-          <Route path="/etiquetteinfo" element={<EtiquettePage />} />
-          <Route path="/fishinfo" element={<FishInfoPage />} />
-          <Route path="/locationinfo" element={<LocationInfoPage />} />
-          <Route path="/methodinfo" element={<MethodInfoPage />} />
-          <Route path="/pointinfo" element={<PointInfoPage />} />
-          <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
-          <Route path="/releaseinfo" element={<ReleaseInfo />} />
-          <Route path="/main" element={<MainPage />} />
-          <Route path="/map" element={<MapPage />} />
-          <Route path="/planmanage" element={<PlanManagePage />} />
-          <Route path="/plan" element={<PlanPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/viewall" element={<ViewAllPage />} />
-        </Routes>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/camera" element={<CameraPage />} />
+        <Route path="/result" element={<ResultPage />} />
+        <Route path="/collection" element={<CollectionPage />} />
+        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/fishbowl" element={<FishBowlPage />} />
+        <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
+        <Route path="/etiquetteinfo" element={<EtiquettePage />} />
+        <Route path="/fishinfo" element={<FishInfoPage />} />
+        <Route path="/locationinfo" element={<LocationInfoPage />} />
+        <Route path="/methodinfo" element={<MethodInfoPage />} />
+        <Route path="/pointinfo" element={<PointInfoPage />} />
+        <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
+        <Route path="/releaseinfo" element={<ReleaseInfo />} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/planmanage" element={<PlanManagePage />} />
+        <Route path="/plan" element={<PlanPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/viewall" element={<ViewAllPage />} />
+      </Routes>
   );
 }
 

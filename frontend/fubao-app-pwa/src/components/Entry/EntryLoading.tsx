@@ -6,13 +6,15 @@ const EntryLoadingBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  max-width: 576px;
   background-color: #42A5F5;
   color: white;
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const SmallP = styled.p`

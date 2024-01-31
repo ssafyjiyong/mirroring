@@ -1,20 +1,24 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const NavBar = styled.nav`
   display: flex;
   width: 100vw;
-  justify-content: space-around;
-  background-color: #e4e4e4;
+  max-width: 576px;
+  margin: auto;
+  justify-content: space-evenly;
+  background-color: #ffffff;
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 0.2em 0em;
+  box-shadow: 1px 1px 5px 1px #d1d1d1;
 `;
 
 const NavItem = styled.div`
-  border: 1px solid black;
+  /* border: 1px solid black; */
   width: 20vw;
   text-align: center;
   padding: 1vh;
@@ -35,23 +39,30 @@ const NavCenterItem = styled.div`
   align-items: center;
   background-color: white;
   cursor: pointer;
+  margin-bottom: 0.1em;
 `;
 
 const BottomNav = () => {
   return (
     <Fragment>
-    <NavBar>
-      <Link to="/viewall">
-        <NavItem>전체보기</NavItem>
+      <NavBar>
+        <Link to="/viewall" style={{ textDecoration: "none" }}>
+          <NavItem>전체보기</NavItem>
+        </Link>
+        <NavItem>d</NavItem>
+        <Link to="/map" style={{ textDecoration: "none" }}>
+          <NavItem>지도</NavItem>
+        </Link>
+      </NavBar>
+      <Link to="/collection">
+        <NavCenterItem>
+          <img
+            src="/imgs/collection_font.png"
+            alt="to_collection"
+            style={{ width: "3em", height: "1.8em" }}
+          />
+        </NavCenterItem>
       </Link>
-      <NavItem>d</NavItem>
-      <Link to="/map">
-        <NavItem>지도</NavItem>
-      </Link>
-    </NavBar>
-    <Link to="/collection">
-      <NavCenterItem>도감</NavCenterItem>
-    </Link>
     </Fragment>
   );
 };

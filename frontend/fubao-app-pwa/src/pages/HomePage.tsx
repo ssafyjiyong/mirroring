@@ -1,9 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Initial from "../components/Initial/Initial";
+import React, { useState, useEffect } from "react";
 import EntryLoading from "../components/Entry/EntryLoading";
+import Information from "../components/Main/Information";
+// import styled from "styled-components";
+
+// const TopBox = styled.div`
+//   border: 1px solid black;
+//   background-color: white;
+//   border-radius: 15%;
+// `;
 
 function HomePage() {
-  const isLoggedIn = true; // 로그인 상태를 확인하는 로직 (가정)
   const [showLoading, setShowLoading] = useState(true); // EntryLoading 컴포넌트를 보여줄지 결정하는 상태
 
   useEffect(() => {
@@ -17,10 +23,28 @@ function HomePage() {
   }, []);
 
   return (
-    <div>
-      <p style={{ alignSelf: "center" }}>테스트</p>
-      {isLoggedIn && <Initial />}
-      {showLoading && <EntryLoading />} {/* showLoading 상태에 따라 EntryLoading 표시 */}
+    <div
+      style={{
+        height: "auto",
+        padding: "1em",
+        paddingBottom: "2em",
+        backgroundColor: "#E3F2FD",
+      }}
+    >
+      <p 
+      style={{ 
+        fontWeight: 600, 
+        fontSize: '1.5em',
+        margin: '1em 0.5em 0.5em',
+        }}
+        >
+          피드
+          </p>
+        <Information />
+        <Information />
+        <Information />
+      {showLoading && <EntryLoading />}{" "}
+      {/* showLoading 상태에 따라 EntryLoading 표시 */}
     </div>
   );
 }

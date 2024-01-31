@@ -49,3 +49,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.AppStyle {
+  max-width: 576px;
+  margin:auto;
+}
