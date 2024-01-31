@@ -4,11 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <title>3D 모델 렌더링</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
     <!-- 렌더링할 3D 모델을 표시할 캔버스 -->
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas"></canvas>
 
     <!-- 모듈 import를 위한 importmap 설정 -->
     <script type="importmap">
@@ -52,27 +62,26 @@
         // GLTFLoader 인스턴스 생성
         const loader1 = new GLTFLoader();
         const loader2 = new GLTFLoader();
-        const loader3 = new GLTFLoader();
 
-        let xpos1 = Math.round(((Math.random() * (1.5 + 1.5)) - 1.5) * 1e2) / 1e2;
-        let ypos1 = Math.round(((Math.random() * (1.5 + 1.5)) - 1.5) * 1e2) / 1e2;
+        let xpos1 = Math.round(((Math.random() * (1.4 + 1.4)) - 1.4) * 1e2) / 1e2;
+        let ypos1 = Math.round(((Math.random() * (0.7 + 0.7)) - 0.7) * 1e2) / 1e2;
         let beforexpos1 = xpos1;
         let beforeypos1 = ypos1;
         let sw1 = 3;
         let ysw1 = 1;
         let cnt1 = 0;
-        let xrand1 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
-        let yrand1 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+        let xrand1 = ((Math.random() * (1.4 + 1.4)) - 1.4).toFixed(1);
+        let yrand1 = ((Math.random() * (0.7 + 0.7)) - 0.7).toFixed(1);
 
-        let xpos2 = Math.round(((Math.random() * (1.5 + 1.5)) - 1.5) * 1e2) / 1e2;
-        let ypos2 = Math.round(((Math.random() * (1.5 + 1.5)) - 1.5) * 1e2) / 1e2;
+        let xpos2 = Math.round(((Math.random() * (1.4 + 1.4)) - 1.4) * 1e2) / 1e2;
+        let ypos2 = Math.round(((Math.random() * (0.7 + 0.7)) - 0.7) * 1e2) / 1e2;
         let beforexpos2 = xpos2;
         let beforeypos2 = ypos2;
         let sw2 = 4;
         let ysw2 = 1;
         let cnt2 = 0;
-        let xrand2 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
-        let yrand2 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+        let xrand2 = ((Math.random() * (1.4 + 1.4)) - 1.4).toFixed(1);
+        let yrand2 = ((Math.random() * (0.7 + 0.7)) - 0.7).toFixed(1);
 
         let mixer1; // mixer 변수를 외부에서 정의
         let model1; // model1 변수를 외부에서 정의
@@ -89,7 +98,11 @@
 
             // 위치, 회전 또는 필요한 다른 속성에 따라 조정
             model1.position.set(xpos1, ypos1, 0); // 예시 위치, 필요에 따라 조정
-            model1.rotation.y += 1.5;
+            // mesh.rotation.reorder('YXZ');
+            model1.rotation.y += 0;
+            model1.rotation.x -= 1.5;
+            model1.rotation.z -= 1.5;
+
             //model1.rotation.y -= 3.5;
 
             // 씬에 모델 추가
@@ -115,7 +128,10 @@
 
             // 위치, 회전 또는 필요한 다른 속성에 따라 조정
             model2.position.set(xpos2, ypos2, 0); // 예시 위치, 필요에 따라 조정
-            model2.rotation.y += 1.5;
+            // mesh.rotation.reorder('YXZ');
+            model2.rotation.y += 0;
+            model2.rotation.x -= 1.5;
+            model2.rotation.z -= 1.5;
 
             // 씬에 모델 추가
             scene.add(model2);
@@ -133,9 +149,38 @@
             animate(); // 애니메이션 시작
         });
 
+        // 렌더러 크기를 조절하는 함수
+        function onWindowResize() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            // 카메라 비율 조절
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+
+            // 렌더러 크기 조절
+            renderer.setSize(width, height);
+        }
+
+        // 윈도우 리사이즈 이벤트에 함수 연결
+        window.addEventListener('resize', onWindowResize, false);
+
+        // 초기 윈도우 크기에 맞게 렌더러 크기 설정
+        onWindowResize();
+
         // 애니메이션 업데이트 함수 정의
         function animate() {
             requestAnimationFrame(animate);
+            const screenHalfWidth = window.innerWidth / 2;
+            const screenHalfHeight = window.innerHeight / 2;
+
+            // 모델이 화면을 벗어나지 않도록 위치 제한
+            // model1.position.x = THREE.MathUtils.clamp(model1.position.x, -screenHalfWidth, screenHalfWidth);
+            // model1.position.y = THREE.MathUtils.clamp(model1.position.y, -screenHalfHeight, screenHalfHeight);
+            // model2.position.x = THREE.MathUtils.clamp(model2.position.x, -screenHalfWidth, screenHalfWidth);
+            // model2.position.y = THREE.MathUtils.clamp(model2.position.y, -screenHalfHeight, screenHalfHeight);
+            // console.log(screenHalfHeight);
+            // console.log(screenHalfWidth);
 
             if (mixer1) {
                 mixer1.update(0.01); // 보통 60FPS 기준으로 업데이트
@@ -152,7 +197,7 @@
                     }
 
                     else {
-                        if (model1.rotation.y < 1.5) {
+                        if (model1.rotation.x > -1.5) {
                             sw1 = 1;
                         }
                         else {
@@ -169,7 +214,7 @@
                     }
 
                     else {
-                        if (model1.rotation.y > -1.5) {
+                        if (model1.rotation.x < 1.5) {
                             sw1 = 2;
                         }
                         else {
@@ -177,13 +222,13 @@
                         }
                     }
                 }
-                else if (model1.rotation.y > 1.5) {
+                else if (model1.rotation.x > 1.5) {
                     sw1 = 4;
-                    model1.rotation.y += 0.07;
+                    model1.rotation.x += 0.07;
                 }
-                else if (model1.rotation.y < -1.5) {
+                else if (model1.rotation.x < -1.5) {
                     sw1 = 3;
-                    model1.rotation.y -= 0.07;
+                    model1.rotation.x -= 0.07;
                 }
 
                 if (beforeypos1 > yrand1) {
@@ -208,10 +253,10 @@
                 }
 
                 if (sw1 == 1) {
-                    model1.rotation.y += 0.07;
+                    model1.rotation.x -= 0.07;
                 }
                 else if (sw1 == 2) {
-                    model1.rotation.y -= 0.07;
+                    model1.rotation.x += 0.07;
                 }
                 else if (sw1 == 3) {
                     xpos1 -= 0.002;
@@ -220,10 +265,10 @@
                     xpos1 += 0.002;
                 }
                 else if (sw1 == 5) {
-                    xrand1 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+                    xrand1 = ((Math.random() * (1.4 + 1.4)) - 1.4).toFixed(1);
                 }
                 else if (sw1 == 6) {
-                    yrand1 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+                    yrand1 = ((Math.random() * (0.7 + 0.7)) - 0.7).toFixed(1);
                 }
 
                 if (ysw1 == 1) {
@@ -234,11 +279,11 @@
                 }
                 //console.log(sw);
                 //console.log(xpos);
-                console.log(model1.rotation.y);
+                //console.log(model1.rotation.y);
                 //console.log(beforexpos1);
                 //console.log(xpos1);
                 //console.log(xrand1);
-                model1.position.set(xpos1, ypos1, 0);
+                model1.position.set(ypos1, xpos1, 0);
             }
 
             if (mixer2) {
@@ -256,7 +301,7 @@
                     }
 
                     else {
-                        if (model2.rotation.y < 1.5) {
+                        if (model2.rotation.x > -1.5) {
                             sw2 = 1;
                         }
                         else {
@@ -273,7 +318,7 @@
                     }
 
                     else {
-                        if (model2.rotation.y > -1.5) {
+                        if (model2.rotation.x < 1.5) {
                             sw2 = 2;
                         }
                         else {
@@ -281,18 +326,18 @@
                         }
                     }
                 }
-                else if (model2.rotation.y > 1.5) {
+                else if (model2.rotation.x > 1.5) {
                     sw2 = 4;
-                    model2.rotation.y += 0.07;
+                    model2.rotation.x += 0.07;
                 }
-                else if (model2.rotation.y < -1.5) {
+                else if (model2.rotation.x < -1.5) {
                     sw2 = 3;
-                    model2.rotation.y -= 0.07;
+                    model2.rotation.x -= 0.07;
                 }
 
                 if (beforeypos2 > yrand2) {
                     if (ypos2 <= yrand2) {
-                        beforeypos2 = ypos2
+                        beforeypos2 = ypos1
                         sw2 = 6;
                     }
 
@@ -302,7 +347,7 @@
                 }
                 else if (beforeypos2 < yrand2) {
                     if (ypos2 >= yrand2) {
-                        beforeypos2 = ypos1
+                        beforeypos2 = ypos2
                         sw2 = 6;
                     }
 
@@ -312,10 +357,10 @@
                 }
 
                 if (sw2 == 1) {
-                    model2.rotation.y += 0.07;
+                    model2.rotation.x -= 0.07;
                 }
                 else if (sw2 == 2) {
-                    model2.rotation.y -= 0.07;
+                    model2.rotation.x += 0.07;
                 }
                 else if (sw2 == 3) {
                     xpos2 -= 0.002;
@@ -324,25 +369,28 @@
                     xpos2 += 0.002;
                 }
                 else if (sw2 == 5) {
-                    xrand2 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+                    xrand2 = ((Math.random() * (1.4 + 1.4)) - 1.4).toFixed(1);
                 }
                 else if (sw2 == 6) {
-                    yrand2 = ((Math.random() * (1.5 + 1.5)) - 1.5).toFixed(1);
+                    yrand2 = ((Math.random() * (0.7 + 0.7)) - 0.7).toFixed(1);
                 }
 
-                if (ysw2 == 1) {
+                if (ysw1 == 1) {
                     ypos2 += 0.001;
                 }
-                else if (ysw2 == 2) {
+                else if (ysw1 == 2) {
                     ypos2 -= 0.001;
                 }
                 //console.log(sw);
                 //console.log(xpos);
-                //console.log(model2.rotation.y);
+                //console.log(model1.rotation.y);
                 //console.log(beforexpos1);
-                //console.log(xpos1);
+                console.log("x:", xpos2);
+                console.log("y:", ypos2);
                 //console.log(xrand1);
-                model2.position.set(xpos2, ypos2, 0);
+                model2.position.set(ypos2, xpos2, 0);
+                //model2.position.set(-0.7, 1.4, 0);
+                //model2.position.set(0.7, -1.4, 0);
             }
 
             // 모든 모델에 대한 애니메이션 및 업데이트 작업 수행
