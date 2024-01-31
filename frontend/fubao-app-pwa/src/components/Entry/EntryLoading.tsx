@@ -18,14 +18,14 @@ const EntryLoadingBox = styled.div`
 `;
 
 const SmallP = styled.p`
-  font-size: 1.2em;
+  font-size: 1.2rem;
   margin: 0;
   font-weight: 100;
 `;
 
 const BiggerP = styled.p`
   font-weight: 500;
-  font-size: 2em;
+  font-size: 2rem;
   margin: 0;
 `;
 

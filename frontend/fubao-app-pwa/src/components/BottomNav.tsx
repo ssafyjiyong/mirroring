@@ -29,8 +29,8 @@ const NavCenterItem = styled.div`
   position: fixed;
   border: 3px solid #168bf2;
   border-radius: 50%;
-  width: 3em;
-  height: 3em;
+  width: 3rem;
+  height: 3rem;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
@@ -39,7 +39,7 @@ const NavCenterItem = styled.div`
   align-items: center;
   background-color: white;
   cursor: pointer;
-  margin-bottom: 0.1em;
+  margin-bottom: 0.1rem;
 `;
 
 const BottomNav = () => {
@@ -59,7 +59,7 @@ const BottomNav = () => {
           <img
             src="/imgs/collection_font.png"
             alt="to_collection"
-            style={{ width: "3em", height: "1.8em" }}
+            style={{ width: "3rem", height: "1.8rem" }}
           />
         </NavCenterItem>
       </Link>

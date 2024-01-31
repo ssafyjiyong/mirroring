@@ -24,7 +24,7 @@ const MyButton = styled.button`
 `;
 
 const ButtonText = styled.span`
-  margin-top: 0.5em;
+  margin-top: 0.5rem;
   min-width: 50px;
 `;
 
@@ -106,7 +106,7 @@ const ViewAllPage = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: "2em",
+            marginTop: "2rem",
           }}
         >
           <span>로그아웃</span>

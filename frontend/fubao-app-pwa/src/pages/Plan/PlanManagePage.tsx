@@ -10,11 +10,11 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0.4em;
+  padding: 0.4rem;
 `;
 
 const RegisterBox = styled.div`
-  height: 35em;
+  height: 35rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,12 +22,12 @@ const RegisterBox = styled.div`
 
 const Input = styled.input`
   border-radius: 10px;
-  width: 20em;
-  padding: 0.5em;
-  margin: 0.5em 0;
+  width: 20rem;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
   border: 1px solid #ccc;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
+  font-size: 1rem;
   ::placeholder {
     color: #ccc;
   }
@@ -35,8 +35,8 @@ const Input = styled.input`
 
 const Span = styled.span`
   display: inline-block;
-  width: 20em;
-  margin-right: 0.5em;
+  width: 20rem;
+  margin-right: 0.5rem;
 `;
 
 const AlignDiv = styled.div`
@@ -50,7 +50,7 @@ const PlanManagePage = () => {
 
   return (
     <Container>
-      <p style={{ fontSize: "1.5em", fontWeight: "bold" }}>일정등록</p>
+      <p style={{ fontSize: "1.5rem", fontWeight: "bold" }}>일정등록</p>
       {/* 일정 등록 칸 */}
       <form action="">
         <RegisterBox>
@@ -82,7 +82,7 @@ const PlanManagePage = () => {
           <Button
             size="md"
             variant="solid"
-            style={{ margin: "2em", marginRight: "0.2em" }}
+            style={{ margin: "2rem", marginRight: "0.2rem" }}
             type="submit"
           >
             수정하기
@@ -91,7 +91,7 @@ const PlanManagePage = () => {
             size="md"
             variant="solid"
             color="danger"
-            style={{ margin: "2em", marginLeft: "0.2em" }}
+            style={{ margin: "2rem", marginLeft: "0.2rem" }}
           >
             삭제하기
           </Button>

@@ -9,19 +9,20 @@ const InfoBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0.4em;
+  margin: 0.4rem;
 `;
 
 const FishBox = styled.div`
   border-radius: 10px;
   background-color: white;
-  width: 6em;
-  height: 6em;
+  width: 6rem;
+  height: 6rem;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const FishName = styled.p`
-  font-size: 1em;
-  margin: 0.1em;
+  font-size: 1rem;
+  margin: 0.1rem;
 `;
 
 const CollectionPage = () => {
@@ -29,16 +30,16 @@ const CollectionPage = () => {
     <div
       style={{
         height: "100vh",
-        padding: "1em",
-        paddingBottom: "2em",
+        padding: "1rem",
+        paddingBottom: "2rem",
         backgroundColor: "#E3F2FD",
       }}
     >
       <p
         style={{
           fontWeight: 600,
-          fontSize: "1.5em",
-          margin: "1em 0.5em 0.5em",
+          fontSize: "1.5rem",
+          margin: "1rem 0.5rem 0.5rem",
         }}
       >
         도감리스트
@@ -47,7 +48,7 @@ const CollectionPage = () => {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          margin: "1em 0.5em 0.8em",
+          margin: "1rem 0.5rem 0.8rem",
         }}
       >
         <div>

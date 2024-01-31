@@ -6,7 +6,7 @@ import styled from "styled-components";
 
 const FishBox = styled.div`
   border: 1px solid black;
-  height: 10em;
+  height: 10rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -16,8 +16,8 @@ const FishBox = styled.div`
 
 const Circle = styled.div`
   border: 1px solid black;
-  height: 6em;
-  width: 6em;
+  height: 6rem;
+  width: 6rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -29,13 +29,13 @@ const DetailPage = () => {
   const { level } = useParams(); // level 파라미터 가져오기
 
   return (
-    <div style={{ padding: "1em" }}>
+    <div style={{ padding: "1rem" }}>
       <h2>별 반복 수: {level}</h2>
       <FishBox>
         <div>이미지</div>
       </FishBox>
-      <h2 style={{ textAlign: "center", margin: "0.5em" }}>{fishname}</h2>
-      <p style={{ fontSize: "1.3em", fontWeight: "300", margin: "0" }}>MY</p>
+      <h2 style={{ textAlign: "center", margin: "0.5rem" }}>{fishname}</h2>
+      <p style={{ fontSize: "1.3rem", fontWeight: "300", margin: "0" }}>MY</p>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <div style={{ textAlign: "center" }}>
           <Circle>3</Circle>

@@ -26,16 +26,16 @@ function HomePage() {
     <div
       style={{
         height: "auto",
-        padding: "1em",
-        paddingBottom: "2em",
+        padding: "1rem",
+        paddingBottom: "2rem",
         backgroundColor: "#E3F2FD",
       }}
     >
       <p 
       style={{ 
         fontWeight: 600, 
-        fontSize: '1.5em',
-        margin: '1em 0.5em 0.5em',
+        fontSize: '1.5rem',
+        margin: '1rem 0.5rem 0.5rem',
         }}
         >
           피드

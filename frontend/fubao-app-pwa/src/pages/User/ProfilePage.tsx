@@ -5,22 +5,22 @@ import styled from "styled-components";
 
 const Circle = styled.div`
   border: 1px solid black;
-  height: 5.5em;
-  width: 5.5em;
+  height: 5.5rem;
+  width: 5.5rem;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 `;
 
 const ProfilePage = () => {
   return (
-    <div style={{ padding: "1em" }}>
+    <div style={{ padding: "1rem" }}>
       {/* 사용자 정보 */}
       <div
         style={{
-          padding: "3em 1em",
+          padding: "3rem 1rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -32,8 +32,8 @@ const ProfilePage = () => {
             border: "1px solid black",
             borderRadius: "50%",
             backgroundColor: "#E8EAE9",
-            width: "12em",
-            height: "12em",
+            width: "12rem",
+            height: "12rem",
           }}
         >
           <img src="" alt="" />
@@ -41,9 +41,9 @@ const ProfilePage = () => {
         <div style={{ display: "flex", alignItems: "center" }}>
           <p
             style={{
-              fontSize: "1.5em",
+              fontSize: "1.5rem",
               fontWeight: "bold",
-              margin: "0.5em",
+              margin: "0.5rem",
               marginBottom: "0",
             }}
           >
@@ -53,7 +53,7 @@ const ProfilePage = () => {
             icon="gear"
             size="1x"
             color="#969696"
-            style={{ paddingTop: "0.8em" }}
+            style={{ paddingTop: "0.8rem" }}
           />
         </div>
         <div style={{ color: "#969696" }}>이메일 들어가는 공간</div>
@@ -80,7 +80,7 @@ const ProfilePage = () => {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "5em",
+          marginTop: "5rem",
         }}
       >
         <span>로그아웃</span>

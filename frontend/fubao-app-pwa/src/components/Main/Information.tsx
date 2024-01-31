@@ -5,8 +5,8 @@ const WhiteBox = styled.div`
     border-radius: 10%;
     height: 30vh;
     background-color: white;
-    padding: 1em;
-    margin: 1em 0;
+    padding: 1rem;
+    margin: 1rem 0;
 `;
 
 const Information = () => {
