@@ -4,6 +4,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-solid-svg-icons";
@@ -18,4 +19,4 @@ import { faClipboardQuestion } from "@fortawesome/free-solid-svg-icons";
 
 
 // 사용할 아이콘을 라이브러리에 추가
-library.add(emptystar, faStar, faArrowRotateLeft, faBan, faFish, faClipboardQuestion, faPlus, faUser, faBook, faCompass, faHome, faCalendarDay, faMap, faCheck);
+library.add(faGear, emptystar, faStar, faArrowRotateLeft, faBan, faFish, faClipboardQuestion, faPlus, faUser, faBook, faCompass, faHome, faCalendarDay, faMap, faCheck);

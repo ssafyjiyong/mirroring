@@ -33,6 +33,7 @@ const ViewAllPage = () => {
     <Container>
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex" }}>
+        {/* 로그인 정보 토대로 닉네임 받아서 각 프로필 페이지로 이동 라우터 설정도 해야함 */}
           <Link to="/profile" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="user" size="3x" />
