@@ -7,12 +7,15 @@ from django.contrib.auth.decorators import login_required
 from drf_yasg.utils import swagger_auto_schema
 from django.db import transaction
 from django.utils.decorators import method_decorator
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import FishSerializer, UserFishSerializer
 from .models import fish, user_fish
 
 # Create your views here.
 class FishListView(APIView):
+    permission_classes = [IsAuthenticated]
+
     @swagger_auto_schema(responses={"200": FishSerializer})
     def get(self, request):
         fishlist = fish.objects.all()
@@ -20,6 +23,8 @@ class FishListView(APIView):
         return Response(serializer.data)
 
 class FishView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     @swagger_auto_schema(responses={"200": FishSerializer})
     def get(self, request, pk):
         fishpk = get_object_or_404(fish, pk=pk)
@@ -28,6 +33,8 @@ class FishView(APIView):
 
 @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     @swagger_auto_schema(responses={"200": UserFishSerializer})
     def get(self, request):
         fishlist = user_fish.objects.filter(user=request.user)
@@ -52,6 +59,8 @@ class MyFishListView(APIView):
 
 @method_decorator(login_required, name='dispatch')
 class MyFishView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     @swagger_auto_schema(responses={"200": UserFishSerializer})
     def get(self, request, pk):
         myfish = get_object_or_404(user_fish, pk=pk).filter(user=request.user)
