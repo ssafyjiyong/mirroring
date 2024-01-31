@@ -1,0 +1,10 @@
+.datePicker {
+    border-radius: 10px;
+    width: 20em;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    border: 1px solid #ccc;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    color:#757575
+  }
