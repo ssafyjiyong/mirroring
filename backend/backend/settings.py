@@ -39,11 +39,11 @@ INSTALLED_APPS = [
     'fish',
     'schedule',
     'information',
+    'location',
 
     # DRF
     'drf_yasg',
     'rest_framework',
-    'rest_framework_simplejwt',
     'rest_framework.authtoken',
     
     # social login
@@ -81,7 +81,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # allauth
     'allauth.account.middleware.AccountMiddleware',
-    
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -98,11 +97,9 @@ REST_FRAMEWORK = {
     ],
     # permission
     # API 접근에 대한 기본 권한 설정. 모든 요청 허용
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',  # 인증된 요청인지 확인
-        'rest_framework.permissions.IsAdminUser',  # 관리자만 접근 가능
-        'rest_framework.permissions.AllowAny',  # 누구나 접근 가능
-    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
 }
 
 ROOT_URLCONF = 'backend.urls'
@@ -205,14 +202,3 @@ REST_AUTH = {
 
 # admin site
 SITE_ID = 1
-
-REST_USE_JWT = True
-
-from datetime import timedelta
-SIMPLE_JWT = {
-    'SIGNING_KEY': SECRET_KEY,
-    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': True,
-}
