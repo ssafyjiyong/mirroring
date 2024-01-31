@@ -10,3 +10,8 @@ class ScheduleDoneSerializer(serializers.ModelSerializer):
     class Meta:
         model = schedule
         fields = ('id', 'done')
+        
+class CreatePreSurveySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=schedule
+        fields=('id','method','method_review',)

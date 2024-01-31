@@ -14,4 +14,10 @@ class schedule(models.Model):
     date= models.DateTimeField() # 낚시 날짜 
     location= models.CharField(max_length=150) # 낚시 실제 장소
     location_review = models.IntegerField(null=True) # 낚시 실제 장소 리뷰
-    done= models.BooleanField(default=False) #낚시 일정 완료 여부-
+    done= models.BooleanField(default=False) #낚시 일정 완료 여부
+
+
+    
+    
+    
+    

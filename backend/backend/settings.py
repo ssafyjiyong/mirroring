@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'schedule',
     'information',
     'location',
+    'review',
 
     # DRF
     'drf_yasg',
