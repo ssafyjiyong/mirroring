@@ -17,7 +17,7 @@ class fish(models.Model):
 class user_fish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     fish = models.ForeignKey(fish, on_delete=models.CASCADE)
-    max_length = models.FloatField(null=True, blank=True)
+    max_length = models.FloatField(default=0)
     count = models.IntegerField(default=0)
     image = models.ImageField(null=True)
     preference = models.BooleanField(default=0)
