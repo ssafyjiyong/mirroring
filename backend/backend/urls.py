@@ -27,6 +27,7 @@ urlpatterns = [
     # path('user/', include('allauth.urls')),
     path('fish/', include('fish.urls')),
     path('information/',include('information.urls')),
+    path('location/',include('location.urls')),
 
     # swagger
     path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
