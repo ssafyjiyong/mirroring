@@ -89,7 +89,7 @@
 
             // 위치, 회전 또는 필요한 다른 속성에 따라 조정
             model1.position.set(xpos1, ypos1, 0); // 예시 위치, 필요에 따라 조정
-            model1.rotation.y -= 1.5;
+            model1.rotation.y += 1.5;
             //model1.rotation.y -= 3.5;
 
             // 씬에 모델 추가
@@ -138,7 +138,7 @@
             requestAnimationFrame(animate);
 
             if (mixer1) {
-                mixer1.update(0.016); // 보통 60FPS(0.016) 기준으로 업데이트(조금 느리게)
+                mixer1.update(0.01); // 보통 60FPS(0.016) 기준으로 업데이트(조금 느리게)
 
                 model1.position.set(0, 0, 0);
             }
