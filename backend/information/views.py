@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .weather import weatherAPI
 from .sunset import sunsetAPI
-
+from .models import fishing_method
 from fish.models import fish, user_fish
 
 class weatherSunsetAPIView(APIView):
@@ -24,6 +24,9 @@ class weatherSunsetAPIView(APIView):
         }
                     
         return Response(context, status=status.HTTP_200_OK)
+
+def pickmethod():
+    return random.choice([fishing_method.pk for f in fishing_method.weight])
 
 def pickfish(method_id):
     # fishlist = []
