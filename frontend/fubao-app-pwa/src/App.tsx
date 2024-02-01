@@ -19,6 +19,14 @@ import PlanManagePage from "./pages/Plan/PlanManagePage";
 import ProfilePage from "./pages/User/ProfilePage";
 import ViewAllPage from "./pages/ViewAllPage";
 import MapPage from "./pages/Map/MapPage";
+import MethodPage1 from "./pages/Method/MethodPage1";
+import MethodPage2 from "./pages/Method/MethodPage2";
+import MethodPage3 from "./pages/Method/MethodPage3";
+import MethodPage4 from "./pages/Method/MethodPage4";
+import PointPage1 from "./pages/Point/PointPage1";
+import PointPage2 from "./pages/Point/PointPage2";
+import PointPage3 from "./pages/Point/PointPage3";
+import PointPage4 from "./pages/Point/PointPage4";
 
 function App() {
   return (
@@ -41,6 +49,14 @@ function App() {
         <Route path="/planmanage" element={<PlanManagePage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/viewall" element={<ViewAllPage />} />
+        <Route path="/method1" element={<MethodPage1 />} />
+        <Route path="/method2" element={<MethodPage2 />} />
+        <Route path="/method3" element={<MethodPage3 />} />
+        <Route path="/method4" element={<MethodPage4 />} />
+        <Route path="/point1" element={<PointPage1 />} />
+        <Route path="/point2" element={<PointPage2 />} />
+        <Route path="/point3" element={<PointPage3 />} />
+        <Route path="/point4" element={<PointPage4 />} />
       </Routes>
   );
 }
