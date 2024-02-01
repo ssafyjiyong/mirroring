@@ -1,22 +1,20 @@
-import React, { useState, useEffect } from "react";
-import EntryLoading from "../components/Entry/EntryLoading";
+import React, { useEffect } from "react";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
 import CameraOpen from "../components/Main/CameraOpen";
-import Method from "../components/Main/Method";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
-import Point from "../components/Main/Point";
+import Method3 from "../components/Main/Method3";
+import Method4 from "../components/Main/Method4";
 import Point1 from "../components/Main/Point1";
 import Point2 from "../components/Main/Point2";
 import Point3 from "../components/Main/Point3";
+import Point4 from "../components/Main/Point4";
 import Etiquette from "../components/Main/Etiquette";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function HomePage() {
-  const [showLoading, setShowLoading] = useState(true); // EntryLoading 컴포넌트를 보여줄지 결정하는 상태
-
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
     if (window.location.hash) {
@@ -26,14 +24,6 @@ function HomePage() {
         element.scrollIntoView();
       }
     }
-
-    // 1초 후에 EntryLoading 컴포넌트를 숨김
-    const timer = setTimeout(() => {
-      setShowLoading(false);
-    }, 0);
-
-    // 컴포넌트가 언마운트될 때 타이머를 정리
-    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -94,15 +84,14 @@ function HomePage() {
       <CameraOpen />
       <Recommendation />
       <Etiquette />
-      <Method id="method" />
-      <Method1 />
+      <Method1 id="method" />
       <Method2 />
-      <Point id="point" />
-      <Point1 />
+      <Method3 />
+      <Method4 />
+      <Point1 id="point" />
       <Point2 />
       <Point3 />
-      {/* showLoading 상태에 따라 EntryLoading 표시 */}
-      {showLoading && <EntryLoading />}{" "}
+      <Point4 />
     </div>
   );
 }

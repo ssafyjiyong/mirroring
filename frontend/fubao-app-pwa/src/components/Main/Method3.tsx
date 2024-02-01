@@ -4,7 +4,7 @@ import { WhiteBox } from './styles';
 
 const Method3 = () => {
   return (
-    <WhiteBox>훌치기 낚시</WhiteBox>
+    <WhiteBox>루어낚시</WhiteBox>
   )
 }
 

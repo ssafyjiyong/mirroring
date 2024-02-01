@@ -12,8 +12,6 @@ import EquipmentInfoPage from "./pages/Information/EquipmentInfoPage";
 import EtiquettePage from "./pages/Information/EtiquetteInfoPage";
 import FishInfoPage from "./pages/Information/FishInfoPage";
 import LocationInfoPage from "./pages/Information/LocationInfoPage";
-import MethodInfoPage from "./pages/Information/MethodInfoPage";
-import PointInfoPage from "./pages/Information/PointInfoPage";
 import ProhibitionInfoPage from "./pages/Information/ProhibitionInfoPage";
 import ReleaseInfo from "./pages/Information/ReleaseInfo";
 import MainPage from "./pages/Main/MainPage";
@@ -36,8 +34,6 @@ function App() {
         <Route path="/etiquetteinfo" element={<EtiquettePage />} />
         <Route path="/fishinfo" element={<FishInfoPage />} />
         <Route path="/locationinfo" element={<LocationInfoPage />} />
-        <Route path="/methodinfo" element={<MethodInfoPage />} />
-        <Route path="/pointinfo" element={<PointInfoPage />} />
         <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
         <Route path="/releaseinfo" element={<ReleaseInfo />} />
         <Route path="/main" element={<MainPage />} />

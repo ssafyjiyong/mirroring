@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 import { WhiteBox } from './styles';
 
-const Point3 = () => {
+const Method3 = () => {
   return (
-    <WhiteBox>선착장</WhiteBox>
+    <WhiteBox>훌치기 낚시</WhiteBox>
   )
 }
 
-export default Point3
+export default Method3

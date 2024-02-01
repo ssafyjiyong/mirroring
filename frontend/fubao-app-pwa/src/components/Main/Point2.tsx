@@ -4,7 +4,7 @@ import { WhiteBox } from './styles';
 
 const Point2 = () => {
   return (
-    <WhiteBox>선착장낚시</WhiteBox>
+    <WhiteBox>갯바위</WhiteBox>
   )
 }
 
