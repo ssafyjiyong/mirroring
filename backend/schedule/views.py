@@ -4,12 +4,15 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.generics import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated
 
 from .models import schedule
 from .serializers import ScheduleAllSerializer, ScheduleDoneSerializer
 
 # Create your views here.
 class NewScheduleAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
     # 새 일정 등록 
     @swagger_auto_schema(request_body=ScheduleAllSerializer, responses={"201": ScheduleAllSerializer})
     def post(self, request):
@@ -20,6 +23,8 @@ class NewScheduleAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ScheduleAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     # 일정 조회(단일)
     @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
     def get(self, request, pk):

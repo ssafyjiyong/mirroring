@@ -2,7 +2,7 @@ import React from 'react'
 
 const MethodInfoPage = () => {
   return (
-    <div>MethodInfoPage</div>
+    <div style={{ padding: "1rem" }}>MethodInfoPage</div>
   )
 }
 

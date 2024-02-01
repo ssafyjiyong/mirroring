@@ -32,7 +32,7 @@ const Map: React.FC = () => {
     loadGoogleMapsScript();
   }, []);
 
-  return <div ref={ref} id="map" style={{ maxWidth: "576px", height: "100vh" }}></div>;
+  return <div ref={ref} id="map" style={{ maxWidth: "576px", height: "90vh" }}></div>;
 };
 
 export default Map;
