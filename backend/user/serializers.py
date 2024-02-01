@@ -74,3 +74,8 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img']
         read_only_fields = ('email', 'is_staff', 'is_active', 'date_joined', 'is_superuser'),
+
+class CustomLoginSerializer(LoginSerializer):
+    email = serializers.CharField(required=True, allow_blank=False)
+    password = serializers.CharField(style={'input_type': 'password'})
+
