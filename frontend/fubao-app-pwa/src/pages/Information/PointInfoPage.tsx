@@ -33,7 +33,7 @@ const PointInfoPage = () => {
     <div
       style={{ padding: "1rem", backgroundColor: "#E3F2FD", height: "100vh" }}
     >
-      <h2 style={{ textAlign: "center" }}>낚시 포인트</h2>
+      <h2 style={{ textAlign: "center" }}>(CANCEL)낚시 포인트</h2>
       <AlignDiv>
         <div>
           <WhiteBox>

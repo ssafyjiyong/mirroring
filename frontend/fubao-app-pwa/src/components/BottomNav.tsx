@@ -27,10 +27,10 @@ const NavItem = styled.div`
 
 const NavCenterItem = styled.div`
   position: fixed;
-  border: 3px solid #168bf2;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  border: 4px solid #168bf2;
+  border-radius: 50px;
+  width: 3.3rem;
+  height: 3.3rem;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
