@@ -1,94 +1,51 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { WhiteBox, AlignDiv } from "./styles";
+import AspectRatio from "@mui/joy/AspectRatio";
+import Box from "@mui/joy/Box";
+import Typography from "@mui/joy/Typography";
+import Card from "@mui/joy/Card";
 import "../../index.css";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const MyButton = styled.button`
-  border: 3px solid #168bf2;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #778a9b;
-  margin: 1rem;
-  border-radius: 30px;
-  height: 7rem;
-  width: 7rem;
-  background-color: white;
-  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
-`;
+const data = [
+  {
+    src: "https://images.unsplash.com/photo-1502657877623-f66bf489d236",
+    title: "신용카드",
+    description: "높은 정확도",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1527549993586-dff825b37782",
+    title: "담배갑",
+    description: "보통 정확도",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
+    title: "해당없음",
+    description: "어종만 판별",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
+    title: "취소",
+    description: "뒤로가기",
+  },
+];
 
-const CarouselWrapper = styled.div`
+const Container = styled.button`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-`;
-
-const CarouselContainer = styled.div`
-  display: flex;
-  overflow: hidden;
-  max-width: 13rem;
-`;
-
-const CarouselItem = styled.div`
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  transition: transform 0.5s ease-in-out;
-`;
-
-const ArrowButton = styled.button`
-  border: none;
-  background: none;
-  color: black;
-  cursor: pointer;
-  margin: 0 1rem; // 화살표 버튼 주변에 여백 추가
+  border: 0;
+  background-color: white;
 `;
 
 const CameraOpen = () => {
   const [fileSelected, setFileSelected] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const totalItems = 4; // 캐러셀 항목의 총 수
-  const touchStartXRef = useRef(0); // 터치 시작 x 좌표를 저장할 ref
-  const touchEndXRef = useRef(0); // 터치 끝 x 좌표를 저장할 ref
 
-  const handleTouchStart = (event: React.TouchEvent<HTMLInputElement>) => {
-    touchStartXRef.current = event.touches[0].clientX; // 터치 시작 위치 저장
-  };
-
-  const handleTouchMove = (event: React.TouchEvent<HTMLInputElement>) => {
-    touchEndXRef.current = event.touches[0].clientX; // 터치 이동 중 위치 갱신
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartXRef.current - touchEndXRef.current > 75) {
-      // 오른쪽으로 스와이프
-      setActiveIndex((prevIndex) => (prevIndex + 1) % totalItems);
-    } else if (touchStartXRef.current - touchEndXRef.current < -75) {
-      // 왼쪽으로 스와이프
-      setActiveIndex((prevIndex) => (prevIndex - 1 + totalItems) % totalItems);
-    }
-  };
-
-  const handleArrowClick = (direction: 'left' | 'right') => {
-    if (direction === "right") {
-      if (activeIndex < totalItems - 1) {
-        setActiveIndex(activeIndex + 1);
-      } else {
-        // 마지막 아이템에서 다음으로 이동 시 첫 번째 아이템으로 순환
-        setActiveIndex(0);
-      }
-    } else if (direction === "left") {
-      if (activeIndex > 0) {
-        setActiveIndex(activeIndex - 1);
-      } else {
-        // 첫 번째 아이템에서 이전으로 이동 시 마지막 아이템으로 순환
-        setActiveIndex(totalItems - 1);
-      }
-    }
-  };
-
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (event.target.files && event.target.files.length > 0) {
       setFileSelected(true);
     }
@@ -107,11 +64,9 @@ const CameraOpen = () => {
         >
           {!fileSelected && (
             <>
-              <input
-                className="upload-name"
-                value="물고기 종류와 길이를 알려줄게요!"
-                readOnly
-              />
+              <p style={{ margin: "0.5rem", fontSize: "1.1rem" }}>
+                터치 한 번으로 어종/길이 측정
+              </p>
               <label htmlFor="file">
                 <img
                   src="/camera.png"
@@ -119,6 +74,7 @@ const CameraOpen = () => {
                   style={{ width: "10rem", height: "10rem" }}
                 />
               </label>
+              <p style={{ margin: "0", color: "#778A9B" }}>CLICK!</p>
             </>
           )}
 
@@ -131,73 +87,58 @@ const CameraOpen = () => {
 
           {fileSelected && (
             <>
-              <input
-                className="upload-name"
-                value="어떤 물체와 비교해볼까요?"
-                readOnly
-              />
+              <p style={{ margin: "0.5rem", fontSize: "1.1rem" }}>
+                어떤 물체와 비교해 볼까요?
+              </p>
 
-              <CarouselWrapper>
-                <ArrowButton
-                  type="button"
-                  onClick={() => handleArrowClick("left")}
-                >
-                  <FontAwesomeIcon icon="chevron-left" />
-                </ArrowButton>
-
-                <CarouselContainer
-                  onTouchStart={handleTouchStart}
-                  onTouchMove={handleTouchMove}
-                  onTouchEnd={handleTouchEnd}
-                >
-                  <CarouselItem
-                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 1,
+                  py: 3,
+                  overflow: "auto",
+                  width: 320,
+                  scrollSnapType: "x mandatory",
+                  "& > *": {
+                    scrollSnapAlign: "center",
+                  },
+                  "::-webkit-scrollbar": { display: "none" },
+                }}
+              >
+                {data.map((item) => (
+                  <Card
+                    orientation="horizontal"
+                    size="sm"
+                    key={item.title}
+                    variant="outlined"
+                    sx={{ padding:"0.5rem" }}
                   >
-                    {/* 각 CarouselItem에 버튼 그룹을 배치 */}
-                    <MyButton>
-                      다시
-                      <br />
-                      선택
-                    </MyButton>
-                  </CarouselItem>
-
-                  <CarouselItem
-                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                  >
-                    <MyButton>
-                      신용
-                      <br />
-                      카드
-                    </MyButton>
-                  </CarouselItem>
-
-                  <CarouselItem
-                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                  >
-                    <MyButton>담배갑</MyButton>
-                  </CarouselItem>
-
-                  <CarouselItem
-                    style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-                  >
-                    <MyButton>
-                      비교
-                      <br />
-                      없음
-                    </MyButton>
-                  </CarouselItem>
-                </CarouselContainer>
-
-                <ArrowButton
-                  type="button"
-                  onClick={() => handleArrowClick("right")}
-                >
-                  <FontAwesomeIcon icon="chevron-right" size="1x" />
-                </ArrowButton>
-              </CarouselWrapper>
+                    <Container>
+                      <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
+                        <img
+                          srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
+                          src={`${item.src}?h=120&fit=crop&auto=format`}
+                          alt={item.title}
+                        />
+                      </AspectRatio>
+                      <Box
+                        sx={{
+                          whiteSpace: "nowrap",
+                          mx: 1,
+                          textAlign: "center",
+                        }}
+                      >
+                        <Typography level="title-md">{item.title}</Typography>
+                        <Typography level="body-sm">
+                          {item.description}
+                        </Typography>
+                      </Box>
+                    </Container>
+                  </Card>
+                ))}
+              </Box>
             </>
           )}
-          <p style={{ margin: "0", color: "#778A9B" }}>CLICK!</p>
         </form>
       </AlignDiv>
     </WhiteBox>

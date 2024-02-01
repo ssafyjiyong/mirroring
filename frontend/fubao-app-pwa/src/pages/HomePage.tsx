@@ -30,7 +30,7 @@ function HomePage() {
     // 1초 후에 EntryLoading 컴포넌트를 숨김
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 1000);
+    }, 300);
 
     // 컴포넌트가 언마운트될 때 타이머를 정리
     return () => clearTimeout(timer);

@@ -4,7 +4,6 @@ import "./App.css";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/User/LoginPage";
 import SignupPage from "./pages/User/SignupPage";
-import CameraPage from "./pages/AI/CameraPage";
 import ResultPage from "./pages/AI/ResultPage";
 import CollectionPage from "./pages/Collection/CollectionPage";
 import DetailPage from "./pages/Collection/DetailPage";
@@ -29,7 +28,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/camera" element={<CameraPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/collection" element={<CollectionPage />} />
         <Route path="/detail/:fishname/:level" element={<DetailPage />} />

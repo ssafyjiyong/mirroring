@@ -77,18 +77,6 @@ code {
   color:#757575
 }
 
-.filebox .upload-name {
-  display: inline-block;
-  text-align: center;
-  font-size:1.2rem;
-  padding: 0.3rem;
-  vertical-align: middle;
-  border: 0px solid #dddddd;
-  width: 18rem;
-  color: #999999;
-  margin: 0.3rem 0;
-}
-
 .filebox label {
   display: flex;
   align-items: center;

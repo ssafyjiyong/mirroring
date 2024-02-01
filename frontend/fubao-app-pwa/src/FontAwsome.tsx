@@ -6,7 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
-import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRotateLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faCompass } from "@fortawesome/free-solid-svg-icons";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-solid-svg-icons";
@@ -22,4 +22,4 @@ import { faCameraRetro } from "@fortawesome/free-solid-svg-icons";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 // 사용할 아이콘을 라이브러리에 추가
-library.add(faChevronLeft, faChevronRight, faCameraRetro, faBell, faHatCowboySide, faGear, emptystar, faStar, faArrowRotateLeft, faBan, faFish, faClipboardQuestion, faPlus, faUser, faBook, faCompass, faHome, faCalendarDay, faMap, faCheck);
+library.add(faArrowRight, faChevronLeft, faChevronRight, faCameraRetro, faBell, faHatCowboySide, faGear, emptystar, faStar, faArrowRotateLeft, faBan, faFish, faClipboardQuestion, faPlus, faUser, faBook, faCompass, faHome, faCalendarDay, faMap, faCheck);

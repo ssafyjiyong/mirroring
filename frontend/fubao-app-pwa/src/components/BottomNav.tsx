@@ -18,11 +18,11 @@ const NavBar = styled.nav`
 `;
 
 const NavItem = styled.div`
-  /* border: 1px solid black; */
   width: 20vw;
   text-align: center;
   padding: 1vh;
   cursor: pointer;
+  color: black;
 `;
 
 const NavCenterItem = styled.div`
