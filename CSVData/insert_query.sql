@@ -1,10 +1,10 @@
 #한줄 실행: 커서 맨 앞에 위치한 후 "ctrl+shift+f9"
 #파일 경로는 본인이 저장한 각 csv 파일 경로
-select * from schedule_schedule;
+-- select * from schedule_schedule;
 
-select * from information_fishing_area;
+-- select * from information_fishing_area;
 
-SELECT * FROM information_fising_method;
+-- SELECT * FROM information_fishing_method;
 
 #ALTER TABLE information_fising_method convert to charset UTF8;
 #ALTER TABLE information_fising_method convert to charset UTF8;
@@ -12,7 +12,7 @@ SELECT * FROM information_fising_method;
 
 #낚시 방법  import 
 LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FishingMethod.CSV' 
-REPLACE INTO TABLE `fubao`.`information_fising_method` 
+REPLACE INTO TABLE `fubao`.`information_fishing_method` 
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
@@ -51,3 +51,11 @@ LINES TERMINATED BY '\r\n'
 IGNORE 1 LINES (`id`, `name_kor`,`name_eng`,@standard_start,@standard_end)
 SET `standard_start`=STR_TO_DATE(@standard_start,'%m-%d'),
 `standard_end`=STR_TO_DATE(@standard_end,'%m-%d');
+
+#어종 import 
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\Fish.CSV' 
+REPLACE INTO TABLE `fubao`.`fish_fish` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `name_kor`, `name_eng`, `fish_difficulty`, `prohibit_id`, `release_standard_id`);
