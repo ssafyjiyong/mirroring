@@ -14,7 +14,8 @@ class MethodAPIView(APIView):
     @swagger_auto_schema(request_body=methodReviewSerializer, responses={"200": methodReviewSerializer})
     def post(self, request):
         user=request.user.pk
-        method_instance=method_reivew.objects.get(method_id=request.data['method'],user_id=user)
+        method_instance=method_reivew.objects.filter(method_id=request.data['method'],user_id=user).first()
+        print(method_instance)
         
         # 이미 존재하는 방법에 대한 리뷰 갱신일 때 
         if method_instance:
