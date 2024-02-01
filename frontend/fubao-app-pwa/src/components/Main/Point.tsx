@@ -6,10 +6,10 @@ type Point1Props = {
   id: string;
 };
 
-const Information = ({ id }: Point1Props) => {
+const Point = ({ id }: Point1Props) => {
   return (
     <WhiteBox id={id}>방파제낚시</WhiteBox>
   )
 }
 
-export default Information
+export default Point

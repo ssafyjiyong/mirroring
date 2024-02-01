@@ -8,3 +8,9 @@ export const WhiteBox = styled.div`
     padding: 1rem;
     margin: 1rem 0;
 `;
+
+export const AlignDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

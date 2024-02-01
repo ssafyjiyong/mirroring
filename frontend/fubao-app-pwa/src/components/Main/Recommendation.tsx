@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'styled-components';
 import { WhiteBox } from './styles';
 
-const Information = () => {
+const Recommendation = () => {
   return (
     <WhiteBox>추천정보</WhiteBox>
   )
 }
 
-export default Information
+export default Recommendation

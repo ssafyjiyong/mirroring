@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "@mui/joy/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./styles.css";
+import "../../index.css";
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +45,7 @@ const AlignDiv = styled.div`
   justify-content: center;
 `;
 
-const PlanPage = () => {
+const PlanModal = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   return (
@@ -92,4 +92,4 @@ const PlanPage = () => {
   );
 };
 
-export default PlanPage;
+export default PlanModal;

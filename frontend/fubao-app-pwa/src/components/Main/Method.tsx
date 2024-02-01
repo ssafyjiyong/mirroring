@@ -6,10 +6,10 @@ type Method1Props = {
   id: string;
 };
 
-const Information = ({ id }: Method1Props) => {
+const Method = ({ id }: Method1Props) => {
   return (
     <WhiteBox id={id}>찌낚시</WhiteBox>
   )
 }
 
-export default Information
+export default Method

@@ -30,7 +30,7 @@ function HomePage() {
     // 1초 후에 EntryLoading 컴포넌트를 숨김
     const timer = setTimeout(() => {
       setShowLoading(false);
-    }, 0);
+    }, 1000);
 
     // 컴포넌트가 언마운트될 때 타이머를 정리
     return () => clearTimeout(timer);
@@ -91,8 +91,8 @@ function HomePage() {
         </div>
       </div>
       <Foryou />
-      <Recommendation />
       <CameraOpen />
+      <Recommendation />
       <Etiquette />
       <Method id="method" />
       <Method1 />

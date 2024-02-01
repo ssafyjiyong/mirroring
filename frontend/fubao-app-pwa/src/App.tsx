@@ -19,7 +19,6 @@ import ProhibitionInfoPage from "./pages/Information/ProhibitionInfoPage";
 import ReleaseInfo from "./pages/Information/ReleaseInfo";
 import MainPage from "./pages/Main/MainPage";
 import PlanManagePage from "./pages/Plan/PlanManagePage";
-import PlanPage from "./pages/Plan/PlanPage";
 import ProfilePage from "./pages/User/ProfilePage";
 import ViewAllPage from "./pages/ViewAllPage";
 import MapPage from "./pages/Map/MapPage";
@@ -46,7 +45,6 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/planmanage" element={<PlanManagePage />} />
-        <Route path="/plan" element={<PlanPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/viewall" element={<ViewAllPage />} />
       </Routes>

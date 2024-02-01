@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "@mui/joy/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./styles.css";
+import "../../index.css";
 
 const Container = styled.div`
   display: flex;
@@ -50,7 +50,7 @@ const PlanManagePage = () => {
 
   return (
     <Container>
-      <p style={{ fontSize: "1.5rem", fontWeight: "bold" }}>일정등록</p>
+      <p style={{ fontSize: "1.5rem", fontWeight: "bold" }}>일정관리</p>
       {/* 일정 등록 칸 */}
       <form action="">
         <RegisterBox>
