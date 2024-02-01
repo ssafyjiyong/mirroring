@@ -71,7 +71,7 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/methodinfo" style={{ textDecoration: "none" }}>
+          <Link to="/#method" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="clipboard-question" size="3x" />
               <ButtonText>방법</ButtonText>

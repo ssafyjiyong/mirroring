@@ -42,7 +42,7 @@ const SignUp = () => {
   const [password1, setPassword] = React.useState("");
   const [password2, setConfirmPassword] = React.useState("");
 
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = data.get("email") as string;
