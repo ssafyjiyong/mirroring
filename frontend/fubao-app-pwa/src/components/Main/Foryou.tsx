@@ -106,7 +106,7 @@ const Foryou = () => {
   };
 
   return (
-    <WhiteBox style={{ position: "relative", backgroundImage: "url('/main_plan.png')", backgroundRepeat:"no-repeat" }}>
+    <WhiteBox style={{ position: "relative", backgroundImage: "url('/imgs/main_plan.png')", backgroundRepeat:"no-repeat" }}>
       <React.Fragment>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div>{dateString}</div>
@@ -189,8 +189,8 @@ const Foryou = () => {
                     className="datePicker"
                     dateFormat="yyyy.MM.dd" // 날짜 형태
                     shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-                    minDate={new Date("2000-01-01")} // minDate 이전 날짜 선택 불가
-                    maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+                    minDate={new Date()} // minDate 이전 날짜 선택 불가
+                    maxDate={new Date(year+1 + "-" + month + "-" + day)} // maxDate 이후 날짜 선택 불가
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                   />

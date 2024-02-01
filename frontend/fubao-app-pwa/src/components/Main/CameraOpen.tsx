@@ -11,22 +11,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const data = [
   {
-    src: "https://images.unsplash.com/photo-1502657877623-f66bf489d236",
+    src: "/imgs/card.png",
     title: "신용카드",
     description: "높은 정확도",
   },
   {
-    src: "https://images.unsplash.com/photo-1527549993586-dff825b37782",
+    src: "/imgs/ciga.png",
     title: "담배갑",
     description: "보통 정확도",
   },
   {
-    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
+    src: "/imgs/fish.png",
     title: "해당없음",
     description: "어종만 판별",
   },
   {
-    src: "https://images.unsplash.com/photo-1532614338840-ab30cf10ed36",
+    src: "/imgs/cancel.png",
     title: "취소",
     description: "뒤로가기",
   },
