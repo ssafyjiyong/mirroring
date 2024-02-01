@@ -19,8 +19,10 @@ const FishBowlPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mixer1 = useRef<THREE.AnimationMixer | null>(null);
   const mixer2 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer3 = useRef<THREE.AnimationMixer | null>(null);
   const model1 = useRef<THREE.Object3D | null>(null);
   const model2 = useRef<THREE.Object3D | null>(null);
+  const model3 = useRef<THREE.Object3D | null>(null);
 
   let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let ypos1: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
@@ -42,9 +44,20 @@ const FishBowlPage = () => {
   let xrand2: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let yrand2: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
+  let xpos3: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let ypos3: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let beforexpos3: number = 0;
+  let beforeypos3: number = -0.6;
+  let sw3: number = 3;
+  let ysw3: number = 1;
+  let cnt3: number = 0;
+  let xrand3: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let yrand3: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
   useEffect(() => {
     const loader1 = new GLTFLoader();
     const loader2 = new GLTFLoader();
+    const loader3 = new GLTFLoader();
 
     let scene = new THREE.Scene();
     let renderer = new THREE.WebGLRenderer({
@@ -65,6 +78,7 @@ const FishBowlPage = () => {
     scene.add(ambientLight);
     scene.add(directionalLight);
 
+    //1번
     loader1.load('low_poly_mugil/scene.gltf', (gltf1: GLTF) => {
       model1.current = gltf1.scene;
 
@@ -90,11 +104,14 @@ const FishBowlPage = () => {
       animate();
     });
 
-    loader2.load('low_poly_mugil_blue/scene.gltf', (gltf2: GLTF) => {
+    //2번
+    loader2.load('low_poly_salmon/scene.gltf', (gltf2: GLTF) => {
       model2.current = gltf2.scene;
 
+      model2.current.scale.set(0.15, 0.15, 0.15);
+
       //위치
-      model2.current.position.set(-0.55, -1.15, 0);
+      model2.current.position.set(-0.55, -1.15, -0.5);
 
       //물고기 옆면이 보이게
       model2.current.rotation.y += 0;
@@ -109,6 +126,34 @@ const FishBowlPage = () => {
 
       animations1.forEach((animation) => {
         const action = mixer2.current!.clipAction(animation);
+        action.play();
+      });
+
+      animate();
+    });
+
+    //3번
+    loader3.load('low_poly_flatfish/scene.gltf', (gltf3: GLTF) => {
+      model3.current = gltf3.scene;
+
+      // Adjust position, rotation, and scale as needed
+      model3.current.position.set(-0.6, -1.2, 0);//1.15
+      //model3.current.rotation.set(0, 1.5, -1.5);
+      //물고기 옆면이 보이게
+      model3.current.rotation.y += 2.6; //-2~-1.1 -2:x++, -1.1:x--
+      model3.current.rotation.x += 0; //0~3 0:x++, 3:x--
+      model3.current.rotation.z += 1.5;
+
+      model3.current.scale.set(0.7, 0.7, 0.7);
+
+      // Add the model to the scene
+      scene.add(model3.current);
+
+      const animations3 = gltf3.animations!;
+      mixer3.current = new THREE.AnimationMixer(model3.current);
+
+      animations3.forEach((animation) => {
+        const action = mixer3.current!.clipAction(animation);
         action.play();
       });
 
@@ -277,9 +322,79 @@ const FishBowlPage = () => {
           } else if (ysw2 === 2) {
             ypos2 -= 0.0005;
           }
-          model2.current.position.set(ypos2, xpos2, 0);
+          model2.current.position.set(ypos2, xpos2, -0.5);
         }
       }
+
+      //3번
+      if (mixer3.current) {
+        mixer3.current.update(0.01);
+        if (model3.current) {
+          if (beforexpos3 < xrand3) {
+            if (xpos3 >= xrand3) {
+              beforexpos3 = xpos3;
+              xpos3 -= 0.002;
+              sw3 = 5;
+            } else {
+              if (model3.current.rotation.x > 0) {
+                sw3 = 1;
+              } else {
+                sw3 = 3;
+              }
+            }
+          } else if (beforexpos3 > xrand3) {
+            if (xpos3 <= xrand3) {
+              beforexpos3 = xpos3;
+              xpos3 += 0.002;
+              sw3 = 5;
+            } else {
+              if (model3.current.rotation.x < 3) {
+                sw3 = 2;
+              } else {
+                sw3 = 4;
+              }
+            }
+          } else if (model3.current.rotation.x < 0) {
+            sw3 = 4;
+            model3.current.rotation.x += 0.07;
+          } else if (model3.current.rotation.x > 3) {
+            sw3 = 3;
+            model3.current.rotation.x -= 0.07;
+          }
+
+          //up
+          if (sw3 === 1) {
+            if (model3.current.rotation.y < 2.6) {
+              model3.current.rotation.x -= 0.07;
+              model3.current.rotation.y += 0.2;
+            } else {
+              model3.current.rotation.x -= 0.07;
+            }
+          }
+          //down
+          else if (sw3 === 2) {
+            if (model3.current.rotation.y > -2.6) {
+              model3.current.rotation.x += 0.07;
+              model3.current.rotation.y -= 0.2;
+            } else {
+              model3.current.rotation.x += 0.07;
+            }
+          } else if (sw3 === 3) {
+            xpos3 += 0.002;
+          } else if (sw3 === 4) {
+            xpos3 -= 0.002;
+          } else if (sw3 === 5) {
+            xrand3 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+          }
+          // console.log("bepos:", beforexpos3);
+          // console.log("xpos:", xpos3);
+          // console.log("xrand:", xrand3);
+          console.log("x:", model3.current.rotation.x);
+          console.log("y:", model3.current.rotation.y);
+          model3.current.position.set(-0.6, xpos3, 0);
+        }
+      }
+
       renderer.render(scene, camera);
     }
     return () => {
