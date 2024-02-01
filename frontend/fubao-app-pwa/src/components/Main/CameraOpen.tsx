@@ -43,11 +43,19 @@ const Container = styled.button`
 const CameraOpen = () => {
   const [fileSelected, setFileSelected] = useState(false);
 
-  const handleFileChange = async (
+  const handleFileChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     if (event.target.files && event.target.files.length > 0) {
       setFileSelected(true);
+    }
+  };
+
+  const handleCancel = () => {
+    setFileSelected(false);
+    const fileInput = document.getElementById("file") as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = "";
     }
   };
 
@@ -113,7 +121,7 @@ const CameraOpen = () => {
                     variant="outlined"
                     sx={{ padding:"0.5rem" }}
                   >
-                    <Container>
+                    <Container onClick={item.title === '취소' ? handleCancel : undefined}>
                       <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
                         <img
                           srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
