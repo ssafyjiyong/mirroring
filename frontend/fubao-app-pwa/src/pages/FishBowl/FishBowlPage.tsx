@@ -20,9 +20,11 @@ const FishBowlPage = () => {
   const mixer1 = useRef<THREE.AnimationMixer | null>(null);
   const mixer2 = useRef<THREE.AnimationMixer | null>(null);
   const mixer3 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer4 = useRef<THREE.AnimationMixer | null>(null);
   const model1 = useRef<THREE.Object3D | null>(null);
   const model2 = useRef<THREE.Object3D | null>(null);
   const model3 = useRef<THREE.Object3D | null>(null);
+  const model4 = useRef<THREE.Object3D | null>(null);
 
   let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let ypos1: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
@@ -54,10 +56,21 @@ const FishBowlPage = () => {
   let xrand3: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let yrand3: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
+  let xpos4: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let ypos4: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let beforexpos4: number = 0;
+  let beforeypos4: number = -0.6;
+  let sw4: number = 3;
+  let ysw4: number = 1;
+  let cnt4: number = 0;
+  let xrand4: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let yrand4: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
   useEffect(() => {
     const loader1 = new GLTFLoader();
     const loader2 = new GLTFLoader();
     const loader3 = new GLTFLoader();
+    const loader4 = new GLTFLoader();
 
     let scene = new THREE.Scene();
     let renderer = new THREE.WebGLRenderer({
@@ -160,6 +173,34 @@ const FishBowlPage = () => {
       animate();
     });
 
+    //4번
+    loader4.load('low_poly_barracuda/scene.gltf', (gltf4: GLTF) => {
+      model4.current = gltf4.scene;
+
+      // Adjust position, rotation, and scale as needed
+      model4.current.position.set(0, 0, 1);
+      //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+      model4.current.rotation.y += 0;
+      model4.current.rotation.x += 1.5;  //0~3
+      model4.current.rotation.z -= 1.5;
+
+      model4.current.scale.set(0.15, 0.15, 0.15);
+
+      // Add the model to the scene
+      scene.add(model4.current);
+
+      const animations4 = gltf4.animations!;
+      mixer4.current = new THREE.AnimationMixer(model4.current);
+
+      animations4.forEach((animation) => {
+        const action = mixer4.current!.clipAction(animation);
+        action.play();
+      });
+
+      animate();
+    });
+
     function onWindowResize() {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -177,12 +218,12 @@ const FishBowlPage = () => {
 
       //1번
       if (mixer1.current) {
-        mixer1.current.update(0.01);
+        mixer1.current.update(0.005);
         if (model1.current) {
           if (beforexpos1 < xrand1) {
             if (xpos1 >= xrand1) {
               beforexpos1 = xpos1;
-              xpos1 -= 0.002;
+              xpos1 -= 0.0015;
               sw1 = 5;
             } else {
               if (model1.current.rotation.x > -1.5) {
@@ -194,7 +235,7 @@ const FishBowlPage = () => {
           } else if (beforexpos1 > xrand1) {
             if (xpos1 <= xrand1) {
               beforexpos1 = xpos1;
-              xpos1 += 0.002;
+              xpos1 += 0.0015;
               sw1 = 5;
             } else {
               if (model1.current.rotation.x < 1.5) {
@@ -232,9 +273,9 @@ const FishBowlPage = () => {
           } else if (sw1 === 2) {
             model1.current.rotation.x += 0.07;
           } else if (sw1 === 3) {
-            xpos1 -= 0.002;
+            xpos1 -= 0.0015;
           } else if (sw1 === 4) {
-            xpos1 += 0.002;
+            xpos1 += 0.0015;
           } else if (sw1 === 5) {
             xrand1 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
           } else if (sw1 === 6) {
@@ -242,9 +283,9 @@ const FishBowlPage = () => {
           }
 
           if (ysw1 === 1) {
-            ypos1 += 0.0005;
+            ypos1 += 0.00025;
           } else if (ysw1 === 2) {
-            ypos1 -= 0.0005;
+            ypos1 -= 0.00025;
           }
 
           model1.current.position.set(ypos1, xpos1, 0);
@@ -253,12 +294,12 @@ const FishBowlPage = () => {
 
       //2번
       if (mixer2.current) {
-        mixer2.current.update(0.01);
+        mixer2.current.update(0.008);
         if (model2.current) {
           if (beforexpos2 < xrand2) {
             if (xpos2 >= xrand2) {
               beforexpos2 = xpos2;
-              xpos2 -= 0.002;
+              xpos2 -= 0.0015;
               sw2 = 5;
             } else {
               if (model2.current.rotation.x > -1.5) {
@@ -270,7 +311,7 @@ const FishBowlPage = () => {
           } else if (beforexpos2 > xrand2) {
             if (xpos2 <= xrand2) {
               beforexpos2 = xpos2;
-              xpos2 += 0.002;
+              xpos2 += 0.0015;
               sw2 = 5;
             } else {
               if (model2.current.rotation.x < 1.5) {
@@ -308,9 +349,9 @@ const FishBowlPage = () => {
           } else if (sw2 === 2) {
             model2.current.rotation.x += 0.07;
           } else if (sw2 === 3) {
-            xpos2 -= 0.002;
+            xpos2 -= 0.0015;
           } else if (sw2 === 4) {
-            xpos2 += 0.002;
+            xpos2 += 0.0015;
           } else if (sw2 === 5) {
             xrand2 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
           } else if (sw2 === 6) {
@@ -318,9 +359,9 @@ const FishBowlPage = () => {
           }
 
           if (ysw2 === 1) {
-            ypos2 += 0.0005;
+            ypos2 += 0.00025;
           } else if (ysw2 === 2) {
-            ypos2 -= 0.0005;
+            ypos2 -= 0.00025;
           }
           model2.current.position.set(ypos2, xpos2, -0.5);
         }
@@ -328,12 +369,12 @@ const FishBowlPage = () => {
 
       //3번
       if (mixer3.current) {
-        mixer3.current.update(0.01);
+        mixer3.current.update(0.005);
         if (model3.current) {
           if (beforexpos3 < xrand3) {
             if (xpos3 >= xrand3) {
               beforexpos3 = xpos3;
-              xpos3 -= 0.002;
+              xpos3 -= 0.0015;
               sw3 = 5;
             } else {
               if (model3.current.rotation.x > 0) {
@@ -345,7 +386,7 @@ const FishBowlPage = () => {
           } else if (beforexpos3 > xrand3) {
             if (xpos3 <= xrand3) {
               beforexpos3 = xpos3;
-              xpos3 += 0.002;
+              xpos3 += 0.0015;
               sw3 = 5;
             } else {
               if (model3.current.rotation.x < 3) {
@@ -380,9 +421,9 @@ const FishBowlPage = () => {
               model3.current.rotation.x += 0.07;
             }
           } else if (sw3 === 3) {
-            xpos3 += 0.002;
+            xpos3 += 0.0015;
           } else if (sw3 === 4) {
-            xpos3 -= 0.002;
+            xpos3 -= 0.0015;
           } else if (sw3 === 5) {
             xrand3 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
           }
@@ -395,6 +436,80 @@ const FishBowlPage = () => {
         }
       }
 
+      //4번
+      if (mixer4.current) {
+        mixer4.current.update(0.02);
+        if (model4.current) {
+          if (beforexpos4 < xrand4) {
+            if (xpos4 >= xrand4) {
+              beforexpos4 = xpos4;
+              xpos4 -= 0.0015;
+              sw4 = 5;
+            } else {
+              if (model4.current.rotation.x > -1.5) {
+                sw4 = 1;
+              } else {
+                sw4 = 4;
+              }
+            }
+          } else if (beforexpos4 > xrand4) {
+            if (xpos4 <= xrand4) {
+              beforexpos4 = xpos4;
+              xpos4 += 0.0015;
+              sw4 = 5;
+            } else {
+              if (model4.current.rotation.x < 1.5) {
+                sw4 = 2;
+              } else {
+                sw4 = 3;
+              }
+            }
+          } else if (model4.current.rotation.x > 1.5) {
+            sw4 = 4;
+            model4.current.rotation.x += 0.07;
+          } else if (model4.current.rotation.x < -1.5) {
+            sw4 = 3;
+            model4.current.rotation.x -= 0.07;
+          }
+
+          if (beforeypos4 > yrand4) {
+            if (ypos4 <= yrand4) {
+              beforeypos4 = ypos4;
+              sw4 = 6;
+            } else {
+              ysw4 = 2;
+            }
+          } else if (beforeypos4 < yrand4) {
+            if (ypos4 >= yrand4) {
+              beforeypos4 = ypos4;
+              sw4 = 6;
+            } else {
+              ysw4 = 1;
+            }
+          }
+
+          if (sw4 === 1) {
+            model4.current.rotation.x -= 0.07;
+          } else if (sw4 === 2) {
+            model4.current.rotation.x += 0.07;
+          } else if (sw4 === 3) {
+            xpos4 -= 0.0015;
+          } else if (sw4 === 4) {
+            xpos4 += 0.0015;
+          } else if (sw4 === 5) {
+            xrand4 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+          } else if (sw4 === 6) {
+            yrand4 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+          }
+
+          if (ysw4 === 1) {
+            ypos4 += 0.00025;
+          } else if (ysw4 === 2) {
+            ypos4 -= 0.00025;
+          }
+          model4.current.position.set(ypos4, xpos4, -0.5);
+        }
+      }
       renderer.render(scene, camera);
     }
     return () => {
