@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import Button from "@mui/joy/Button";
-import { WhiteBox } from "./styles";
+import { WhiteBox, MyText } from "./styles";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -14,19 +12,39 @@ const Method1 = ({ id }: Method1Props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/methodinfo1");
+    navigate("/method1");
   };
 
   return (
-    <WhiteBox id={id} style={{ position: "relative" }}>
-      <div>찌낚시</div>
+    <WhiteBox
+      id={id}
+      style={{
+        position: "relative",
+        backgroundImage: "url('/imgs/method1.jpg')",
+        backgroundRepeat: "no-repeat",
+      }}
+      onClick={handleClick}
+    >
+      <MyText>
+        물의 흐름을 이해하는 법
+        <br />
+        찌낚시
+      </MyText>
       <div style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
-        <Button variant="plain" color="neutral" onClick={handleClick}>
-          <span style={{ color: "#727272", marginRight: "0.1rem" }}>
-            자세히보기
-          </span>
-          <FontAwesomeIcon icon="arrow-right" color="#727272" />
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "1px solid white",
+            borderRadius: "50px",
+            width: "1.3rem",
+            height: "1.3rem",
+            margin: "0.3rem",
+          }}
+        >
+          <FontAwesomeIcon icon="plus" size="1x" color="white" />
+        </div>
       </div>
     </WhiteBox>
   );

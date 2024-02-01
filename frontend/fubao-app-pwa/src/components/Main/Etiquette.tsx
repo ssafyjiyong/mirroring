@@ -1,8 +1,6 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
-import styled from "styled-components";
-import Button from "@mui/joy/Button";
-import { WhiteBox } from "./styles";
+import { useNavigate } from "react-router-dom";
+import { WhiteBox, MyText } from "./styles";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -10,18 +8,38 @@ const Etiquette = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/etiquetteinfo');
+    navigate("/etiquetteinfo");
   };
 
   return (
-    <WhiteBox style={{ position: "relative" }}>
+    <WhiteBox
+      style={{
+        position: "relative",
+        backgroundImage: "url('/imgs/dock.jpg')",
+        backgroundRepeat: "no-repeat",
+      }}
+      onClick={handleClick}
+    >
+      <MyText>
+        낚시의 첫 번째 에티켓
+        <br />
+        배려입니다
+      </MyText>
       <div style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
-        <Button variant="plain" color="neutral" onClick={handleClick}>
-          <span style={{ color: "#727272", marginRight: "0.1rem" }}>
-            자세히보기
-          </span>
-          <FontAwesomeIcon icon="arrow-right" color="#727272" />
-        </Button>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            border: "1px solid white",
+            borderRadius: "50px",
+            width: "1.3rem",
+            height: "1.3rem",
+            margin:"0.3rem",
+          }}
+        >
+          <FontAwesomeIcon icon="plus" size="1x" color="white" />
+        </div>
       </div>
     </WhiteBox>
   );

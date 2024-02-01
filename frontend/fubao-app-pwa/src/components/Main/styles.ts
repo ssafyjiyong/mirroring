@@ -6,11 +6,18 @@ export const WhiteBox = styled.div`
     height: 15rem;
     background-color: white;
     padding: 1rem;
-    margin: 1rem 0;
+    margin: 1.3rem 0;
 `;
 
 export const AlignDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const MyText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.5rem 0.2rem;
+  color: ${props => props.color || 'black'}
 `;
