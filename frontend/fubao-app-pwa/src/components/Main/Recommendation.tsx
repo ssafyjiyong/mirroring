@@ -4,7 +4,7 @@ import { WhiteBox } from './styles';
 
 const Recommendation = () => {
   return (
-    <WhiteBox>추천정보</WhiteBox>
+    <WhiteBox>추천BOX</WhiteBox>
   )
 }
 

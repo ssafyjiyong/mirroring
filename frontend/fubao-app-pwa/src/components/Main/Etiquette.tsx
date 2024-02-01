@@ -21,9 +21,9 @@ const Etiquette = () => {
       onClick={handleClick}
     >
       <MyText>
-        낚시의 첫 번째 에티켓
+        아름다운 사람은
         <br />
-        배려입니다
+        머문 자리도 아름답습니다
       </MyText>
       <div style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
         <div

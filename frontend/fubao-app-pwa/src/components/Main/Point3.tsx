@@ -21,7 +21,7 @@ const Point3 = () => {
       onClick={handleClick}
     >
       <MyText color="">
-        돈 있으면 배 탔지
+        주변에 횟집 많은데 굳이
         <br />
         선착장낚시
       </MyText>
