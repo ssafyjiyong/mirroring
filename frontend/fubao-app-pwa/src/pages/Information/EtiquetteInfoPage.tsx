@@ -2,7 +2,7 @@ import React from 'react'
 
 const EtiquettePage = () => {
   return (
-    <div>EtiquettePage</div>
+    <div style={{ padding: "1rem" }}>EtiquettePage</div>
   )
 }
 

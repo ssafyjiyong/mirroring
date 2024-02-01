@@ -2,7 +2,7 @@ import React from 'react'
 
 const EquipmentInfoPage = () => {
   return (
-    <div>EquipmentInfoPage</div>
+    <div style={{ padding: "1rem" }}>EquipmentInfoPage</div>
   )
 }
 

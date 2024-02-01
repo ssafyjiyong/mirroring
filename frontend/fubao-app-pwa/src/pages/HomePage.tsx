@@ -1,35 +1,50 @@
-import React from "react";
-// import { useNavigate } from 'react-router-dom';
-import Initial from "../components/Initial/Initial";
-import BottomNav from "../components/BottomNav";
+import React, { useState, useEffect } from "react";
+import EntryLoading from "../components/Entry/EntryLoading";
+import Information from "../components/Main/Information";
+// import styled from "styled-components";
 
-// import Login from '../components/Login/Login'; // 가정된 로그인 컴포넌트
+// const TopBox = styled.div`
+//   border: 1px solid black;
+//   background-color: white;
+//   border-radius: 15%;
+// `;
 
 function HomePage() {
-  // const navigate = useNavigate();
+  const [showLoading, setShowLoading] = useState(true); // EntryLoading 컴포넌트를 보여줄지 결정하는 상태
 
-  // const handleLoginClick = () => {
-  //   navigate('/login');
-  // };
+  useEffect(() => {
+    // 2초 후에 EntryLoading 컴포넌트를 숨김
+    const timer = setTimeout(() => {
+      setShowLoading(false);
+    }, 2000);
 
-  const isLoggedIn = false; // 로그인 상태를 확인하는 로직 (가정)
+    // 컴포넌트가 언마운트될 때 타이머를 정리
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div        
+    <div
       style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
+        height: "auto",
+        padding: "1rem",
+        paddingBottom: "2rem",
+        backgroundColor: "#E3F2FD",
       }}
     >
-        <div style={{ flex: 1 }}></div>
-        <p style={{ alignSelf: "center" }}>테스트</p>
-        {/* {isLoggedIn ? <Initial /> : <Login />} */}
-        {isLoggedIn && <Initial />}
-        <div style={{ flex: 1 }}></div>
-      <BottomNav />
+      <p 
+      style={{ 
+        fontWeight: 600, 
+        fontSize: '1.5rem',
+        margin: '1rem 0.5rem 0.5rem',
+        }}
+        >
+          피드
+          </p>
+        <Information />
+        <Information />
+        <Information />
+      {showLoading && <EntryLoading />}{" "}
+      {/* showLoading 상태에 따라 EntryLoading 표시 */}
     </div>
   );
 }
