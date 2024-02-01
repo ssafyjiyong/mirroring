@@ -6,10 +6,6 @@ class methodReviewSerializer(serializers.ModelSerializer):
         model=method_reivew
         fields="__all__"
 
-class methodputSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=method_reivew
-        fields=('user','method','weight')
         
     
     
