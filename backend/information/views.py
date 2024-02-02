@@ -30,8 +30,6 @@ class weatherSunsetAPIView(APIView):
                     
         return Response(context, status=status.HTTP_200_OK)
 
-# def pickmethod():
-#     return random.choice([method_reivew.method for f in method_reivew.weight])
 
 # def pickfish(method_id):
 #     # fishlist = []
@@ -78,15 +76,9 @@ def pickmethod(user):
         selected_method_id = random.choice(method_ids)
     return selected_method_id
 
-def pickfish(method_id, user):
-    # fishlist = []
-#     for f in fish:
-#         if f.method_id == method_id:
-#             fishlist.append((f.pk, user_fish.f.preference))
-    # myfish = user_fish.objects.filter(user=user)
-    # fishlist = [(f.pk, myfish.f.preference) for f in fish if f.method_id == method_id]
-    
-    myfish = user_fish.objects.filter(user=user, fish__method_id=method_id)
+
+def pick_fish(method_id, user):
+    myfish = user_fish.objects.filter(user=user, fish__method__id=method_id)
     fishlist = [(uf.fish.pk, uf.preference) for uf in myfish]
 
     if fishlist:
@@ -98,14 +90,28 @@ def pickfish(method_id, user):
         return random.choice([f.pk for f in fish.objects.all()])
 
 
+def pick_location(fish_id):
+    location_list=location.objects.filter(location__fish__id=fish_id)
+    print(location_list)
+    # location_ids=[lo.pk for lo in ]
+    
+    #join 테이블에서 fish_id를 가진 location_id를 가져와 
+    # location_ids=[lo.fish for lo in location.objects.filter(fish=fish_id)]
+    # id=random.choice(location_ids)
+    
+    #그 location_id를 랜덤 돌려 
+    id = 1
+    return id
+
+
 class recommendationView(APIView):
     permission_classes = [IsAuthenticated]
 
     # @method_decorator(login_required)
     def get(self, request):
-        m = pickmethod(request.user)
-        f = pickfish(m, request.user)
-        l = picklocation(f)
+        m = pick_method(request.user)
+        f = pick_fish(m, request.user)
+        l = pick_location(f)
         context={
             "method_id": m,
             "fish_id": f,

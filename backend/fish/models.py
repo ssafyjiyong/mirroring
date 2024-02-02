@@ -9,10 +9,10 @@ class fish(models.Model):
     release_standard = models.ForeignKey(release_fish, on_delete=models.SET_NULL, null=True, blank=True)
     prohibit = models.ForeignKey(prohibit_fish, on_delete=models.SET_NULL, null=True, blank=True)
     fish_difficulty = models.IntegerField()
-    bait_id = models.ManyToManyField(fishing_bait)
-    area_id = models.ManyToManyField(fishing_area)
-    equipment_id = models.ManyToManyField(fishing_equipment)
-    method_id = models.ManyToManyField(fishing_method)
+    bait = models.ManyToManyField(fishing_bait)
+    area = models.ManyToManyField(fishing_area)
+    equipment = models.ManyToManyField(fishing_equipment)
+    method = models.ManyToManyField(fishing_method)
 
 class user_fish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
