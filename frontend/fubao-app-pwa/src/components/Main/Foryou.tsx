@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import "../../index.css";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import PlanRegister from "../Modal/PlanRegister";
 
 const Container = styled.div`
   display: flex;
@@ -154,94 +155,17 @@ const Foryou = () => {
           </div>
 
           {/* 일정이 등록되었을 경우 */}
+          <div></div>
         </div>
 
         {/* 일정 등록 모달 */}
-        <Modal
-          aria-labelledby="modal-title"
-          aria-describedby="modal-desc"
-          open={open}
-          onClose={() => setOpen(false)}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Sheet
-            variant="outlined"
-            sx={{
-              maxWidth: 500,
-              borderRadius: "md",
-              p: 3,
-              boxShadow: "lg",
-            }}
-          >
-            <ModalClose variant="plain" sx={{ m: 1 }} />
-            <Typography
-              component="h2"
-              id="modal-title"
-              level="h4"
-              textColor="inherit"
-              fontWeight="bold"
-              fontSize={"1.5rem"}
-              textAlign={"center"}
-              mb={1}
-            >
-              일정등록
-            </Typography>
-            <Container id="modal-desc">
-              {/* 일정 등록 칸 */}
-
-              <RegisterBox onSubmit={handleSubmit}>
-                <AlignDiv>
-                  <Span>일정: </Span>
-                  <DatePicker
-                    className="datePicker"
-                    dateFormat="yyyy.MM.dd" // 날짜 형태
-                    shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-                    minDate={new Date()} // minDate 이전 날짜 선택 불가
-                    maxDate={new Date(year + 1 + "-" + month + "-" + day)} // maxDate 이후 날짜 선택 불가
-                    selected={selectedDate}
-                    onChange={(date) => setSelectedDate(date)}
-                  />
-                </AlignDiv>
-                <AlignDiv>
-                  <Span>장소: </Span>
-                  <Input
-                    name="location"
-                    type="text"
-                    placeholder="장소 (예시 부산항)"
-                  />
-                </AlignDiv>
-                <AlignDiv>
-                  <Span>포인트: </Span>
-                  <Input
-                    name="area"
-                    type="text"
-                    placeholder="포인트 (예시 방파제)"
-                  />
-                </AlignDiv>
-                <AlignDiv>
-                  <Span>방법: </Span>
-                  <Input
-                    name="method"
-                    type="text"
-                    placeholder="방법 (예시 찌낚시)"
-                  />
-                </AlignDiv>
-                <Button
-                  size="md"
-                  variant="solid"
-                  style={{ margin: "2rem", marginRight: "0.2rem" }}
-                  type="submit"
-                >
-                  등록하기
-                </Button>
-              </RegisterBox>
-            </Container>
-          </Sheet>
-        </Modal>
+        <PlanRegister
+        open={open}
+        onClose={() => setOpen(false)}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        handleSubmit={handleSubmit}
+      />
       </React.Fragment>
     </WhiteBox>
   );
