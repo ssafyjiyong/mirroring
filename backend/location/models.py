@@ -9,6 +9,6 @@ class location(models.Model):
     address=models.CharField(max_length=100)
     lattitude=models.CharField(max_length=30)
     longitude=models.CharField(max_length=30)
-    fish=models.ManyToManyField(fish)
+    fish=models.ManyToManyField(fish,related_name="related_fish")
     method = models.ManyToManyField(fishing_method)
     
