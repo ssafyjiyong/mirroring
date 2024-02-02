@@ -49,35 +49,16 @@ class weatherSunsetAPIView(APIView):
 #         return random.choice([f.pk for f in fish])
 
 def picklocation(fish_id):
-    id=1
-    # method_ids = [review.method_id for review in method_reviews]
-    # weights = [review.weight for review in method_reviews]
+
+    # fish pk가 fish_id인 것만 list 생성 
+    location_list=location.objects.filter(fish=fish_id)
     
-    location_list=location.objects.filter(pk=fish_id)
-    print(location_list)
-    # location_ids=[lo.pk for lo in ]
+    # 
+    location_ids=[lo.pk for lo in location_list]
+
+    id=random.choice(location_ids)
     
-    #join 테이블에서 fish_id를 가진 location_id를 가져와 
-    # location_ids=[lo.fish for lo in location.objects.filter(fish=fish_id)]
-    # id=random.choice(location_ids)
-    
-    #그 location_id를 랜덤 돌려 
     return id
-    
-    
-    
-    # myfish = user_fish.objects.filter(user=user, fish__method_id=method_id)
-    # fishlist = [(uf.fish.pk, uf.preference) for uf in myfish]
-    
-    # location_list=lo_list
-    
-    # location_sort=location.objects.filter()
-    
-    # location_list=[l.pk for l in location_sort]
-    # location_list=[lo.pk for lo in location if lo.fish==fish_id]
-    
-    # return random.choice(location_list)
-    return lo_list
     
 
 # class recommendationView(APIView):
