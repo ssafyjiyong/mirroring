@@ -1,7 +1,11 @@
 import React from "react";
 import "../../FontAwsome";
+import { Link, useNavigate } from "react-router-dom";
+import { HomeIcon } from "../../styles/globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Circle = styled.div`
   border: 1px solid black;
@@ -15,6 +19,36 @@ const Circle = styled.div`
 `;
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const API_URL = "http://127.0.0.1:8000";
+
+  const logout = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+    axios.post(`${API_URL}/user/logout/`, {
+      headers: {
+        // 임시 토큰값
+        Authorization: 'Token fdb1edc661bfe5cbc0d620d696c703a5509b641e',
+      },
+    })
+      .then((response) => {
+        Swal.fire({
+          title: "로그아웃",
+          text: "안전하게 로그아웃 처리되었습니다.",
+          icon: "success",
+        });
+      })
+      .then((result) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "에러 발생",
+          text: "알 수 없는 에러가 발생했습니다.",
+        });
+      });
+  };
+
   return (
     <div style={{ padding: "1rem" }}>
       {/* 사용자 정보 */}
@@ -83,10 +117,17 @@ const ProfilePage = () => {
           marginTop: "5rem",
         }}
       >
-        <span>로그아웃</span>
+        <span onClick={logout}>로그아웃</span>
         <span>　|　</span>
         <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
       </div>
+
+      <Link to="/">
+        <HomeIcon>
+          <FontAwesomeIcon icon="home" />
+        </HomeIcon>
+      </Link>
+
     </div>
   );
 };

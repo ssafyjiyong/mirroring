@@ -44,7 +44,7 @@ const NavCenterItem = styled.div`
 
 const BottomNav = () => {
   return (
-    <div style={{ position:"relative", zIndex:"1000" }}>
+    <div style={{ position:"relative", zIndex:"100" }}>
       <NavBar>
         <Link to="/viewall" style={{ textDecoration: "none" }}>
           <NavItem>전체보기</NavItem>

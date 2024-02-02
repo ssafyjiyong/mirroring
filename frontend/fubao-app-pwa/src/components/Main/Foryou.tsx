@@ -16,46 +16,6 @@ import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlanRegister from "../Modal/PlanRegister";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4rem;
-`;
-
-const RegisterBox = styled.form`
-  height: 25rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const Input = styled.input`
-  border-radius: 10px;
-  width: 20rem;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  ::placeholder {
-    color: #ccc;
-  }
-`;
-
-const Span = styled.span`
-  display: inline-block;
-  width: 20rem;
-  margin-right: 0.5rem;
-`;
-
-const AlignDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 const Foryou = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -79,13 +39,16 @@ const Foryou = () => {
     const done = false;
 
     axios
-      .post(`${API_URL}/user/register/`, {
-        user: "user",
+      .post(`${API_URL}/schedule/`, {
+        user: 2,
         date: selectedDate,
         location,
         area,
         method,
         done,
+      },
+      {
+        headers: {Authorization: 'Token 7db2a7deeb94cd2a40304f97838e5f289124f9cc',},
       })
       .then((response) => {
         Swal.fire({

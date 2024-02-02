@@ -40,14 +40,14 @@ const Recommendation = () => {
       }}
     >
       <div style={{ textAlign: "center", margin: "0" }}>
-        <span style={{ fontWeight:"300", fontSize:"1.1rem" }}>강태공's pick</span>
+        <span style={{ fontWeight:"300", fontSize:"1.1rem" }}>강태공's tip</span>
       </div>
       
       <div style={{ position: "absolute", bottom: "1.5rem", left: "0.2rem" }}>
         <img src="/imgs/mrkang.png" alt="mr.kang" />
       </div>
 
-      <div style={{ margin: "1rem 0rem" }}>
+      <div style={{ margin: "1rem 0rem", display: "flex", flexDirection:"column", alignItems:"center" }}>
         <div style={{ margin: "0", marginLeft: "1rem" }}>
           <BigText>감성돔</BigText>
           <SmallText>잡는 법 알려준다</SmallText>
