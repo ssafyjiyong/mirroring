@@ -44,7 +44,7 @@ const NavCenterItem = styled.div`
 
 const BottomNav = () => {
   return (
-    <Fragment>
+    <div style={{ position:"relative", zIndex:"1000" }}>
       <NavBar>
         <Link to="/viewall" style={{ textDecoration: "none" }}>
           <NavItem>전체보기</NavItem>
@@ -63,7 +63,7 @@ const BottomNav = () => {
           />
         </NavCenterItem>
       </Link>
-    </Fragment>
+    </div>
   );
 };
 

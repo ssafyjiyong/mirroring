@@ -6,12 +6,12 @@ export const Wireframe = styled.div`
 
 export const HomeIcon = styled.div`
     position: fixed;
-    top: 1em;
-    right: 1em;
-    width: 3em;
-    height: 3em;
+    top: 4em;
+    right: 4em;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
+    color: ${props => props.color || 'black'}
+;
 `;

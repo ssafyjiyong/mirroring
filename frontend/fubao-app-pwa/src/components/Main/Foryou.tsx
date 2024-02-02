@@ -106,25 +106,36 @@ const Foryou = () => {
   };
 
   return (
-    <WhiteBox style={{ position: "relative", backgroundImage: "url('/imgs/main_plan.png')", backgroundRepeat:"no-repeat" }}>
+    <WhiteBox
+      style={{
+        position: "relative",
+        backgroundImage: "url('/imgs/main_plan.png')",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <React.Fragment>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div>{dateString}</div>
+        <div
+          style={{
+            marginLeft: "0.3rem",
+            marginTop: "0.2rem",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div style={{ fontWeight:"300" }}>{dateString}</div>
 
           {/* 일정이 등록되지 않았을 경우 */}
           <div
             style={{
-              marginTop: "0.7rem",
+              marginTop: "0.5rem",
               fontSize: "1.5rem",
-              fontWeight: "500",
+              fontWeight: "600",
             }}
           >
             낚시 일정을 등록하면
-          </div>
-          <div style={{ fontSize: "1.5rem", fontWeight: "500" }}>
+            <br />
             뭐부터 시작할지
-          </div>
-          <div style={{ fontSize: "1.5rem", fontWeight: "500" }}>
+            <br />
             알려줄게요
           </div>
           <div
@@ -136,7 +147,7 @@ const Foryou = () => {
               onClick={() => setOpen(true)}
             >
               <span style={{ color: "#727272", marginRight: "0.1rem" }}>
-                일정 등록하기
+                일정등록
               </span>
               <FontAwesomeIcon icon="arrow-right" color="#727272" />
             </Button>
@@ -190,7 +201,7 @@ const Foryou = () => {
                     dateFormat="yyyy.MM.dd" // 날짜 형태
                     shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
                     minDate={new Date()} // minDate 이전 날짜 선택 불가
-                    maxDate={new Date(year+1 + "-" + month + "-" + day)} // maxDate 이후 날짜 선택 불가
+                    maxDate={new Date(year + 1 + "-" + month + "-" + day)} // maxDate 이후 날짜 선택 불가
                     selected={selectedDate}
                     onChange={(date) => setSelectedDate(date)}
                   />
