@@ -94,7 +94,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def get_total_schedules(self, obj):
         # user_id가 현재 사용자와 일치하는 항목들의 총 수
-        return obj.schedule_user.filter(user=obj.id).count() or 0
+        return obj.schedule_user.filter(user=obj.id, done=True).count() or 0
 
     def get_latest_schedule_date(self, obj):
         # user_id가 현재 사용자와 일치하는 항목들 중에서 최근 schedule의 날짜
