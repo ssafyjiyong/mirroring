@@ -3,7 +3,7 @@ from rest_framework.generics import RetrieveUpdateAPIView
 from dj_rest_auth.registration.views import RegisterView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from .serializers import CustomRegisterSerializer, UserSerializer
+from .serializers import CustomRegisterSerializer, UserSerializer, UserProfileSerializer
 
 # Create your views here.
 class CustomRegisterView(RegisterView):
@@ -11,20 +11,22 @@ class CustomRegisterView(RegisterView):
 
 class UserProfileView(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = UserSerializer
 
     def get_object(self):
         return self.request.user
 
     def get(self, request, *args, **kwargs):
+        self.serializer_class = UserProfileSerializer
         return self.retrieve(request, *args, **kwargs)
 
     def patch(self, request, *args, **kwargs):
+        self.serializer_class = UserSerializer
         return self.partial_update(request, *args, **kwargs)
 
     def put(self, request, *args, **kwargs):
+        self.serializer_class = UserSerializer
         return self.update(request, *args, **kwargs)
-    
+
     def delete(self, request, *args, **kwargs):
         user = self.get_object()
         user.delete()
