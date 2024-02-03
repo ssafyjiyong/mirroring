@@ -2,7 +2,7 @@ from rest_framework import serializers
 from allauth.account import app_settings as allauth_settings
 from allauth.utils import get_username_max_length
 from allauth.account.adapter import get_adapter
-from django.core.exceptions import ValidationError as DjangoValidationError
+from django.core.exceptions import ValidationError
 from django.db.models import Sum, Max
 from .models import User
 from fish.models import user_fish
@@ -90,13 +90,13 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     def get_total_fish_count(self, obj):
         # user_id가 현재 사용자와 일치하는 항목들의 count의 합
-        return obj.user_fish.filter(user=obj.id).aggregate(total_count=Sum('count'))['total_count'] or 0
+        return obj.user_fish_user.filter(user=obj.id).aggregate(total_count=Sum('count'))['total_count'] or 0
 
     def get_total_schedules(self, obj):
         # user_id가 현재 사용자와 일치하는 항목들의 총 수
-        return obj.schedule.filter(user=obj.id).count()
+        return obj.schedule_user.filter(user=obj.id).count() or 0
 
     def get_latest_schedule_date(self, obj):
         # user_id가 현재 사용자와 일치하는 항목들 중에서 최근 schedule의 날짜
-        latest_schedule = obj.schedule.filter(user=obj.id).aggregate(latest_date=Max('date'))['latest_date']
+        latest_schedule = obj.schedule_user.filter(user=obj.id, done=True).aggregate(latest_date=Max('date'))['latest_date']
         return latest_schedule.strftime('%Y-%m-%d') if latest_schedule else None

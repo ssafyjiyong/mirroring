@@ -15,8 +15,8 @@ class fish(models.Model):
     method = models.ManyToManyField(fishing_method)
 
 class user_fish(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    fish = models.ForeignKey(fish, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_fish_user')
+    fish = models.ForeignKey(fish, on_delete=models.CASCADE, related_name='user_fish_fish')
     max_length = models.FloatField(null=True, blank=True)
     count = models.IntegerField(default=0)
     image = models.ImageField(null=True)
