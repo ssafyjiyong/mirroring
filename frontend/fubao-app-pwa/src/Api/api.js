@@ -38,7 +38,22 @@ export const loginApi = async ({email, password1}) => {
       throw error;
     }
   };
-
+  
+  export const planRegisterApi = async ({ date, location, area, method, done }) => {
+    try {
+      const response = await axios.post(`${API_URL}/schedule/`, {
+        user: 1,
+        date,
+        location,
+        area,
+        method,
+        done,
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
 
 // PUT 요청 API
 

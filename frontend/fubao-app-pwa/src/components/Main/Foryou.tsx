@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Button from "@mui/joy/Button";
-import Modal from "@mui/joy/Modal";
-import ModalClose from "@mui/joy/ModalClose";
-import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
 import { WhiteBox } from "./styles";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -15,12 +9,16 @@ import "../../index.css";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlanRegister from "../Modal/PlanRegister";
+import useStore from "../../store/store";
+import { useMutation } from "@tanstack/react-query";
+import { planRegisterApi } from "../../Api/api";
+import { string } from "yargs";
 
 const Foryou = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const navigate = useNavigate();
-  const API_URL = "http://127.0.0.1:8000";
+  const registered = useStore((state) => state.registered);
 
   // 현재 날짜 가져오기
   const today = new Date();
@@ -29,44 +27,49 @@ const Foryou = () => {
   const day = ("0" + today.getDate()).slice(-2);
   const dateString = year + "년 " + month + "월 " + day + "일";
 
+  const planRegisterMutation = useMutation({
+    mutationFn: planRegisterApi,
+    onSuccess: () => {
+      Swal.fire({
+        title: "일정 등록 완료",
+        text: "와우, 벌써부터 설레는걸요?",
+        icon: "success",
+      });
+    },
+    onError: (error) => {
+      Swal.fire({
+        title: "일정등록 에러",
+        text: "일정등록에 실패했습니다. 다시 시도해주세요.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
+      console.log(error.message);
+    },
+    onSettled: () => {
+      setOpen(false);
+    },
+  });
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setOpen(false);
+
     const data = new FormData(event.currentTarget);
     const location = data.get("location") as string;
     const area = data.get("area") as string;
     const method = data.get("method") as string;
     const done = false;
 
-    axios
-      .post(`${API_URL}/schedule/`, {
-        user: 2,
-        date: selectedDate,
-        location,
-        area,
-        method,
-        done,
-      },
-      {
-        headers: {Authorization: 'Token 7db2a7deeb94cd2a40304f97838e5f289124f9cc',},
-      })
-      .then((response) => {
-        Swal.fire({
-          title: "일정 등록 완료",
-          text: "와우, 벌써부터 설레는걸요?",
-          icon: "success",
-        });
-      })
-      .then((result) => {
-        navigate("/");
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "에러 발생",
-          text: "등록 내용을 다시 한 번 확인해주세요.",
-        });
-      });
+    const date = selectedDate
+    ? `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1)
+        .toString()
+        .padStart(2, "0")}-${selectedDate
+        .getDate()
+        .toString()
+        .padStart(2, "0")}`
+    : "";
+
+    planRegisterMutation.mutate({ date, location, area, method, done });
   };
 
   return (
@@ -79,6 +82,7 @@ const Foryou = () => {
     >
       <React.Fragment>
         <div
+          onClick={() => setOpen(true)}
           style={{
             marginLeft: "0.3rem",
             marginTop: "0.2rem",
@@ -86,7 +90,7 @@ const Foryou = () => {
             flexDirection: "column",
           }}
         >
-          <div style={{ fontWeight:"300" }}>{dateString}</div>
+          <div style={{ fontWeight: "300" }}>{dateString}</div>
 
           {/* 일정이 등록되지 않았을 경우 */}
           <div
@@ -94,6 +98,7 @@ const Foryou = () => {
               marginTop: "0.5rem",
               fontSize: "1.5rem",
               fontWeight: "600",
+              height: "13rem",
             }}
           >
             낚시 일정을 등록하면
@@ -105,30 +110,23 @@ const Foryou = () => {
           <div
             style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}
           >
-            <Button
-              variant="plain"
-              color="neutral"
-              onClick={() => setOpen(true)}
-            >
+            <Button variant="plain" color="neutral">
               <span style={{ color: "#727272", marginRight: "0.1rem" }}>
                 일정등록
               </span>
               <FontAwesomeIcon icon="arrow-right" color="#727272" />
             </Button>
           </div>
-
-          {/* 일정이 등록되었을 경우 */}
-          <div></div>
         </div>
 
         {/* 일정 등록 모달 */}
         <PlanRegister
-        open={open}
-        onClose={() => setOpen(false)}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        handleSubmit={handleSubmit}
-      />
+          open={open}
+          onClose={() => setOpen(false)}
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          handleSubmit={handleSubmit}
+        />
       </React.Fragment>
     </WhiteBox>
   );
