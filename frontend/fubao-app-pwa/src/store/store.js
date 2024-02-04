@@ -2,9 +2,8 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 const store = (set) => ({
-  bears: 0,
-  increasePopulation: () => set(state => ({ bears: state.bears + 1 })),
-  removeAllBears: () => set({ bears: 0 })
+  registered: false,
+  setRegistered: () => set((state) => ({...state, registered: true})),
 })
 
 const useStore = create(

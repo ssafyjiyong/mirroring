@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
-import Modal from '@mui/joy/Modal';
-import ModalClose from '@mui/joy/ModalClose';
-import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
-import Button from '@mui/joy/Button';
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import Typography from "@mui/joy/Typography";
+import Sheet from "@mui/joy/Sheet";
+import Button from "@mui/joy/Button";
+import Select from "react-select";
 import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
 const Container = styled.div`
   display: flex;
@@ -56,11 +57,105 @@ interface PlanRegisterProps {
   handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const PlanRegister: React.FC<PlanRegisterProps> = ({ open, onClose, selectedDate, setSelectedDate, handleSubmit }) => {
+const PlanRegister: React.FC<PlanRegisterProps> = ({
+  open,
+  onClose,
+  selectedDate,
+  setSelectedDate,
+  handleSubmit,
+}) => {
   const today = new Date();
   const year = today.getFullYear();
   const month = ("0" + (today.getMonth() + 1)).slice(-2);
   const day = ("0" + today.getDate()).slice(-2);
+
+  const [selectedPointOption, setSelectedPointOption] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+  
+  const [selectedMethodOption, setSelectedMethodOption] = useState<{
+    value: string;
+    label: string;
+  } | null>(null);
+
+  const handlePointChange = (
+    selectedPointOption: { value: string; label: string } | null
+  ) => {
+    setSelectedPointOption(selectedPointOption);
+  };
+
+  const handleMethodChange = (
+    selectedMethodOption: { value: string; label: string } | null
+  ) => {
+    setSelectedMethodOption(selectedMethodOption);
+  };
+
+  const PointOptions = [
+    { value: "1", label: "방파제" },
+    { value: "2", label: "갯바위" },
+    { value: "3", label: "선착장" },
+    { value: "4", label: "선상" },
+  ];
+
+  const MethodOptions = [
+    { value: "1", label: "찌낚시" },
+    { value: "2", label: "원투낚시" },
+    { value: "3", label: "루어낚시" },
+    { value: "4", label: "훌치기낚시" },
+  ];
+
+  const PointSelect = () => (
+    <Select
+      options={PointOptions}
+      value={selectedPointOption}
+      placeholder="어느 포인트에서 하실 예정이세요?"
+      onChange={handlePointChange}
+      required
+      name="area"
+      styles={{
+        control: (provided) => ({
+          ...provided,
+          borderRadius: "10px",
+          margin: "0.5rem 0rem",
+          width: "21rem",
+          borderColor: "#ccc",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          fontSize: 16,
+        }),
+        menu: (provided) => ({
+          ...provided,
+          marginTop: -8,
+        }),
+      }}
+    />
+  );
+
+  const MethodSelect = () => (
+    <Select
+      options={MethodOptions}
+      value={selectedMethodOption}
+      placeholder="어떤 방법으로 하실 예정이세요?"
+      onChange={handleMethodChange}
+      required
+      name="method"
+      styles={{
+        control: (provided) => ({
+          ...provided,
+          borderRadius: "10px",
+          margin: "0.5rem 0rem",
+          width: "21rem",
+          borderColor: "#ccc",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          fontSize: 16,
+        }),
+        menu: (provided) => ({
+          ...provided,
+          marginTop: -8,
+        }),
+      }}
+    />
+  );
 
   return (
     <Modal
@@ -69,18 +164,18 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({ open, onClose, selectedDate
       open={open}
       onClose={onClose}
       sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
       <Sheet
         variant="outlined"
         sx={{
           maxWidth: 500,
-          borderRadius: 'md',
+          borderRadius: "md",
           p: 3,
-          boxShadow: 'lg',
+          boxShadow: "lg",
         }}
       >
         <ModalClose variant="plain" sx={{ m: 1 }} />
@@ -111,37 +206,29 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({ open, onClose, selectedDate
               />
             </AlignDiv>
             <AlignDiv>
-                  <Span>장소: </Span>
-                  <Input
-                    name="location"
-                    type="text"
-                    placeholder="장소 (예시 부산항)"
-                  />
-                </AlignDiv>
-                <AlignDiv>
-                  <Span>포인트: </Span>
-                  <Input
-                    name="area"
-                    type="text"
-                    placeholder="포인트 (예시 방파제)"
-                  />
-                </AlignDiv>
-                <AlignDiv>
-                  <Span>방법: </Span>
-                  <Input
-                    name="method"
-                    type="text"
-                    placeholder="방법 (예시 찌낚시)"
-                  />
-                </AlignDiv>
-                <Button
-                  size="md"
-                  variant="solid"
-                  style={{ margin: "2rem", marginRight: "0.2rem" }}
-                  type="submit"
-                >
-                  등록하기
-                </Button>
+              <Span>장소: </Span>
+              <Input
+                name="location"
+                type="text"
+                placeholder="장소 (예시 부산항)"
+              />
+            </AlignDiv>
+            <AlignDiv>
+              <Span>포인트: </Span>
+              <PointSelect />
+            </AlignDiv>
+            <AlignDiv>
+              <Span>방법: </Span>
+              <MethodSelect />
+            </AlignDiv>
+            <Button
+              size="md"
+              variant="solid"
+              style={{ margin: "2rem", marginRight: "0.2rem" }}
+              type="submit"
+            >
+              등록하기
+            </Button>
           </RegisterBox>
         </Container>
       </Sheet>
