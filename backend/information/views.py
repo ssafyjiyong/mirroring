@@ -40,7 +40,9 @@ def pick_method(user):
         selected_method_id = random.choices(method_ids, weights)[0]
     else:
         selected_method_id = random.choice(method_ids)
-    return selected_method_id
+        
+    selected_method = fishing_method.objects.get(pk=selected_method_id).title
+    return selected_method_id, selected_method
 
 
 def pick_fish(method_id, user):
@@ -50,21 +52,25 @@ def pick_fish(method_id, user):
     if fishlist:
         # preference 기준 sort
         fishlist.sort(key=lambda x: x[1], reverse=True)
-        return fishlist[0][0]
+        selected_fish_id = fishlist[0][0]
     else:
         # method에 맞는 fish 없으면 random
-        return random.choice([f.pk for f in fish.objects.all()])
+        selected_fish_id = random.choice([f.pk for f in fish.objects.all()])
+        
+    selected_fish = fish.objects.get(pk=selected_fish_id).name_kor
+    return selected_fish_id, selected_fish
 
 
 def pick_location(fish_id):
     # fish pk가 fish_id인 것만 list 생성 
-    location_list=location.objects.filter(fish=fish_id)
+    location_list = location.objects.filter(fish=fish_id)
     
     # 해당 위치의 id를 리스트로 생성 
-    location_ids=[lo.pk for lo in location_list]
+    location_ids = [lo.pk for lo in location_list]
 
-    id=random.choice(location_ids)
-    return id
+    selected_location_id = random.choice(location_ids)
+    selected_location = location.objects.get(pk=selected_location_id).name
+    return selected_location_id, selected_location
 
 
 class recommendationView(APIView):
@@ -72,12 +78,16 @@ class recommendationView(APIView):
 
     # @method_decorator(login_required)
     def get(self, request):
-        m = pick_method(request.user)
-        f = pick_fish(m, request.user)
-        l = pick_location(f)
-        context={
-            "method_id": m,
-            "fish_id": f,
-            "location_id": l,   
+        method_id, selected_method = pick_method(request.user)
+        fish_id, selected_fish = pick_fish(method_id, request.user)
+        location_id, selected_location = pick_location(fish_id)
+
+        context = {
+            "method_id": method_id,
+            "selected_method": selected_method,
+            "fish_id": fish_id,
+            "selected_fish": selected_fish,
+            "location_id": location_id,
+            "selected_location": selected_location,
         }
         return Response(context, status=status.HTTP_200_OK)
