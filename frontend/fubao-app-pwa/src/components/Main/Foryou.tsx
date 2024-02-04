@@ -2,23 +2,17 @@ import React, { useState } from "react";
 import Button from "@mui/joy/Button";
 import { WhiteBox } from "./styles";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import "../../index.css";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlanRegister from "../Modal/PlanRegister";
-import useStore from "../../store/store";
 import { useMutation } from "@tanstack/react-query";
-import { planRegisterApi } from "../../Api/api";
-import { string } from "yargs";
+import { planRegisterApi } from "../../store/api";
 
 const Foryou = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const navigate = useNavigate();
-  const registered = useStore((state) => state.registered);
 
   // 현재 날짜 가져오기
   const today = new Date();

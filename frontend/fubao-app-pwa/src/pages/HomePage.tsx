@@ -14,8 +14,29 @@ import Etiquette from "../components/Main/Etiquette";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
+import Survey from "../components/Modal/Survey";
+import Review from "../components/Modal/Review";
+import useStore from "../store/store";
+
+interface Profile {
+  id: number;
+  is_superuser: boolean;
+  email: string;
+  name: string;
+  date_joined: string;
+  nickname: string;
+  age: number | null;
+  date_of_birth: string | null;
+  gender: string;
+  profile_img: string;
+  total_fish_count: number;
+  total_schedules: number;
+  latest_schedule_date: string | null;
+}
 
 function HomePage() {
+  const { profile } = useStore() as { profile: Profile | null };
+
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
     if (window.location.hash) {
@@ -59,7 +80,7 @@ function HomePage() {
           <img
             src="/favicon_io/android-chrome-192x192.png"
             alt="logo"
-            style={{ width: "2rem", height: "2rem", margin:"0rem 0.3rem" }}
+            style={{ width: "2rem", height: "2rem", margin: "0rem 0.3rem" }}
           />
           <span
             style={{
@@ -69,6 +90,22 @@ function HomePage() {
             }}
           >
             FUBAO
+          </span>
+
+          <button
+            onClick={(event) => {
+              event.preventDefault();
+              console.log(profile);
+            }}
+          >
+            TEST
+          </button>
+          <span>
+            {profile
+              ? profile.nickname
+                ? profile.nickname
+                : "프로필 없음"
+              : "닉네임 확인 안됨"}
           </span>
         </div>
         <div>
@@ -100,6 +137,24 @@ function HomePage() {
       <Point2 />
       <Point3 />
       <Point4 />
+
+      {/* 사전설문 모달 */}
+      {/* <Survey
+        open={open}
+        onClose={() => setOpen(false)}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        handleSubmit={handleSubmit}
+      /> */}
+
+      {/* 리뷰 모달 */}
+      {/* <Review
+        open={open}
+        onClose={() => setOpen(false)}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        handleSubmit={handleSubmit}
+      /> */}
     </div>
   );
 }

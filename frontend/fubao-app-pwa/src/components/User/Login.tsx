@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { loginApi } from "../../Api/api";
+import { loginApi } from "../../store/api";
 
 function Copyright(props: any) {
   return (
