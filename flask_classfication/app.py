@@ -22,9 +22,9 @@ CORS(app)
 
 
 # rest 요청 처리부
-@app.route("/predict3" , methods=["POST"])
+@app.route("/predict" , methods=["POST"])
 # @app.route("/predict" , methods=["GET", "POST"])
-def predict3():
+def predict():
     if request.method == 'POST':
             
             f = request.files['file'] # 입력 이미지 파일
