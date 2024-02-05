@@ -34,7 +34,7 @@ class release_fish(models.Model):
 class prohibit_fish(models.Model):
     #id=models.IntegerField(primary_key=True)
     name_kor = models.CharField(max_length=40)
-    name_eng = models.CharField(max_length=50,null=True,blank=True)
+    name_eng = models.CharField(max_length=50, null=True, blank=True)
     standard_start = models.DateField(null=True)
     standard_end = models.DateField(null=True)
     

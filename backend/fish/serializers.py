@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import fish, user_fish
-from information.serializers import FishReleaseShortSerializer, FishProhibitShortSerializer
+from information.serializers import ReleaseShortSerializer, ProhibitShortSerializer
 
 class FishSerializer(serializers.ModelSerializer):
     class Meta:
@@ -8,8 +8,8 @@ class FishSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class FishDetailSerializer(serializers.ModelSerializer):
-    prohibit = FishProhibitShortSerializer(read_only=True)
-    release = FishReleaseShortSerializer(read_only=True)
+    prohibit = ProhibitShortSerializer(read_only=True)
+    release_standard = ReleaseShortSerializer(read_only=True)
     
     class Meta:
         model = fish

@@ -3,9 +3,9 @@ id,name_kor,name_eng,standard_start,standard_end
 2,��� ,sea bass,NULL,NULL
 3,������ ,horse mackerel,NULL,NULL
 4,���� ,mugil cephalus,NULL,NULL
-5,����� ,scomber japonicus,04-01,06-30
+5,����� ,scomber japonicus,9999-04-01,9999-06-30
 6,���� ,flatfish,NULL,NULL
 7,�췰 ,korean rockfish,NULL,NULL
-8,������ ,black sea bream,05-01,05-31
+8,������ ,black sea bream,9999-05-01,9999-05-31
 9,���� ,rock bream,NULL,NULL
-10,��뷡�� ,greenling,11-01,12-31
+10,��뷡�� ,greenling,9999-11-01,9999-12-31
