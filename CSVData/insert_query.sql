@@ -46,11 +46,11 @@ REPLACE INTO TABLE `fubao`.`fish_fish`
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
-IGNORE 1 LINES (`id`, `name_kor`, `name_eng`, `fish_difficulty`, `prohibit_id`, `release_standard_id`);
+IGNORE 1 LINES (`id`, `name_kor`, `name_eng`, `fish_difficulty`, `prohibit_id`, `release_standard_id`, `subtitle`, `document`);
 
 #어종-area import 
 LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\fish_fish_area_id.CSV' 
-REPLACE INTO TABLE `fubao`.`fish_fish_area_id` 
+REPLACE INTO TABLE `fubao`.`fish_fish_area` 
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
