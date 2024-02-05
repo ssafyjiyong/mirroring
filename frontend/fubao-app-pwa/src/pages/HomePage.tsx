@@ -13,6 +13,7 @@ import Point4 from "../components/Main/Point4";
 import Etiquette from "../components/Main/Etiquette";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   useEffect(() => {
@@ -25,6 +26,12 @@ function HomePage() {
       }
     }
   }, []);
+
+  const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate("/profile");
+  };
 
   return (
     <div
@@ -69,6 +76,7 @@ function HomePage() {
             icon="user"
             color="#778a9b"
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
+            onClick={goToProfile}
           />
           <FontAwesomeIcon
             icon="bell"

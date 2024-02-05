@@ -72,8 +72,8 @@ const CameraOpen = () => {
         >
           {!fileSelected && (
             <>
-              <p style={{ margin: "0.5rem", fontSize: "1.1rem" }}>
-                터치 한 번으로 어종/길이 측정
+              <p style={{ margin: "0.5rem", fontSize: "1.5rem", fontWeight:"600" }}>
+                원터치로 어종/길이 판별!
               </p>
               <label htmlFor="file">
                 <img
@@ -82,7 +82,7 @@ const CameraOpen = () => {
                   style={{ width: "10rem", height: "10rem" }}
                 />
               </label>
-              <p style={{ margin: "0", color: "#778A9B" }}>CLICK!</p>
+              <p style={{ margin: "0", color: "#778A9B" }}>푸바오를 클릭해주세요</p>
             </>
           )}
 
@@ -95,7 +95,7 @@ const CameraOpen = () => {
 
           {fileSelected && (
             <>
-              <p style={{ margin: "0.5rem", fontSize: "1.1rem" }}>
+              <p style={{ margin: "0.5rem", fontSize: "1.5rem", fontWeight:"600" }}>
                 어떤 물체와 비교해 볼까요?
               </p>
 
@@ -120,7 +120,7 @@ const CameraOpen = () => {
                     key={item.title}
                     variant="outlined"
                     sx={{ padding:"0.5rem" }}
-                  >
+                    >
                     <Container onClick={item.title === '취소' ? handleCancel : undefined}>
                       <AspectRatio ratio="1" sx={{ minWidth: 60 }}>
                         <img
@@ -145,6 +145,7 @@ const CameraOpen = () => {
                   </Card>
                 ))}
               </Box>
+<p style={{ margin: "0", color: "#778A9B" }}>원하는 옵션을 선택해주세요</p>
             </>
           )}
         </form>

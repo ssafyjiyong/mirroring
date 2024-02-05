@@ -36,7 +36,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/detail/:fishname/:level" element={<DetailPage />} />
+        <Route path="/detail/:fishname" element={<DetailPage />} />
         <Route path="/fishbowl" element={<FishBowlPage />} />
         <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
         <Route path="/etiquetteinfo" element={<EtiquettePage />} />
