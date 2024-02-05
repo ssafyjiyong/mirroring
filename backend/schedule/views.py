@@ -33,7 +33,13 @@ class ScheduleAPIView(APIView):
         serializer = ScheduleAllSerializer(schedule_instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
+<<<<<<< HEAD
     # 일정 수정
+=======
+    
+class ScheduleDoneAPIView(APIView):
+    #해당 일정 완료 처리  
+>>>>>>> 5c3fd3cc6e9078672cac4f357412aaff3fe3eb76
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
     def patch(self, request,pk):
         schedule_instance = get_object_or_404(schedule, id=pk,user=request.user)
