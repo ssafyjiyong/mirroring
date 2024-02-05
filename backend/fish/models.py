@@ -13,6 +13,8 @@ class fish(models.Model):
     area = models.ManyToManyField(fishing_area)
     equipment = models.ManyToManyField(fishing_equipment)
     method = models.ManyToManyField(fishing_method)
+    subtitle = models.TextField()
+    document = models.TextField()
 
 class user_fish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_fish_user')
