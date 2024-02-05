@@ -7,8 +7,12 @@ class locationAllSerializer(serializers.ModelSerializer):
         model=location
         fields="__all__"
         
-
 class locationMapSerializer(serializers.ModelSerializer):
     class Meta:
         model = location
         fields = ('id','name','lattitude','longitude')
+        
+class locationSchduleModeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = location
+        fields = ('id','name','address','lattitude','longitude')
