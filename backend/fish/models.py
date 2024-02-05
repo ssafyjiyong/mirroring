@@ -6,8 +6,8 @@ from information.models import fishing_area, fishing_bait, fishing_equipment, fi
 class fish(models.Model):
     name_kor = models.CharField(max_length=100)
     name_eng = models.CharField(max_length=100)
-    release_standard = models.ForeignKey(release_fish, on_delete=models.SET_NULL, null=True, blank=True)
-    prohibit = models.ForeignKey(prohibit_fish, on_delete=models.SET_NULL, null=True, blank=True)
+    release_standard = models.ForeignKey(release_fish, on_delete=models.SET_NULL, null=True, blank=True, related_name='release')
+    prohibit = models.ForeignKey(prohibit_fish, on_delete=models.SET_NULL, null=True, blank=True, related_name='prohibit')
     fish_difficulty = models.IntegerField()
     bait = models.ManyToManyField(fishing_bait)
     area = models.ManyToManyField(fishing_area)

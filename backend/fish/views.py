@@ -10,7 +10,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.permissions import IsAuthenticated
 import json
 
-from .serializers import FishSerializer, UserFishSerializer, UserFishDetailSerializer
+from .serializers import FishSerializer, FishDetailSerializer, UserFishSerializer, UserFishDetailSerializer
 from .models import fish, user_fish
 
 # Create your views here.
@@ -26,12 +26,12 @@ class FishListView(APIView):
 class FishView(APIView):
     permission_classes = [IsAuthenticated]
     
-    @swagger_auto_schema(responses={"200": FishSerializer})
+    @swagger_auto_schema(responses={"200": FishDetailSerializer})
     def get(self, request, pk):
-        fishpk = get_object_or_404(fish, pk=pk)
-        serializer = FishSerializer(fishpk)
+        fish_instance = get_object_or_404(fish, pk=pk)
+        serializer = FishDetailSerializer(fish_instance)
         return Response(serializer.data)
-
+    
 @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
     permission_classes = [IsAuthenticated]
