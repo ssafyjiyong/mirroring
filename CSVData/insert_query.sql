@@ -55,3 +55,11 @@ CHARACTER SET euckr FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
 IGNORE 1 LINES (`id`, `fish_id`, `fishing_area_id`);
+
+#어종-bait import 
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\fish_fish_bait_id.CSV' 
+REPLACE INTO TABLE `fubao`.`fish_fish_bait` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `fish_id`, `fishing_bait_id`);
