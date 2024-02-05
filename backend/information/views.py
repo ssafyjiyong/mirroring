@@ -148,3 +148,31 @@ class FishEquipmentView(APIView):
         equipment = get_object_or_404(fishing_equipment, pk=pk)
         serializer = FishEquipmentSerializer(equipment)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FishProhibitsView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        prohibits = prohibit_fish.objects.all()
+        serializer = FishProhibitSerializer(prohibits, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FishProhibitView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        prohibit = get_object_or_404(prohibit_fish, pk=pk)
+        serializer = FishProhibitSerializer(prohibit)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FishReleasesView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        releases = release_fish.objects.all()
+        serializer = FishReleaseSerializer(releases, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FishReleaseView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        release = get_object_or_404(release_fish, pk=pk)
+        serializer = FishReleaseSerializer(release)
+        return Response(serializer.data, status=status.HTTP_200_OK)

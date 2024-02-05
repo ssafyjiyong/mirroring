@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import weatherSunsetAPIView, recommendationView, FishMethodsView, FishMethodView, FishAreaView, FishAreasView, FishBaitView, FishBaitsView, FishEquipmentsView, FishEquipmentView
+from .views import weatherSunsetAPIView, recommendationView, FishMethodsView, FishMethodView, FishAreaView, FishAreasView, FishBaitView, FishBaitsView, FishEquipmentsView, FishEquipmentView, FishProhibitsView, FishProhibitView, FishReleasesView, FishReleaseView
 
 urlpatterns=[
     path('recommendation/', recommendationView.as_view(), name='recommendation'),
@@ -12,4 +12,8 @@ urlpatterns=[
     path('bait/<int:pk>/', FishBaitView.as_view(), name='fish_bait'),
     path('equipment/', FishEquipmentsView.as_view(), name='fish_equipment_list'),
     path('equipment/<int:pk>/', FishEquipmentView.as_view(), name='fish_equipment'),
+    path('prohibit/', FishProhibitsView.as_view(), name='fish_prohibit_list'),
+    path('prohibit/<int:pk>/', FishProhibitView.as_view(), name='fish_prohibit'),
+    path('release/', FishReleasesView.as_view(), name='fish_release_list'),
+    path('release/<int:pk>/', FishReleaseView.as_view(), name='fish_release'),
 ]
