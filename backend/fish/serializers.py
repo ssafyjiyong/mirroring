@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import fish, user_fish
-from user.serializers import UserSerializer
 
 class FishSerializer(serializers.ModelSerializer):
     class Meta:

@@ -65,7 +65,7 @@ class MyFishView(APIView):
     def post(self, request, pk):
         user_id = request.user.pk
         preference = request.data.get('preference', None)
-        existing_instance = user_fish.objects.filter(user_id=user_id, fish_id=pk)
+        existing_instance = user_fish.objects.filter(user_id=user_id, fish_id=pk).first()
 
         if existing_instance:
             serializer = UserFishSerializer(existing_instance)

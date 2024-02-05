@@ -2,8 +2,11 @@ from rest_framework import serializers
 from allauth.account import app_settings as allauth_settings
 from allauth.utils import get_username_max_length
 from allauth.account.adapter import get_adapter
-from django.core.exceptions import ValidationError as DjangoValidationError
+from django.core.exceptions import ValidationError
+from django.db.models import Sum, Max
 from .models import User
+from fish.models import user_fish
+from schedule.models import schedule
 from dj_rest_auth.registration.serializers import RegisterSerializer
 
 class CustomRegisterSerializer(RegisterSerializer):
@@ -74,3 +77,26 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img']
         read_only_fields = ('email', 'is_staff', 'is_active', 'date_joined', 'is_superuser'),
+        
+class UserProfileSerializer(serializers.ModelSerializer):
+    total_fish_count = serializers.SerializerMethodField()
+    total_schedules = serializers.SerializerMethodField()
+    latest_schedule_date = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img', 'total_fish_count', 'total_schedules', 'latest_schedule_date']
+        read_only_fields = ('email', 'is_staff', 'is_active', 'date_joined', 'is_superuser')
+
+    def get_total_fish_count(self, obj):
+        # user_id가 현재 사용자와 일치하는 항목들의 count의 합
+        return obj.user_fish_user.filter(user=obj.id).aggregate(total_count=Sum('count'))['total_count'] or 0
+
+    def get_total_schedules(self, obj):
+        # user_id가 현재 사용자와 일치하는 항목들의 총 수
+        return obj.schedule_user.filter(user=obj.id, done=True).count() or 0
+
+    def get_latest_schedule_date(self, obj):
+        # user_id가 현재 사용자와 일치하는 항목들 중에서 최근 schedule의 날짜
+        latest_schedule = obj.schedule_user.filter(user=obj.id, done=True).aggregate(latest_date=Max('date'))['latest_date']
+        return latest_schedule.strftime('%Y-%m-%d') if latest_schedule else None

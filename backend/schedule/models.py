@@ -7,7 +7,7 @@ from user.models import User
 class schedule(models.Model):
     # user 생성시 사전설문 저장용으로 schedule이 생성됨(done = True)
 
-    user= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, null=True, related_name='schedule_user')
     method= models.ForeignKey(fishing_method, on_delete=models.SET_NULL, null=True, blank=True) # 낚시 방법
     method_review = models.IntegerField(null=True) # 낚시방법 리뷰
     area= models.ForeignKey(fishing_area, on_delete=models.SET_NULL, null=True, blank=True ) # 낚시 구역 id
