@@ -3,16 +3,17 @@ import json, random
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import get_object_or_404
 from django.utils.decorators import method_decorator
 
 from .weather import weatherAPI
 from .sunset import sunsetAPI
-from .models import fishing_method
+from .models import fishing_method, fishing_area, fishing_bait, fishing_equipment, release_fish, prohibit_fish
 from fish.models import fish, user_fish
 from review.models import method_reivew
 
 from location.models import location
-
+from .serializers import FishAreaSerializer, FishBaitSerializer, FishMethodSerializer, FishEquipmentSerializer, FishReleaseSerializer, FishProhibitSerializer
 
 class weatherSunsetAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -91,3 +92,17 @@ class recommendationView(APIView):
             "selected_location": selected_location,
         }
         return Response(context, status=status.HTTP_200_OK)
+
+class FishMethodsView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        methods = fishing_method.objects.all()
+        serializer = FishMethodSerializer(methods, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FishMethodView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        method = get_object_or_404(fishing_method, pk=pk)
+        serializer = FishMethodSerializer(method)
+        return Response(serializer.data, status=status.HTTP_200_OK)
