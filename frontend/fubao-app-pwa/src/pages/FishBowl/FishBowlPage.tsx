@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from "styled-components";
 import * as THREE from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
@@ -34,8 +34,12 @@ const FishBowlPage = () => {
   const model7 = useRef<THREE.Object3D | null>(null);
   const model8 = useRef<THREE.Object3D | null>(null);
 
+  const [isModelVisible, setIsModelVisible] = useState(false);
+
   let xspeed: number = 0.0005;
   let yspeed: number = 0.0001;
+
+  let check: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let ypos1: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
@@ -142,12 +146,14 @@ const FishBowlPage = () => {
       model1.current.position.set(0, 0, 0);
 
       //물고기 옆면이 보이게
-      model1.current.rotation.y += 0;
-      model1.current.rotation.x -= 1.5;
-      model1.current.rotation.z -= 1.5;
+      model1.current.rotation.y = 0;
+      model1.current.rotation.x = -1.5;
+      model1.current.rotation.z = -1.5;
 
       //씬에 모델 추가
       scene.add(model1.current);
+      model1.current.visible = false;
+      //scene.remove(model1.current);
 
       const animations1 = gltf1.animations!;
       mixer1.current = new THREE.AnimationMixer(model1.current);
@@ -170,12 +176,13 @@ const FishBowlPage = () => {
       model2.current.position.set(-0.55, -1.15, -0.5);
 
       //물고기 옆면이 보이게
-      model2.current.rotation.y += 0;
-      model2.current.rotation.x -= 1.5;
-      model2.current.rotation.z -= 1.5;
+      model2.current.rotation.y = 0;
+      model2.current.rotation.x = -1.5;
+      model2.current.rotation.z = -1.5;
 
       //씬에 모델 추가
       scene.add(model2.current);
+      model2.current.visible = false;
 
       const animations1 = gltf2.animations!;
       mixer2.current = new THREE.AnimationMixer(model2.current);
@@ -196,14 +203,15 @@ const FishBowlPage = () => {
       model3.current.position.set(-0.6, -1.2, 0);//1.15
       //model3.current.rotation.set(0, 1.5, -1.5);
       //물고기 옆면이 보이게
-      model3.current.rotation.y += 2.6; //-2~-1.1 -2:x++, -1.1:x--
-      model3.current.rotation.x += 0; //0~3 0:x++, 3:x--
-      model3.current.rotation.z += 1.5;
+      model3.current.rotation.y = 2.6; //-2~-1.1 -2:x++, -1.1:x--
+      model3.current.rotation.x = 0; //0~3 0:x++, 3:x--
+      model3.current.rotation.z = 1.5;
 
       model3.current.scale.set(0.7, 0.7, 0.7);
 
       // Add the model to the scene
       scene.add(model3.current);
+      model3.current.visible = false;
 
       const animations3 = gltf3.animations!;
       mixer3.current = new THREE.AnimationMixer(model3.current);
@@ -224,14 +232,15 @@ const FishBowlPage = () => {
       model4.current.position.set(0, 0, 1);
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
-      model4.current.rotation.y += 0;
-      model4.current.rotation.x += 1.5;  //0~3
-      model4.current.rotation.z -= 1.5;
+      model4.current.rotation.y = 0;
+      model4.current.rotation.x = 1.5;  //0~3
+      model4.current.rotation.z = -1.5;
 
       model4.current.scale.set(0.15, 0.15, 0.15);
 
       // Add the model to the scene
       scene.add(model4.current);
+      model4.current.visible = false;
 
       const animations4 = gltf4.animations!;
       mixer4.current = new THREE.AnimationMixer(model4.current);
@@ -252,14 +261,15 @@ const FishBowlPage = () => {
       model5.current.position.set(0, 0, 2);
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
-      model5.current.rotation.y += 0;
-      model5.current.rotation.x += 1.5;  //0~3
-      model5.current.rotation.z -= 1.5;
+      model5.current.rotation.y = 0;
+      model5.current.rotation.x = 1.5;  //0~3
+      model5.current.rotation.z = -1.5;
 
       model5.current.scale.set(0.45, 0.45, 0.45);
 
       // Add the model to the scene
       scene.add(model5.current);
+      model5.current.visible = false;
 
       const animations5 = gltf5.animations!;
       mixer5.current = new THREE.AnimationMixer(model5.current);
@@ -280,14 +290,15 @@ const FishBowlPage = () => {
       model6.current.position.set(0, 0, 0);
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
-      model6.current.rotation.y += 3;
-      model6.current.rotation.x -= 1.5;
-      model6.current.rotation.z -= -1.5;  //-1.5~1.5
+      model6.current.rotation.y = 3;
+      model6.current.rotation.x = -1.5;
+      model6.current.rotation.z = 1.5;  //-1.5~1.5
 
       model6.current.scale.set(1, 1, 1);
 
       // Add the model to the scene
       scene.add(model6.current);
+      model6.current.visible = false;
 
       const animations6 = gltf6.animations!;
       mixer6.current = new THREE.AnimationMixer(model6.current);
@@ -308,14 +319,15 @@ const FishBowlPage = () => {
       model7.current.position.set(0, 0, 0);
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
-      model7.current.rotation.y += 3;
-      model7.current.rotation.x -= 1.5;
-      model7.current.rotation.z -= -1.5;  //-1.5~1.5
+      model7.current.rotation.y = 3;
+      model7.current.rotation.x = -1.5;
+      model7.current.rotation.z = 1.5;  //-1.5~1.5
 
       model7.current.scale.set(0.6, 0.6, 0.6);
 
       // Add the model to the scene
       scene.add(model7.current);
+      model7.current.visible = false;
 
       const animations7 = gltf7.animations!;
       mixer7.current = new THREE.AnimationMixer(model7.current);
@@ -336,14 +348,15 @@ const FishBowlPage = () => {
       model8.current.position.set(0, 0, 0);
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
-      model8.current.rotation.y -= 0;
-      model8.current.rotation.x -= 1.5;
-      model8.current.rotation.z += -1.5;  //-1.5~1.5
+      model8.current.rotation.y = 0;
+      model8.current.rotation.x = -1.5;
+      model8.current.rotation.z = -1.5;  //-1.5~1.5
 
       model8.current.scale.set(0.5, 0.5, 0.5);
 
       // Add the model to the scene
       scene.add(model8.current);
+      model8.current.visible = false;
 
       const animations8 = gltf8.animations!;
       mixer8.current = new THREE.AnimationMixer(model8.current);
@@ -370,80 +383,87 @@ const FishBowlPage = () => {
 
     function animate() {
       requestAnimationFrame(animate);
-
       //1번
       if (mixer1.current) {
-        mixer1.current.update(0.002);
-        if (model1.current) {
-          if (beforexpos1 < xrand1) {
-            if (xpos1 >= xrand1) {
-              beforexpos1 = xpos1;
+        if (isModelVisible) {
+          mixer1.current.update(0.002);
+          if (model1.current) {
+            model1.current.visible = isModelVisible;
+            if (beforexpos1 < xrand1) {
+              if (xpos1 >= xrand1) {
+                beforexpos1 = xpos1;
+                xpos1 -= xspeed;
+                sw1 = 5;
+              } else {
+                if (model1.current.rotation.x > -1.5) {
+                  sw1 = 1;
+                } else {
+                  sw1 = 4;
+                }
+              }
+            } else if (beforexpos1 > xrand1) {
+              if (xpos1 <= xrand1) {
+                beforexpos1 = xpos1;
+                xpos1 += xspeed;
+                sw1 = 5;
+              } else {
+                if (model1.current.rotation.x < 1.5) {
+                  sw1 = 2;
+                } else {
+                  sw1 = 3;
+                }
+              }
+            } else if (model1.current.rotation.x > 1.5) {
+              sw1 = 4;
+              model1.current.rotation.x += 0.07;
+            } else if (model1.current.rotation.x < -1.5) {
+              sw1 = 3;
+              model1.current.rotation.x -= 0.07;
+            }
+
+            if (beforeypos1 > yrand1) {
+              if (ypos1 <= yrand1) {
+                beforeypos1 = ypos1;
+                sw1 = 6;
+              } else {
+                ysw1 = 2;
+              }
+            } else if (beforeypos1 < yrand1) {
+              if (ypos1 >= yrand1) {
+                beforeypos1 = ypos1;
+                sw1 = 6;
+              } else {
+                ysw1 = 1;
+              }
+            }
+
+            if (sw1 === 1) {
+              model1.current.rotation.x -= 0.07;
+            } else if (sw1 === 2) {
+              model1.current.rotation.x += 0.07;
+            } else if (sw1 === 3) {
               xpos1 -= xspeed;
-              sw1 = 5;
-            } else {
-              if (model1.current.rotation.x > -1.5) {
-                sw1 = 1;
-              } else {
-                sw1 = 4;
-              }
-            }
-          } else if (beforexpos1 > xrand1) {
-            if (xpos1 <= xrand1) {
-              beforexpos1 = xpos1;
+            } else if (sw1 === 4) {
               xpos1 += xspeed;
-              sw1 = 5;
-            } else {
-              if (model1.current.rotation.x < 1.5) {
-                sw1 = 2;
-              } else {
-                sw1 = 3;
-              }
+            } else if (sw1 === 5) {
+              xrand1 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            } else if (sw1 === 6) {
+              yrand1 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
             }
-          } else if (model1.current.rotation.x > 1.5) {
-            sw1 = 4;
-            model1.current.rotation.x += 0.07;
-          } else if (model1.current.rotation.x < -1.5) {
-            sw1 = 3;
-            model1.current.rotation.x -= 0.07;
-          }
 
-          if (beforeypos1 > yrand1) {
-            if (ypos1 <= yrand1) {
-              beforeypos1 = ypos1;
-              sw1 = 6;
-            } else {
-              ysw1 = 2;
+            if (ysw1 === 1) {
+              ypos1 += yspeed;
+            } else if (ysw1 === 2) {
+              ypos1 -= yspeed;
             }
-          } else if (beforeypos1 < yrand1) {
-            if (ypos1 >= yrand1) {
-              beforeypos1 = ypos1;
-              sw1 = 6;
-            } else {
-              ysw1 = 1;
-            }
-          }
 
-          if (sw1 === 1) {
-            model1.current.rotation.x -= 0.07;
-          } else if (sw1 === 2) {
-            model1.current.rotation.x += 0.07;
-          } else if (sw1 === 3) {
-            xpos1 -= xspeed;
-          } else if (sw1 === 4) {
-            xpos1 += xspeed;
-          } else if (sw1 === 5) {
-            xrand1 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-          } else if (sw1 === 6) {
-            yrand1 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            model1.current.position.set(ypos1, xpos1, 0);
           }
-
-          if (ysw1 === 1) {
-            ypos1 += yspeed;
-          } else if (ysw1 === 2) {
-            ypos1 -= yspeed;
+        }
+        else {
+          if (model1.current) {
+            model1.current.visible = isModelVisible;
           }
-
-          model1.current.position.set(ypos1, xpos1, 0);
         }
       }
 
@@ -451,6 +471,12 @@ const FishBowlPage = () => {
       if (mixer2.current) {
         mixer2.current.update(0.003);
         if (model2.current) {
+          if (check[2] == 0) {
+            model2.current.visible = false;
+          }
+          else {
+            model2.current.visible = true;
+          }
           if (beforexpos2 < xrand2) {
             if (xpos2 >= xrand2) {
               beforexpos2 = xpos2;
@@ -526,6 +552,12 @@ const FishBowlPage = () => {
       if (mixer3.current) {
         mixer3.current.update(0.002);
         if (model3.current) {
+          if (check[3] == 0) {
+            model3.current.visible = false;
+          }
+          else {
+            model3.current.visible = true;
+          }
           if (beforexpos3 < xrand3) {
             if (xpos3 >= xrand3) {
               beforexpos3 = xpos3;
@@ -593,6 +625,12 @@ const FishBowlPage = () => {
       if (mixer4.current) {
         mixer4.current.update(0.02);
         if (model4.current) {
+          if (check[4] == 0) {
+            model4.current.visible = false;
+          }
+          else {
+            model4.current.visible = true;
+          }
           if (beforexpos4 < xrand4) {
             if (xpos4 >= xrand4) {
               beforexpos4 = xpos4;
@@ -668,6 +706,12 @@ const FishBowlPage = () => {
       if (mixer5.current) {
         mixer5.current.update(0.003);
         if (model5.current) {
+          if (check[5] == 0) {
+            model5.current.visible = false;
+          }
+          else {
+            model5.current.visible = true;
+          }
           if (beforexpos5 < xrand5) {
             if (xpos5 >= xrand5) {
               beforexpos5 = xpos5;
@@ -743,6 +787,12 @@ const FishBowlPage = () => {
       if (mixer6.current) {
         mixer6.current.update(0.003);
         if (model6.current) {
+          if (check[6] == 0) {
+            model6.current.visible = false;
+          }
+          else {
+            model6.current.visible = true;
+          }
           if (beforexpos6 < xrand6) {
             if (xpos6 > xrand6) {
               beforexpos6 = xpos6;
@@ -818,6 +868,12 @@ const FishBowlPage = () => {
       if (mixer7.current) {
         mixer7.current.update(0.003);
         if (model7.current) {
+          if (check[7] == 0) {
+            model7.current.visible = false;
+          }
+          else {
+            model7.current.visible = true;
+          }
           if (beforexpos7 < xrand7) {
             if (xpos7 >= xrand7) {
               beforexpos7 = xpos7;
@@ -894,6 +950,12 @@ const FishBowlPage = () => {
       if (mixer8.current) {
         mixer8.current.update(0.001);
         if (model8.current) {
+          if (check[8] == 0) {
+            model8.current.visible = false;
+          }
+          else {
+            model8.current.visible = true;
+          }
           if (beforexpos8 < xrand8) {
             if (xpos8 >= xrand8) {
               beforexpos8 = xpos8;
@@ -962,21 +1024,22 @@ const FishBowlPage = () => {
             ypos8 -= yspeed;
           }
 
-          console.log(model8.current.rotation.z);
           model8.current.position.set(ypos8, xpos8, 3);
         }
       }
 
       renderer.render(scene, camera);
+      //requestAnimationFrame(animate);
     }
     return () => {
       window.removeEventListener('resize', onWindowResize);
       // cleanup logic if needed
     };
-  }, []); // Dependencies array is empty to run the effect only once on mount
+  }, [isModelVisible]); // 토글 상태가 변경될 때만 useEffect 재실행
 
   return (
     <FishBowlBox>
+      <button onClick={() => setIsModelVisible(!isModelVisible)}>토글</button>
       <canvas ref={canvasRef}></canvas>
     </FishBowlBox>
   );
