@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -15,10 +15,11 @@ const NavBar = styled.nav`
   right: 0;
   padding: 0.2em 0em;
   box-shadow: 1px 1px 5px 1px #d1d1d1;
+  font-family: "SpoqaHanSansNeo";
 `;
 
 const NavItem = styled.div`
-  width: 20vw;
+  width: 5rem;
   text-align: center;
   padding: 1vh;
   cursor: pointer;

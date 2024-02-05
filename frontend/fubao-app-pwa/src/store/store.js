@@ -16,13 +16,14 @@ const store = (set) => ({
       if (token) {
         const profile = await currentUserApi(token);
         set({ profile });
+        console.log(profile);
       }
     } catch (error) {
       console.error(error);
     }
   },
-  registered: false,
   setRegistered: () => set((state) => ({...state, registered: true})),
+  resetStore: () => set({ ...initialState }),
 })
 
 const useStore = create(

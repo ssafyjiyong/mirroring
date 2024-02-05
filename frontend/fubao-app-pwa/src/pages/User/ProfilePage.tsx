@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { HomeIcon } from "../../styles/globalStyles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import axios from "axios";
-import Swal from "sweetalert2";
+import useStore from "../../store/store";
+import { logoutApi } from "../../store/api";
+import { Profile } from "../../store/types";
 
 const Circle = styled.div`
   border: 1px solid black;
@@ -20,33 +21,25 @@ const Circle = styled.div`
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const API_URL = "http://127.0.0.1:8000";
+  const { profile } = useStore() as { profile: Profile | null };
+  const { resetStore } = useStore();
 
-  const logout = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const goToLogin = () => {
+    navigate("/login");
+  };
 
-    axios.post(`${API_URL}/user/logout/`, {
-      headers: {
-        // 임시 토큰값
-        Authorization: 'Token fdb1edc661bfe5cbc0d620d696c703a5509b641e',
-      },
-    })
-      .then((response) => {
-        Swal.fire({
-          title: "로그아웃",
-          text: "안전하게 로그아웃 처리되었습니다.",
-          icon: "success",
-        });
-      })
-      .then((result) => {
-        navigate("/");
-      })
-      .catch((error) => {
-        Swal.fire({
-          icon: "error",
-          title: "에러 발생",
-          text: "알 수 없는 에러가 발생했습니다.",
-        });
-      });
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await logoutApi(token); // 로그아웃 API 호출
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        resetStore(); // 스토어를 초기 상태로 재설정
+      } catch (error) {
+        console.error("로그아웃 실패:", error);
+        // 오류 처리 로직
+      }
+    }
   };
 
   return (
@@ -63,14 +56,21 @@ const ProfilePage = () => {
       >
         <div
           style={{
-            border: "1px solid black",
+            // border: "1px solid black",
             borderRadius: "50%",
-            backgroundColor: "#E8EAE9",
             width: "12rem",
             height: "12rem",
           }}
         >
-          <img src="" alt="" />
+          <img
+            src={
+              profile && profile.profile_img
+                ? profile.profile_img
+                : "/temp_profile.png"
+            }
+            alt="Profile"
+            style={{ width: "12rem", height: "12rem" }}
+          />
         </div>
         <div style={{ display: "flex", alignItems: "center" }}>
           <p
@@ -81,7 +81,11 @@ const ProfilePage = () => {
               marginBottom: "0",
             }}
           >
-            닉네임 들어가는 공간
+            {profile
+              ? profile.nickname
+                ? profile.nickname
+                : "Error"
+              : "내일은 낚시왕"}
           </p>
           <FontAwesomeIcon
             icon="gear"
@@ -90,44 +94,79 @@ const ProfilePage = () => {
             style={{ paddingTop: "0.8rem" }}
           />
         </div>
-        <div style={{ color: "#969696" }}>이메일 들어가는 공간</div>
+        <div style={{ color: "#969696" }}>
+          {profile
+            ? profile.email
+              ? profile.email
+              : "Error"
+            : "로그인이 필요한 서비스입니다"}
+        </div>
       </div>
 
       {/* 대시보드 */}
-      <p style={{ marginTop:"0" }}>Dashboard</p>
+      <p style={{ marginTop: "0" }}>Dashboard</p>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <div style={{ textAlign: "center" }}>
-          <Circle>17</Circle>
+          <Circle>
+            {profile
+              ? profile.total_schedules
+                ? profile.total_schedules
+                : "Error"
+              : "0"}
+          </Circle>
           <span>출조 횟수</span>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Circle>8</Circle>
+          <Circle>
+            {profile
+              ? profile.total_fish_count
+                ? profile.total_fish_count
+                : "Error"
+              : "0"}
+          </Circle>
           <span>잡은 물고기 수</span>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Circle>2024<br/>01.24</Circle>
+          <Circle>
+            {profile
+              ? profile.latest_schedule_date
+                ? profile.latest_schedule_date
+                : "Error"
+              : "출조 예정"}
+          </Circle>
           <span>마지막 낚시일</span>
         </div>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "5rem",
-        }}
-      >
-        <span onClick={logout}>로그아웃</span>
-        <span>　|　</span>
-        <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
-      </div>
+      {profile ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5rem",
+          }}
+        >
+          <span onClick={logout}>로그아웃</span>
+          <span>　|　</span>
+          <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "5rem",
+          }}
+        >
+          <span onClick={goToLogin}>로그인하기</span>
+        </div>
+      )}
 
       <Link to="/">
         <HomeIcon>
           <FontAwesomeIcon icon="home" />
         </HomeIcon>
       </Link>
-
     </div>
   );
 };

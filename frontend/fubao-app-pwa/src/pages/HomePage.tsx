@@ -17,25 +17,12 @@ import { useNavigate } from "react-router-dom";
 import Survey from "../components/Modal/Survey";
 import Review from "../components/Modal/Review";
 import useStore from "../store/store";
-
-interface Profile {
-  id: number;
-  is_superuser: boolean;
-  email: string;
-  name: string;
-  date_joined: string;
-  nickname: string;
-  age: number | null;
-  date_of_birth: string | null;
-  gender: string;
-  profile_img: string;
-  total_fish_count: number;
-  total_schedules: number;
-  latest_schedule_date: string | null;
-}
+import { logoutApi } from "../store/api";
+import { Profile } from "../store/types";
 
 function HomePage() {
   const { profile } = useStore() as { profile: Profile | null };
+  const { loadProfile, resetStore } = useStore();
 
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
@@ -46,12 +33,33 @@ function HomePage() {
         element.scrollIntoView();
       }
     }
+    if (localStorage.getItem("token")) {
+      loadProfile();
+    }
   }, []);
+
+  const logout = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        await logoutApi(token); // 로그아웃 API 호출
+        localStorage.removeItem('token'); // 로컬 스토리지에서 토큰 삭제
+        resetStore(); // 스토어를 초기 상태로 재설정
+      } catch (error) {
+        console.error('로그아웃 실패:', error);
+        // 오류 처리 로직
+      }
+    }
+  }
 
   const navigate = useNavigate();
 
   const goToProfile = () => {
     navigate("/profile");
+  };
+
+  const goToLogin = () => {
+    navigate("/login");
   };
 
   return (
@@ -91,22 +99,6 @@ function HomePage() {
           >
             FUBAO
           </span>
-
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              console.log(profile);
-            }}
-          >
-            TEST
-          </button>
-          <span>
-            {profile
-              ? profile.nickname
-                ? profile.nickname
-                : "프로필 없음"
-              : "닉네임 확인 안됨"}
-          </span>
         </div>
         <div>
           <FontAwesomeIcon
@@ -115,14 +107,27 @@ function HomePage() {
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
             onClick={goToProfile}
           />
-          <FontAwesomeIcon
-            icon="bell"
-            color="#778a9b"
-            style={{
-              margin: "0.3rem 0.8rem 0.1rem 0.3rem",
-              fontSize: "1.4rem",
-            }}
-          />
+          {profile ? (
+            <FontAwesomeIcon
+              icon="right-from-bracket"
+              color="#778a9b"
+              style={{
+                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
+                fontSize: "1.4rem",
+              }}
+              onClick={logout}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon="right-to-bracket"
+              color="#778a9b"
+              style={{
+                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
+                fontSize: "1.4rem",
+              }}
+              onClick= {goToLogin}
+            />
+          )}
         </div>
       </div>
       <Foryou />

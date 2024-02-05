@@ -1,6 +1,12 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
+import BottomNav from "./components/BottomNav";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/User/LoginPage";
 import SignupPage from "./pages/User/SignupPage";
@@ -29,7 +35,19 @@ import PointPage3 from "./pages/Point/PointPage3";
 import PointPage4 from "./pages/Point/PointPage4";
 
 function App() {
+  
+  function ConditionalBottomNav() {
+    const location = useLocation();
+    // 로그인이나 회원가입 페이지에서는 BottomNav를 표시하지 않음
+    if (location.pathname === '/login' || location.pathname === '/signup') {
+      return null;
+    }
+  
+    return <BottomNav />;
+  }
+
   return (
+    <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -58,6 +76,8 @@ function App() {
         <Route path="/point3" element={<PointPage3 />} />
         <Route path="/point4" element={<PointPage4 />} />
       </Routes>
+      <ConditionalBottomNav />
+    </Router>
   );
 }
 

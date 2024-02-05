@@ -27,6 +27,8 @@ export const signupApi = async ({ email, password1, password2, nickname }) => {
     });
     return response.data; // 회원가입 성공 시 응답 데이터 반환
   } catch (error) {
+    console.log(error.response.data.email);
+    console.log(error.response.data.nickname);
     throw error; // 오류 발생 시 예외 처리
   }
 };
@@ -46,6 +48,21 @@ export const loginApi = async ({email, password1}) => {
     throw error;
   }
 };
+
+export const logoutApi = async (token) => {
+  try {
+    const response = await axios.post(`${API_URL}/user/logout/`, {
+      headers: {
+        'Authorization': `Token ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
   export const planRegisterApi = async ({ date, location, area, method, done }) => {
     try {
       const response = await axios.post(`${API_URL}/schedule/`, {

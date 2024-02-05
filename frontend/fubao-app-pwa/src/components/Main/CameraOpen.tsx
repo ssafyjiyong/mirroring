@@ -73,7 +73,7 @@ const CameraOpen = () => {
           {!fileSelected && (
             <>
               <p style={{ margin: "0.5rem", fontSize: "1.5rem", fontWeight:"600" }}>
-                원터치로 어종/길이 판별!
+                원터치로 어종/길이 판별
               </p>
               <label htmlFor="file">
                 <img
