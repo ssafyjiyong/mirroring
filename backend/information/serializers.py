@@ -30,3 +30,13 @@ class FishProhibitSerializer(serializers.ModelSerializer):
     class Meta:
         model = prohibit_fish
         fields = "__all__"
+
+class FishReleaseShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = release_fish
+        fields = ('standard')
+
+class FishProhibitShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = prohibit_fish
+        fields = ('standard_start', 'standard_end')
