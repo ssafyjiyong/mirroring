@@ -134,3 +134,17 @@ class FishBaitView(APIView):
         bait = get_object_or_404(fishing_bait, pk=pk)
         serializer = FishBaitSerializer(bait)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FishEquipmentsView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        equipments = fishing_equipment.objects.all()
+        serializer = FishEquipmentSerializer(equipments, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FishEquipmentView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        equipment = get_object_or_404(fishing_equipment, pk=pk)
+        serializer = FishEquipmentSerializer(equipment)
+        return Response(serializer.data, status=status.HTTP_200_OK)
