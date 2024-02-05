@@ -159,7 +159,7 @@ const CameraOpen = () => {
     <div>
       {creditCardMutation.isPending ? (
         <div style={{ display: "flex", justifyContent: "center" }}>
-분석중입니다. 조금만 기다려주세요.
+          분석중입니다. 조금만 기다려주세요.
         </div>
       ) : (
         <WhiteBox className="filebox">
