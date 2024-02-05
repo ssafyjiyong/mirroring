@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import schedule
+from user.serializers import UserSerializer
 
 class ScheduleAllSerializer(serializers.ModelSerializer):
     class Meta:
