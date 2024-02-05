@@ -120,3 +120,17 @@ class FishAreaView(APIView):
         area = get_object_or_404(fishing_area, pk=pk)
         serializer = FishAreaSerializer(area)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class FishBaitsView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        baits = fishing_bait.objects.all()
+        serializer = FishBaitSerializer(baits, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class FishBaitView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request, pk):
+        bait = get_object_or_404(fishing_bait, pk=pk)
+        serializer = FishBaitSerializer(bait)
+        return Response(serializer.data, status=status.HTTP_200_OK)
