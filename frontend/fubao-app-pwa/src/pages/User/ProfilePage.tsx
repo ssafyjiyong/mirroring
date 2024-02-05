@@ -107,32 +107,16 @@ const ProfilePage = () => {
       <p style={{ marginTop: "0" }}>Dashboard</p>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <div style={{ textAlign: "center" }}>
-          <Circle>
-            {profile
-              ? profile.total_schedules
-                ? profile.total_schedules
-                : "Error"
-              : "0"}
-          </Circle>
+          <Circle>{profile?.total_schedules}</Circle>
           <span>출조 횟수</span>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Circle>
-            {profile
-              ? profile.total_fish_count
-                ? profile.total_fish_count
-                : "Error"
-              : "0"}
-          </Circle>
+          <Circle>{profile?.total_fish_count}</Circle>
           <span>잡은 물고기 수</span>
         </div>
         <div style={{ textAlign: "center" }}>
           <Circle>
-            {profile
-              ? profile.latest_schedule_date
-                ? profile.latest_schedule_date
-                : "Error"
-              : "출조 예정"}
+            {profile?.latest_schedule_date || "출조 예정"}
           </Circle>
           <span>마지막 낚시일</span>
         </div>

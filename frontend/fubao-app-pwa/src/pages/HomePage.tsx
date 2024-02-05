@@ -39,6 +39,8 @@ function HomePage() {
     }
   }, []);
 
+  const babo = sessionStorage.getItem('user-store');
+
   const logout = async () => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -116,6 +118,7 @@ function HomePage() {
           >
             FUBAO
           </span>
+
         </div>
         <div>
           <FontAwesomeIcon

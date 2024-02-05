@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { devtools, persist, createJSONStorage } from 'zustand/middleware'
+import { devtools } from 'zustand/middleware'
 import { currentUserApi } from './api'
 
 const initialState = {
@@ -27,11 +27,6 @@ const store = (set) => ({
 })
 
 const useStore = create(
-  persist(store, {
-    name: 'user-store', // persist 미들웨어에 대한 설정: 스토어의 이름
-    // 'getStorage' 대신 'storage'를 사용하여 sessionStorage 또는 localStorage 선택 (예제에서는 sessionStorage를 사용)
-    storage: createJSONStorage(() => sessionStorage),
-  }),
   process.env.NODE_ENV !== 'production' ? devtools(store) : store
 )
 
