@@ -1,10 +1,10 @@
 #낚시 방법  import 
-LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\FishingMethod.CSV' 
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\method.CSV' 
 REPLACE INTO TABLE `fubao`.`information_fishing_method` 
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
-IGNORE 1 LINES (`id`, `title`, `document`);
+IGNORE 1 LINES (`id`, `title`, `subtitle`,`document`);
 
 #낚시 구역 import 
 LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\area.CSV' 
