@@ -64,7 +64,7 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/pointinfo" style={{ textDecoration: "none" }}>
+          <Link to="/#point" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="check" size="3x" />
               <ButtonText>포인트</ButtonText>

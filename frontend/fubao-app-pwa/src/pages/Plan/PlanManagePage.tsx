@@ -4,6 +4,9 @@ import Button from "@mui/joy/Button";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../../index.css";
+import axios from "axios";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -47,11 +50,41 @@ const AlignDiv = styled.div`
 
 const PlanManagePage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const navigate = useNavigate();
+  const API_URL = "http://127.0.0.1:8000";
+
+  const Cancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+
+    axios.delete(`${API_URL}/schedule/1/`, {
+      headers: {
+        // 임시토큰값
+        Authorization: 'Token fdb1edc661bfe5cbc0d620d696c703a5509b641e',
+      },
+    })
+      .then((response) => {
+        Swal.fire({
+          title: "일정 삭제 완료",
+          text: "등록된 일정이 삭제되었습니다.",
+          icon: "success",
+        });
+      })
+      .then((result) => {
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "에러 발생",
+          text: "알 수 없는 에러가 발생했습니다.",
+        });
+      });
+  };
+
 
   return (
     <Container>
       <p style={{ fontSize: "1.5rem", fontWeight: "bold" }}>일정관리</p>
-      {/* 일정 등록 칸 */}
+      {/* 등록된 일정 칸 */}
       <form action="">
         <RegisterBox>
           <AlignDiv>
@@ -83,15 +116,16 @@ const PlanManagePage = () => {
             size="md"
             variant="solid"
             style={{ margin: "2rem", marginRight: "0.2rem" }}
-            type="submit"
           >
             수정하기
           </Button>
+
           <Button
             size="md"
             variant="solid"
             color="danger"
             style={{ margin: "2rem", marginLeft: "0.2rem" }}
+            onClick={Cancel}
           >
             삭제하기
           </Button>

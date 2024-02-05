@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -12,8 +12,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { signupApi } from "../../Api/api";
 
 function Copyright(props: any) {
   return (
@@ -34,23 +36,48 @@ function Copyright(props: any) {
 }
 
 const SignUp = () => {
-  const defaultTheme = createTheme()
+  const defaultTheme = createTheme();
   const navigate = useNavigate();
-  const API_URL = "http://127.0.0.1:8000";
 
-  // 비밀번호 확인을 위한 state
-  const [password1, setPassword] = React.useState("");
-  const [password2, setConfirmPassword] = React.useState("");
+  const [email, setEmail] = useState("");
+  const [password1, setPassword1] = useState("");
+  const [password2, setPassword2] = useState("");
+  const [nickname, setNickname] = useState("");
+
+  const signupMutation = useMutation({
+    mutationFn: signupApi,
+    onSuccess: () => {
+      Swal.fire({
+        title: "회원가입 완료. \n 로그인 하시겠습니까?",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "네",
+        cancelButtonText: "아니요",
+      }).then(result => {
+        if (result.isConfirmed) {
+          navigate("/login");
+        }
+      });
+    },
+    onError: (error: AxiosError) => {
+      Swal.fire({
+        title: "회원가입 에러",
+        text: "회원가입에 실패했습니다. 다시 시도해주세요.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
+      console.log(error.message);
+    },
+  });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const nickname = data.get("nickname") as string;
-
 
     // 이메일 형식 확인
-    if (!email.includes('@') || !email.includes('.')) {
+    if (!email.includes("@") || !email.includes(".")) {
       Swal.fire({
         title: "이메일 형식 오류",
         text: "형식이 이메일이 아닙니다.",
@@ -85,40 +112,16 @@ const SignUp = () => {
       return;
     }
 
-    axios.post(`${API_URL}/user/register/`, { email, password1, password2, nickname })
-      .then(response => {
-        Swal.fire({
-          title: "회원가입 완료. \n 로그인 하시겠습니까?",
-          icon: "success",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "네",
-          cancelButtonText: "아니요",
-        }).then(result => {
-          if (result.isConfirmed) {
-            navigate("/login");
-          }
-        });
-      })
-      .catch(error => {
-        Swal.fire({
-          title: "회원가입 에러",
-          text: "회원가입에 실패했습니다. 다시 시도해주세요.",
-          icon: "error",
-          confirmButtonColor: "#682cd48c",
-          confirmButtonText: "확인",
-        });
-      });
+    signupMutation.mutate({ email, password1, password2, nickname });
   };
 
   const goBack = () => {
-      navigate(-1); // 이전 페이지로 돌아가기
-    };
+    navigate(-1); // 이전 페이지로 돌아가기
+  };
 
   const goToLogin = () => {
-      navigate("/login");
-    };
+    navigate("/login");
+  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -157,6 +160,10 @@ const SignUp = () => {
                   label="이메일"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(e.target.value)
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -167,6 +174,10 @@ const SignUp = () => {
                   label="닉네임"
                   name="nickname"
                   autoComplete="nickname"
+                  value={nickname}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setNickname(e.target.value)
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -179,7 +190,9 @@ const SignUp = () => {
                   id="password1"
                   autoComplete="new-password"
                   value={password1}
-                  onChange={(e:React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setPassword1(e.target.value)
+                  }
                 />
               </Grid>
               <Grid item xs={12}>
@@ -192,7 +205,9 @@ const SignUp = () => {
                   id="password2"
                   autoComplete="new-password"
                   value={password2}
-                  onChange={(e:React.ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    setPassword2(e.target.value)
+                  }
                 />
               </Grid>
             </Grid>
@@ -219,4 +234,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp
+export default SignUp;
