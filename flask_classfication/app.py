@@ -55,8 +55,8 @@ def predict():
                 
             top_left, bottom_right = object_detector.detect_fish_length(img, score_thr=0.2)
 
-            print(top_left)
-            print(bottom_right)
+            # print(top_left)
+            # print(bottom_right)
             
             if obj != "none":
                 
@@ -100,15 +100,15 @@ def predict():
                 # 두 좌표 간의 비율 조절
                 # card_len = card_len * 0.4
 
-                print(fish_len)
-                print(card_len)
+                # print(fish_len)
+                # print(card_len)
 
                 fish_act_len = (fish_len * obj_len) / card_len
 
-                print(vertex[0, 1] * int(height / 480))
-                print(vertex[1, 1] * int(height / 480))
-                print(vertex[0, 0] * int(width / 640))
-                print(vertex[2, 0] * int(width / 640))
+                # print(vertex[0, 1] * int(height / 480))
+                # print(vertex[1, 1] * int(height / 480))
+                # print(vertex[0, 0] * int(width / 640))
+                # print(vertex[2, 0] * int(width / 640))
 
                 card_image_path = "card_image.jpg"
                 card_image = ori_img2[int(vertex[0, 1] * height / 480):int(vertex[1, 1] * height / 480), int(vertex[0, 0] * width / 640):int(vertex[2, 0] * width / 640)]
@@ -123,7 +123,7 @@ def predict():
             fish_image = ori_img3[top_left[1]:bottom_right[1], top_left[0]:bottom_right[0]]
             cv2.imwrite(fish_image_path, fish_image)
 
-            class_name = classfy_species(fish_image_path)
+            class_name = classify_species(fish_image_path)
             print("종: " + class_name)
 
 
