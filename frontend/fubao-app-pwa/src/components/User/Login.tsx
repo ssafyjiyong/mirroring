@@ -52,12 +52,11 @@ const Login = () => {
     onError: (error: AxiosError) => {
       Swal.fire({
         title: "로그인 에러",
-        text: "로그인에 실패했습니다. 다시 시도해주세요.",
+        html: "로그인에 실패했습니다. <br> 이메일, 비밀번호를 확인해주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",
       });
-      console.log(error.message);
     },
   });
 

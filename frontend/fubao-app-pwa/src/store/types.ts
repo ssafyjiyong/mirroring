@@ -1,4 +1,4 @@
-export interface Profile {
+export interface ProfileType {
     id: number;
     is_superuser: boolean;
     email: string;

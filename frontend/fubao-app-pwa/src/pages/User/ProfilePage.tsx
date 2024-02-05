@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import useStore from "../../store/store";
 import { logoutApi } from "../../store/api";
-import { Profile } from "../../store/types";
+import { ProfileType } from "../../store/types";
 
 const Circle = styled.div`
   border: 1px solid black;
@@ -21,7 +21,7 @@ const Circle = styled.div`
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const { profile } = useStore() as { profile: Profile | null };
+  const { profile } = useStore() as { profile: ProfileType | null };
   const { resetStore } = useStore();
 
   const goToLogin = () => {

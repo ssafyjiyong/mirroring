@@ -11,6 +11,7 @@ import Point2 from "../components/Main/Point2";
 import Point3 from "../components/Main/Point3";
 import Point4 from "../components/Main/Point4";
 import Etiquette from "../components/Main/Etiquette";
+import Swal from "sweetalert2";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
@@ -18,10 +19,10 @@ import Survey from "../components/Modal/Survey";
 import Review from "../components/Modal/Review";
 import useStore from "../store/store";
 import { logoutApi } from "../store/api";
-import { Profile } from "../store/types";
+import { ProfileType } from "../store/types";
 
 function HomePage() {
-  const { profile } = useStore() as { profile: Profile | null };
+  const { profile } = useStore() as { profile: ProfileType | null };
   const { loadProfile, resetStore } = useStore();
 
   useEffect(() => {
@@ -50,6 +51,22 @@ function HomePage() {
         // 오류 처리 로직
       }
     }
+  }
+
+  const logoutConfirm = () => {
+    Swal.fire({
+      title: "로그아웃",
+      text: "정말로 로그아웃 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+    }).then(result => {
+      if (result.isConfirmed) {
+        logout();
+      }
+    });
   }
 
   const navigate = useNavigate();
@@ -115,7 +132,7 @@ function HomePage() {
                 margin: "0.3rem 0.8rem 0.1rem 0.3rem",
                 fontSize: "1.4rem",
               }}
-              onClick={logout}
+              onClick={logoutConfirm}
             />
           ) : (
             <FontAwesomeIcon
