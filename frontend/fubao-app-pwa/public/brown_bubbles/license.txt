@@ -1,0 +1,11 @@
+Model Information:
+* title:	Looping Particles (Dust or Bubbles)
+* source:	https://sketchfab.com/3d-models/looping-particles-dust-or-bubbles-0856c796fee14005aaa98fac1d1363ea
+* author:	Elin (https://sketchfab.com/ElinHohler)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Looping Particles (Dust or Bubbles)" (https://sketchfab.com/3d-models/looping-particles-dust-or-bubbles-0856c796fee14005aaa98fac1d1363ea) by Elin (https://sketchfab.com/ElinHohler) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

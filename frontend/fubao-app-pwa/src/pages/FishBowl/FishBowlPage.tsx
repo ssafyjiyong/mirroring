@@ -22,7 +22,7 @@ let anispeed: number = 0.02;
 const avg: number = 0.9;
 let cnt = 0;
 
-let check: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let check: number[] = [0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let csw: number = 1;
 
 let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
@@ -111,6 +111,9 @@ let ysw10: number = 1;
 let xrand10: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
 let yrand10: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
+let xpos20: number = 0;
+let ypos20: number = -1.5;
+
 const FishBowlPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mixer1 = useRef<THREE.AnimationMixer | null>(null);
@@ -123,6 +126,7 @@ const FishBowlPage = () => {
   const mixer8 = useRef<THREE.AnimationMixer | null>(null);
   const mixer9 = useRef<THREE.AnimationMixer | null>(null);
   const mixer10 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer20 = useRef<THREE.AnimationMixer | null>(null);
   const model1 = useRef<THREE.Object3D | null>(null);
   const model2 = useRef<THREE.Object3D | null>(null);
   const model3 = useRef<THREE.Object3D | null>(null);
@@ -133,6 +137,7 @@ const FishBowlPage = () => {
   const model8 = useRef<THREE.Object3D | null>(null);
   const model9 = useRef<THREE.Object3D | null>(null);
   const model10 = useRef<THREE.Object3D | null>(null);
+  const model20 = useRef<THREE.Object3D | null>(null);
 
   const [isModelVisible, setIsModelVisible] = useState(false);
 
@@ -161,6 +166,7 @@ const FishBowlPage = () => {
     const loader8 = new GLTFLoader();
     const loader9 = new GLTFLoader();
     const loader10 = new GLTFLoader();
+    const loader20 = new GLTFLoader();
 
     const scene = new THREE.Scene();
     const renderer = new THREE.WebGLRenderer({
@@ -233,10 +239,10 @@ const FishBowlPage = () => {
         scene.add(model2.current);
         model2.current.visible = false;
 
-        const animations1 = gltf2.animations!;
+        const animations2 = gltf2.animations!;
         mixer2.current = new THREE.AnimationMixer(model2.current);
 
-        animations1.forEach((animation) => {
+        animations2.forEach((animation) => {
           const action = mixer2.current!.clipAction(animation);
           action.play();
         });
@@ -495,6 +501,39 @@ const FishBowlPage = () => {
       });
     }
 
+    //버블
+    loader20.load('bubbles/scene.gltf', (gltf20: GLTF) => {
+      model20.current = gltf20.scene;
+
+      model20.current.scale.set(5, 5, 5);
+
+      //위치
+      model20.current.position.set(-1.5, 0.5, -3);
+      //-1.5~2.5
+
+      //물고기 옆면이 보이게
+      model20.current.rotation.y = 0;
+      model20.current.rotation.x = 0;
+      model20.current.rotation.z = 1.5;
+
+      //씬에 모델 추가
+      scene.add(model20.current);
+      //model20.current.visible = false;
+      //scene.remove(model1.current);
+
+      const animations20 = gltf20.animations!;
+      if (mixer20.current) {
+        mixer20.current.stopAllAction();
+      }
+      mixer20.current = new THREE.AnimationMixer(model20.current);
+
+      animations20.forEach((animation) => {
+        const action = mixer20.current!.clipAction(animation);
+        action.play();
+      });
+
+      //animate(scene, renderer, camera);
+    });
 
     animate(scene, renderer, camera);
 
@@ -1329,6 +1368,17 @@ const FishBowlPage = () => {
       }
     }
 
+    if (mixer20.current) {
+      if (model20.current) {
+        if (ypos20 < 5) {
+          ypos20 += 0.01;
+        }
+        else {
+          ypos20 = -1.5;
+        }
+        model20.current.position.set(ypos20, 0.5, -3);
+      }
+    }
 
     renderer.render(scene, camera);
 

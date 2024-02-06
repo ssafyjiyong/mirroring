@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bubbles
+* source:	https://sketchfab.com/3d-models/bubbles-74ba317286d64a369f93e8abff162ab9
+* author:	House Doctor (https://sketchfab.com/chin4grci4)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bubbles" (https://sketchfab.com/3d-models/bubbles-74ba317286d64a369f93e8abff162ab9) by House Doctor (https://sketchfab.com/chin4grci4) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
