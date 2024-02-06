@@ -11,7 +11,18 @@ export const HomeIcon = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
     color: ${props => props.color || 'black'}
+;
+`;
+
+export const HomeIconLeft = styled.div`
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: ${props => props.color || 'black'};
+    z-index: 1;
 ;
 `;

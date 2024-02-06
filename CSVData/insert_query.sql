@@ -63,3 +63,35 @@ CHARACTER SET euckr FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
 IGNORE 1 LINES (`id`, `fish_id`, `fishing_bait_id`);
+
+#어종-method import 
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\fish_method.CSV' 
+REPLACE INTO TABLE `fubao`.`fish_fish_method` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `fish_id`, `fishing_method_id`);
+
+#location map import
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\location_map.CSV' 
+REPLACE INTO TABLE `fubao`.`location_location` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `name`, `address`, `lattitude`,`longitude`);
+
+#location-method import
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\location_method.CSV' 
+REPLACE INTO TABLE `fubao`.`location_location_method` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `location_id`,`fishing_method_id`);
+
+#location-fish import
+LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\SSAFY\\Desktop\\FUBAO\\S10P12C104\\CSVData\\location_fish.CSV' 
+REPLACE INTO TABLE `fubao`.`location_location_fish` 
+CHARACTER SET euckr FIELDS TERMINATED BY ',' 
+OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
+LINES TERMINATED BY '\r\n' 
+IGNORE 1 LINES (`id`, `location_id`,`fish_id`);

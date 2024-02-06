@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { signupApi } from "../../Api/api";
+import { signupApi } from "../../store/api";
 
 function Copyright(props: any) {
   return (
@@ -64,7 +64,7 @@ const SignUp = () => {
     onError: (error: AxiosError) => {
       Swal.fire({
         title: "회원가입 에러",
-        text: "회원가입에 실패했습니다. 다시 시도해주세요.",
+        html: "회원가입에 실패했습니다. <br> 다시 시도해주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",
