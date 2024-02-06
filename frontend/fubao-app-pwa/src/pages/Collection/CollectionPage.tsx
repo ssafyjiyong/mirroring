@@ -44,7 +44,6 @@ const fishInfos = [
   { name: '참돔', image: '/imgs/fish_silhouette/chamdom.png', link: '/detail/참돔', level: 2 },
   { name: '쥐노래미', image: '/imgs/fish_silhouette/gnoraemi.png', link: '/detail/쥐노래미', level: 2 },
   { name: '미정', image: '/imgs/fish_silhouette/temp.png', link: '#', level: 4 },
-  { name: '미정', image: '/imgs/fish_silhouette/temp.png', link: '#', level: 4 },
 ];
 
 const CollectionPage = () => {
@@ -80,7 +79,7 @@ const CollectionPage = () => {
         <span>0/10</span>
       </div>
 
-      <div style={{ display: "flex", justifyContent:"center", flexWrap:"wrap" }}>
+      <div style={{ display: "flex", flexWrap:"wrap" }}>
       {fishInfos.map(({ name, image, link, level }) => (
           <Link to={link} style={{ textDecoration: 'none', color: 'black' }} key={name}>
             <InfoBox>

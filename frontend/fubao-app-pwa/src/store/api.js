@@ -5,25 +5,30 @@ const API_URL_FLASK = "http://54.180.108.229:5000";
 
 // GET 요청 API
 export const currentUserApi = async (token) => {
-  const response = await fetch(`${API_URL}/user/profile/`, {
-    headers: {
-      Authorization: `Token ${token}`,
-      "Content-Type": "application/json",
-    },
-  });
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    const response = await axios.get(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("An error occurred during the API call:", error.response ? error.response.data : error.message);
+    throw new Error("Failed to fetch user profile");
   }
-  return response.json();
 };
 
 export const mapInfoApi = async () => {
-  const response = await fetch(`${API_URL}/location/map/`, {
-  });
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
+  try {
+    // axios.get 요청을 시도합니다.
+    const response = await axios.get(`${API_URL}/location/map/`);
+    return response.data;
+  } catch (error) {
+    // 에러 처리 로직
+    console.error("An error occurred during the API call:", error);
+    throw new Error("Failed to fetch map info");
   }
-  return response.json();
 };
 
 // POST 요청 API

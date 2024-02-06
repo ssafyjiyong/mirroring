@@ -27,19 +27,19 @@ interface Position {
   lat: number;
   lng: number;
   name: string;
+  isOpen?: boolean;
 }
 
 const MapComponent = () => {
   useKakaoLoader();
 
   const {
-    data = [],
+    data,
     error,
     isPending,
   } = useQuery({
     queryKey: ["mapInfo"],
     queryFn: mapInfoApi,
-    refetchOnWindowFocus: false,
     retry: 0, // 실패시 재호출 몇번 할지
   });
 
@@ -53,12 +53,12 @@ const MapComponent = () => {
     isLoading: true,
   });
 
-  const clusterPositionsData = [data];
-
   const [positions, setPositions] = useState<Position[]>([]);
 
   useEffect(() => {
-    setPositions(clusterPositionsData[0]);
+    if (data) {
+      setPositions(data);
+    }
 
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -89,9 +89,16 @@ const MapComponent = () => {
         isLoading: false,
       }));
     }
-  }, []);
+  }, [data]);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const toggleMarker = (index: number) => {
+    setPositions(positions.map((pos, posIndex) => {
+      if (index === posIndex) {
+        return { ...pos, isOpen: !pos.isOpen };
+      }
+      return pos;
+    }));
+  };  
 
   return (
     <>
@@ -109,7 +116,7 @@ const MapComponent = () => {
           averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
           minLevel={10} // 클러스터 할 최소 지도 레벨
         >
-          {positions.map((pos) => (
+          {positions.map((pos, index) => (
             <MapMarker
               key={`${pos.lat}-${pos.lng}`}
               position={{
@@ -117,23 +124,10 @@ const MapComponent = () => {
                 lng: pos.lng,
               }}
               clickable={true} // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-              onClick={() => setIsOpen(true)}
+              onClick={() => toggleMarker(index)}
             >
-              {isOpen && (
+              {pos.isOpen && (
                 <div style={{ minWidth: "150px" }}>
-                  <img
-                    alt="close"
-                    width="14"
-                    height="13"
-                    src="https://t1.daumcdn.net/localimg/localimages/07/mapjsapi/2x/bt_close.gif"
-                    style={{
-                      position: "absolute",
-                      right: "5px",
-                      top: "5px",
-                      cursor: "pointer",
-                    }}
-                    onClick={() => setIsOpen(false)}
-                  />
                   <div style={{ padding: "5px", color: "#000" }}>
                     {pos.name}
                   </div>
@@ -174,6 +168,13 @@ const MapComponent = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIconLeft>
       </Link>
+
+      <div>
+        {/* 데이터가 성공적으로 로드되었을 때 UI 렌더링 */}
+        {data && <div>{JSON.stringify(data)}</div>}
+        {error && <div>{JSON.stringify(error)}</div>}
+        {isPending && <div>{JSON.stringify(isPending)}</div>}
+      </div>
 
     </>
   );
