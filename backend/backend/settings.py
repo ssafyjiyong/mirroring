@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # my_settings.py 불러오기
-from my_settings import SECRET_KEY, DATABASES
+from my_settings import SECRET_KEY, DATABASES, GOOGLE_CLIENT_ID, GOOGLE_SECRET_KEY
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     
     # cors-headers
     'corsheaders',
@@ -203,3 +203,15 @@ REST_AUTH = {
 
 # admin site
 SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+   'google': {
+      'APP': {
+         'client_id': GOOGLE_CLIENT_ID,
+         'secret': GOOGLE_SECRET_KEY,
+         'key': ''
+      }
+   },
+} 
+
+SOCIALACCOUNT_ADAPTER = "user.adapters.CustomSocialAccountAdapter"

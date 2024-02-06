@@ -1,7 +1,11 @@
+import requests
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from rest_framework.generics import RetrieveUpdateAPIView
-from dj_rest_auth.registration.views import RegisterView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from allauth.socialaccount.providers.oauth2.client import OAuth2Client
+from dj_rest_auth.registration.views import RegisterView, SocialLoginView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authtoken.models import Token 
@@ -45,3 +49,37 @@ class UserProfileView(RetrieveUpdateAPIView):
         user = self.get_object()
         user.delete()
         return Response({"detail": "User deleted successfully."}, status=status.HTTP_204_NO_CONTENT)
+
+
+class GoogleOAuthCallbackView(APIView):
+    def get(self, request):
+        # code 값을 URL의 query string에서 추출
+        if code := request.GET.get("code"):
+            response = self.forward_code_to_google_login_view(code)
+            if response.status_code == 200:
+                return Response(response.json(), status=status.HTTP_200_OK)
+            return Response(
+                {"error": "Failed to process with GoogleLoginView"},
+                status=response.status_code,
+            )
+
+        return Response(
+            {"error": "Code not provided"}, status=status.HTTP_400_BAD_REQUEST
+        )
+
+    def forward_code_to_google_login_view(self, code: str):
+        url = "http://localhost:8000/api/accounts/google/login/"
+        payload = {"code": code}
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers)
+        return response
+
+
+class GoogleLoginView(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+    callback_url = "http://localhost:8000/api/accounts/google/login/callback"
+    client_class = OAuth2Client
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        return super().post(request, *args, **kwargs)
