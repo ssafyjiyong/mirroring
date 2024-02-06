@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'schedule',
     'information',
     'location',
+    'review',
 
     # DRF
     'drf_yasg',
@@ -93,6 +94,7 @@ REST_FRAMEWORK = {
     # Token 인증을 기본으로 사용하도록 설정
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     # permission
     # API 접근에 대한 기본 권한 설정. 모든 요청 허용

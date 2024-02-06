@@ -2,7 +2,7 @@ import React from 'react'
 
 const FishInfoPage = () => {
   return (
-    <div>FishInfoPage</div>
+    <div style={{ padding: "1rem" }}>FishInfoPage</div>
   )
 }
 

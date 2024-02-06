@@ -2,7 +2,7 @@ import React from 'react'
 
 const LocationInfoPage = () => {
   return (
-    <div>LocationInfoPage</div>
+    <div style={{ padding: "1rem" }}>LocationInfoPage</div>
   )
 }
 
