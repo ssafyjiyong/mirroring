@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('information', '0001_initial'),
+        ('location', '0001_initial'),
     ]
 
     operations = [
@@ -18,7 +18,14 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('weight', models.IntegerField(default=0)),
-                ('method', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='information.fishing_method')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='location_review',
+            fields=[
+                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('weight', models.IntegerField(default=0)),
+                ('location', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='location.location')),
             ],
         ),
     ]

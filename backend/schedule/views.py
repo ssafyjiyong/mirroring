@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from .models import schedule
 from .serializers import ScheduleAllSerializer, ScheduleDoneSerializer
 
+
 # Create your views here.
 class NewScheduleAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -18,7 +19,7 @@ class NewScheduleAPIView(APIView):
     def post(self, request):
         serializer = ScheduleAllSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
@@ -28,24 +29,26 @@ class ScheduleAPIView(APIView):
     # 일정 조회(단일)
     @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
     def get(self, request, pk):
-        schedule_instance = get_object_or_404(schedule, id=pk)
+        schedule_instance = get_object_or_404(schedule, id=pk, user=request.user, done=False)
         serializer = ScheduleAllSerializer(schedule_instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
-    # 일정 수정
+    
+class ScheduleDoneAPIView(APIView):
+    #해당 일정 완료 처리  
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
-    def put(self, request,pk):
-        schedule_instance = get_object_or_404(schedule, id=pk)
+    def patch(self, request,pk):
+        schedule_instance = get_object_or_404(schedule, id=pk,user=request.user)
         serializer = ScheduleDoneSerializer(schedule_instance, data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # 일정 삭제  
     @swagger_auto_schema(responses={"204": ScheduleAllSerializer})
     def delete(self, request, pk):
-        schedule_instance = schedule.objects.get(id=pk)
+        schedule_instance = schedule.objects.get(id=pk,user=request.user)
         schedule_instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
        
