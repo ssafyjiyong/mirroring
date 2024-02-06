@@ -62,19 +62,16 @@ def pick_fish(method_id, user):
 
 def pick_location(fish_id,user):
     # 해당 물고기를 잡을 수 있는 location_id 리스트
-    location_list=location.objects.filter(fish=10)
-
-    # print(location_list)
-    location_ids=[]
+    location_list=location.objects.filter(fish=fish_id)
     
     #location_review에서 location_id인 것과 가중치만 모은 리스트
     for lo in location_list:
-        location_ids=[review.location for review in location_review.objects.filter(location=lo.pk,user=user)]
+        location_ids=[review.location_id for review in location_review.objects.filter(location=lo.pk,user=user)]
         location_weight=[review.weight for review in location_review.objects.filter(location=lo.pk,user=user)]
         
-    print(location_ids)
+    # print(location_ids)
     if location_ids:
-        selected_location_id=random.choices(location_ids,location_weight)[0]        
+        selected_location_id=random.choices(location_ids,location_weight)[0]    
         
     else:
         location_ids = [lo.pk for lo in location_list]
