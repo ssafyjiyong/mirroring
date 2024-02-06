@@ -16,7 +16,7 @@ class MethodAPIView(APIView):
         user_id=request.user
         # print(user)
         method_instance=method_reivew.objects.filter(method=request.data['method'],user=user_id).first()
-        print(method_instance)
+        # print(method_instance)
         
         # 이미 존재하는 방법에 대한 리뷰 갱신일 때 
         if method_instance:
