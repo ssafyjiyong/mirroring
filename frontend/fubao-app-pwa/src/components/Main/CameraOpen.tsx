@@ -81,7 +81,7 @@ const CameraOpen = () => {
     onError: (error: AxiosError) => {
       Swal.fire({
         title: "입력 에러",
-        html: "사진 등록에 실패했습니다. <br> 다시 시도해주세요.",
+        html: "알 수 없는 이유로 분석에 실패했습니다. <br> 다시 시도해주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",
@@ -100,7 +100,7 @@ const CameraOpen = () => {
     onError: (error: AxiosError) => {
       Swal.fire({
         title: "입력 에러",
-        html: "사진 등록에 실패했습니다. <br> 다시 시도해주세요.",
+        html: "알 수 없는 이유로 분석에 실패했습니다. <br> 다시 시도해주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",
@@ -119,7 +119,7 @@ const CameraOpen = () => {
     onError: (error: AxiosError) => {
       Swal.fire({
         title: "입력 에러",
-        html: "사진 등록에 실패했습니다. <br> 다시 시도해주세요.",
+        html: "알 수 없는 이유로 분석에 실패했습니다. <br> 다시 시도해주세요.",
         icon: "error",
         confirmButtonColor: "#d42c348b",
         confirmButtonText: "확인",

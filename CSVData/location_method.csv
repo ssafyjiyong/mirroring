@@ -1,4 +1,4 @@
-id,location_id,fishing_method_id
+id,location_id,method_id
 1,1,1
 2,1,2
 3,1,3

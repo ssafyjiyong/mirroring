@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://127.0.0.1:8000";
-const API_URL_FLASK = "http://127.0.0.1:5000";
+const API_URL_FLASK = "http://54.180.108.229:5000";
 
 // GET 요청 API
 export const currentUserApi = async (token) => {
@@ -10,6 +10,15 @@ export const currentUserApi = async (token) => {
       Authorization: `Token ${token}`,
       "Content-Type": "application/json",
     },
+  });
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+};
+
+export const mapInfoApi = async () => {
+  const response = await fetch(`${API_URL}/location/map/`, {
   });
   if (!response.ok) {
     throw new Error("Network response was not ok");
