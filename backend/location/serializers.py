@@ -8,9 +8,14 @@ class locationAllSerializer(serializers.ModelSerializer):
         fields="__all__"
         
 class locationMapSerializer(serializers.ModelSerializer):
+    
+    lat = serializers.CharField(source="lattitude")
+    lng = serializers.CharField(source="longitude")
+     
     class Meta:
         model = location
-        fields = ('id','name','lattitude','longitude')
+        fields = ('id','name','lat','lng')
+
         
 class locationSchduleModeSerializer(serializers.ModelSerializer):
     class Meta:
