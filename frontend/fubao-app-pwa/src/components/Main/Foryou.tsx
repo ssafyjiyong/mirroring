@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import Button from "@mui/joy/Button";
 import { WhiteBox } from "./styles";
 import "react-datepicker/dist/react-datepicker.css";
-import axios from "axios";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
 import "../../index.css";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PlanRegister from "../Modal/PlanRegister";
-import useStore from "../../store/store";
 import { useMutation } from "@tanstack/react-query";
-import { planRegisterApi } from "../../Api/api";
-import { string } from "yargs";
+import { planRegisterApi } from "../../store/api";
 
 const Foryou = () => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const navigate = useNavigate();
-  const registered = useStore((state) => state.registered);
 
   // 현재 날짜 가져오기
   const today = new Date();
@@ -61,13 +54,13 @@ const Foryou = () => {
     const done = false;
 
     const date = selectedDate
-    ? `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1)
-        .toString()
-        .padStart(2, "0")}-${selectedDate
-        .getDate()
-        .toString()
-        .padStart(2, "0")}`
-    : "";
+      ? `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1)
+          .toString()
+          .padStart(2, "0")}-${selectedDate
+          .getDate()
+          .toString()
+          .padStart(2, "0")}`
+      : "";
 
     planRegisterMutation.mutate({ date, location, area, method, done });
   };
@@ -110,12 +103,20 @@ const Foryou = () => {
           <div
             style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}
           >
-            <Button variant="plain" color="neutral">
-              <span style={{ color: "#727272", marginRight: "0.1rem" }}>
-                일정등록
-              </span>
-              <FontAwesomeIcon icon="arrow-right" color="#727272" />
-            </Button>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                border: "1px solid #778A9B",
+                borderRadius: "50px",
+                width: "1.3rem",
+                height: "1.3rem",
+                margin: "0.3rem",
+              }}
+            >
+              <FontAwesomeIcon icon="plus" size="1x" color="#778A9B" />
+            </div>
           </div>
         </div>
 
