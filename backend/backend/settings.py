@@ -210,6 +210,13 @@ SOCIALACCOUNT_PROVIDERS = {
          'client_id': GOOGLE_CLIENT_ID,
          'secret': GOOGLE_SECRET_KEY,
          'key': ''
+      },
+      'SCOPE': [
+          'profile',
+          'email',
+      ],
+      'AUTH_PARAMS': {
+          'access_type': 'online'
       }
    },
 } 

@@ -11,7 +11,7 @@ urlpatterns = [
     # path('register/', CustomRegisterView.as_view(), name='rest_register'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     
-    # path("", include("allauth.urls")),  # OAuth 관련 작업에서도 필요함, Reverse name 때문에
+    path("", include("allauth.urls")),  # OAuth 관련 작업에서도 필요함, Reverse name 때문에
     # google OAuth
     path(
         "google/login/callback/",
