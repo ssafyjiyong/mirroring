@@ -70,7 +70,7 @@ REPLACE INTO TABLE `fubao`.`fish_fish_method`
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
-IGNORE 1 LINES (`id`, `fish_id`, `method_id`);
+IGNORE 1 LINES (`id`, `fish_id`, `fishing_method_id`);
 
 #location map import
 LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\ \\S10P12C104\\CSVData\\location_map.CSV' 
@@ -86,7 +86,7 @@ REPLACE INTO TABLE `fubao`.`location_location_method`
 CHARACTER SET euckr FIELDS TERMINATED BY ',' 
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
-IGNORE 1 LINES (`id`, `location_id`,`method_id`);
+IGNORE 1 LINES (`id`, `location_id`,`fishing_method_id`);
 
 #location-fish import
 LOAD DATA LOW_PRIORITY LOCAL INFILE 'C:\\Users\\ \\S10P12C104\\CSVData\\location_fish.CSV' 
