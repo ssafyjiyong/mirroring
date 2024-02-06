@@ -14,7 +14,10 @@ export const currentUserApi = async (token) => {
     });
     return response.data;
   } catch (error) {
-    console.error("An error occurred during the API call:", error.response ? error.response.data : error.message);
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
     throw new Error("Failed to fetch user profile");
   }
 };
@@ -111,7 +114,7 @@ export const classifyApiCreditCard = async (file) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data)
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -119,12 +122,16 @@ export const classifyApiCreditCard = async (file) => {
 };
 
 export const classifyApiCigarette = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("object", "cigarette");
   try {
-    const response = await axios.post(`${API_URL_FLASK}/predict`, {
-      file: file,
-      object: "cigarette",
+    const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -132,12 +139,16 @@ export const classifyApiCigarette = async (file) => {
 };
 
 export const classifyApiNone = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("object", "none");
   try {
-    const response = await axios.post(`${API_URL_FLASK}/predict`, {
-      file: file,
-      object: "none",
+    const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
-
+    console.log(response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -145,5 +156,48 @@ export const classifyApiNone = async (file) => {
 };
 
 // PUT 요청 API
+
+// PATCH 요청 API
+export const profileImgPatchApi = async ({ token, profile_img }) => {
+  try {
+    const formData = new FormData();
+    formData.append('profile_img', profile_img);
+
+    const response = await axios.patch(
+      `${API_URL}/user/profile/`,
+      formData,
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const nicknamePatchApi = async ({ token, nickname }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/user/profile/`,
+      { nickname },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
 //DELETE 요청 API

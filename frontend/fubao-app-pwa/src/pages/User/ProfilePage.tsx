@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../FontAwsome";
 import { Link, useNavigate } from "react-router-dom";
 import { HomeIcon } from "../../styles/globalStyles";
@@ -7,6 +7,9 @@ import styled from "styled-components";
 import useStore from "../../store/store";
 import { logoutApi } from "../../store/api";
 import { ProfileType } from "../../store/types";
+import ProfileUpdate from "../../components/Modal/ProfileUpdate";
+import NicknameUpdate from "../../components/Modal/NicknameUpdate";
+import "../../index.css";
 
 const Circle = styled.div`
   border: 1px solid black;
@@ -42,6 +45,12 @@ const ProfilePage = () => {
     }
   };
 
+  // ProfileUpdate 모달의 상태
+  const [openProfileUpdate, setOpenProfileUpdate] = useState(false);
+
+  // NicknameUpdate 모달의 상태
+  const [openNicknameUpdate, setOpenNicknameUpdate] = useState(false);
+
   return (
     <div style={{ padding: "1rem" }}>
       {/* 사용자 정보 */}
@@ -55,12 +64,8 @@ const ProfilePage = () => {
         }}
       >
         <div
-          style={{
-            // border: "1px solid black",
-            borderRadius: "50%",
-            width: "12rem",
-            height: "12rem",
-          }}
+          className="profile-img-container"
+          onClick={() => setOpenProfileUpdate(true)}
         >
           <img
             src={
@@ -69,9 +74,15 @@ const ProfilePage = () => {
                 : "/temp_profile.png"
             }
             alt="Profile"
-            style={{ width: "12rem", height: "12rem" }}
           />
+          <div className="camera-icon">
+            <FontAwesomeIcon icon="camera-retro" color="#919191" size="2x" />
+          </div>
         </div>
+        <ProfileUpdate
+          openProfileUpdate={openProfileUpdate}
+          setOpenProfileUpdate={setOpenProfileUpdate}
+        />
         <div style={{ display: "flex", alignItems: "center" }}>
           <p
             style={{
@@ -81,25 +92,22 @@ const ProfilePage = () => {
               marginBottom: "0",
             }}
           >
-            {profile
-              ? profile.nickname
-                ? profile.nickname
-                : "Error"
-              : "내일은 낚시왕"}
+            {profile ? profile.nickname : "내일은낚시왕"}
           </p>
           <FontAwesomeIcon
             icon="gear"
             size="1x"
             color="#969696"
             style={{ paddingTop: "0.8rem" }}
+            onClick={() => setOpenNicknameUpdate(true)}
+          />
+          <NicknameUpdate
+            openNicknameUpdate={openNicknameUpdate}
+            setOpenNicknameUpdate={setOpenNicknameUpdate}
           />
         </div>
         <div style={{ color: "#969696" }}>
-          {profile
-            ? profile.email
-              ? profile.email
-              : "Error"
-            : "로그인이 필요한 서비스입니다"}
+          {profile ? profile.email : "로그인이 필요한 서비스입니다"}
         </div>
       </div>
 
@@ -107,16 +115,18 @@ const ProfilePage = () => {
       <p style={{ marginTop: "0" }}>Dashboard</p>
       <div style={{ display: "flex", justifyContent: "space-around" }}>
         <div style={{ textAlign: "center" }}>
-          <Circle>{profile?.total_schedules}</Circle>
+          <Circle>{profile ? profile.total_schedules : "0"}</Circle>
           <span>출조 횟수</span>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Circle>{profile?.total_fish_count}</Circle>
+          <Circle>{profile ? profile.total_fish_count : "0"}</Circle>
           <span>잡은 물고기 수</span>
         </div>
         <div style={{ textAlign: "center" }}>
           <Circle>
-            {profile?.latest_schedule_date || "출조 예정"}
+            {profile && profile.latest_schedule_date
+              ? profile.latest_schedule_date
+              : "출조예정"}
           </Circle>
           <span>마지막 낚시일</span>
         </div>
