@@ -1,7 +1,6 @@
 from django.urls import path
-from .views import locationAPIView,locationMapAPIView
+from .views import locationMapAPIView
 
 urlpatterns=[
-    path('',locationAPIView.as_view()),
     path('map/',locationMapAPIView.as_view()),
 ]

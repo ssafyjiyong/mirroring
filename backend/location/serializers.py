@@ -1,20 +1,14 @@
 from rest_framework import serializers
 from .models import location
-
-        
-class locationAllSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=location
-        fields="__all__"
-        
+    
 class locationMapSerializer(serializers.ModelSerializer):
     
-    lat = serializers.CharField(source="lattitude")
-    lng = serializers.CharField(source="longitude")
+    lat = serializers.FloatField(source="lattitude")
+    lng = serializers.FloatField(source="longitude")
      
     class Meta:
         model = location
-        fields = ('id','name','lat','lng')
+        fields = ('id','name','address','lat','lng')
 
         
 class locationSchduleModeSerializer(serializers.ModelSerializer):
