@@ -18,19 +18,19 @@ const NavBar = styled.nav`
 `;
 
 const NavItem = styled.div`
-  /* border: 1px solid black; */
   width: 20vw;
   text-align: center;
   padding: 1vh;
   cursor: pointer;
+  color: black;
 `;
 
 const NavCenterItem = styled.div`
   position: fixed;
-  border: 3px solid #168bf2;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
+  border: 4px solid #168bf2;
+  border-radius: 50px;
+  width: 3.3rem;
+  height: 3.3rem;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 0);
@@ -44,7 +44,7 @@ const NavCenterItem = styled.div`
 
 const BottomNav = () => {
   return (
-    <Fragment>
+    <div style={{ position:"relative", zIndex:"100" }}>
       <NavBar>
         <Link to="/viewall" style={{ textDecoration: "none" }}>
           <NavItem>전체보기</NavItem>
@@ -63,7 +63,7 @@ const BottomNav = () => {
           />
         </NavCenterItem>
       </Link>
-    </Fragment>
+    </div>
   );
 };
 

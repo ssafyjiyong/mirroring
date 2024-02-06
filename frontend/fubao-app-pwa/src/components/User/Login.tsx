@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,8 +14,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { loginApi } from "../../Api/api";
 
 function Copyright(props: any) {
   return (
@@ -39,11 +41,28 @@ const Login = () => {
   const defaultTheme = createTheme();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password1, setPassword1] = useState("");
+
+  const loginMutation = useMutation({
+    mutationFn: loginApi,
+    onSuccess: () => {
+      navigate("/");
+    },
+    onError: (error: AxiosError) => {
+      Swal.fire({
+        title: "로그인 에러",
+        text: "로그인에 실패했습니다. 다시 시도해주세요.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
+      console.log(error.message);
+    },
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
 
     // 이메일 형식 확인
     if (!email.includes("@") || !email.includes(".")) {
@@ -58,16 +77,18 @@ const Login = () => {
     }
 
     // 비밀번호 글자수 확인
-    if (password.length < 8) {
+    if (password1.length < 8) {
       Swal.fire({
         title: "비밀번호 재입력",
-        text: "비밀번호는 최소 8글자 이상이어야 합니다.",
+        text: "비밀번호는 8글자 이상입니다.",
         icon: "error",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "확인",
       });
       return;
     }
+
+    loginMutation.mutate({ email, password1 });
   };
 
   const handleBack = () => {
@@ -120,6 +141,10 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
             />
             <TextField
               margin="normal"
@@ -130,6 +155,10 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password1}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword1(e.target.value)
+              }
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
