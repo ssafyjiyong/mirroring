@@ -19,8 +19,8 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
-        <BottomNav />
         <App />
+        <BottomNav />
       </BrowserRouter>
     </QueryClientProvider>
   </div>
