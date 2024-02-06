@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { HomeIconLeft } from "../../styles/globalStyles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../FontAwsome";
 import {
   Map,
   MapMarker,
@@ -19,10 +23,20 @@ interface MapState {
   isLoading: boolean;
 }
 
+interface Position {
+  lat: number;
+  lng: number;
+  name: string;
+}
+
 const MapComponent = () => {
   useKakaoLoader();
 
-  const { data, error, isPending } = useQuery({
+  const {
+    data = [],
+    error,
+    isPending,
+  } = useQuery({
     queryKey: ["mapInfo"],
     queryFn: mapInfoApi,
     refetchOnWindowFocus: false,
@@ -41,12 +55,10 @@ const MapComponent = () => {
 
   const clusterPositionsData = [data];
 
-  const [positions, setPositions] = useState<{ lat: number; lng: number }[]>(
-    []
-  );
+  const [positions, setPositions] = useState<Position[]>([]);
 
   useEffect(() => {
-    setPositions(clusterPositionsData);
+    setPositions(clusterPositionsData[0]);
 
     if (navigator.geolocation) {
       // GeoLocation을 이용해서 접속 위치를 얻어옵니다
@@ -79,6 +91,8 @@ const MapComponent = () => {
     }
   }, []);
 
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <Map // 지도를 표시할 Container
@@ -86,9 +100,9 @@ const MapComponent = () => {
         style={{
           // 지도의 크기
           width: "100%",
-          height: "50vh",
+          height: "100vh",
         }}
-        level={14} // 지도의 확대 레벨
+        level={3} // 지도의 확대 레벨
         draggable
       >
         <MarkerClusterer
@@ -102,7 +116,30 @@ const MapComponent = () => {
                 lat: pos.lat,
                 lng: pos.lng,
               }}
-            />
+              clickable={true} // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+              onClick={() => setIsOpen(true)}
+            >
+              {isOpen && (
+                <div style={{ minWidth: "150px" }}>
+                  <img
+                    alt="close"
+                    width="14"
+                    height="13"
+                    src="https://t1.daumcdn.net/localimg/localimages/07/mapjsapi/2x/bt_close.gif"
+                    style={{
+                      position: "absolute",
+                      right: "5px",
+                      top: "5px",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => setIsOpen(false)}
+                  />
+                  <div style={{ padding: "5px", color: "#000" }}>
+                    {pos.name}
+                  </div>
+                </div>
+              )}
+            </MapMarker>
           ))}
         </MarkerClusterer>
 
@@ -132,12 +169,12 @@ const MapComponent = () => {
         <ZoomControl position={"RIGHT"} />
       </Map>
 
-      <div>
-        {/* 데이터가 성공적으로 로드되었을 때 UI 렌더링 */}
-        {data && <div>{JSON.stringify(data)}</div>}
-        {error && <div>{JSON.stringify(error)}</div>}
-        {isPending && <div>{JSON.stringify(isPending)}</div>}
-      </div>
+      <Link to="/">
+        <HomeIconLeft color="#767676">
+          <FontAwesomeIcon icon="home" />
+        </HomeIconLeft>
+      </Link>
+
     </>
   );
 };
