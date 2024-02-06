@@ -9,8 +9,8 @@ class locationAllSerializer(serializers.ModelSerializer):
         
 class locationMapSerializer(serializers.ModelSerializer):
     
-    lat = serializers.CharField(source="lattitude")
-    lng = serializers.CharField(source="longitude")
+    lat = serializers.FloatField(source="lattitude")
+    lng = serializers.FloatField(source="longitude")
      
     class Meta:
         model = location

@@ -81,19 +81,6 @@ def pick_location(fish_id,user):
         
     selected_location = location.objects.get(pk=selected_location_id).name       
     return selected_location_id, selected_location
-    
-
-# def pick_location(fish_id):
-#     # fish pk가 fish_id인 것만 list 생성 
-#     location_list = location.objects.filter(fish=fish_id)
-#     print(location_list)
-    
-#     # 해당 위치의 id를 리스트로 생성 
-#     location_ids = [lo.pk for lo in location_list]
-
-#     selected_location_id = random.choice(location_ids)
-#     selected_location = location.objects.get(pk=selected_location_id).name
-#     return selected_location_id, selected_location
 
 
 class recommendationView(APIView):
