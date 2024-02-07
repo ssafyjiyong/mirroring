@@ -1,0 +1,9 @@
+0 red_sea_bream
+1 sea_bass
+2 horse_mackerel
+3 scomber_japonicus
+4 flatfish
+5 korean_rockfish
+6 black_sea_bream
+7 rock_bream
+8 greenling
