@@ -98,7 +98,7 @@ const ProfilePage = () => {
             icon="gear"
             size="1x"
             color="#969696"
-            style={{ paddingTop: "0.8rem" }}
+            style={{ paddingTop: "0.8rem", cursor: "pointer" }}
             onClick={() => setOpenNicknameUpdate(true)}
           />
           <NicknameUpdate
