@@ -33,11 +33,7 @@ interface Position {
 const MapComponent = () => {
   useKakaoLoader();
 
-  const {
-    data,
-    error,
-    isPending,
-  } = useQuery({
+  const { data, error, isPending } = useQuery({
     queryKey: ["mapInfo"],
     queryFn: mapInfoApi,
     retry: 0, // 실패시 재호출 몇번 할지
@@ -92,13 +88,15 @@ const MapComponent = () => {
   }, [data]);
 
   const toggleMarker = (index: number) => {
-    setPositions(positions.map((pos, posIndex) => {
-      if (index === posIndex) {
-        return { ...pos, isOpen: !pos.isOpen };
-      }
-      return pos;
-    }));
-  };  
+    setPositions(
+      positions.map((pos, posIndex) => {
+        if (index === posIndex) {
+          return { ...pos, isOpen: !pos.isOpen };
+        }
+        return pos;
+      })
+    );
+  };
 
   return (
     <>
@@ -175,7 +173,6 @@ const MapComponent = () => {
         {error && <div>{JSON.stringify(error)}</div>}
         {isPending && <div>{JSON.stringify(isPending)}</div>}
       </div>
-
     </>
   );
 };

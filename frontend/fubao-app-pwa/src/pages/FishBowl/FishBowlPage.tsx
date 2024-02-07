@@ -1,10 +1,34 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import * as THREE from 'three';
-import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { myFishApi } from '../../store/api';
+import * as THREE from "three";
+import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import {
+  FishApi1,
+  FishApi2,
+  FishApi3,
+  FishApi4,
+  FishApi5,
+  FishApi6,
+  FishApi7,
+  FishApi8,
+  FishApi9,
+  FishApi10,
+} from "../../store/api";
+import { useQueries } from "@tanstack/react-query";
 
 //x: -0.55~0.55, y: -1.15~1.15
+
+// 물고기정보
+// 1:참돔
+// 2:농어
+// 3:전갱이
+// 4:숭어
+// 5:고등어
+// 6:광어
+// 7:우럭
+// 8:감성돔
+// 9:돌돔
+// 10:쥐노래미
 
 const FishBowlBox = styled.div`
   background-color: black;
@@ -35,90 +59,107 @@ const FishBowlPage = () => {
   const model7 = useRef<THREE.Object3D | null>(null);
   const model8 = useRef<THREE.Object3D | null>(null);
 
+  const token = localStorage.getItem("token");
+  const results = useQueries({
+    queries: [
+    { queryKey: ['getFish1'], queryFn: () => FishApi1(token), refetchInterval: 1000 },
+    { queryKey: ['getFish2'], queryFn: () => FishApi2(token), refetchInterval: 1000 },
+    { queryKey: ['getFish3'], queryFn: () => FishApi3(token), refetchInterval: 1000 },
+    { queryKey: ['getFish4'], queryFn: () => FishApi4(token), refetchInterval: 1000 },
+    { queryKey: ['getFish5'], queryFn: () => FishApi5(token), refetchInterval: 1000 },
+    { queryKey: ['getFish6'], queryFn: () => FishApi6(token), refetchInterval: 1000 },
+    { queryKey: ['getFish7'], queryFn: () => FishApi7(token), refetchInterval: 1000 },
+    { queryKey: ['getFish8'], queryFn: () => FishApi8(token), refetchInterval: 1000 },
+    { queryKey: ['getFish9'], queryFn: () => FishApi9(token), refetchInterval: 1000 },
+    { queryKey: ['getFish10'], queryFn: () => FishApi10(token), refetchInterval: 1000 },
+  ]
+});
+
   let xspeed: number = 0.0005;
   let yspeed: number = 0.0001;
 
-  let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos1: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos1: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos1: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos1: number = xpos1;
   let beforeypos1: number = ypos1;
   let sw1: number = 3;
   let ysw1: number = 1;
-  let xrand1: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand1: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xrand1: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand1: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
-  let xpos2: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos2: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos2: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos2: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos2: number = xpos2;
   let beforeypos2: number = ypos2;
   let sw2: number = 4;
   let ysw2: number = 1;
-  let xrand2: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand2: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xrand2: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand2: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
-  let xpos3: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let xpos3: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
   let beforexpos3: number = 0;
   let sw3: number = 3;
-  let xrand3: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+  let xrand3: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
 
-  let xpos4: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos4: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos4: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos4: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos4: number = 0;
   let beforeypos4: number = -0.6;
   let sw4: number = 3;
   let ysw4: number = 1;
-  let xrand4: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand4: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xrand4: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand4: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
-  let xpos5: number = Math.round(((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
-  let ypos5: number = Math.round(((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
+  let xpos5: number =
+    Math.round((Math.random() * (1.1 + 1.1) - 1.1) * 1e2) / 1e2;
+  let ypos5: number =
+    Math.round((Math.random() * (0.5 + 0.5) - 0.5) * 1e2) / 1e2;
   let beforexpos5: number = 0;
   let beforeypos5: number = 0;
   let sw5: number = 3;
   let ysw5: number = 1;
-  let xrand5: number = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
-  let yrand5: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
+  let xrand5: number = ((Math.random() * (1.1 + 1.1) - 1.1) * 1e2) / 1e2;
+  let yrand5: number = ((Math.random() * (0.5 + 0.5) - 0.5) * 1e2) / 1e2;
 
-  let xpos6: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos6: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos6: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos6: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos6: number = 0;
   let beforeypos6: number = 0;
   let sw6: number = 3;
   let ysw6: number = 1;
-  let xrand6: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand6: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xrand6: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand6: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
-  let xpos7: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos7: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos7: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos7: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos7: number = 0;
   let beforeypos7: number = 0;
   let sw7: number = 3;
   let ysw7: number = 1;
-  let xrand7: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand7: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xrand7: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand7: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
-  let xpos8: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let ypos8: number = Math.round(((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+  let xpos8: number =
+    Math.round((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let ypos8: number =
+    Math.round((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
   let beforexpos8: number = 0;
   let beforeypos8: number = 0;
   let sw8: number = 3;
   let ysw8: number = 1;
-  let xrand8: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-  let yrand8: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
-
-  const fetchMyFish = async () => {
-    try {
-      const token = localStorage.getItem('token');
-
-      if (token) {
-        const fishInfo = await myFishApi(token);
-        console.log(fishInfo);
-        
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  let xrand8: number = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
+  let yrand8: number = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
 
   useEffect(() => {
     const loader1 = new GLTFLoader();
@@ -130,19 +171,17 @@ const FishBowlPage = () => {
     const loader7 = new GLTFLoader();
     const loader8 = new GLTFLoader();
 
-    fetchMyFish()
-
     let scene = new THREE.Scene();
     let renderer = new THREE.WebGLRenderer({
       canvas: canvasRef.current!,
-      antialias: true
+      antialias: true,
     });
     renderer.outputEncoding = THREE.sRGBEncoding;
 
     let camera = new THREE.PerspectiveCamera(20, 1);
     camera.position.set(0, 0, 8);
 
-    scene.background = new THREE.Color('black');
+    scene.background = new THREE.Color("black");
 
     const ambientLight = new THREE.AmbientLight(0xffffff, 3);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -152,7 +191,7 @@ const FishBowlPage = () => {
     scene.add(directionalLight);
 
     //1번
-    loader1.load('low_poly_mugil/scene.gltf', (gltf1: GLTF) => {
+    loader1.load("low_poly_mugil/scene.gltf", (gltf1: GLTF) => {
       model1.current = gltf1.scene;
 
       //위치
@@ -178,7 +217,7 @@ const FishBowlPage = () => {
     });
 
     //2번
-    loader2.load('low_poly_salmon/scene.gltf', (gltf2: GLTF) => {
+    loader2.load("low_poly_salmon/scene.gltf", (gltf2: GLTF) => {
       model2.current = gltf2.scene;
 
       model2.current.scale.set(0.15, 0.15, 0.15);
@@ -206,11 +245,11 @@ const FishBowlPage = () => {
     });
 
     //3번
-    loader3.load('low_poly_flatfish/scene.gltf', (gltf3: GLTF) => {
+    loader3.load("low_poly_flatfish/scene.gltf", (gltf3: GLTF) => {
       model3.current = gltf3.scene;
 
       // Adjust position, rotation, and scale as needed
-      model3.current.position.set(-0.6, -1.2, 0);//1.15
+      model3.current.position.set(-0.6, -1.2, 0); //1.15
       //model3.current.rotation.set(0, 1.5, -1.5);
       //물고기 옆면이 보이게
       model3.current.rotation.y += 2.6; //-2~-1.1 -2:x++, -1.1:x--
@@ -234,7 +273,7 @@ const FishBowlPage = () => {
     });
 
     //4번
-    loader4.load('low_poly_barracuda/scene.gltf', (gltf4: GLTF) => {
+    loader4.load("low_poly_barracuda/scene.gltf", (gltf4: GLTF) => {
       model4.current = gltf4.scene;
 
       // Adjust position, rotation, and scale as needed
@@ -242,7 +281,7 @@ const FishBowlPage = () => {
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
       model4.current.rotation.y += 0;
-      model4.current.rotation.x += 1.5;  //0~3
+      model4.current.rotation.x += 1.5; //0~3
       model4.current.rotation.z -= 1.5;
 
       model4.current.scale.set(0.15, 0.15, 0.15);
@@ -262,7 +301,7 @@ const FishBowlPage = () => {
     });
 
     //5번
-    loader5.load('low_poly_redseabream/scene.gltf', (gltf5: GLTF) => {
+    loader5.load("low_poly_redseabream/scene.gltf", (gltf5: GLTF) => {
       model5.current = gltf5.scene;
 
       // Adjust position, rotation, and scale as needed
@@ -270,7 +309,7 @@ const FishBowlPage = () => {
       //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
 
       model5.current.rotation.y += 0;
-      model5.current.rotation.x += 1.5;  //0~3
+      model5.current.rotation.x += 1.5; //0~3
       model5.current.rotation.z -= 1.5;
 
       model5.current.scale.set(0.45, 0.45, 0.45);
@@ -290,7 +329,7 @@ const FishBowlPage = () => {
     });
 
     //6번
-    loader6.load('low_poly_stoneseabream/scene.gltf', (gltf6: GLTF) => {
+    loader6.load("low_poly_stoneseabream/scene.gltf", (gltf6: GLTF) => {
       model6.current = gltf6.scene;
 
       // Adjust position, rotation, and scale as needed
@@ -299,7 +338,7 @@ const FishBowlPage = () => {
 
       model6.current.rotation.y += 3;
       model6.current.rotation.x -= 1.5;
-      model6.current.rotation.z -= -1.5;  //-1.5~1.5
+      model6.current.rotation.z -= -1.5; //-1.5~1.5
 
       model6.current.scale.set(1, 1, 1);
 
@@ -318,7 +357,7 @@ const FishBowlPage = () => {
     });
 
     //7번
-    loader7.load('low_poly_seabass/scene.gltf', (gltf7: GLTF) => {
+    loader7.load("low_poly_seabass/scene.gltf", (gltf7: GLTF) => {
       model7.current = gltf7.scene;
 
       // Adjust position, rotation, and scale as needed
@@ -327,7 +366,7 @@ const FishBowlPage = () => {
 
       model7.current.rotation.y += 3;
       model7.current.rotation.x -= 1.5;
-      model7.current.rotation.z -= -1.5;  //-1.5~1.5
+      model7.current.rotation.z -= -1.5; //-1.5~1.5
 
       model7.current.scale.set(0.6, 0.6, 0.6);
 
@@ -346,7 +385,7 @@ const FishBowlPage = () => {
     });
 
     //8번
-    loader8.load('low_poly_sebastes/scene.gltf', (gltf8: GLTF) => {
+    loader8.load("low_poly_sebastes/scene.gltf", (gltf8: GLTF) => {
       model8.current = gltf8.scene;
 
       // Adjust position, rotation, and scale as needed
@@ -355,7 +394,7 @@ const FishBowlPage = () => {
 
       model8.current.rotation.y -= 0;
       model8.current.rotation.x -= 1.5;
-      model8.current.rotation.z += -1.5;  //-1.5~1.5
+      model8.current.rotation.z += -1.5; //-1.5~1.5
 
       model8.current.scale.set(0.5, 0.5, 0.5);
 
@@ -382,7 +421,7 @@ const FishBowlPage = () => {
       renderer.setSize(width, height);
     }
 
-    window.addEventListener('resize', onWindowResize, false);
+    window.addEventListener("resize", onWindowResize, false);
     onWindowResize();
 
     function animate() {
@@ -449,9 +488,9 @@ const FishBowlPage = () => {
           } else if (sw1 === 4) {
             xpos1 += xspeed;
           } else if (sw1 === 5) {
-            xrand1 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand1 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw1 === 6) {
-            yrand1 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand1 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw1 === 1) {
@@ -525,9 +564,9 @@ const FishBowlPage = () => {
           } else if (sw2 === 4) {
             xpos2 += xspeed;
           } else if (sw2 === 5) {
-            xrand2 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand2 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw2 === 6) {
-            yrand2 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand2 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw2 === 1) {
@@ -597,7 +636,7 @@ const FishBowlPage = () => {
           } else if (sw3 === 4) {
             xpos3 -= xspeed;
           } else if (sw3 === 5) {
-            xrand3 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand3 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           }
           // console.log("bepos:", beforexpos3);
           // console.log("xpos:", xpos3);
@@ -667,9 +706,9 @@ const FishBowlPage = () => {
           } else if (sw4 === 4) {
             xpos4 += xspeed;
           } else if (sw4 === 5) {
-            xrand4 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand4 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw4 === 6) {
-            yrand4 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand4 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw4 === 1) {
@@ -742,9 +781,9 @@ const FishBowlPage = () => {
           } else if (sw5 === 4) {
             xpos5 += xspeed;
           } else if (sw5 === 5) {
-            xrand5 = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+            xrand5 = ((Math.random() * (1.1 + 1.1) - 1.1) * 1e2) / 1e2;
           } else if (sw5 === 6) {
-            yrand5 = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
+            yrand5 = ((Math.random() * (0.5 + 0.5) - 0.5) * 1e2) / 1e2;
           }
 
           if (ysw5 === 1) {
@@ -817,9 +856,9 @@ const FishBowlPage = () => {
           } else if (sw6 === 4) {
             xpos6 += xspeed;
           } else if (sw6 === 5) {
-            xrand6 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand6 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw6 === 6) {
-            yrand6 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand6 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw6 === 1) {
@@ -892,9 +931,9 @@ const FishBowlPage = () => {
           } else if (sw7 === 4) {
             xpos7 += xspeed;
           } else if (sw7 === 5) {
-            xrand7 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand7 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw7 === 6) {
-            yrand7 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand7 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw7 === 1) {
@@ -968,9 +1007,9 @@ const FishBowlPage = () => {
           } else if (sw8 === 4) {
             xpos8 += xspeed;
           } else if (sw8 === 5) {
-            xrand8 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand8 = ((Math.random() * (1.15 + 1.15) - 1.15) * 1e2) / 1e2;
           } else if (sw8 === 6) {
-            yrand8 = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand8 = ((Math.random() * (0.55 + 0.55) - 0.55) * 1e2) / 1e2;
           }
 
           if (ysw8 === 1) {
@@ -979,7 +1018,6 @@ const FishBowlPage = () => {
             ypos8 -= yspeed;
           }
 
-          console.log(model8.current.rotation.z);
           model8.current.position.set(ypos8, xpos8, 3);
         }
       }
@@ -987,10 +1025,30 @@ const FishBowlPage = () => {
       renderer.render(scene, camera);
     }
     return () => {
-      window.removeEventListener('resize', onWindowResize);
+      window.removeEventListener("resize", onWindowResize);
       // cleanup logic if needed
     };
   }, []); // Dependencies array is empty to run the effect only once on mount
+
+
+  const fishInfoArray: number[] = [];
+  results.forEach((result) => {
+    if (result.isPending) {
+      // 로딩 상태 처리
+      console.log('Loading...');
+    } else if (result.error) {
+      // 에러 상태 처리
+      console.error('Error fetching data:', result.error);
+    } else if (result.data) {
+      // 데이터가 존재하는 경우, 안전하게 접근
+      console.log('FishId:', result.data.fish.id);
+      console.log('FishCNT:', result.data.count);
+
+      fishInfoArray[result.data.fish.id - 1] = result.data.count;
+    }
+  });
+
+  console.log('fishInfoArray:', fishInfoArray);
 
   return (
     <FishBowlBox>
@@ -999,4 +1057,4 @@ const FishBowlPage = () => {
   );
 };
 
-export default FishBowlPage
+export default FishBowlPage;
