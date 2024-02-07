@@ -20,7 +20,6 @@ import FishInfoPage from "./pages/Information/FishInfoPage";
 import LocationInfoPage from "./pages/Information/LocationInfoPage";
 import ProhibitionInfoPage from "./pages/Information/ProhibitionInfoPage";
 import ReleaseInfo from "./pages/Information/ReleaseInfo";
-import MainPage from "./pages/Main/MainPage";
 import PlanManagePage from "./pages/Plan/PlanManagePage";
 import ProfilePage from "./pages/User/ProfilePage";
 import ViewAllPage from "./pages/ViewAllPage";
@@ -33,6 +32,8 @@ import PointPage1 from "./pages/Point/PointPage1";
 import PointPage2 from "./pages/Point/PointPage2";
 import PointPage3 from "./pages/Point/PointPage3";
 import PointPage4 from "./pages/Point/PointPage4";
+import TheFirstPage from "./pages/TheFirstPage";
+import IntroductionPage from "./pages/IntroductionPage";
 
 function App() {
   
@@ -49,7 +50,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<TheFirstPage />} />
+        <Route path="/introduction" element={<IntroductionPage />} />
+        <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/result" element={<ResultPage />} />
@@ -62,7 +65,6 @@ function App() {
         <Route path="/locationinfo" element={<LocationInfoPage />} />
         <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
         <Route path="/releaseinfo" element={<ReleaseInfo />} />
-        <Route path="/main" element={<MainPage />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/planmanage" element={<PlanManagePage />} />
         <Route path="/profile" element={<ProfilePage />} />
