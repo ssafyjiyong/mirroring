@@ -1,6 +1,7 @@
 import requests
 from django.shortcuts import render
 from django.contrib.auth import authenticate
+from django.contrib.auth.views import LogoutView
 from rest_framework.generics import RetrieveUpdateAPIView
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from allauth.socialaccount.providers.oauth2.client import OAuth2Client
@@ -12,6 +13,7 @@ from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView 
 from rest_framework.authentication import TokenAuthentication 
 from .serializers import CustomRegisterSerializer, UserSerializer, UserProfileSerializer
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 class CustomRegisterView(RegisterView):
@@ -26,6 +28,13 @@ class LoginView(APIView):
             return Response({'token': token.key})
         else:
             return Response({'error': 'Invalid credentials'}, status=401)
+
+class CustomLogoutView(APIView):
+    def post(self, request, *args, **kwargs):
+        # 기존의 로그아웃 뷰를 호출하여 로그아웃 수행
+        response = LogoutView.as_view()(request, *args, **kwargs)
+        # 리다이렉트가 아니라 JSON 응답을 반환
+        return Response({"detail": "Successfully logged out."})
 
 class UserProfileView(RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
@@ -80,6 +89,24 @@ class GoogleLoginView(SocialLoginView):
     callback_url = "http://localhost:8000/user/google/login/callback/"
     client_class = OAuth2Client
 
+    @ensure_csrf_cookie
     def post(self, request, *args, **kwargs):
-        print(request.POST)
-        return super().post(request, *args, **kwargs)
+        # print(request.POST)
+        # return super().post(request, *args, **kwargs)
+        
+        response = super().post(request, *args, **kwargs)
+
+        # ID 토큰 얻기
+        id_token = request.data.get("id_token")
+
+        if not id_token:
+            return Response({"error": "ID token not provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+        # ID 토큰을 검증하고, 필요한 정보를 추출할 수 있는 로직을 작성하세요.
+        # (Google API 라이브러리나 다른 방법을 사용하여 ID 토큰을 검증할 수 있음)
+
+        # Django Rest Framework 토큰 발급
+        user = self.serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+
+        return Response({"token": token.key})
