@@ -52,6 +52,45 @@ export const mapInfoApi = async () => {
   }
 };
 
+// 방생기준 GET
+export const releaseFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/release/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish release standard");
+  }
+};
+
+// 금어기 GET
+export const prohibitFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/prohibit/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish prohibit standard");
+  }
+};
+
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
