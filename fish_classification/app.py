@@ -61,7 +61,7 @@ def predict():
             if obj != "none":
                 
                 # 2. 카드 길이 측정부
-                ori_img = cv2.imread(image_path)
+                # ori_img = cv2.imread(image_path)
                 ori_img2 = cv2.imread(image_path)
 
                 height, width, channel = ori_img2.shape
