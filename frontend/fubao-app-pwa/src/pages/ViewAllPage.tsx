@@ -25,6 +25,7 @@ const MyButton = styled.button`
   border: 0;
   background-color: transparent;
   margin: 1em;
+  cursor: pointer;
 `;
 
 const ButtonText = styled.span`
