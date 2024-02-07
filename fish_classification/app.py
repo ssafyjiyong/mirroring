@@ -137,9 +137,7 @@ def predict():
                  message = {
                     "species": class_name
                 }
-
-            # print(top_left)
-            # print(bottom_right)
+            
 
             return message
 
