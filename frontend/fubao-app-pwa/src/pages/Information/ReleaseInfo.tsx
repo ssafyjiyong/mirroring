@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { releaseFishApi } from "../../store/api";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
+// https://www.youtube.com/watch?v=qk2oY7W3fuY
 
 // 아니 타입 지정 안되면 다 ^^^^하고 오류뜨네ㅠㅠㅠ
 type ReleaseInfo = {
@@ -44,20 +46,30 @@ const ReleaseInfoPage = () => {
   return (
     <>
       <div style={{ padding: '1rem' }}>방생기준 표</div>
-      <div>
-        {releaseInfo.map((info) => (
-          <div key={info.id} style={{ padding: '1rem' }}>
-            <div>
-              <img src={fishImages[info.id - 1]?.image} alt={info.name_kor} style={{ width: '5.5rem', borderRadius: '10px' }} />
-            </div>
-            <div>
-              <div>한국어 이름: {info.name_kor}</div>
-              <div>영어 이름: {info.name_eng}</div>
-              <div>방생기준: {info.standard ? info.standard : "잡아도 잡아도 씨가 마르지 않음"}</div>
-            </div>
-          </div>
-        ))}
-      </div>
+      <TableContainer component={Paper} style={{ padding: '1rem', paddingBottom: '3rem' }}>
+        <Table aria-label='release_standards'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Image</TableCell>
+              <TableCell>Document</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {releaseInfo.map((info) => (
+              <TableRow key={info.id} style={{ borderBottom: 'none' }}>
+                <TableCell>
+                  <img src={fishImages[info.id - 1]?.image} alt={info.name_kor} style={{ width: '3rem', borderRadius: '5px' }} />
+                </TableCell>
+                <TableCell>
+                  <div>한국어 이름: {info.name_kor}</div>
+                  <div>영어 이름: {info.name_eng}</div>
+                  <div>방생기준: {info.standard ? info.standard : "잡아도 잡아도 씨가 마르지 않음"}</div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   )
 }
