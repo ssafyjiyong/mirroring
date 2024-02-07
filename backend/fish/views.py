@@ -32,7 +32,7 @@ class FishView(APIView):
         serializer = FishDetailSerializer(fish_instance)
         return Response(serializer.data)
     
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -64,7 +64,7 @@ class MyFishListView(APIView):
         serializer = UserFishSerializer(user_fish_instances, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class MyFishView(APIView):
     permission_classes = [IsAuthenticated]
 
