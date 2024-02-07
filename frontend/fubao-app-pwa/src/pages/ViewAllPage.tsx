@@ -64,14 +64,14 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/#point" style={{ textDecoration: "none" }}>
+          <Link to="/home#point" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="check" size="3x" />
               <ButtonText>포인트</ButtonText>
             </MyButton>
           </Link>
 
-          <Link to="/#method" style={{ textDecoration: "none" }}>
+          <Link to="/home#method" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="clipboard-question" size="3x" />
               <ButtonText>방법</ButtonText>
