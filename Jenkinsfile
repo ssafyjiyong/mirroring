@@ -18,8 +18,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd ./backend/
-                        docker build -t ${DOCKER_IMAGE_NAME} .
+                        docker build -t ${DOCKER_IMAGE_NAME} ./backend/
                     '''
                 }
             }
