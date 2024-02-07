@@ -1,4 +1,6 @@
 import React from 'react'
+import useStore from "../../store/store";
+import { prohibitFishApi } from "../../store/api";
 
 const ProhibitionInfoPage = () => {
   return (
