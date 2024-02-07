@@ -53,6 +53,8 @@ function HomePage() {
     }
   }
 
+  const navigate = useNavigate();
+
   const logoutConfirm = () => {
     Swal.fire({
       title: "로그아웃",
@@ -65,11 +67,10 @@ function HomePage() {
     }).then(result => {
       if (result.isConfirmed) {
         logout();
+        navigate("/introduction")
       }
     });
   }
-
-  const navigate = useNavigate();
 
   const goToProfile = () => {
     navigate("/profile");
