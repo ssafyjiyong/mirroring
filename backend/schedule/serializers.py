@@ -3,7 +3,6 @@ from .models import schedule
 from location.serializers import locationSchduleModeSerializer
 from information.serializers import FishAreaSerializer,FishMethodSerializer
 
-
 class ScheduleAllSerializer(serializers.ModelSerializer):
     class Meta:
         model = schedule
