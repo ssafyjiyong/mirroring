@@ -14,4 +14,4 @@ class locationMapSerializer(serializers.ModelSerializer):
 class locationSchduleModeSerializer(serializers.ModelSerializer):
     class Meta:
         model = location
-        fields = ('id','name','address','lattitude','longitude')
+        fields = ('id','address')

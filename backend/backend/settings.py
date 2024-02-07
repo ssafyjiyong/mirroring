@@ -165,10 +165,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 # 이미지 저장을 위한 코드(지용)
-STATIC_URL = 'static/'
+STATIC_URL = 'profile_images/'
 STATIC_ROOT = ''
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'profile_images',
 ]
 
 MEDIA_URL = 'media/'
