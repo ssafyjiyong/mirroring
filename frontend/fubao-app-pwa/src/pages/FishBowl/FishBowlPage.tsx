@@ -113,6 +113,7 @@ const FishBowlPage = () => {
       if (token) {
         const fishInfo = await myFishApi(token);
         console.log(fishInfo);
+        
       }
     } catch (error) {
       console.error(error);
