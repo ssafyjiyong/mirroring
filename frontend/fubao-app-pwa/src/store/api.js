@@ -22,6 +22,24 @@ export const currentUserApi = async (token) => {
   }
 };
 
+export const myFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch my fish");
+  }
+};
+
 export const mapInfoApi = async () => {
   try {
     // axios.get 요청을 시도합니다.
@@ -87,19 +105,26 @@ export const planRegisterApi = async ({
   location,
   area,
   method,
-  done,
+  token,
 }) => {
   try {
-    const response = await axios.post(`${API_URL}/schedule/`, {
-      user: 1,
-      date,
-      location,
-      area,
-      method,
-      done,
-    });
+    const response = await axios.post(
+      `${API_URL}/schedule/`,
+      {
+        date,
+        location,
+        area,
+        method,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
+    console.log(date, location, area, method);
     throw error;
   }
 };
@@ -161,18 +186,14 @@ export const classifyApiNone = async (file) => {
 export const profileImgPatchApi = async ({ token, profile_img }) => {
   try {
     const formData = new FormData();
-    formData.append('profile_img', profile_img);
+    formData.append("profile_img", profile_img);
 
-    const response = await axios.patch(
-      `${API_URL}/user/profile/`,
-      formData,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await axios.patch(`${API_URL}/user/profile/`, formData, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
     console.log("성공");
     return response.data;
   } catch (error) {
@@ -201,3 +222,22 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
 };
 
 //DELETE 요청 API
+
+//어항 물고기 호출(10종)
+export const FishApi1 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch my fish");
+  }
+};

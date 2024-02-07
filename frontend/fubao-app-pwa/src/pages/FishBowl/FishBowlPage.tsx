@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import styled from "styled-components";
 import * as THREE from 'three';
 import { GLTF, GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-
+import { myFishApi } from '../../store/api';
 
 //x: -0.55~0.55, y: -1.15~1.15
 
@@ -106,6 +106,19 @@ const FishBowlPage = () => {
   let xrand8: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
   let yrand8: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
+  const fetchMyFish = async () => {
+    try {
+      const token = localStorage.getItem('token');
+
+      if (token) {
+        const fishInfo = await myFishApi(token);
+        console.log(fishInfo);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   useEffect(() => {
     const loader1 = new GLTFLoader();
     const loader2 = new GLTFLoader();
@@ -115,6 +128,8 @@ const FishBowlPage = () => {
     const loader6 = new GLTFLoader();
     const loader7 = new GLTFLoader();
     const loader8 = new GLTFLoader();
+
+    fetchMyFish()
 
     let scene = new THREE.Scene();
     let renderer = new THREE.WebGLRenderer({
