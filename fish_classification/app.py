@@ -23,7 +23,6 @@ CORS(app)
 
 # rest 요청 처리부
 @app.route("/predict" , methods=["POST"])
-# @app.route("/predict" , methods=["GET", "POST"])
 def predict():
     if request.method == 'POST':
             
