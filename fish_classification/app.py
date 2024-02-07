@@ -50,10 +50,10 @@ def predict():
 
             object_detector = Object_Detector(MODEL_PATH)
 
-            img = cv2.imread(image_path)
-            img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+            ori_img = cv2.imread(image_path)
+            ori_img = cv2.cvtColor(ori_img, cv2.COLOR_BGR2RGB)
                 
-            top_left, bottom_right = object_detector.detect_fish_length(img, score_thr=0.2)
+            top_left, bottom_right = object_detector.detect_fish_length(ori_img, score_thr=0.2)
 
             # print(top_left)
             # print(bottom_right)
