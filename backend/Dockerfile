@@ -16,8 +16,6 @@ COPY . .
 EXPOSE 8000
 
 RUN python manage.py makemigrations
-RUN python manage.py migrate
-
 
 # CMD ["gunicorn","--bind","0.0.0.0:8000","stock.wsgi:application"]
 CMD ["sh","-c","python manage.py runserver 0.0.0.0:8000 && python manage.py migrate"]
