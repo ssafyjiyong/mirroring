@@ -5,7 +5,7 @@ pipeline {
         DOCKER_IMAGE_NAME = 'backend/django'
         DOCKERFILE_PATH = './backend/Dockerfile'
         CONTAINER_NAME = 'django-server'
-        HOST='host'
+        DATABASE_NAME='mariadb'
     }
 
     stages {
@@ -40,7 +40,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -d --network=${HOST} --name ${CONTAINER_NAME} -p 3000:3000 ${DOCKER_IMAGE_NAME}"
+                    sh "docker run -d --link ${DATABASE_NAME} --name ${CONTAINER_NAME} -p 3000:3000 ${DOCKER_IMAGE_NAME}"
                 }
             }
         }
