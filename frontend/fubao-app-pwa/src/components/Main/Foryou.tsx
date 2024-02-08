@@ -46,12 +46,11 @@ const Foryou = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    const token = localStorage.getItem("token");
     const data = new FormData(event.currentTarget);
     const location = data.get("location") as string;
     const area = data.get("area") as string;
     const method = data.get("method") as string;
-    const done = false;
 
     const date = selectedDate
       ? `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1)
@@ -62,7 +61,7 @@ const Foryou = () => {
           .padStart(2, "0")}`
       : "";
 
-    planRegisterMutation.mutate({ date, location, area, method, done });
+    planRegisterMutation.mutate({ date, location, area, method, token });
   };
 
   return (
