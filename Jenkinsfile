@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'backend/Django'
+        DOCKER_IMAGE_NAME = 'backend/django'
         DOCKERFILE_PATH = './backend/Dockerfile'
         CONTAINER_NAME = 'django-server'
     }
@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cd ./backend/
+                        cd ./backend
                         docker build -t ${DOCKER_IMAGE_NAME} .
                     '''
                 }
