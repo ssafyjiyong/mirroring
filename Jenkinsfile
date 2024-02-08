@@ -40,7 +40,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 script {
-                    sh "docker run -d --link ${DATABASE_NAME} --name ${CONTAINER_NAME} -p 3000:3000 ${DOCKER_IMAGE_NAME}"
+                    sh "docker run -d --link ${DATABASE_NAME} --name ${CONTAINER_NAME} -p 8000:8000 ${DOCKER_IMAGE_NAME}"
                 }
             }
         }
