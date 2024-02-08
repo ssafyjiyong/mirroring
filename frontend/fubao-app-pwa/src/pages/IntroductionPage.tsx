@@ -13,10 +13,31 @@ const StyledSlider = styled(Slider)`
   }
 `;
 
-const TopBox = styled.div`
+const TopBox1 = styled.div`
   display: flex !important;
   flex-direction: column;
   background-color: #5a60f1;
+  height: 100vh;
+`;
+
+const TopBox2 = styled.div`
+  display: flex !important;
+  flex-direction: column;
+  background-color: #8C52FF;
+  height: 100vh;
+`;
+
+const TopBox3 = styled.div`
+  display: flex !important;
+  flex-direction: column;
+  background-color: #73C974;
+  height: 100vh;
+`;
+
+const TopBox4 = styled.div`
+  display: flex !important;
+  flex-direction: column;
+  background-color: #42A5F5;
   height: 100vh;
 `;
 
@@ -47,8 +68,8 @@ const IntroductionPage = () => {
   return (
     <div>
       <StyledSlider {...settings}>
-        <TopBox>
-          <Text style={{ margin: "3rem 0rem 4rem 1.8rem" }}>
+        <TopBox1>
+          <Text style={{ margin: "3rem 0rem 4.5rem 1.8rem" }}>
             물고기 판별과 <br /> 길이 측정까지 <br /> 인공지능으로 편리하게
           </Text>
           <AlignBox>
@@ -58,16 +79,43 @@ const IntroductionPage = () => {
               style={{ width: "19rem", height: "15rem" }}
             />
           </AlignBox>
-        </TopBox>
-        <div>
-          <h3>2</h3>
-        </div>
-        <div>
-          <h3>3</h3>
-        </div>
-        <div>
-          <h3>4</h3>
-        </div>
+        </TopBox1>
+        <TopBox2>
+          <AlignBox>
+            <img
+              src="imgs/introduction/introduction2.png"
+              alt="introduction1"
+              style={{ width: "18rem", height: "15rem", marginTop: "7rem" }}
+            />
+          <Text style={{ margin: "6rem 0rem 0rem 0rem" }}>
+            일정 등록하면 <br /> 맞춤 입문가이드 시작
+          </Text>
+          </AlignBox>
+        </TopBox2>
+        <TopBox3>
+          <Text style={{ margin: "3rem 0rem 4.5rem 1.8rem" }}>
+            1500개 이상의 <br /> 낚시 장소와 <br /> 빅데이터 기반 추천
+          </Text>
+          <AlignBox>
+            <img
+              src="imgs/introduction/introduction3.png"
+              alt="introduction1"
+              style={{ width: "19rem", height: "15rem" }}
+            />
+          </AlignBox>
+        </TopBox3>
+        <TopBox4>
+          <AlignBox>
+            <img
+              src="logo512.png"
+              alt="introduction1"
+              style={{ width: "15rem", height: "15rem", marginTop: "8rem" }}
+            />
+          <Text style={{ margin: "4rem 0rem 0rem 0rem", textAlign:"center" }}>
+            지금 바로 로그인하고 <br /> 푸바오를 만나보아요
+          </Text>
+          </AlignBox>
+        </TopBox4>
       </StyledSlider>
       <Button
         sx={{
@@ -76,7 +124,8 @@ const IntroductionPage = () => {
           left: "50%",
           transform: "translateX(-50%)",
           backgroundColor: "#F68596",
-          width: "90%",
+          width: "90vw",
+          maxWidth: "540px",
           fontFamily: "SpoqaHanSansNeo",
           fontSize: "1rem",
           fontWeight: "400",
