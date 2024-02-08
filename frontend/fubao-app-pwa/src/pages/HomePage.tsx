@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Button from "@mui/joy/Button";
 import Box from "@mui/joy/Box";
 import Modal from "@mui/joy/Modal";
@@ -22,7 +22,6 @@ import Swal from "sweetalert2";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import Survey from "../components/Modal/Survey";
 import Review from "../components/Modal/Review";
 import useStore from "../store/store";
 import { logoutApi } from "../store/api";
@@ -88,10 +87,6 @@ function HomePage() {
     navigate("/profile");
   };
 
-  const goToLogin = () => {
-    navigate("/login");
-  };
-
   return (
     <div
       style={{
@@ -137,7 +132,6 @@ function HomePage() {
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
             onClick={goToProfile}
           />
-          {profile ? (
             <FontAwesomeIcon
               icon="right-from-bracket"
               color="#778a9b"
@@ -147,17 +141,6 @@ function HomePage() {
               }}
               onClick={logoutConfirm}
             />
-          ) : (
-            <FontAwesomeIcon
-              icon="right-to-bracket"
-              color="#778a9b"
-              style={{
-                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
-                fontSize: "1.4rem",
-              }}
-              onClick={goToLogin}
-            />
-          )}
         </div>
       </div>
       <Foryou />
