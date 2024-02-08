@@ -26,6 +26,7 @@ class User(AbstractUser):
     date_of_birth = models.DateField(blank=True, null=True)
     nickname = models.CharField(null=True, unique=True, max_length=8)
     profile_img = models.ImageField(upload_to='profile_images/', null=True, blank=True)
+    presurvey = models.BooleanField(default = False)
 
     objects = UserManager()
     
