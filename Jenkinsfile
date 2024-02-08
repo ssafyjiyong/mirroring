@@ -25,16 +25,16 @@ pipeline {
             }
         }
 
-        // stage('Delete Previous Docker Container') {
-        //     steps {
-        //         script {
-        //             sh '''
-        //                 docker stop ${CONTAINER_NAME}
-        //                 docker rm ${CONTAINER_NAME}
-        //             '''
-        //         }
-        //     }
-        // }
+        stage('Delete Previous Docker Container') {
+            steps {
+                script {
+                    sh '''
+                        docker stop ${CONTAINER_NAME}
+                        docker rm ${CONTAINER_NAME}
+                    '''
+                }
+            }
+        }
 
         stage('Run Docker Container') {
             steps {
