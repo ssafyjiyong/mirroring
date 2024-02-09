@@ -46,4 +46,4 @@ def classify_species(image_path):
 
     species_class_name = class_name[2:-1]
 
-    return species_class_name
+    return species_class_name, index

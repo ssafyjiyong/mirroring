@@ -15,6 +15,12 @@ from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
 from fish_species_classification import *
 
+# db 저장 모듈 관련
+from db_connection import *
+
+import base64
+import json
+
 ## 서버 띄우고 접속 허용
 app = Flask(__name__)
 # 보안관련
@@ -26,10 +32,12 @@ CORS(app)
 def predict():
     if request.method == 'POST':
             
-            f = request.files['file'] # 입력 이미지 파일
-            # print(f)
+            uid = request.form['uid'] # 변경하기
+            print(uid)
             obj = request.form['object'] # 입력 비교 물체
             # print(obj)
+            f = request.files['file'] # 입력 이미지 파일
+            # print(f)
 
             if obj == "cigarette":
                 obj_len = 88.00
@@ -122,22 +130,34 @@ def predict():
             fish_image = ori_img3[top_left[1]:bottom_right[1], top_left[0]:bottom_right[0]]
             cv2.imwrite(fish_image_path, fish_image)
 
-            class_name = classify_species(fish_image_path)
+            class_name, class_idx = classify_species(fish_image_path)
             # print("종: " + class_name)
 
 
             # 결과값 json 전달
 
+            # img_flag_result = False
+            with open(image_path, "rb") as image_file:
+                image_binary = image_file.read()
+
+            encoded_string = base64.b64encode(image_binary)
+            decoded_string = encoded_string.decode('UTF-8')
+
             if obj != "none":
                 message = {
                     "length" : fish_act_len,
-                    "species": class_name
+                    "species": class_name,
+                    "image" : decoded_string
                 }
+                db_processing(uid, class_idx, fish_act_len, image_path)
+
             else:
-                 message = {
-                    "species": class_name
+                message = {
+                    "species": class_name,
+                    "image" : decoded_string
                 }
-            
+                db_processing_no_obj(uid, class_idx)
+
 
             return message
 
