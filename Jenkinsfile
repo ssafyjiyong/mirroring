@@ -9,6 +9,9 @@ pipeline {
         FRONT_DOCKER_IMAGE_NAME='frontend/react'
         FRONT_CONTAINER_NAME='react-client'
 
+        AI_DOCKER_IMAGE_NAME='backend/flask'
+        AI_CONTAINER_NAME='flask-server'
+
         DATABASE_NAME='mariadb'
     }
 
