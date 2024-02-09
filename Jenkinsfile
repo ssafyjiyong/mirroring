@@ -50,14 +50,32 @@ pipeline {
         }
 
         stage('Delete Previous Docker Container') {
-            steps {
-                script {
-                    sh '''
-                        docker stop ${BACK_CONTAINER_NAME}
-                        docker rm ${BACK_CONTAINER_NAME}
-                    '''
+            parallel{
+                stage('Delete Previous Front Docker Container'){
+                    steps {
+                        script {
+                            sh '''
+                                docker stop ${FRONT_CONTAINER_NAME}
+                                docker rm ${FRONT_CONTAINER_NAME}
+                            '''
+                        }
+                    }
+
+                }
+
+                stage('Delete Previous back Docker Container'){
+                    steps {
+                        script {
+                            sh '''
+                                docker stop ${BACK_CONTAINER_NAME}
+                                docker rm ${BACK_CONTAINER_NAME}
+                            '''
+                        }
+                    }
+
                 }
             }
+
         }
 
         stage('Parallel Run Docker Container') {
