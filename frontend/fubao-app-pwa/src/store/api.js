@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://i10c104.p.ssafy.io/8000";
+const API_URL = "http://127.0.0.1:8000";
 const API_URL_FLASK = "http://54.180.108.229:5000";
 
 // GET 요청 API
@@ -261,6 +261,23 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
 };
 
 //DELETE 요청 API
+export const planCancelApi = async (token, planid) => {
+  try {
+    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {
