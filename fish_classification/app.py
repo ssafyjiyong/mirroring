@@ -143,7 +143,7 @@ def predict():
             encoded_string = base64.b64encode(image_binary)
             decoded_string = encoded_string.decode('UTF-8')
 
-            if obj != "none":
+            if obj != "none": # 비교 물체가 있을 때
                 message = {
                     "length" : fish_act_len,
                     "species": class_name,
@@ -151,7 +151,7 @@ def predict():
                 }
                 db_processing(uid, class_idx, fish_act_len, image_path)
 
-            else:
+            else: # 비교 물체가 없을 때
                 message = {
                     "species": class_name,
                     "image" : decoded_string
