@@ -40,7 +40,7 @@ function App() {
   function ConditionalBottomNav() {
     const location = useLocation();
     // 로그인이나 회원가입 페이지에서는 BottomNav를 표시하지 않음
-    if (location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/result') {
+    if (location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/result' || location.pathname === '/introduction') {
       return null;
     }
   
