@@ -228,319 +228,412 @@ const FishBowlPage = () => {
     scene.add(directionalLight);
 
     console.log("start");
-    //1번 숭어
-    if (fishInfoArray[3] === 1) {
-      loader1.load('low_poly_mugil/scene.gltf', (gltf1: GLTF) => {
-        model1.current = gltf1.scene;
 
-        //위치
-        model1.current.position.set(0, 0, 0);
-
-        //물고기 옆면이 보이게
-        model1.current.rotation.y = 0;
-        model1.current.rotation.x = -1.5;
-        model1.current.rotation.z = -1.5;
-
-        //씬에 모델 추가
-        scene.add(model1.current);
-        model1.current.visible = false;
-        //scene.remove(model1.current);
-
-        const animations1 = gltf1.animations!;
-        if (mixer1.current) {
-          mixer1.current.stopAllAction();
-        }
-        mixer1.current = new THREE.AnimationMixer(model1.current);
-
-        animations1.forEach((animation) => {
-          const action = mixer1.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //2번 쥐노래미
-    if (fishInfoArray[9] === 1) {
-      loader2.load('low_poly_salmon/scene.gltf', (gltf2: GLTF) => {
-        model2.current = gltf2.scene;
-
-        model2.current.scale.set(0.15, 0.15, 0.15);
-
-        //위치
-        model2.current.position.set(-0.55, -1.15, -0.5);
-
-        //물고기 옆면이 보이게
-        model2.current.rotation.y = 0;
-        model2.current.rotation.x = -1.5;
-        model2.current.rotation.z = -1.5;
-
-        //씬에 모델 추가
-        scene.add(model2.current);
-        model2.current.visible = false;
-
-        const animations2 = gltf2.animations!;
-        mixer2.current = new THREE.AnimationMixer(model2.current);
-
-        animations2.forEach((animation) => {
-          const action = mixer2.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //3번 광어
-    if (fishInfoArray[5] === 1) {
-      loader3.load('low_poly_flatfish/scene.gltf', (gltf3: GLTF) => {
-        model3.current = gltf3.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model3.current.position.set(-0.6, -1.2, 0);//1.15
-        //model3.current.rotation.set(0, 1.5, -1.5);
-        //물고기 옆면이 보이게
-        model3.current.rotation.y = 2.6; //-2~-1.1 -2:x++, -1.1:x--
-        model3.current.rotation.x = 0; //0~3 0:x++, 3:x--
-        model3.current.rotation.z = 1.5;
-
-        model3.current.scale.set(0.7, 0.7, 0.7);
-
-        // Add the model to the scene
-        scene.add(model3.current);
-        model3.current.visible = false;
-
-        const animations3 = gltf3.animations!;
-        mixer3.current = new THREE.AnimationMixer(model3.current);
-
-        animations3.forEach((animation) => {
-          const action = mixer3.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //4번 전갱이
-    if (fishInfoArray[2] === 1) {
-      loader4.load('low_poly_barracuda/scene.gltf', (gltf4: GLTF) => {
-        model4.current = gltf4.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model4.current.position.set(0, 0, 1);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model4.current.rotation.y = 0;
-        model4.current.rotation.x = 1.5;  //0~3
-        model4.current.rotation.z = -1.5;
-
-        model4.current.scale.set(0.15, 0.15, 0.15);
-
-        // Add the model to the scene
-        scene.add(model4.current);
-        model4.current.visible = false;
-
-        const animations4 = gltf4.animations!;
-        mixer4.current = new THREE.AnimationMixer(model4.current);
-
-        animations4.forEach((animation) => {
-          const action = mixer4.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //5번 참돔
-    if (fishInfoArray[0] === 1) {
-      loader5.load('low_poly_redseabream/scene.gltf', (gltf5: GLTF) => {
-        model5.current = gltf5.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model5.current.position.set(0, 0, 2);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model5.current.rotation.y = 0;
-        model5.current.rotation.x = 1.5;  //0~3
-        model5.current.rotation.z = -1.5;
-
-        model5.current.scale.set(0.45, 0.45, 0.45);
-
-        // Add the model to the scene
-        scene.add(model5.current);
-        model5.current.visible = false;
-
-        const animations5 = gltf5.animations!;
-        mixer5.current = new THREE.AnimationMixer(model5.current);
-
-        animations5.forEach((animation) => {
-          const action = mixer5.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //6번 돌돔
-    if (fishInfoArray[8] === 1) {
-      loader6.load('low_poly_stoneseabream/scene.gltf', (gltf6: GLTF) => {
-        model6.current = gltf6.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model6.current.position.set(0, 0, 0);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model6.current.rotation.y = 3;
-        model6.current.rotation.x = -1.5;
-        model6.current.rotation.z = 1.5;  //-1.5~1.5
-
-        model6.current.scale.set(1, 1, 1);
-
-        // Add the model to the scene
-        scene.add(model6.current);
-        model6.current.visible = false;
-
-        const animations6 = gltf6.animations!;
-        mixer6.current = new THREE.AnimationMixer(model6.current);
-
-        animations6.forEach((animation) => {
-          const action = mixer6.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //7번 농어
-    if (fishInfoArray[1] === 1) {
-      loader7.load('low_poly_seabass/scene.gltf', (gltf7: GLTF) => {
-        model7.current = gltf7.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model7.current.position.set(0, 0, 0);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model7.current.rotation.y = 3;
-        model7.current.rotation.x = -1.5;
-        model7.current.rotation.z = 1.5;  //-1.5~1.5
-
-        model7.current.scale.set(0.6, 0.6, 0.6);
-
-        // Add the model to the scene
-        scene.add(model7.current);
-        model7.current.visible = false;
-
-        const animations7 = gltf7.animations!;
-        mixer7.current = new THREE.AnimationMixer(model7.current);
-
-        animations7.forEach((animation) => {
-          const action = mixer7.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //8번 우럭
-    if (fishInfoArray[6] === 1) {
-      loader8.load('low_poly_sebastes/scene.gltf', (gltf8: GLTF) => {
-        model8.current = gltf8.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model8.current.position.set(0, 0, 0);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model8.current.rotation.y = 0;
-        model8.current.rotation.x = -1.5;
-        model8.current.rotation.z = -1.5;  //-1.5~1.5
-
-        model8.current.scale.set(0.5, 0.5, 0.5);
-
-        // Add the model to the scene
-        scene.add(model8.current);
-        model8.current.visible = false;
-
-        const animations8 = gltf8.animations!;
-        mixer8.current = new THREE.AnimationMixer(model8.current);
-
-        animations8.forEach((animation) => {
-          const action = mixer8.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
-    }
-
-    //9번 고등어
-    if (fishInfoArray[4] === 1) {
-      loader9.load('low_poly_mackerel/scene.gltf', (gltf9: GLTF) => {
-        model9.current = gltf9.scene;
-
-        // 위치
-        model9.current.position.set(0, 0, 0);
-
-        // 물고기 옆면이 보이게
-        model9.current.rotation.y = 0;
-        model9.current.rotation.x = -1.5;
-        model9.current.rotation.z = -1.5;
+    function loadFishModel(
+      loader: any,
+      fishInfoArray: number,
+      model: { current: THREE.Object3D | null },
+      mixer: { current: THREE.AnimationMixer | null },
+      modelPath: string,
+      position: THREE.Vector3,
+      rotation: THREE.Euler,
+      scale: THREE.Vector3,
+      scene: THREE.Scene
+    ) {
+      loader.load(modelPath, (gltf: GLTF) => {
+        //if (!model.current) return;
+        model.current = gltf.scene;
+
+        // 위치 설정
+        model.current.position.copy(position);
+
+        // 회전 설정
+        model.current.rotation.copy(rotation);
+
+        // 크기 설정
+        model.current.scale.copy(scale);
 
         // 씬에 모델 추가
-        scene.add(model9.current);
-        model9.current.visible = false;
-        // scene.remove(model9.current);
+        scene.add(model.current);
+        model.current.visible = false;
 
-        const animations9 = gltf9.animations!;
-        if (mixer9.current) {
-          mixer9.current.stopAllAction();
+        const animations = gltf.animations || [];
+        if (mixer.current) {
+          mixer.current.stopAllAction();
         }
-        mixer9.current = new THREE.AnimationMixer(model9.current);
+        mixer.current = new THREE.AnimationMixer(model.current);
 
-        animations9.forEach((animation) => {
-          const action = mixer9.current!.clipAction(animation);
+        animations.forEach((animation: THREE.AnimationClip) => {
+          const action = mixer.current!.clipAction(animation);
           action.play();
         });
-
-        // animate(scene, renderer, camera);
       });
+    }
+
+    // 1번 숭어
+    if (fishInfoArray[3] === 1) {
+      loadFishModel(loader1, fishInfoArray[3], model1, mixer1, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
+    }
+
+    // 2번 쥐노래미
+    if (fishInfoArray[9] === 1) {
+      loadFishModel(loader2, fishInfoArray[9], model2, mixer2, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
+    }
+
+    // 3번 광어
+    if (fishInfoArray[5] === 1) {
+      loadFishModel(loader3, fishInfoArray[5], model3, mixer3, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7, 0.7, 0.7), scene);
+    }
+
+    // 4번 전갱이
+    if (fishInfoArray[2] === 1) {
+      loadFishModel(loader4, fishInfoArray[2], model4, mixer4, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
+    }
+
+    // 5번 참돔
+    if (fishInfoArray[0] === 1) {
+      loadFishModel(loader5, fishInfoArray[0], model5, mixer5, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
+    }
+
+    // 6번 돌돔
+    if (fishInfoArray[8] === 1) {
+      loadFishModel(loader6, fishInfoArray[8], model6, mixer6, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1, 1, 1), scene);
+    }
+
+    // 7번 농어
+    if (fishInfoArray[1] === 1) {
+      loadFishModel(loader7, fishInfoArray[1], model7, mixer7, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6, 0.6, 0.6), scene);
+    }
+
+    // 8번 우럭
+    if (fishInfoArray[6] === 1) {
+      loadFishModel(loader8, fishInfoArray[6], model8, mixer8, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5, 0.5, 0.5), scene);
+    }
+
+    // 9번 고등어
+    if (fishInfoArray[4] === 1) {
+      loadFishModel(loader9, fishInfoArray[4], model9, mixer9, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
     }
 
     // 10번 감성돔
     if (fishInfoArray[7] === 1) {
-      loader10.load('low_poly_blackseabream/scene.gltf', (gltf10: GLTF) => {
-        model10.current = gltf10.scene;
-
-        // Adjust position, rotation, and scale as needed
-        model10.current.position.set(0, 0, 2);
-        //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
-
-        model10.current.rotation.y = 0;
-        model10.current.rotation.x = 1.5;  //0~3
-        model10.current.rotation.z = -1.5;
-
-        model10.current.scale.set(0.45, 0.45, 0.45);
-
-        // Add the model to the scene
-        scene.add(model10.current);
-        model10.current.visible = false;
-
-        const animations10 = gltf10.animations!;
-        mixer10.current = new THREE.AnimationMixer(model10.current);
-
-        animations10.forEach((animation) => {
-          const action = mixer10.current!.clipAction(animation);
-          action.play();
-        });
-
-        //animate(scene, renderer, camera);
-      });
+      loadFishModel(loader10, fishInfoArray[7], model10, mixer10, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
     }
+
+    //옛날 코드
+    // //1번 숭어
+    // if (fishInfoArray[3] === 1) {
+    //   loader1.load('low_poly_mugil/scene.gltf', (gltf1: GLTF) => {
+    //     model1.current = gltf1.scene;
+
+    //     //위치
+    //     model1.current.position.set(0, 0, 0);
+
+    //     //물고기 옆면이 보이게
+    //     model1.current.rotation.y = 0;
+    //     model1.current.rotation.x = -1.5;
+    //     model1.current.rotation.z = -1.5;
+
+    //     //씬에 모델 추가
+    //     scene.add(model1.current);
+    //     model1.current.visible = false;
+    //     //scene.remove(model1.current);
+
+    //     const animations1 = gltf1.animations!;
+    //     if (mixer1.current) {
+    //       mixer1.current.stopAllAction();
+    //     }
+    //     mixer1.current = new THREE.AnimationMixer(model1.current);
+
+    //     animations1.forEach((animation) => {
+    //       const action = mixer1.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //2번 쥐노래미
+    // if (fishInfoArray[9] === 1) {
+    //   loader2.load('low_poly_salmon/scene.gltf', (gltf2: GLTF) => {
+    //     model2.current = gltf2.scene;
+
+    //     model2.current.scale.set(0.15, 0.15, 0.15);
+
+    //     //위치
+    //     model2.current.position.set(-0.55, -1.15, -0.5);
+
+    //     //물고기 옆면이 보이게
+    //     model2.current.rotation.y = 0;
+    //     model2.current.rotation.x = -1.5;
+    //     model2.current.rotation.z = -1.5;
+
+    //     //씬에 모델 추가
+    //     scene.add(model2.current);
+    //     model2.current.visible = false;
+
+    //     const animations2 = gltf2.animations!;
+    //     mixer2.current = new THREE.AnimationMixer(model2.current);
+
+    //     animations2.forEach((animation) => {
+    //       const action = mixer2.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //3번 광어
+    // if (fishInfoArray[5] === 1) {
+    //   loader3.load('low_poly_flatfish/scene.gltf', (gltf3: GLTF) => {
+    //     model3.current = gltf3.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model3.current.position.set(-0.6, -1.2, 0);//1.15
+    //     //model3.current.rotation.set(0, 1.5, -1.5);
+    //     //물고기 옆면이 보이게
+    //     model3.current.rotation.y = 2.6; //-2~-1.1 -2:x++, -1.1:x--
+    //     model3.current.rotation.x = 0; //0~3 0:x++, 3:x--
+    //     model3.current.rotation.z = 1.5;
+
+    //     model3.current.scale.set(0.7, 0.7, 0.7);
+
+    //     // Add the model to the scene
+    //     scene.add(model3.current);
+    //     model3.current.visible = false;
+
+    //     const animations3 = gltf3.animations!;
+    //     mixer3.current = new THREE.AnimationMixer(model3.current);
+
+    //     animations3.forEach((animation) => {
+    //       const action = mixer3.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //4번 전갱이
+    // if (fishInfoArray[2] === 1) {
+    //   loader4.load('low_poly_barracuda/scene.gltf', (gltf4: GLTF) => {
+    //     model4.current = gltf4.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model4.current.position.set(0, 0, 1);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model4.current.rotation.y = 0;
+    //     model4.current.rotation.x = 1.5;  //0~3
+    //     model4.current.rotation.z = -1.5;
+
+    //     model4.current.scale.set(0.15, 0.15, 0.15);
+
+    //     // Add the model to the scene
+    //     scene.add(model4.current);
+    //     model4.current.visible = false;
+
+    //     const animations4 = gltf4.animations!;
+    //     mixer4.current = new THREE.AnimationMixer(model4.current);
+
+    //     animations4.forEach((animation) => {
+    //       const action = mixer4.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //5번 참돔
+    // if (fishInfoArray[0] === 1) {
+    //   loader5.load('low_poly_redseabream/scene.gltf', (gltf5: GLTF) => {
+    //     model5.current = gltf5.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model5.current.position.set(0, 0, 2);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model5.current.rotation.y = 0;
+    //     model5.current.rotation.x = 1.5;  //0~3
+    //     model5.current.rotation.z = -1.5;
+
+    //     model5.current.scale.set(0.45, 0.45, 0.45);
+
+    //     // Add the model to the scene
+    //     scene.add(model5.current);
+    //     model5.current.visible = false;
+
+    //     const animations5 = gltf5.animations!;
+    //     mixer5.current = new THREE.AnimationMixer(model5.current);
+
+    //     animations5.forEach((animation) => {
+    //       const action = mixer5.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //6번 돌돔
+    // if (fishInfoArray[8] === 1) {
+    //   loader6.load('low_poly_stoneseabream/scene.gltf', (gltf6: GLTF) => {
+    //     model6.current = gltf6.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model6.current.position.set(0, 0, 0);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model6.current.rotation.y = 3;
+    //     model6.current.rotation.x = -1.5;
+    //     model6.current.rotation.z = 1.5;  //-1.5~1.5
+
+    //     model6.current.scale.set(1, 1, 1);
+
+    //     // Add the model to the scene
+    //     scene.add(model6.current);
+    //     model6.current.visible = false;
+
+    //     const animations6 = gltf6.animations!;
+    //     mixer6.current = new THREE.AnimationMixer(model6.current);
+
+    //     animations6.forEach((animation) => {
+    //       const action = mixer6.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //7번 농어
+    // if (fishInfoArray[1] === 1) {
+    //   loader7.load('low_poly_seabass/scene.gltf', (gltf7: GLTF) => {
+    //     model7.current = gltf7.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model7.current.position.set(0, 0, 0);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model7.current.rotation.y = 3;
+    //     model7.current.rotation.x = -1.5;
+    //     model7.current.rotation.z = 1.5;  //-1.5~1.5
+
+    //     model7.current.scale.set(0.6, 0.6, 0.6);
+
+    //     // Add the model to the scene
+    //     scene.add(model7.current);
+    //     model7.current.visible = false;
+
+    //     const animations7 = gltf7.animations!;
+    //     mixer7.current = new THREE.AnimationMixer(model7.current);
+
+    //     animations7.forEach((animation) => {
+    //       const action = mixer7.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //8번 우럭
+    // if (fishInfoArray[6] === 1) {
+    //   loader8.load('low_poly_sebastes/scene.gltf', (gltf8: GLTF) => {
+    //     model8.current = gltf8.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model8.current.position.set(0, 0, 0);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model8.current.rotation.y = 0;
+    //     model8.current.rotation.x = -1.5;
+    //     model8.current.rotation.z = -1.5;  //-1.5~1.5
+
+    //     model8.current.scale.set(0.5, 0.5, 0.5);
+
+    //     // Add the model to the scene
+    //     scene.add(model8.current);
+    //     model8.current.visible = false;
+
+    //     const animations8 = gltf8.animations!;
+    //     mixer8.current = new THREE.AnimationMixer(model8.current);
+
+    //     animations8.forEach((animation) => {
+    //       const action = mixer8.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // //9번 고등어
+    // if (fishInfoArray[4] === 1) {
+    //   loader9.load('low_poly_mackerel/scene.gltf', (gltf9: GLTF) => {
+    //     model9.current = gltf9.scene;
+
+    //     // 위치
+    //     model9.current.position.set(0, 0, 0);
+
+    //     // 물고기 옆면이 보이게
+    //     model9.current.rotation.y = 0;
+    //     model9.current.rotation.x = -1.5;
+    //     model9.current.rotation.z = -1.5;
+
+    //     // 씬에 모델 추가
+    //     scene.add(model9.current);
+    //     model9.current.visible = false;
+    //     // scene.remove(model9.current);
+
+    //     const animations9 = gltf9.animations!;
+    //     if (mixer9.current) {
+    //       mixer9.current.stopAllAction();
+    //     }
+    //     mixer9.current = new THREE.AnimationMixer(model9.current);
+
+    //     animations9.forEach((animation) => {
+    //       const action = mixer9.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     // animate(scene, renderer, camera);
+    //   });
+    // }
+
+    // // 10번 감성돔
+    // if (fishInfoArray[7] === 1) {
+    //   loader10.load('low_poly_blackseabream/scene.gltf', (gltf10: GLTF) => {
+    //     model10.current = gltf10.scene;
+
+    //     // Adjust position, rotation, and scale as needed
+    //     model10.current.position.set(0, 0, 2);
+    //     //model4.current.rotation.set(3, -1.5, 0);  //x: 0~3, y: -1.5
+
+    //     model10.current.rotation.y = 0;
+    //     model10.current.rotation.x = 1.5;  //0~3
+    //     model10.current.rotation.z = -1.5;
+
+    //     model10.current.scale.set(0.45, 0.45, 0.45);
+
+    //     // Add the model to the scene
+    //     scene.add(model10.current);
+    //     model10.current.visible = false;
+
+    //     const animations10 = gltf10.animations!;
+    //     mixer10.current = new THREE.AnimationMixer(model10.current);
+
+    //     animations10.forEach((animation) => {
+    //       const action = mixer10.current!.clipAction(animation);
+    //       action.play();
+    //     });
+
+    //     //animate(scene, renderer, camera);
+    //   });
+    // }
 
     animate(scene, renderer, camera);
 
