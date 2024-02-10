@@ -23,6 +23,24 @@ export const currentUserApi = async (token) => {
   }
 };
 
+export const myFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch my fish");
+  }
+};
+
 export const mapInfoApi = async () => {
   try {
     // axios.get 요청을 시도합니다.
@@ -34,6 +52,45 @@ export const mapInfoApi = async () => {
     throw new Error("Failed to fetch map info");
   }
 };
+
+// 방생기준 GET
+export const releaseFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/release/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish release standard");
+  }
+};
+
+// 금어기 GET
+export const prohibitFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/prohibit/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish prohibit standard");
+  }
+};
+
 
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
@@ -88,19 +145,26 @@ export const planRegisterApi = async ({
   location,
   area,
   method,
-  done,
+  token,
 }) => {
   try {
-    const response = await axios.post(`${API_URL}/schedule/`, {
-      user: 1,
-      date,
-      location,
-      area,
-      method,
-      done,
-    });
+    const response = await axios.post(
+      `${API_URL}/schedule/`,
+      {
+        date,
+        location,
+        area,
+        method,
+      },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
+    console.log(date, location, area, method);
     throw error;
   }
 };
@@ -162,18 +226,14 @@ export const classifyApiNone = async (file) => {
 export const profileImgPatchApi = async ({ token, profile_img }) => {
   try {
     const formData = new FormData();
-    formData.append('profile_img', profile_img);
+    formData.append("profile_img", profile_img);
 
-    const response = await axios.patch(
-      `${API_URL}/user/profile/`,
-      formData,
-      {
-        headers: {
-          Authorization: `Token ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
+    const response = await axios.patch(`${API_URL}/user/profile/`, formData, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "multipart/form-data",
+      },
+    });
     console.log("성공");
     return response.data;
   } catch (error) {
@@ -202,3 +262,184 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
 };
 
 //DELETE 요청 API
+
+//어항 물고기 호출(10종)
+export const FishApi1 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/1/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish1");
+  }
+};
+
+export const FishApi2 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/2/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish2");
+  }
+};
+
+export const FishApi3 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/3/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish3");
+  }
+};
+
+export const FishApi4 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/4/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish4");
+  }
+};
+
+export const FishApi5 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/5/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish5");
+  }
+};
+
+export const FishApi6 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/6/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish6");
+  }
+};
+
+export const FishApi7 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/7/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish7");
+  }
+};
+
+export const FishApi8 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/8/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish8");
+  }
+};
+
+export const FishApi9 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/9/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish9");
+  }
+};
+
+export const FishApi10 = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/10/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish10");
+  }
+};

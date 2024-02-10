@@ -1,4 +1,11 @@
 import React, { useEffect } from "react";
+import Button from "@mui/joy/Button";
+import Box from "@mui/joy/Box";
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import Typography from "@mui/joy/Typography";
+import Checkbox from "@mui/joy/Checkbox";
+import Sheet from "@mui/joy/Sheet";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
 import CameraOpen from "../components/Main/CameraOpen";
@@ -15,7 +22,6 @@ import Swal from "sweetalert2";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
-import Survey from "../components/Modal/Survey";
 import Review from "../components/Modal/Review";
 import useStore from "../store/store";
 import { logoutApi } from "../store/api";
@@ -24,6 +30,7 @@ import { ProfileType } from "../store/types";
 function HomePage() {
   const { profile } = useStore() as { profile: ProfileType | null };
   const { loadProfile, resetStore } = useStore();
+  const [open, setOpen] = React.useState<boolean>(true);
 
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
@@ -37,23 +44,27 @@ function HomePage() {
     if (localStorage.getItem("token")) {
       loadProfile();
     }
+
+    if (profile && !profile.total_schedules) {
+      // setOpen(true); // Survey 모달을 열기 위해 open 상태를 true로 설정
+    }
   }, []);
 
-  const babo = sessionStorage.getItem('user-store');
-
   const logout = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       try {
         await logoutApi(token); // 로그아웃 API 호출
-        localStorage.removeItem('token'); // 로컬 스토리지에서 토큰 삭제
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
         resetStore(); // 스토어를 초기 상태로 재설정
       } catch (error) {
-        console.error('로그아웃 실패:', error);
+        console.error("로그아웃 실패:", error);
         // 오류 처리 로직
       }
     }
-  }
+  };
+
+  const navigate = useNavigate();
 
   const logoutConfirm = () => {
     Swal.fire({
@@ -64,21 +75,16 @@ function HomePage() {
       cancelButtonColor: "#d33",
       confirmButtonText: "네",
       cancelButtonText: "아니요",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         logout();
+        navigate("/introduction");
       }
     });
-  }
-
-  const navigate = useNavigate();
+  };
 
   const goToProfile = () => {
     navigate("/profile");
-  };
-
-  const goToLogin = () => {
-    navigate("/login");
   };
 
   return (
@@ -118,7 +124,6 @@ function HomePage() {
           >
             FUBAO
           </span>
-
         </div>
         <div>
           <FontAwesomeIcon
@@ -127,7 +132,6 @@ function HomePage() {
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
             onClick={goToProfile}
           />
-          {profile ? (
             <FontAwesomeIcon
               icon="right-from-bracket"
               color="#778a9b"
@@ -137,17 +141,6 @@ function HomePage() {
               }}
               onClick={logoutConfirm}
             />
-          ) : (
-            <FontAwesomeIcon
-              icon="right-to-bracket"
-              color="#778a9b"
-              style={{
-                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
-                fontSize: "1.4rem",
-              }}
-              onClick= {goToLogin}
-            />
-          )}
         </div>
       </div>
       <Foryou />
@@ -163,14 +156,83 @@ function HomePage() {
       <Point3 />
       <Point4 />
 
-      {/* 사전설문 모달 */}
-      {/* <Survey
-        open={open}
-        onClose={() => setOpen(false)}
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        handleSubmit={handleSubmit}
-      /> */}
+      {/* 설문모달 */}
+      <React.Fragment>
+        <Button
+          variant="outlined"
+          color="neutral"
+          onClick={() => setOpen(true)}
+        >
+          Open modal
+        </Button>
+        <Modal
+          aria-labelledby="modal-title"
+          aria-describedby="modal-desc"
+          open={open}
+          onClose={() => setOpen(false)}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Sheet
+            variant="outlined"
+            sx={{
+              maxWidth: 500,
+              borderRadius: "md",
+              p: 3,
+              boxShadow: "lg",
+            }}
+          >
+            <ModalClose variant="plain" sx={{ m: 1 }} />
+            <Typography
+              component="h2"
+              id="modal-title"
+              level="h3"
+              textColor="inherit"
+              fontWeight="lg"
+              mb={1}
+            >
+            푸바오의 초간단 질문
+            </Typography>
+            <Typography sx={{ fontSize: "1.1rem", margin: "0rem 0rem 1rem" }}>
+              🧐좋아하는 낚시 방법이 있나요?
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+              <Checkbox label="찌낚시" />
+              <Checkbox label="원투낚시" />
+              <Checkbox label="루어낚시" />
+              <Checkbox label="훌치기낚시" />
+              <Checkbox label="없음" />
+            </Box>
+            <Typography sx={{ fontSize: "1.1rem", margin: "1rem 0rem" }}>
+              🧐어떤 물고기를 잡고 싶으신가요?
+            </Typography>
+            <Box sx={{ display: "flex", gap: 1, flexWrap: "wrap" }}>
+              <Checkbox label="참돔" />
+              <Checkbox label="농어" />
+              <Checkbox label="전갱이" />
+              <Checkbox label="숭어" />
+              <Checkbox label="고등어" />
+              <Checkbox label="광어" />
+              <Checkbox label="우럭" />
+              <Checkbox label="감성돔" />
+              <Checkbox label="돌돔" />
+              <Checkbox label="쥐노래미" />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "1rem",
+              }}
+            >
+              <Button>제출</Button>
+            </Box>
+          </Sheet>
+        </Modal>
+      </React.Fragment>
 
       {/* 리뷰 모달 */}
       {/* <Review
