@@ -32,7 +32,7 @@ class FishView(APIView):
         serializer = FishDetailSerializer(fish_instance)
         return Response(serializer.data)
     
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
     permission_classes = [IsAuthenticated]
     
@@ -40,10 +40,11 @@ class MyFishListView(APIView):
     def get(self, request):
         fishlist = user_fish.objects.filter(user=request.user)
         myfishdone = 0
+        myfishall = 0
         for f in fishlist:
             if f.count > 0:
                 myfishdone += 1
-        myfishall = len(fishlist)
+                myfishall += f.count
         seriarizer = UserFishSerializer(fishlist, many=True)
         return Response([myfishdone, myfishall, seriarizer.data], status=status.HTTP_200_OK)
     
@@ -63,7 +64,7 @@ class MyFishListView(APIView):
         serializer = UserFishSerializer(user_fish_instances, many=True)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-@method_decorator(login_required, name='dispatch')
+# @method_decorator(login_required, name='dispatch')
 class MyFishView(APIView):
     permission_classes = [IsAuthenticated]
 
