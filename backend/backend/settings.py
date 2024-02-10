@@ -36,6 +36,11 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # local
     'user',
+    'fish',
+    'schedule',
+    'information',
+    'location',
+    'review',
 
     # DRF
     'drf_yasg',
@@ -43,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     
     # social login
+    'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -52,6 +58,9 @@ INSTALLED_APPS = [
     # cors-headers
     'corsheaders',
     
+    # django-extensions
+    'django_extensions',
+    
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,25 +68,44 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'schedule',
-    'information',
+    
+    #ssl
+    'sslserver',
 ]
 
 MIDDLEWARE = [
-    # allauth
-    'allauth.account.middleware.AccountMiddleware',
-    
-    # corsheaders
-    'corsheaders.middleware.CorsMiddleware',
-        
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # corsheaders
+    'corsheaders.middleware.CorsMiddleware',        
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # allauth
+    'allauth.account.middleware.AccountMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://i10c104.p.ssafy.io:3000',
+]
+
+REST_FRAMEWORK = {
+    # Authentication
+    # Token 인증을 기본으로 사용하도록 설정
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+    ],
+    # permission
+    # API 접근에 대한 기본 권한 설정. 모든 요청 허용
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+}
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -140,7 +168,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# 이미지 저장을 위한 코드(지용)
+STATIC_URL = 'profile_images/'
+STATIC_ROOT = ''
+STATICFILES_DIRS = [
+    BASE_DIR / 'profile_images',
+]
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -172,6 +208,10 @@ ACCOUNT_USERNAME_VERIFICATION = None
 
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
+REST_AUTH = {
+    'SESSION_LOGIN': False,
+    'REGISTER_SERIALIZER': 'user.serializers.CustomRegisterSerializer',
+}
 
 # admin site
 SITE_ID = 1

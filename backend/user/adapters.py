@@ -16,6 +16,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         gender = data.get("gender")
         date_of_birth = data.get("date_of_birth")
         profile_img = data.get("profile_img")
+        presurvey = data.get("presurvey")
 
         user.email = email
         user.username = email  # Assuming email is used as the username, change it if necessary
@@ -32,6 +33,8 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             user.date_of_birth = date_of_birth
         if profile_img:
             user.profile_img = profile_img
+        if presurvey:
+            user.presurvey = presurvey
 
         if "password1" in data:
             user.set_password(data["password1"])
