@@ -109,18 +109,21 @@ def predict():
 
                 # print(fish_len)
                 # print(card_len)
-
-                fish_act_len = (fish_len * obj_len) / card_len
+                    
+                if card_len != 0: # 카드 인식 성공 시
+                    fish_act_len = (fish_len * obj_len) / card_len
+                    card_image_path = "card_image.jpg"
+                    card_image = ori_img2[int(vertex[0, 1] * height / 480):int(vertex[1, 1] * height / 480), int(vertex[0, 0] * width / 640):int(vertex[2, 0] * width / 640)]
+                    # cv2.imshow('original_img', card_image)
+                    cv2.imwrite(card_image_path, card_image)
+                else:
+                    fish_act_len = 0
+                    print("카드 인식 실패")
 
                 # print(vertex[0, 1] * int(height / 480))
                 # print(vertex[1, 1] * int(height / 480))
                 # print(vertex[0, 0] * int(width / 640))
                 # print(vertex[2, 0] * int(width / 640))
-
-                card_image_path = "card_image.jpg"
-                card_image = ori_img2[int(vertex[0, 1] * height / 480):int(vertex[1, 1] * height / 480), int(vertex[0, 0] * width / 640):int(vertex[2, 0] * width / 640)]
-                # cv2.imshow('original_img', card_image)
-                cv2.imwrite(card_image_path, card_image)
 
 
             # 어종 분류 모듈
@@ -143,7 +146,7 @@ def predict():
             encoded_string = base64.b64encode(image_binary)
             decoded_string = encoded_string.decode('UTF-8')
 
-            if obj != "none": # 비교 물체가 있을 때
+            if obj != "none":
                 message = {
                     "length" : fish_act_len,
                     "species": class_name,
@@ -151,7 +154,7 @@ def predict():
                 }
                 db_processing(uid, class_idx, fish_act_len, image_path)
 
-            else: # 비교 물체가 없을 때
+            else:
                 message = {
                     "species": class_name,
                     "image" : decoded_string
