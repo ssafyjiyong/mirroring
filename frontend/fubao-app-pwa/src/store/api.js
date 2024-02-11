@@ -23,6 +23,24 @@ export const currentUserApi = async (token) => {
   }
 };
 
+export const scheduleApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/schedule/myschedule/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch schedule");
+  }
+};
+
 export const myFishApi = async (token) => {
   try {
     const response = await axios.get(`${API_URL}/fish/myfish/`, {

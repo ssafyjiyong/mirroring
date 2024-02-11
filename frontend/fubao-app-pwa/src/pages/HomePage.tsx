@@ -9,6 +9,7 @@ import Sheet from "@mui/joy/Sheet";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
 import Fubaoguide from "../components/Main/Fubaoguide";
+import MenuComponent from "../components/Main/MenuComponent";
 import CameraOpen from "../components/Main/CameraOpen";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
@@ -31,7 +32,7 @@ import { ProfileType } from "../store/types";
 function HomePage() {
   const { profile } = useStore() as { profile: ProfileType | null };
   const { loadProfile, resetStore } = useStore();
-  const [open, setOpen] = React.useState<boolean>(true);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
@@ -46,8 +47,8 @@ function HomePage() {
       loadProfile();
     }
 
-    if (profile?.presurvey) {
-      setOpen(false);
+    if (profile && !profile.presurvey) {
+      setOpen(true);
     }
   }, []);
 
@@ -159,8 +160,9 @@ function HomePage() {
       </div>
       <Etiquette />
       <Fubaoguide />
+      <MenuComponent />
       {/* <Foryou /> */}
-      <CameraOpen />
+      {/* <CameraOpen /> */}
       {/* <Recommendation /> */}
       <Method1 id="method" />
       <Method2 />
