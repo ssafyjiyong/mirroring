@@ -1,9 +1,10 @@
 import { create } from 'zustand'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
-import { currentUserApi } from './api'
+import { currentUserApi, scheduleFetchApi } from './api'
 
 const initialState = {
   profile: null,
+  schedule: null,
 }
 
 const store = (set) => ({
@@ -21,6 +22,18 @@ const store = (set) => ({
       console.error(error);
     }
   },
+  loadSchedule: async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (token) {
+        const schedule = await scheduleFetchApi(token); // 단일 일정 객체를 로드
+        set({ schedule });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  },
+  clearSchedule: () => set({ schedule: null }),
   resetStore: () => set({ ...initialState }),
 })
 

@@ -16,7 +16,7 @@ export const HomeIcon = styled.div`
 `;
 
 export const HomeIconLeft = styled.div`
-    position: fixed;
+    position: absolute;
     top: 2rem;
     left: 2rem;
     display: flex;

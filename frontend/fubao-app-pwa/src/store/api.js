@@ -23,7 +23,7 @@ export const currentUserApi = async (token) => {
   }
 };
 
-export const scheduleApi = async (token) => {
+export const scheduleFetchApi = async (token) => {
   try {
     const response = await axios.get(`${API_URL}/schedule/myschedule/`, {
       headers: {
