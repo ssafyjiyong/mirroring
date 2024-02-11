@@ -11,7 +11,7 @@ def classify_species(image_path):
     model = load_model("keras_model.h5", compile=False)
 
     # Load the labels
-    class_names = open("labels.txt", "r").readlines()
+    class_names = open("labels.txt", "r", encoding='UTF8').readlines()
 
     # Create the array of the right shape to feed into the keras model
     # The 'length' or number of images you can put into the array is
