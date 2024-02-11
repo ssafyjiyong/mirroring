@@ -1,8 +1,13 @@
 import axios from "axios";
 
+<<<<<<< HEAD
+const API_URL = "http://127.0.0.1:8000";
+const API_URL_FLASK = "http://54.180.108.229:5000";
+=======
 // const API_URL = "http://127.0.0.1:8000";
 const API_URL = "https://i10c104.p.ssafy.io/api";
 const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
+>>>>>>> 5c2f4200d59a7a2864eb1e1bbb94fcf0ed6cbc25
 
 // GET 요청 API
 export const currentUserApi = async (token) => {
@@ -50,6 +55,24 @@ export const mapInfoApi = async () => {
     // 에러 처리 로직
     console.error("An error occurred during the API call:", error);
     throw new Error("Failed to fetch map info");
+  }
+};
+
+export const planFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
   }
 };
 
@@ -262,6 +285,23 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
 };
 
 //DELETE 요청 API
+export const planCancelApi = async (token, planid) => {
+  try {
+    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {
