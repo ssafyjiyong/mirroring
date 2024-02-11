@@ -12,5 +12,6 @@ export interface ProfileType {
     total_fish_count: number;
     total_schedules: number;
     latest_schedule_date: string | null;
+    presurvey: boolean;
   }
   

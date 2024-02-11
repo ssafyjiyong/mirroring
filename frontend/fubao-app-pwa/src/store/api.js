@@ -109,7 +109,6 @@ export const prohibitFishApi = async (token) => {
   }
 };
 
-
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
@@ -265,6 +264,25 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
     const response = await axios.patch(
       `${API_URL}/user/profile/`,
       { nickname },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const surveyPatchApi = async ({ token }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/user/profile/`,
+      { presurvey: true },
       {
         headers: {
           Authorization: `Token ${token}`,

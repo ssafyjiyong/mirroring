@@ -8,6 +8,7 @@ import Checkbox from "@mui/joy/Checkbox";
 import Sheet from "@mui/joy/Sheet";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
+import Fubaoguide from "../components/Main/Fubaoguide";
 import CameraOpen from "../components/Main/CameraOpen";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
@@ -23,8 +24,8 @@ import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import Review from "../components/Modal/Review";
+import { logoutApi, surveyPatchApi } from "../store/api";
 import useStore from "../store/store";
-import { logoutApi } from "../store/api";
 import { ProfileType } from "../store/types";
 
 function HomePage() {
@@ -45,8 +46,8 @@ function HomePage() {
       loadProfile();
     }
 
-    if (profile && !profile.total_schedules) {
-      // setOpen(true); // Survey 모달을 열기 위해 open 상태를 true로 설정
+    if (profile?.presurvey) {
+      setOpen(false);
     }
   }, []);
 
@@ -59,6 +60,19 @@ function HomePage() {
         resetStore(); // 스토어를 초기 상태로 재설정
       } catch (error) {
         console.error("로그아웃 실패:", error);
+        // 오류 처리 로직
+      }
+    }
+  };
+
+  const surveydone = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await surveyPatchApi({ token });
+        setOpen(false);
+      } catch (error) {
+        console.error("설문 등록 실패:", error);
         // 오류 처리 로직
       }
     }
@@ -132,21 +146,22 @@ function HomePage() {
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
             onClick={goToProfile}
           />
-            <FontAwesomeIcon
-              icon="right-from-bracket"
-              color="#778a9b"
-              style={{
-                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
-                fontSize: "1.4rem",
-              }}
-              onClick={logoutConfirm}
-            />
+          <FontAwesomeIcon
+            icon="right-from-bracket"
+            color="#778a9b"
+            style={{
+              margin: "0.3rem 0.8rem 0.1rem 0.3rem",
+              fontSize: "1.4rem",
+            }}
+            onClick={logoutConfirm}
+          />
         </div>
       </div>
-      <Foryou />
-      <CameraOpen />
-      <Recommendation />
       <Etiquette />
+      <Fubaoguide />
+      {/* <Foryou /> */}
+      <CameraOpen />
+      {/* <Recommendation /> */}
       <Method1 id="method" />
       <Method2 />
       <Method3 />
@@ -187,7 +202,7 @@ function HomePage() {
               fontWeight="lg"
               mb={1}
             >
-            푸바오의 초간단 질문
+              푸바오의 초간단 질문
             </Typography>
             <Typography sx={{ fontSize: "1.1rem", margin: "0rem 0rem 1rem" }}>
               🧐좋아하는 낚시 방법이 있나요?
@@ -221,7 +236,7 @@ function HomePage() {
                 marginTop: "1rem",
               }}
             >
-              <Button>제출</Button>
+              <Button onClick={surveydone}>제출</Button>
             </Box>
           </Sheet>
         </Modal>
