@@ -137,17 +137,18 @@ code {
 .speech-bubble {
 	position: relative;
 	background: #ffffff;
-	border-radius: .4em;
+	border-radius: 15px;
+  padding: 0.1rem;
 }
 
 .speech-bubble:after {
 	content: '';
 	position: absolute;
 	bottom: 0;
-	left: 50%;
+	left: 30%;
 	width: 0;
 	height: 0;
-	border: 0.781em solid transparent;
+	border: 1em solid transparent;
 	border-top-color: #ffffff;
 	border-bottom: 0;
 	border-right: 0;

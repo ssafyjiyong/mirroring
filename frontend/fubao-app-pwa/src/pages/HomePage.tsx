@@ -46,7 +46,7 @@ function HomePage() {
       loadProfile();
     }
 
-    if (profile && !profile.total_schedules) {
+    if (profile && !profile.presurvey) {
       // setOpen(true); // Survey 모달을 열기 위해 open 상태를 true로 설정
     }
   }, []);
