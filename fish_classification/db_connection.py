@@ -24,11 +24,13 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         cursor = connection.cursor()
         # cursor2 = connection.cursor()
         
-        with open(img_path, 'rb') as file:
-            binaryData = file.read()
+        # with open(img_path, 'rb') as file:
+        #     binaryData = file.read()
 
-        encoded_str = base64.b64encode(binaryData)
-        decoded_str = encoded_str.decode('UTF-8')
+        # encoded_str = base64.b64encode(binaryData)
+        # decoded_str = encoded_str.decode('UTF-8')
+
+        img_save_name = "fish_image_" + str(user_id) + "_" + str(fish_id) + ".jpg"
 
         sql = '''
         SELECT
@@ -49,7 +51,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
             sql = '''
             UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
             '''
-            cursor.execute(sql, (fish_act_length, 1, decoded_str, user_id, fish_id))
+            cursor.execute(sql, (fish_act_length, 1, img_save_name, user_id, fish_id))
             connection.commit()
             img_flag = True
 
@@ -60,7 +62,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 sql = '''
                 UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, decoded_str, user_id, fish_id))
+                cursor.execute(sql, (fish_act_length, cur_cnt, img_save_name, user_id, fish_id))
                 connection.commit()
                 img_flag = True
                 print("2번")
@@ -68,7 +70,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 sql = '''
                 UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, decoded_str, user_id, fish_id))
+                cursor.execute(sql, (fish_act_length, cur_cnt, img_save_name, user_id, fish_id))
                 connection.commit()
                 img_flag = True
                 print("3번")
