@@ -28,8 +28,8 @@ class ScheduleAPIView(APIView):
     
     # 일정 조회(단일)
     @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
-    def get(self, request, pk):
-        schedule_instance = get_object_or_404(schedule, id=pk, user=request.user, done=False)
+    def get(self, request):
+        schedule_instance = get_object_or_404(schedule, user=request.user, done=False)
         serializer = ScheduleSerializer(schedule_instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
