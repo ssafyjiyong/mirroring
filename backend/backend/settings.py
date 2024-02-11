@@ -68,8 +68,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    #ssl
-    'sslserver',
+    # #ssl
+    # 'sslserver',
 ]
 
 MIDDLEWARE = [
