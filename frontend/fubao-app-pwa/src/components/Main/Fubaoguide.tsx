@@ -19,7 +19,7 @@ const Fubaoguide = () => {
       <img
         src="/imgs/my_panda.png"
         alt="panda"
-        style={{ width: "80vw", height: "auto", maxWidth: "350px", marginTop: "0.7rem" }}
+        style={{ width: "50vw", height: "auto", maxWidth: "350px", marginTop: "0.7rem" }}
       />
     </div>
     </div>
