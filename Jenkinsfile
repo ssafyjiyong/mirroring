@@ -89,6 +89,18 @@ pipeline {
                     }
 
                 }
+
+                stage('Delete Previous AI Docker Container'){
+                    steps {
+                        script {
+                            sh '''
+                                docker stop ${AI_CONTAINER_NAME}
+                                docker rm ${AI_CONTAINER_NAME}
+                            '''
+                        }
+                    }
+
+                }
             }
 
         }
