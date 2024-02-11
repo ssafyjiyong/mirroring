@@ -15,8 +15,7 @@ COPY . .
 
 EXPOSE 8000
 
-RUN python manage.py makemigrations
-
-CMD ["sh","-c","gunicorn --bind 0.0.0.0:8000 stock.wsgi:application && python manage.py migrate "]
-# CMD ["sh","-c","python manage.py runserver 0.0.0.0:8000 && python manage.py migrate"]
+# CMD ["gunicorn","--bind","0.0.0.0:8000","stock.wsgi:application"]
+CMD ["sh","-c","gunicorn --bind 0.0.0.0:8000 backend.wsgi:application && python manage.py migrate "]
+# CMD ["python","manage.py","runserver","0.0.0.0:8000","--certificate","/etc/letsencrypt/live/i10c104.p.ssafy.io/fullchain.pem","--key","/etc/letsencrypt/live/i10c104.p.ssafy.io/privkey.pem"]
 

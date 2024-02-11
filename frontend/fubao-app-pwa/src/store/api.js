@@ -1,7 +1,13 @@
 import axios from "axios";
 
+<<<<<<< HEAD
 const API_URL = "http://127.0.0.1:8000";
 const API_URL_FLASK = "http://54.180.108.229:5000";
+=======
+// const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://i10c104.p.ssafy.io/api";
+const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
+>>>>>>> 5c2f4200d59a7a2864eb1e1bbb94fcf0ed6cbc25
 
 // GET 요청 API
 export const currentUserApi = async (token) => {
