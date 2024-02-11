@@ -32,7 +32,7 @@ interface Position {
   isOpen?: boolean;
 }
 
-const MapComponent = () => {
+const PlanRegisterMap = () => {
   useKakaoLoader();
 
   const { data, error, isPending } = useQuery({
@@ -190,4 +190,4 @@ const MapComponent = () => {
   );
 };
 
-export default MapComponent;
+export default PlanRegisterMap;
