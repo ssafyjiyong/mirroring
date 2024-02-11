@@ -8,7 +8,7 @@ const StyledSlider = styled(Slider)`
   overflow: hidden;
 
   .slick-dots {
-    bottom: 110px;
+    bottom: 14vh;
     z-index: 1000;
   }
 `;
@@ -76,7 +76,7 @@ const IntroductionPage = () => {
             <img
               src="imgs/introduction/introduction1.png"
               alt="introduction1"
-              style={{ width: "19rem", height: "15rem" }}
+              style={{ width: "88vw", height: "auto", maxWidth: "400px"}}
             />
           </AlignBox>
         </TopBox1>
@@ -85,7 +85,7 @@ const IntroductionPage = () => {
             <img
               src="imgs/introduction/introduction2.png"
               alt="introduction1"
-              style={{ width: "18rem", height: "15rem", marginTop: "7rem" }}
+              style={{ width: "80vw", height: "auto", marginTop: "7rem", maxWidth: "300px" }}
             />
           <Text style={{ margin: "6rem 0rem 0rem 0rem" }}>
             일정 등록하면 <br /> 맞춤 입문가이드 시작
@@ -100,7 +100,7 @@ const IntroductionPage = () => {
             <img
               src="imgs/introduction/introduction3.png"
               alt="introduction1"
-              style={{ width: "19rem", height: "15rem" }}
+              style={{ width: "85vw", height: "auto", maxWidth: "300px" }}
             />
           </AlignBox>
         </TopBox3>
@@ -109,7 +109,7 @@ const IntroductionPage = () => {
             <img
               src="logo512.png"
               alt="introduction1"
-              style={{ width: "15rem", height: "15rem", marginTop: "8rem" }}
+              style={{ width: "65vw", height: "auto", marginTop: "8rem", maxWidth: "250px"  }}
             />
           <Text style={{ margin: "4rem 0rem 0rem 0rem", textAlign:"center" }}>
             지금 바로 로그인하고 <br /> 푸바오를 만나보아요
