@@ -41,7 +41,7 @@ const MenuComponent = () => {
     <WhiteBox>
       <Text onClick={scrollToMethod}>낚시방법</Text>
       <TextBar>|</TextBar>
-      <Text>맞춤정보</Text>
+      <Text>맞춤추천</Text>
       <TextBar>|</TextBar>
       <Text>일정등록</Text>
     </WhiteBox>

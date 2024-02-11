@@ -58,6 +58,7 @@ function HomePage() {
       try {
         await logoutApi(token); // 로그아웃 API 호출
         localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        sessionStorage.removeItem("user");
         resetStore(); // 스토어를 초기 상태로 재설정
       } catch (error) {
         console.error("로그아웃 실패:", error);
