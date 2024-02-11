@@ -158,13 +158,6 @@ function HomePage() {
 
       {/* 설문모달 */}
       <React.Fragment>
-        <Button
-          variant="outlined"
-          color="neutral"
-          onClick={() => setOpen(true)}
-        >
-          Open modal
-        </Button>
         <Modal
           aria-labelledby="modal-title"
           aria-describedby="modal-desc"

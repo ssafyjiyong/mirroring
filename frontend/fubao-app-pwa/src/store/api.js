@@ -52,6 +52,24 @@ export const mapInfoApi = async () => {
   }
 };
 
+export const planFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
+
 // 방생기준 GET
 export const releaseFishApi = async (token) => {
   try {
