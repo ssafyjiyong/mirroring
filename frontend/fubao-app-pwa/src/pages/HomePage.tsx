@@ -143,10 +143,10 @@ function HomePage() {
             />
         </div>
       </div>
+      <Etiquette />
       <Foryou />
       <CameraOpen />
       <Recommendation />
-      <Etiquette />
       <Method1 id="method" />
       <Method2 />
       <Method3 />
