@@ -44,7 +44,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         cursor.execute(sql, (user_id, fish_id)) # 커리 실행
         row = cursor.fetchone()
 
-        if row['count'] == None: # 처음 잡은 물고기일 때
+        if row['count'] == 0: # 처음 잡은 물고기일 때
             print("1번")
             sql = '''
             UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
@@ -118,7 +118,7 @@ def db_processing_no_obj(user_id, fish_id):
         cursor.execute(sql, (user_id, fish_id)) # 커리 실행
         row = cursor.fetchone()
 
-        if row['count'] == None: # 처음 잡은 물고기일 때
+        if row['count'] == 0: # 처음 잡은 물고기일 때
             sql = '''
             UPDATE fish_user_fish SET count = 1 WHERE user_id = %s AND fish_id = %s;
             '''
