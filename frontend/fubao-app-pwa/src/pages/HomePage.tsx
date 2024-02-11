@@ -164,14 +164,14 @@ function HomePage() {
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
       {/* <Recommendation /> */}
-      <Method1 id="method" />
-      <Method2 />
-      <Method3 />
-      <Method4 />
       <Point1 id="point" />
       <Point2 />
       <Point3 />
       <Point4 />
+      <Method1 id="method" />
+      <Method2 />
+      <Method3 />
+      <Method4 />
 
       {/* 설문모달 */}
       <React.Fragment>
