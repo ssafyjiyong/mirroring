@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -44,6 +44,18 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
 
+  const [rememberMe, setRememberMe] = useState(false);
+
+  // 컴포넌트 마운트 시 localStorage에서 이메일과 rememberMe 상태 로드
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedRememberMe = localStorage.getItem("rememberMe") === "true";
+    if (storedEmail && storedRememberMe) {
+      setEmail(storedEmail);
+      setRememberMe(storedRememberMe);
+    }
+  }, []);
+
   const loginMutation = useMutation({
     mutationFn: loginApi,
     onSuccess: () => {
@@ -87,7 +99,24 @@ const Login = () => {
       return;
     }
 
+    // "로그인 정보 기억하기"가 선택된 경우, 이메일과 체크박스 상태를 localStorage에 저장
+    if (rememberMe) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("rememberMe", rememberMe.toString());
+    } else {
+      // 선택되지 않은 경우, localStorage에서 데이터 제거
+      localStorage.removeItem("email");
+      localStorage.removeItem("rememberMe");
+    }
+
     loginMutation.mutate({ email, password1 });
+  };
+
+  // 체크박스 상태 변경 핸들러
+  const handleRememberMeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRememberMe(event.target.checked);
   };
 
   const handleBack = () => {
@@ -160,7 +189,7 @@ const Login = () => {
               }
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" checked={rememberMe} onChange={handleRememberMeChange} />}
               label="로그인 정보 기억하기"
             />
 

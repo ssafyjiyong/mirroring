@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "@mui/joy/Modal";
+import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
@@ -8,13 +9,14 @@ import Button from "@mui/joy/Button";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PlanRegisterMap from "../Map/PlanRegisterMap";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   padding: 0.4rem;
 `;
 
@@ -74,7 +76,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     value: string;
     label: string;
   } | null>(null);
-  
+
   const [selectedMethodOption, setSelectedMethodOption] = useState<{
     value: string;
     label: string;
@@ -158,6 +160,19 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     />
   );
 
+  const [isMapOpen, setIsMapOpen] = useState(false); // Map 모달 상태
+  const [location, setLocation] = useState(""); // 선택된 장소 정보
+  const handleOpenMapModal = () => {
+    setIsMapOpen(true);
+  };
+  const handleSelectLocation = (selectedLocation: any) => {
+    setLocation(selectedLocation.address); // 선택된 장소의 주소를 location 상태에 저장
+    setIsMapOpen(false); // Map 모달 닫기
+  };
+  const [layout, setLayout] = React.useState<
+    ModalDialogProps["layout"] | undefined
+  >(undefined);
+
   return (
     <Modal
       aria-labelledby="modal-title"
@@ -211,9 +226,22 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
               <Input
                 name="location"
                 type="text"
-                placeholder="장소 (예시 부산항)"
+                placeholder="장소 (예시: 부산항)"
+                value={location}
+                readOnly
+                onClick={handleOpenMapModal}
               />
             </AlignDiv>
+            
+            {isMapOpen && (
+              <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+                <ModalDialog layout={layout}>
+                  <ModalClose />
+                  <PlanRegisterMap />
+                </ModalDialog>
+              </Modal>
+            )}
+            
             <AlignDiv>
               <Span>포인트: </Span>
               <PointSelect />

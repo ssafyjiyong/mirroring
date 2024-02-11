@@ -17,7 +17,7 @@ const Fubaoguide = () => {
     <div style={{ margin: "2rem 0rem 0rem" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div className="speech-bubble">
-          <Text>{profile?.nickname}님, 일정을 알려주세요!</Text>
+          <Text>{profile?.nickname}님의 일정을 알려주세요!</Text>
         </div>
       </div>
 
