@@ -14,10 +14,10 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
 
     try:
     
-        connection = my.connect(host    ='localhost',   #루프백주소, 자기자신주소
+        connection = my.connect(host    ='i10c104.p.ssafy.io',   #루프백주소, 자기자신주소
                             user        ='root',        #DB ID      
-                            password    ='7724!!4338##',        # 사용자가 지정한 비밀번호
-                            database    ='fubao_db',
+                            password    ='fubao82493',        # 사용자가 지정한 비밀번호
+                            database    ='fubao',
                             cursorclass = my.cursors.DictCursor #딕셔너리로 받기위한 커서
                             )
 
@@ -27,11 +27,14 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         with open(img_path, 'rb') as file:
             binaryData = file.read()
 
+        encoded_str = base64.b64encode(binaryData)
+        decoded_str = encoded_str.decode('UTF-8')
+
         sql = '''
         SELECT
             * 
         FROM
-            user_fish 
+            fish_user_fish 
         WHERE 
             user_id=%s
         AND 
@@ -44,9 +47,9 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         if row['count'] == None: # 처음 잡은 물고기일 때
             print("1번")
             sql = '''
-            UPDATE user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+            UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
             '''
-            cursor.execute(sql, (fish_act_length, 1, binaryData, user_id, fish_id))
+            cursor.execute(sql, (fish_act_length, 1, decoded_str, user_id, fish_id))
             connection.commit()
             img_flag = True
 
@@ -55,23 +58,23 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
 
             if row['max_length'] == None: # 기존 물고기의 길이가 없을 때
                 sql = '''
-                UPDATE user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+                UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, binaryData, user_id, fish_id))
+                cursor.execute(sql, (fish_act_length, cur_cnt, decoded_str, user_id, fish_id))
                 connection.commit()
                 img_flag = True
                 print("2번")
             elif row['max_length'] < fish_act_length: # 현재 잡은 물고기 길이가 기존의 물고기 최고 길이보다 길 때
                 sql = '''
-                UPDATE user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+                UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, binaryData, user_id, fish_id))
+                cursor.execute(sql, (fish_act_length, cur_cnt, decoded_str, user_id, fish_id))
                 connection.commit()
                 img_flag = True
                 print("3번")
             else: # 현재 잡은 물고기 길이가 기존의 물고기 최고 길이보다 길지 않을 때
                 sql = '''
-                UPDATE user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
+                UPDATE fish_user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
                 '''
                 cursor.execute(sql, (cur_cnt, user_id, fish_id))
                 connection.commit()
@@ -92,10 +95,10 @@ def db_processing_no_obj(user_id, fish_id):
     fish_id = fish_id + 1 # 인덱스를 1부터로 조정
     try:
     
-        connection = my.connect(host    ='localhost',   #루프백주소, 자기자신주소
+        connection = my.connect(host    ='i10c104.p.ssafy.io',   #루프백주소, 자기자신주소
                             user        ='root',        #DB ID      
-                            password    ='7724!!4338##',        # 사용자가 지정한 비밀번호
-                            database    ='fubao_db',
+                            password    ='fubao82493',        # 사용자가 지정한 비밀번호
+                            database    ='fubao',
                             cursorclass = my.cursors.DictCursor #딕셔너리로 받기위한 커서
                             )
 
@@ -105,7 +108,7 @@ def db_processing_no_obj(user_id, fish_id):
         SELECT
             * 
         FROM
-            user_fish 
+            fish_user_fish 
         WHERE 
             user_id=%s
         AND 
@@ -117,7 +120,7 @@ def db_processing_no_obj(user_id, fish_id):
 
         if row['count'] == None: # 처음 잡은 물고기일 때
             sql = '''
-            UPDATE user_fish SET count = 1 WHERE user_id = %s AND fish_id = %s;
+            UPDATE fish_user_fish SET count = 1 WHERE user_id = %s AND fish_id = %s;
             '''
             cursor.execute(sql, (user_id, fish_id))
             connection.commit()
@@ -126,7 +129,7 @@ def db_processing_no_obj(user_id, fish_id):
             cur_cnt = row['count'] + 1
             
             sql = '''
-            UPDATE user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
+            UPDATE fish_user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
             '''
             cursor.execute(sql, (cur_cnt, user_id, fish_id))
             connection.commit()
