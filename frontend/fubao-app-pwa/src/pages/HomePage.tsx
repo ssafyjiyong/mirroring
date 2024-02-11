@@ -8,6 +8,7 @@ import Checkbox from "@mui/joy/Checkbox";
 import Sheet from "@mui/joy/Sheet";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
+import Fubaoguide from "../components/Main/Fubaoguide";
 import CameraOpen from "../components/Main/CameraOpen";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
@@ -144,9 +145,10 @@ function HomePage() {
         </div>
       </div>
       <Etiquette />
-      <Foryou />
+      <Fubaoguide />
+      {/* <Foryou /> */}
       <CameraOpen />
-      <Recommendation />
+      {/* <Recommendation /> */}
       <Method1 id="method" />
       <Method2 />
       <Method3 />
