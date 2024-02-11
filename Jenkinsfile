@@ -47,6 +47,18 @@ pipeline {
                     }
                 }
 
+
+                stage('ai Build Docker Image'){
+                    steps {
+                        script {
+                            sh '''
+                                cd ./fish_classification
+                                docker build -t ${AI_DOCKER_IMAGE_NAME} .
+                            '''
+                        }
+                    }
+                }
+
                 
             }
 
@@ -99,6 +111,14 @@ pipeline {
                     }
                 }
 
+                stage('Run AI Docker Contatiner'){
+                    steps {
+                        script {
+                            sh "docker run -d --link ${DATABASE_NAME} --name ${AI_CONTAINER_NAME} -p 5000:5000 ${AI_DOCKER_IMAGE_NAME}"
+                        }
+                    }
+                }
+                
 
             }
         }
