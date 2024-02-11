@@ -24,8 +24,8 @@ import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import Review from "../components/Modal/Review";
-import useStore from "../store/store";
 import { logoutApi, surveyPatchApi } from "../store/api";
+import useStore from "../store/store";
 import { ProfileType } from "../store/types";
 
 function HomePage() {
