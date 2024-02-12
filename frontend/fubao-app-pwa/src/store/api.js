@@ -222,7 +222,7 @@ export const classifyApiCreditCard = async (file,uid) => {
   }
 };
 
-export const classifyApiCigarette = async (file,uid) => {
+export const classifyApiCigarette = async ({file, uid}) => {
   const formData = new FormData();
   formData.append("uid", 2);
   formData.append("file", file);

@@ -133,19 +133,19 @@ const CameraOpen = () => {
       src: "/imgs/card.png",
       title: "신용카드",
       description: "높은 정확도",
-      onClick: () => selectedFile && creditCardMutation.mutate(selectedFile),
+    //   onClick: () => selectedFile && creditCardMutation.mutate(selectedFile),
     },
     {
       src: "/imgs/ciga.png",
       title: "담배갑",
       description: "보통 정확도",
-      onClick: () => selectedFile && cigaretteMutation.mutate(selectedFile),
+    //   onClick: () => selectedFile && cigaretteMutation.mutate(selectedFile),
     },
     {
       src: "/imgs/fish.png",
       title: "해당없음",
       description: "어종만 판별",
-      onClick: () => selectedFile && noneMutation.mutate(selectedFile),
+    //   onClick: () => selectedFile && noneMutation.mutate(selectedFile),
     },
     {
       src: "/imgs/cancel.png",
