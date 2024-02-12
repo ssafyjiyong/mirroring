@@ -163,6 +163,7 @@ function HomePage() {
       <Etiquette />
       <Fubaoguide />
       <MenuComponent profile={profile} />
+
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
       {/* <Recommendation /> */}
