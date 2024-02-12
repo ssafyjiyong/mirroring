@@ -28,6 +28,7 @@ const store = (set) => ({
       if (token) {
         const schedule = await scheduleFetchApi(token); // 단일 일정 객체를 로드
         set({ schedule });
+        console.log(schedule);
       }
     } catch (error) {
       console.error(error);
