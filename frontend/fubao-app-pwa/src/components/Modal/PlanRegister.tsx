@@ -229,7 +229,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                 placeholder="장소 (예시: 부산항)"
                 value={location}
                 readOnly
-                onClick={handleOpenMapModal}
+                // onClick={handleOpenMapModal}
               />
             </AlignDiv>
             
