@@ -168,13 +168,6 @@ const MapComponent = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIconLeft>
       </Link>
-
-      <div>
-        {/* 데이터가 성공적으로 로드되었을 때 UI 렌더링 */}
-        {data && <div>{JSON.stringify(data)}</div>}
-        {error && <div>{JSON.stringify(error)}</div>}
-        {isPending && <div>{JSON.stringify(isPending)}</div>}
-      </div>
     </div>
   );
 };

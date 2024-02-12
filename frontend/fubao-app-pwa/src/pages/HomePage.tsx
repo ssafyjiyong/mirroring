@@ -162,7 +162,7 @@ function HomePage() {
       </div>
       <Etiquette />
       <Fubaoguide />
-      <MenuComponent />
+      <MenuComponent profile={profile} />
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
       {/* <Recommendation /> */}

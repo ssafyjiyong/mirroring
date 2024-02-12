@@ -204,9 +204,10 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async (file) => {
+export const classifyApiCreditCard = async (file,uid) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "credit_card");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
@@ -221,10 +222,16 @@ export const classifyApiCreditCard = async (file) => {
   }
 };
 
-export const classifyApiCigarette = async (file) => {
+export const classifyApiCigarette = async (file,uid) => {
   const formData = new FormData();
+  formData.append("uid", 2);
   formData.append("file", file);
   formData.append("object", "cigarette");
+
+  for (let [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
       headers: {
@@ -238,9 +245,10 @@ export const classifyApiCigarette = async (file) => {
   }
 };
 
-export const classifyApiNone = async (file) => {
+export const classifyApiNone = async (file,uid) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "none");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
