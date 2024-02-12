@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useMutation } from "@tanstack/react-query";
 import { planRegisterApi } from "../../store/api";
 import PlanRegister from "../Modal/PlanRegister";
+import useStore from "../../store/store";
+import { ScheduleType } from "../../store/types";
 
 export const WhiteBox = styled.div`
   display: flex;
@@ -89,22 +91,56 @@ const MenuComponent = () => {
     planRegisterMutation.mutate({ date, location, area, method, token });
   };
 
+  const { schedule } = useStore() as {
+    schedule: ScheduleType | null;
+  };
+
+  // 현재 날짜 가져오기
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const dateString = year + "년 " + month + "월 " + day + "일";
+
+  // 디데이 계산 함수
+  const calculateDday = () => {
+    if (schedule && schedule.date) {
+      const eventDate = new Date(schedule.date);
+      const diffTime = eventDate.getTime() - today.getTime();
+      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      return diffDays; // 남은 일수 반환
+    }
+    return null; // schedule.date가 없는 경우
+  };
+
+  const dday = calculateDday();
+
   return (
     <WhiteBox>
       <Text onClick={scrollToMethod}>낚시방법</Text>
       <TextBar>|</TextBar>
-      <Text>맞춤추천</Text>
+      {/* 조건부 렌더링을 사용하여 "맞춤추천", "AI카메라", "준비물" 표시 */}
+      {!schedule || !schedule.id ? (
+        <Text>맞춤추천</Text>
+      ) : dday === 0 ? (
+        <Text>AI카메라</Text>
+      ) : (
+        <Text>준비물</Text>
+      )}
       <TextBar>|</TextBar>
-      <Text onClick={() => setOpen(true)}>일정등록</Text>
+      {!schedule || !schedule.id ? (
+        <Text onClick={() => setOpen(true)}>일정등록</Text>
+      ) : (
+        <Text>일정관리</Text>
+      )}
 
       <PlanRegister
-          open={open}
-          onClose={() => setOpen(false)}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-          handleSubmit={handleSubmit}
-        />
-
+        open={open}
+        onClose={() => setOpen(false)}
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        handleSubmit={handleSubmit}
+      />
     </WhiteBox>
   );
 };

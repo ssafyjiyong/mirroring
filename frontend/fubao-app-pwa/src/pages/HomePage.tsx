@@ -31,7 +31,7 @@ import { ProfileType } from "../store/types";
 
 function HomePage() {
   const { profile } = useStore() as { profile: ProfileType | null };
-  const { loadProfile, resetStore } = useStore();
+  const { loadProfile, resetStore, loadSchedule } = useStore();
   const [open, setOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ function HomePage() {
     }
     if (localStorage.getItem("token")) {
       loadProfile();
+      loadSchedule();
     }
 
     if (profile && !profile.presurvey) {
