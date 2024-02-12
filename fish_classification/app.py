@@ -24,7 +24,7 @@ import json
 ## 서버 띄우고 접속 허용
 app = Flask(__name__)
 # 보안관련
-# CORS(app)
+CORS(app)
 
 
 # rest 요청 처리부
