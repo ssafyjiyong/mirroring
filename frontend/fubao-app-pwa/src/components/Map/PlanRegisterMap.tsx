@@ -32,7 +32,7 @@ interface Position {
   isOpen?: boolean;
 }
 
-const MapComponent = () => {
+const PlanRegisterMap = () => {
   useKakaoLoader();
 
   const { data, error, isPending } = useQuery({
@@ -100,8 +100,14 @@ const MapComponent = () => {
     );
   };
 
+  // 마커 선택 액션 처리 함수
+  const handleSelectMarker = (selectedMarker: Position) => {
+    console.log("선택된 마커:", selectedMarker);
+    // 선택된 마커 정보 처리 로직, 예를 들어 상태 업데이트 또는 API 호출 등
+  };
+
   return (
-    <div style={{ position:"relative" }}>
+    <>
       <Map // 지도를 표시할 Container
         center={state.center}
         style={{
@@ -109,7 +115,7 @@ const MapComponent = () => {
           width: "100%",
           height: "100vh",
         }}
-        level={3} // 지도의 확대 레벨
+        level={4} // 지도의 확대 레벨
         draggable
       >
         <MarkerClusterer
@@ -130,6 +136,11 @@ const MapComponent = () => {
                 <div style={{ minWidth: "150px" }}>
                   <div style={{ padding: "5px", color: "#000" }}>
                     {pos.address}
+                    <br />
+                    <button onClick={() => handleSelectMarker(pos)}>
+                      선택
+                    </button>
+                    {/* 버튼 클릭 시 handleSelectMarker 함수 호출, pos 정보를 인자로 전달 */}
                   </div>
                 </div>
               )}
@@ -168,8 +179,15 @@ const MapComponent = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIconLeft>
       </Link>
-    </div>
+
+      <div>
+        {/* 데이터가 성공적으로 로드되었을 때 UI 렌더링 */}
+        {data && <div>{JSON.stringify(data)}</div>}
+        {error && <div>{JSON.stringify(error)}</div>}
+        {isPending && <div>{JSON.stringify(isPending)}</div>}
+      </div>
+    </>
   );
 };
 
-export default MapComponent;
+export default PlanRegisterMap;

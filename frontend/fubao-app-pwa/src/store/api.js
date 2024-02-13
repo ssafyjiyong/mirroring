@@ -23,6 +23,24 @@ export const currentUserApi = async (token) => {
   }
 };
 
+export const scheduleFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/schedule/myschedule/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch schedule");
+  }
+};
+
 export const myFishApi = async (token) => {
   try {
     const response = await axios.get(`${API_URL}/fish/myfish/`, {
@@ -50,6 +68,24 @@ export const mapInfoApi = async () => {
     // 에러 처리 로직
     console.error("An error occurred during the API call:", error);
     throw new Error("Failed to fetch map info");
+  }
+};
+
+export const planFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
   }
 };
 
@@ -168,9 +204,10 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async (file) => {
+export const classifyApiCreditCard = async (file,uid) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "credit_card");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
@@ -185,10 +222,16 @@ export const classifyApiCreditCard = async (file) => {
   }
 };
 
-export const classifyApiCigarette = async (file) => {
+export const classifyApiCigarette = async ({file, uid}) => {
   const formData = new FormData();
+  formData.append("uid", 2);
   formData.append("file", file);
   formData.append("object", "cigarette");
+
+  for (let [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
       headers: {
@@ -202,9 +245,10 @@ export const classifyApiCigarette = async (file) => {
   }
 };
 
-export const classifyApiNone = async (file) => {
+export const classifyApiNone = async (file,uid) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "none");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
@@ -260,7 +304,63 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
   }
 };
 
+export const surveyPatchApi = async ({ token }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/user/profile/`,
+      { presurvey: true },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const scheduleDoneApi = async ({ token, pk }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/schedule/done/${pk}/`,
+      { done: true },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
 //DELETE 요청 API
+export const planCancelApi = async (token, planid) => {
+  try {
+    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {

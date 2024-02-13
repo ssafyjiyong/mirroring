@@ -8,6 +8,8 @@ import Checkbox from "@mui/joy/Checkbox";
 import Sheet from "@mui/joy/Sheet";
 import Foryou from "../components/Main/Foryou";
 import Recommendation from "../components/Main/Recommendation";
+import Fubaoguide from "../components/Main/Fubaoguide";
+import MenuComponent from "../components/Main/MenuComponent";
 import CameraOpen from "../components/Main/CameraOpen";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
@@ -23,14 +25,14 @@ import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import Review from "../components/Modal/Review";
+import { logoutApi, surveyPatchApi } from "../store/api";
 import useStore from "../store/store";
-import { logoutApi } from "../store/api";
 import { ProfileType } from "../store/types";
 
 function HomePage() {
   const { profile } = useStore() as { profile: ProfileType | null };
-  const { loadProfile, resetStore } = useStore();
-  const [open, setOpen] = React.useState<boolean>(true);
+  const { loadProfile, resetStore, loadSchedule } = useStore();
+  const [open, setOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
     // URL의 해시(#) 부분을 사용하여 해당 ID를 가진 요소로 스크롤
@@ -43,10 +45,11 @@ function HomePage() {
     }
     if (localStorage.getItem("token")) {
       loadProfile();
+      loadSchedule();
     }
 
-    if (profile && !profile.total_schedules) {
-      // setOpen(true); // Survey 모달을 열기 위해 open 상태를 true로 설정
+    if (profile && !profile.presurvey) {
+      setOpen(true);
     }
   }, []);
 
@@ -54,11 +57,25 @@ function HomePage() {
     const token = localStorage.getItem("token");
     if (token) {
       try {
-        await logoutApi(token); // 로그아웃 API 호출
-        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
         resetStore(); // 스토어를 초기 상태로 재설정
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        sessionStorage.removeItem("user");
+        await logoutApi(token); // 로그아웃 API 호출
       } catch (error) {
         console.error("로그아웃 실패:", error);
+        // 오류 처리 로직
+      }
+    }
+  };
+
+  const surveydone = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await surveyPatchApi({ token });
+        setOpen(false);
+      } catch (error) {
+        console.error("설문 등록 실패:", error);
         // 오류 처리 로직
       }
     }
@@ -132,39 +149,35 @@ function HomePage() {
             style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
             onClick={goToProfile}
           />
-            <FontAwesomeIcon
-              icon="right-from-bracket"
-              color="#778a9b"
-              style={{
-                margin: "0.3rem 0.8rem 0.1rem 0.3rem",
-                fontSize: "1.4rem",
-              }}
-              onClick={logoutConfirm}
-            />
+          <FontAwesomeIcon
+            icon="right-from-bracket"
+            color="#778a9b"
+            style={{
+              margin: "0.3rem 0.8rem 0.1rem 0.3rem",
+              fontSize: "1.4rem",
+            }}
+            onClick={logoutConfirm}
+          />
         </div>
       </div>
-      <Foryou />
-      <CameraOpen />
-      <Recommendation />
       <Etiquette />
-      <Method1 id="method" />
-      <Method2 />
-      <Method3 />
-      <Method4 />
+      <Fubaoguide />
+      <MenuComponent profile={profile} />
+
+      {/* <Foryou /> */}
+      {/* <CameraOpen /> */}
+      {/* <Recommendation /> */}
       <Point1 id="point" />
       <Point2 />
       <Point3 />
       <Point4 />
+      <Method1 id="method" />
+      <Method2 />
+      <Method3 />
+      <Method4 />
 
       {/* 설문모달 */}
       <React.Fragment>
-        <Button
-          variant="outlined"
-          color="neutral"
-          onClick={() => setOpen(true)}
-        >
-          Open modal
-        </Button>
         <Modal
           aria-labelledby="modal-title"
           aria-describedby="modal-desc"
@@ -194,7 +207,7 @@ function HomePage() {
               fontWeight="lg"
               mb={1}
             >
-            푸바오의 초간단 질문
+              푸바오의 초간단 질문
             </Typography>
             <Typography sx={{ fontSize: "1.1rem", margin: "0rem 0rem 1rem" }}>
               🧐좋아하는 낚시 방법이 있나요?
@@ -228,7 +241,7 @@ function HomePage() {
                 marginTop: "1rem",
               }}
             >
-              <Button>제출</Button>
+              <Button onClick={surveydone}>제출</Button>
             </Box>
           </Sheet>
         </Modal>
