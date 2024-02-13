@@ -326,7 +326,7 @@ export const surveyPatchApi = async ({ token }) => {
 export const scheduleDoneApi = async ({ token, pk }) => {
   try {
     const response = await axios.patch(
-      `${API_URL}/schedule/${pk}/`,
+      `${API_URL}/schedule/done/${pk}/`,
       { done: true },
       {
         headers: {
