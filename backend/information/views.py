@@ -202,3 +202,4 @@ class FishReleaseView(APIView):
         release = get_object_or_404(release_fish, pk=pk)
         serializer = ReleaseSerializer(release)
         return Response(serializer.data, status=status.HTTP_200_OK)
+     
