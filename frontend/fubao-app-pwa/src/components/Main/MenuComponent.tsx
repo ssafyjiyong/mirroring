@@ -350,11 +350,10 @@ const MenuComponent = ({ profile }: Props) => {
             boxShadow: "lg",
           }}
         >
-          <ModalClose variant="plain" sx={{ m: 1 }} />
 
           {creditCardMutation.isPending || cigaretteMutation.isPending || noneMutation.isPending ? (
             <div style={{ display: "flex", justifyContent: "center" }}>
-              분석중입니다. 조금만 기다려주세요.
+              <span>어우, 실허네 그놈.</span>
             </div>
           ) : (
             <WhiteBox className="filebox">

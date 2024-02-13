@@ -30,19 +30,21 @@ const store = (set) => ({
         console.log(`일정 불러오기: ${JSON.stringify(schedule)}`);
         
         const currentTime = new Date();
-        currentTime.setDate(currentTime.getDate() - 1);
-        if (schedule.id && currentTime.getTime() > new Date(schedule.date).getTime()) {
+        const scheduleDate = new Date(schedule.date);
+      
+        // 시간 정보를 제거하여 단순히 날짜만 비교
+        currentTime.setHours(0, 0, 0, 0);
+        scheduleDate.setHours(0, 0, 0, 0);
+
+        if (schedule.id && currentTime.getTime() > scheduleDate.getTime()) {
           const pk = schedule.id;
           scheduleDoneApi({token, pk})
           // 로컬 저장소에서 스케줄 정보 삭제
           set({ schedule: null });
-          console.log(`일정 삭제됨: ${JSON.stringify(schedule)}`);
-        } 
-        // else {
-        //   // 스케줄이 아직 지나지 않았다면, 상태 업데이트만 수행
-        //   set({ schedule });
-        //   console.log(`일정 업데이트됨: ${JSON.stringify(schedule)}`);
-        // }
+          console.log(`일정 삭제됨`);
+        } else {
+          set({ schedule });
+        }
       }
     } catch (error) {
       console.error(error);

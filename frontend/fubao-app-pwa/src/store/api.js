@@ -204,7 +204,7 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async (file,uid) => {
+export const classifyApiCreditCard = async ({file,uid}) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -224,8 +224,8 @@ export const classifyApiCreditCard = async (file,uid) => {
 
 export const classifyApiCigarette = async ({file, uid}) => {
   const formData = new FormData();
-  formData.append("uid", 2);
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "cigarette");
 
   for (let [key, value] of formData.entries()) {
@@ -245,7 +245,7 @@ export const classifyApiCigarette = async ({file, uid}) => {
   }
 };
 
-export const classifyApiNone = async (file,uid) => {
+export const classifyApiNone = async ({file,uid}) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
