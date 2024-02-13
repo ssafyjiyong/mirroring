@@ -149,7 +149,7 @@ export const methodGetApi = async (token) => {
 // Point GET
 export const pointGetApi = async (token) => {
   try {
-    const response = await axios.get(`${API_URL}/information/point/`, {
+    const response = await axios.get(`${API_URL}/information/area/`, {
       headers: {
         Authorization: `Token ${token}`,
         "Content-Type": "application/json",
