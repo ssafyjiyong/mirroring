@@ -9,11 +9,22 @@ interface Method {
   document: string;
 }
 
+const MImg = {image: '/imgs/method1.jpg'};
+
 const Title = styled.p`
-  margin: 0.5rem 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
   font-size: 2rem;
   font-weight: 600;
-  color: #000000;
+  color: #202125;
+`;
+
+const Subtitle = styled.p`
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #AEB1BA;
 `;
 
 const AlignDiv = styled.div`
@@ -21,7 +32,8 @@ const AlignDiv = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+  color: #202125;
+`;
 
 const MethodPage1 = () => {
   const { data: method, isError, isLoading } = useQuery<Method>({
@@ -43,19 +55,19 @@ const MethodPage1 = () => {
 
   // method 상태를 사용하여 해당 데이터 렌더링
   return (
-    <div>
+    <div style={{ padding:"1rem 1rem 2rem" }}>
       {method && (
         <>
           <Title>{method.title}</Title>
-          <h2>{method.subtitle}</h2>
-          <p>{method.document}</p>
+          <Subtitle>{method.subtitle}</Subtitle>
           <AlignDiv>
           <img
-            src="/pending_img.png"
-            alt=""
-            style={{ width: "80vw", maxWidth: "500px" }}
+            src={MImg.image}
+            alt={method.title}
+            style={{ width: "100%", maxWidth: "500px", height: "auto", margin: "0.5rem 0rem" }}
           />
           </AlignDiv>
+          <p>{method.document}</p>
         </>
       )}
     </div>
