@@ -24,23 +24,22 @@ const AlignDiv = styled.div`
 `
 
 const MethodPage1 = () => {
-  const [method, setMethod] = useState<Method | null>(null); // method 상태
-  const token = localStorage.getItem("token");
+  const { data: method, isError, isLoading } = useQuery<Method>({
+    queryKey: ["methodData"], // Pass query key as part of the options object
+    queryFn: async () => {
+      const token = localStorage.getItem("token");
+      const response = await methodGetApi(token);
+      return response[0];
+    },
+  });
 
-  useEffect(() => {
-    const fetchMethods = async () => {
-      try {
-        const response = await methodGetApi(token);
-        if (response && response.length > 0) {
-          setMethod(response[0]); // 첫 번째 method를 상태로 설정
-        }
-      } catch (error) {
-        console.error("API 호출 중 에러 발생:", error);
-      }
-    };
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
 
-    fetchMethods();
-  }, [token]);
+  if (isError || !method) {
+    return <p>데이터를 가져오지 못해습니다.</p>;
+  }
 
   // method 상태를 사용하여 해당 데이터 렌더링
   return (
