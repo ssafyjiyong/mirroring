@@ -63,7 +63,7 @@ const ReleaseInfoPage = () => {
                 <TableCell>
                   <div>한국어 이름: {info.name_kor}</div>
                   <div>영어 이름: {info.name_eng}</div>
-                  <div>방생기준: {info.standard ? info.standard : "잡아도 잡아도 씨가 마르지 않음"}</div>
+                  <div>방생기준: {info.standard ? info.standard + 'cm' : "잡아도 잡아도 씨가 마르지 않음"}</div>
                 </TableCell>
               </TableRow>
             ))}
