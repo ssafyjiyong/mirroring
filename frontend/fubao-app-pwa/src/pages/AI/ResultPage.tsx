@@ -2,23 +2,34 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import useStore from "../../store/store";
 import { ProfileType } from "../../store/types";
+import Button from "@mui/joy/Button";
+import { useNavigate } from "react-router-dom";
 
 const TitleBox = styled.div`
-  border: 1px solid black;
-  height: 10rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem 1rem;
 `;
 
 const ContentBox = styled.div`
-  border: 1px solid black;
-  height: 10rem;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding: 0.5rem 1rem 1rem;
+  /* text-align: center; */
+`;
+
+const AlignBox = styled.div`
+  display: flex;
   justify-content: center;
   align-items: center;
 `;
@@ -61,6 +72,11 @@ const ResultPage = () => {
     }
   };
 
+  const navigate = useNavigate()
+  const goToHome = () => {
+    navigate("/home");
+  };
+
   // 페이지 벗어나면 스토리지 이미지 지우기
   useEffect(() => {
     const handleUnload = () => {
@@ -75,40 +91,88 @@ const ResultPage = () => {
   }, []);
 
   return (
-    <>
-      <TitleBox>
-        <span>{profile?.nickname},</span>
-        <span>가녀린 몸으로 자기 몸만한 월척 낚시 "기적"</span>
-      </TitleBox>
-      <span>{dateString}</span>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        {storedImage && (
+    <div
+      style={{
+        backgroundColor: "#E3F2FD",
+        height: "100vh",
+        padding: "1rem 0rem 0rem",
+        position:"relative",
+      }}
+    >
+      <div style={{ backgroundColor: "white", margin: "0rem 1rem"}}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "start",
+            alignItems: "center",
+            padding: "0.5rem 0.5rem 0rem",
+          }}
+        >
           <img
-            src={storedImage}
-            alt="selected_image"
-            style={{ width: "90vw", maxWidth: "550px" }}
+            src="/favicon_io/android-chrome-192x192.png"
+            alt="logo"
+            style={{ width: "2rem", height: "2rem", margin: "0rem 0.3rem" }}
           />
-        )}
-      </div>
-      <span>
-        {profile?.nickname}
-        {chooseJosa(nickname, "이/가")} 올린 {length}cm {species}
-      </span>
-      <ContentBox>
-        <div>
-          <p>
-            "{profile?.nickname}
-            {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
-            {profile?.nickname}
-            {chooseJosa(nickname, "은/는")} 무려
-            <span>{length}cm</span>의<span> {species}</span>
-            {chooseJosa(nickname, "을/를")}낚았다."
-          </p>
+          <span
+            style={{
+              fontWeight: 600,
+              fontSize: "1.5rem",
+              color: "#5D7A93",
+            }}
+          >
+            FUBAO
+          </span>
         </div>
-      </ContentBox>
-      <button onClick={handleSaveImage}>이미지 저장하기</button>
-      <button>돌아가기</button>
-    </>
+
+        <TitleBox>
+          <p style={{ margin: "0rem" }}>
+            <span>{profile?.nickname}, </span>
+            가녀린 몸으로 자기 몸만한 월척 낚시 "기적"
+          </p>
+        </TitleBox>
+        <AlignBox>
+          <span>{dateString}</span>
+        </AlignBox>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {storedImage && (
+            <img
+              src={storedImage}
+              alt="selected_image"
+              style={{
+                width: "90vw",
+                maxWidth: "544px",
+                margin: "1.2rem 0rem 0rem",
+              }}
+            />
+          )}
+        </div>
+        <AlignBox>
+          <span>
+            {profile?.nickname}
+            {chooseJosa(nickname, "이/가")} 올린 {length}cm {species}
+          </span>
+        </AlignBox>
+        <ContentBox>
+          <div>
+            <p style={{ marginBottom: "0rem" }}>
+              {profile?.nickname}
+              {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
+              {profile?.nickname}
+              {chooseJosa(nickname, "은/는")} 무려
+              <span style={{ fontWeight: "600" }}>{length}cm</span>의
+              <span style={{ fontWeight: "600" }}> {species}</span>
+              {chooseJosa(nickname, "을/를")}낚았다. 낚시터 곳곳에서는 월척을
+              낚은 {profile?.nickname}
+              {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
+            </p>
+          </div>
+        </ContentBox>
+      </div>
+
+        <Button onClick={handleSaveImage}>이미지 저장</Button>
+        <Button color="danger" onClick={goToHome}>돌아가기</Button>
+
+    </div>
   );
 };
 
