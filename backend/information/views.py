@@ -19,8 +19,8 @@ from .serializers import AreaSerializer, BaitSerializer, MethodSerializer, Equip
 class weatherSunsetAPIView(APIView):
     # permission_classes = [IsAuthenticated]
     def get(self, request):
-        lat=request.POST['lat']
-        lon=request.POST['lon']
+        lat=request.GET['lat']
+        lon=request.GET['lon']
         # data=json.loads(request.body)
         
         # nowData=weatherAPI(data['lat'],data['lon'])
