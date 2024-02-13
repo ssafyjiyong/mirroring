@@ -91,7 +91,7 @@ const Etiquette = () => {
   return (
     <>
       {schedule ? (
-        <EtiquetteWhiteBox onClick={handleClick}>
+        <EtiquetteWhiteBox onClick={handleClick} style={{ cursor: "pointer" }}>
           <div>
             <EtiquetteTextS>에티켓 지키면 고기가 잘 잡힌대요</EtiquetteTextS>
             <EtiquetteTextL>낚시의 기본, 에티켓 확인하기</EtiquetteTextL>

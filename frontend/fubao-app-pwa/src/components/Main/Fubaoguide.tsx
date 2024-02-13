@@ -4,7 +4,7 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import Modal from "@mui/joy/Modal";
-import ModalClose from '@mui/joy/ModalClose';
+import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
@@ -238,7 +238,7 @@ const Fubaoguide = () => {
               <br />
               어떤 물고기인지 알려드리고,
               <br />
-              물고기 길이까지 측정해드릴게요!
+              물고기 길이까지 측정해드려요!
             </Text>
             <span
               style={{
@@ -247,6 +247,7 @@ const Fubaoguide = () => {
                 color: "#777777",
                 fontSize: "1.2rem",
                 fontWeight: "300",
+                cursor: "pointer",
               }}
             >
               Click Me!
@@ -266,7 +267,7 @@ const Fubaoguide = () => {
       </div>
 
       <div
-        style={{ display: "flex", justifyContent: "center" }}
+        style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
       >
         <label htmlFor="file">
@@ -284,6 +285,7 @@ const Fubaoguide = () => {
               height: "auto",
               maxWidth: "200px",
               marginTop: "0.7rem",
+              cursor: "pointer",
             }}
           />
         </label>
@@ -341,7 +343,7 @@ const Fubaoguide = () => {
                 >
                   {!fileSelected && (
                     <>
-                    <ModalClose variant="plain" sx={{ m: 1 }} />
+                      <ModalClose variant="plain" sx={{ m: 1 }} />
                       <p
                         style={{
                           margin: "0.5rem",
