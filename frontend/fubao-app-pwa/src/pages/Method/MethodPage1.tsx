@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { methodGetApi } from "../../store/api";
+import { useQuery } from "@tanstack/react-query";
 
 interface Method {
   title: string;
@@ -15,7 +16,14 @@ const Title = styled.p`
   color: #000000;
 `;
 
-const MethodPage1: React.FC = () => {
+const AlignDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const MethodPage1 = () => {
   const [method, setMethod] = useState<Method | null>(null); // method 상태
   const token = localStorage.getItem("token");
 
@@ -42,11 +50,13 @@ const MethodPage1: React.FC = () => {
           <Title>{method.title}</Title>
           <h2>{method.subtitle}</h2>
           <p>{method.document}</p>
+          <AlignDiv>
           <img
             src="/pending_img.png"
             alt=""
             style={{ width: "80vw", maxWidth: "500px" }}
           />
+          </AlignDiv>
         </>
       )}
     </div>
