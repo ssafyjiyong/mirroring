@@ -106,6 +106,12 @@ const MapComponent = () => {
     );
   };
 
+  // const openWeatherModal=()=>{
+  //   setWeatherModalProps({
+  //     conClose: ()=>setWeatherModalProps
+  //   })
+  // }
+
   return (
     <div style={{ position: "relative" }}>
       <Map // 지도를 표시할 Container
@@ -139,10 +145,6 @@ const MapComponent = () => {
                     <button onClick={() => setOpenWeather(true)}>
                       open modal
                     </button>
-                    <Weather
-                      open={openWeather}
-                      onClose={() => setOpenWeather(false)}
-                    ></Weather>
                   </div>
                 </div>
               )}
