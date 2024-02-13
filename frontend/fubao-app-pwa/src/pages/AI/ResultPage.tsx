@@ -43,6 +43,9 @@ const ResultPage = () => {
   const day = ("0" + today.getDate()).slice(-2);
   const dateString = year + ". " + month + ". " + day;
 
+  // 선택된 이미지 가져오기
+  const storedImage = localStorage.getItem("selectedImage");
+
   return (
     <>
       <TitleBox>
@@ -50,6 +53,9 @@ const ResultPage = () => {
         <span>가녀린 몸으로 자기 몸만한 월척 낚시 "기적"</span>
       </TitleBox>
       <span>{dateString}</span>
+      <div>
+      {storedImage && <img src={storedImage} alt="selected_image" />}
+      </div>
       <ContentBox>
         <div>
           <p>

@@ -156,11 +156,22 @@ const MenuComponent = ({ profile }: Props) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
-      setFileSelected(true);
+      const file = event.target.files[0];
+      const reader = new FileReader();
+  
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        // Base64 문자열을 로컬 스토리지에 저장
+        localStorage.setItem("selectedImage", base64String);
+        setSelectedFile(file);
+        setFileSelected(true);
+      };
+  
+      reader.readAsDataURL(file);
     } else {
       setSelectedFile(null);
       setFileSelected(false);
+      localStorage.removeItem("selectedImage"); // 이미지 선택을 취소한 경우 로컬 스토리지에서 삭제
     }
   };
 
