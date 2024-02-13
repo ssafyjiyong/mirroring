@@ -35,6 +35,8 @@ class ScheduleAPIView(APIView):
     
     
 class ScheduleDoneAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     #해당 일정 완료 처리  
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
     def patch(self, request,pk):
