@@ -140,24 +140,22 @@ def predict():
             # 결과값 json 전달
 
             # img_flag_result = False
-            with open(image_path, "rb") as image_file:
-                image_binary = image_file.read()
+            # with open(image_path, "rb") as image_file:
+            #     image_binary = image_file.read()
 
-            encoded_string = base64.b64encode(image_binary)
-            decoded_string = encoded_string.decode('UTF-8')
+            # encoded_string = base64.b64encode(image_binary)
+            # decoded_string = encoded_string.decode('UTF-8')
 
             if obj != "none":
                 message = {
-                    "length" : fish_act_len,
-                    "species": class_name,
-                    "image" : decoded_string
+                    "species": class_name, 
+                    "length" : fish_act_len
                 }
                 db_processing(uid, class_idx, fish_act_len, image_path)
 
             else:
                 message = {
-                    "species": class_name,
-                    "image" : decoded_string
+                    "species": class_name
                 }
                 db_processing_no_obj(uid, class_idx)
 

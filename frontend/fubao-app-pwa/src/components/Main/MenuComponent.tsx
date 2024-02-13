@@ -4,7 +4,6 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
 import Modal from "@mui/joy/Modal";
-import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
 import styled from "styled-components";
@@ -156,11 +155,22 @@ const MenuComponent = ({ profile }: Props) => {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
-      setFileSelected(true);
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        // Base64 문자열을 로컬 스토리지에 저장
+        localStorage.setItem("selectedImage", base64String);
+        setSelectedFile(file);
+        setFileSelected(true);
+      };
+
+      reader.readAsDataURL(file);
     } else {
       setSelectedFile(null);
       setFileSelected(false);
+      localStorage.removeItem("selectedImage"); // 이미지 선택을 취소한 경우 로컬 스토리지에서 삭제
     }
   };
 
@@ -285,25 +295,30 @@ const MenuComponent = ({ profile }: Props) => {
     },
   ];
 
+  const goToMethod = () => {
+    navigate("/method");
+  };
+
+  const goToPoint = () => {
+    navigate("/point");
+  };
+
+  const goToFish = () => {
+    navigate("/fishinfo");
+  };
+
   return (
     <WhiteBoxHere>
-      <Text onClick={scrollToMethod}>낚시방법</Text>
-      <TextBar>|</TextBar>
-      {/* 조건부 렌더링을 사용하여 "맞춤추천", "AI카메라", "준비물" 표시 */}
-      {!schedule || !schedule.id ? (
-        <Text>맞춤추천</Text>
-      ) : dday === 0 ? (
-        <label htmlFor="file">
-          <Text onClick={() => setcameraOpen(true)}>AI카메라</Text>
-        </label>
+      {schedule && schedule.id && dday === 0 ? (
+        <Text onClick={() => setcameraOpen(true)}>AI카메라</Text>
       ) : (
-        <Text>준비물</Text>
-      )}
-      <TextBar>|</TextBar>
-      {!schedule || !schedule.id ? (
-        <Text onClick={() => setplanRegisterOpen(true)}>일정등록</Text>
-      ) : (
-        <Text>일정관리</Text>
+        <>
+          <Text onClick={goToMethod}>낚시방법</Text>
+          <TextBar>|</TextBar>
+          <Text onClick={goToPoint}>낚시포인트</Text>
+          <TextBar>|</TextBar>
+          <Text onClick={goToFish}>어종소개</Text>
+        </>
       )}
 
       <input
@@ -339,13 +354,19 @@ const MenuComponent = ({ profile }: Props) => {
             boxShadow: "lg",
           }}
         >
-          <ModalClose variant="plain" sx={{ m: 1 }} />
-
           {creditCardMutation.isPending ||
           cigaretteMutation.isPending ||
           noneMutation.isPending ? (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              분석중입니다. 조금만 기다려주세요.
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignContent: "center",
+              }}
+            >
+              <p>어우, 실허네 그놈.</p>
+              <p>어디보자. 잠시만 기다려봐.</p>
             </div>
           ) : (
             <WhiteBox className="filebox">

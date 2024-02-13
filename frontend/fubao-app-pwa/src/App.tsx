@@ -24,6 +24,8 @@ import PlanManagePage from "./pages/Plan/PlanManagePage";
 import ProfilePage from "./pages/User/ProfilePage";
 import ViewAllPage from "./pages/ViewAllPage";
 import MapPage from "./pages/Map/MapPage";
+import MethodTotal from "./pages/Method/MethodTotal";
+import PointTotal from "./pages/Point/PointTotal";
 import MethodPage1 from "./pages/Method/MethodPage1";
 import MethodPage2 from "./pages/Method/MethodPage2";
 import MethodPage3 from "./pages/Method/MethodPage3";
@@ -34,6 +36,7 @@ import PointPage3 from "./pages/Point/PointPage3";
 import PointPage4 from "./pages/Point/PointPage4";
 import TheFirstPage from "./pages/TheFirstPage";
 import IntroductionPage from "./pages/IntroductionPage";
+import RequireAuth from "./components/RequireAuth";
 
 function App() {
   
@@ -52,23 +55,25 @@ function App() {
       <Routes>
         <Route path="/" element={<TheFirstPage />} />
         <Route path="/introduction" element={<IntroductionPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route path="/home" element={<RequireAuth><HomePage /></RequireAuth>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/result" element={<ResultPage />} />
-        <Route path="/collection" element={<CollectionPage />} />
-        <Route path="/detail/:fishname" element={<DetailPage />} />
+        <Route path="/collection" element={<RequireAuth><CollectionPage /></RequireAuth>} />
+        <Route path="/detail/:fishname" element={<RequireAuth><DetailPage /></RequireAuth>} />
         <Route path="/fishbowl" element={<FishBowlPage />} />
         <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
         <Route path="/etiquetteinfo" element={<EtiquettePage />} />
         <Route path="/fishinfo" element={<FishInfoPage />} />
-        <Route path="/locationinfo" element={<LocationInfoPage />} />
+        <Route path="/method" element={<RequireAuth><MethodTotal /></RequireAuth>} />
+        <Route path="/point" element={<RequireAuth><PointTotal /></RequireAuth>} />
+        <Route path="/locationinfo" element={<RequireAuth><LocationInfoPage /></RequireAuth>} />
         <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
         <Route path="/releaseinfo" element={<ReleaseInfo />} />
-        <Route path="/map" element={<MapPage />} />
-        <Route path="/planmanage" element={<PlanManagePage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/viewall" element={<ViewAllPage />} />
+        <Route path="/map" element={<RequireAuth><MapPage /></RequireAuth>} />
+        <Route path="/planmanage" element={<RequireAuth><PlanManagePage /></RequireAuth>} />
+        <Route path="/profile" element={<RequireAuth><ProfilePage /></RequireAuth>} />
+        <Route path="/viewall" element={<RequireAuth><ViewAllPage /></RequireAuth>} />
         <Route path="/method1" element={<MethodPage1 />} />
         <Route path="/method2" element={<MethodPage2 />} />
         <Route path="/method3" element={<MethodPage3 />} />
