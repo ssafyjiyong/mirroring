@@ -204,7 +204,7 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async ({file,uid}) => {
+export const classifyApiCreditCard = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -215,14 +215,22 @@ export const classifyApiCreditCard = async ({file,uid}) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    // length 값을 정수로 변환하여 저장
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiCigarette = async ({file, uid}) => {
+export const classifyApiCigarette = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -238,14 +246,20 @@ export const classifyApiCigarette = async ({file, uid}) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiNone = async ({file,uid}) => {
+export const classifyApiNone = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -256,7 +270,11 @@ export const classifyApiNone = async ({file,uid}) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const { species } = response.data;
+
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
@@ -341,7 +359,6 @@ export const scheduleDoneApi = async ({ token, pk }) => {
     throw error;
   }
 };
-
 
 //DELETE 요청 API
 export const planCancelApi = async (token, planid) => {

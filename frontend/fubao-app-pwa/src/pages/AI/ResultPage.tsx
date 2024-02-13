@@ -35,6 +35,9 @@ const ResultPage = () => {
   const { profile } = useStore() as { profile: ProfileType | null };
   const nickname = profile?.nickname || "낚시왕푸바오";
 
+  const length = localStorage.getItem("length");
+  const species = localStorage.getItem("species");
+
   // 현재 날짜 가져오기
   const today = new Date();
   const year = today.getFullYear();
@@ -87,6 +90,10 @@ const ResultPage = () => {
           />
         )}
       </div>
+      <span>
+        {profile?.nickname}
+        {chooseJosa(nickname, "이/가")} 올린 {length}cm {species}
+      </span>
       <ContentBox>
         <div>
           <p>
@@ -94,12 +101,13 @@ const ResultPage = () => {
             {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
             {profile?.nickname}
             {chooseJosa(nickname, "은/는")} 무려
-            <span>(길이)</span>의<span> (어종)</span>
+            <span>{length}cm</span>의<span> {species}</span>
             {chooseJosa(nickname, "을/를")}낚았다."
           </p>
         </div>
       </ContentBox>
       <button onClick={handleSaveImage}>이미지 저장하기</button>
+      <button>돌아가기</button>
     </>
   );
 };

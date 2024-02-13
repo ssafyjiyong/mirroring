@@ -352,8 +352,9 @@ const MenuComponent = ({ profile }: Props) => {
         >
 
           {creditCardMutation.isPending || cigaretteMutation.isPending || noneMutation.isPending ? (
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <span>어우, 실허네 그놈.</span>
+            <div style={{ display: "flex", flexDirection:"column", justifyContent: "center", alignContent: "center" }}>
+              <p>어우, 실허네 그놈.</p>
+              <p>어디보자. 잠시만 기다려봐.</p>
             </div>
           ) : (
             <WhiteBox className="filebox">
