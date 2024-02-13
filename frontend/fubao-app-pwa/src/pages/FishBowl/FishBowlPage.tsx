@@ -1520,6 +1520,16 @@ const FishBowlPage = () => {
       }
     }
 
+    // 12번 쥐노래미
+    if (mixer12.current) {
+      if (visited[19] === 0) {
+        firstFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
+      }
+    }
+
     //3번 광어
     if (mixer3.current) {
       if (visited[5] === 0) {
@@ -1528,88 +1538,6 @@ const FishBowlPage = () => {
       }
       else {
         updateFishModelFlat(mixer3, model3, 5, xpos3, ypos3, beforexpos3, beforeypos3, xrand3, yrand3, sw3, ysw3, xspeed, yspeed, rotationvalue, 3, 0);
-      }
-    }
-
-    //4번 전갱이
-    if (mixer4.current) {
-      if (visited[2] === 0) {
-        firstFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
-      }
-    }
-
-    //5번 참돔
-    if (mixer5.current) {
-      if (visited[0] === 0) {
-        firstBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
-      }
-      else {
-        updateFishModelBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
-      }
-    }
-
-    //6번 돌돔
-    if (mixer6.current) {
-      if (visited[8] === 0) {
-        firstFrontRe(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
-      }
-      else {
-        updateFishModelFront(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
-      }
-    }
-
-    //7번 농어
-    if (mixer7.current) {
-      if (visited[1] === 0) {
-        firstFrontRe(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
-      }
-      else {
-        updateFishModelFront(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
-      }
-    }
-
-    //8번 우럭
-    if (mixer8.current) {
-      if (visited[6] === 0) {
-        firstBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
-      }
-      else {
-        updateFishModelBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
-      }
-    }
-
-    //9번 고등어
-    if (mixer9.current) {
-      if (visited[4] === 0) {
-        firstFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
-      }
-    }
-
-    //10번 감성돔
-    if (mixer10.current) {
-      if (visited[7] === 0) {
-        firstBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
-      }
-      else {
-        updateFishModelBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
-      }
-    }
-
-
-
-    // 12번 쥐노래미
-    if (mixer12.current) {
-      if (visited[19] === 0) {
-        firstFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
       }
     }
 
@@ -1624,6 +1552,16 @@ const FishBowlPage = () => {
       }
     }
 
+    //4번 전갱이
+    if (mixer4.current) {
+      if (visited[2] === 0) {
+        firstFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
+      }
+    }
+
     // 14번 전갱이
     if (mixer14.current) {
       if (visited[12] === 0) {
@@ -1631,6 +1569,16 @@ const FishBowlPage = () => {
       }
       else {
         updateFishModelFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, -0.5);
+      }
+    }
+
+    //5번 참돔
+    if (mixer5.current) {
+      if (visited[0] === 0) {
+        firstBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
+      }
+      else {
+        updateFishModelBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
       }
     }
 
@@ -1644,6 +1592,16 @@ const FishBowlPage = () => {
       }
     }
 
+    //6번 돌돔
+    if (mixer6.current) {
+      if (visited[8] === 0) {
+        firstFrontRe(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
+      }
+      else {
+        updateFishModelFront(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
+      }
+    }
+
     // 16번 돌돔
     if (mixer16.current) {
       if (visited[18] === 0) {
@@ -1651,6 +1609,16 @@ const FishBowlPage = () => {
       }
       else {
         updateFishModelFront(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -2);
+      }
+    }
+
+    //7번 농어
+    if (mixer7.current) {
+      if (visited[1] === 0) {
+        firstFrontRe(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
+      }
+      else {
+        updateFishModelFront(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
       }
     }
 
@@ -1664,6 +1632,16 @@ const FishBowlPage = () => {
       }
     }
 
+    //8번 우럭
+    if (mixer8.current) {
+      if (visited[6] === 0) {
+        firstBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
+      }
+      else {
+        updateFishModelBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
+      }
+    }
+
     // 18번 우럭
     if (mixer18.current) {
       if (visited[16] === 0) {
@@ -1671,6 +1649,16 @@ const FishBowlPage = () => {
       }
       else {
         updateFishModelBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1.5);
+      }
+    }
+
+    //9번 고등어
+    if (mixer9.current) {
+      if (visited[4] === 0) {
+        firstFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
       }
     }
 
@@ -1684,6 +1672,16 @@ const FishBowlPage = () => {
       }
     }
 
+    //10번 감성돔
+    if (mixer10.current) {
+      if (visited[7] === 0) {
+        firstBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
+      }
+      else {
+        updateFishModelBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
+      }
+    }
+
     // 20번 감성돔
     if (mixer20.current) {
       if (visited[17] === 0) {
@@ -1693,7 +1691,6 @@ const FishBowlPage = () => {
         updateFishModelBack(mixer20, model20, 17, xpos20, ypos20, beforexpos20, beforeypos20, xrand20, yrand20, sw20, ysw20, xspeed, yspeed, rotationvalue, 20, 2);
       }
     }
-
 
     renderer.render(scene, camera);
   }
