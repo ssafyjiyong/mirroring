@@ -22,7 +22,6 @@ class weatherSunsetAPIView(APIView):
         lat=request.POST['lat']
         lon=request.POST['lon']
         # data=json.loads(request.body)
-        
         # nowData=weatherAPI(data['lat'],data['lon'])
         # sunrise,sunset=sunsetAPI(data['lat'],data['lon'])  
         
