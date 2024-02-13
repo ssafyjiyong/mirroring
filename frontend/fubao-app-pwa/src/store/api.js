@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API_URL = "http://127.0.0.1:8000";
-const API_URL = "https://i10c104.p.ssafy.io/api";
+const API_URL = "http://127.0.0.1:8000";
+// const API_URL = "https://i10c104.p.ssafy.io/api";
 const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
 
 // GET 요청 API
@@ -628,5 +628,34 @@ export const removeProfileApi = async (token) => {
     return response.data;
   } catch (error) {
     throw error;
+  }
+};
+
+// 날씨 GET API
+export const weatherGetApi = async ({ lat, lon }) => {
+  // const formData = new FormData();
+  // formData.append("lat", lat);
+  // formData.append("lon", lon);
+  // for (let [key, value] of formData.entries()) {
+  //   console.log(key, value,typeof(value));
+  // }
+
+  try {
+    console.log(lat,lon);
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`,
+    {lat:lat,lon:lon},
+    {     
+      headers: {
+        "Content-Type": "application/json",
+      },
+  });
+  
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch weather at");
   }
 };

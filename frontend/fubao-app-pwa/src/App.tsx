@@ -38,6 +38,8 @@ import TheFirstPage from "./pages/TheFirstPage";
 import IntroductionPage from "./pages/IntroductionPage";
 import RequireAuth from "./components/RequireAuth";
 
+import Weather from "./components/Modal/Weather";
+
 function App() {
   
   function ConditionalBottomNav() {
@@ -82,6 +84,7 @@ function App() {
         <Route path="/point2" element={<PointPage2 />} />
         <Route path="/point3" element={<PointPage3 />} />
         <Route path="/point4" element={<PointPage4 />} />
+        <Route path="/map/location/weather" element={<Weather />}/>
       </Routes>
       <ConditionalBottomNav />
     </Router>
