@@ -142,6 +142,97 @@ let ysw10: number = 1;
 let xrand10: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
 let yrand10: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
+let xpos11: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos11: number = 1.5;
+let beforexpos11: number = xpos11;
+let beforeypos11: number = ypos11;
+let sw11: number = 3;
+let ysw11: number = 1;
+let xrand11: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand11: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos12: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos12: number = 1.5;
+let beforexpos12: number = xpos12;
+let beforeypos12: number = ypos12;
+let sw12: number = 3;
+let ysw12: number = 1;
+let xrand12: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand12: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos13: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos13: number = 1.5;
+let beforexpos13: number = xpos13;
+let beforeypos13: number = ypos13;
+let sw13: number = 3;
+let ysw13: number = 1;
+let xrand13: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand13: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos14: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos14: number = 1.5;
+let beforexpos14: number = xpos14;
+let beforeypos14: number = ypos14;
+let sw14: number = 3;
+let ysw14: number = 1;
+let xrand14: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand14: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos15: number = Math.round(((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let ypos15: number = 1.5;
+let beforexpos15: number = 0;
+let beforeypos15: number = 0;
+let sw15: number = 3;
+let ysw15: number = 1;
+let xrand15: number = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let yrand15: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
+
+let xpos16: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos16: number = 1.5;
+let beforexpos16: number = xpos16;
+let beforeypos16: number = ypos16;
+let sw16: number = 3;
+let ysw16: number = 1;
+let xrand16: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand16: number = -0.6;
+
+let xpos17: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos17: number = 1.5;
+let beforexpos17: number = xpos17;
+let beforeypos17: number = ypos17;
+let sw17: number = 3;
+let ysw17: number = 1;
+let xrand17: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand17: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos18: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos18: number = 1.5;
+let beforexpos18: number = 0;
+let beforeypos18: number = 0;
+let sw18: number = 3;
+let ysw18: number = 1;
+let xrand18: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand18: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos19: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos19: number = 1.5;
+let beforexpos19: number = xpos19;
+let beforeypos19: number = ypos19;
+let sw19: number = 3;
+let ysw19: number = 1;
+let xrand19: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand19: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos20: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let ypos20: number = 1.5;
+let beforexpos20: number = xpos1;
+let beforeypos20: number = ypos1;
+let sw20: number = 3;
+let ysw20: number = 1;
+let xrand20: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let yrand20: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+
 const FishBowlPage = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mixer1 = useRef<THREE.AnimationMixer | null>(null);
@@ -154,6 +245,16 @@ const FishBowlPage = () => {
   const mixer8 = useRef<THREE.AnimationMixer | null>(null);
   const mixer9 = useRef<THREE.AnimationMixer | null>(null);
   const mixer10 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer11 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer12 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer13 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer14 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer15 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer16 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer17 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer18 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer19 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer20 = useRef<THREE.AnimationMixer | null>(null);
   const model1 = useRef<THREE.Object3D | null>(null);
   const model2 = useRef<THREE.Object3D | null>(null);
   const model3 = useRef<THREE.Object3D | null>(null);
@@ -164,6 +265,16 @@ const FishBowlPage = () => {
   const model8 = useRef<THREE.Object3D | null>(null);
   const model9 = useRef<THREE.Object3D | null>(null);
   const model10 = useRef<THREE.Object3D | null>(null);
+  const model11 = useRef<THREE.Object3D | null>(null);
+  const model12 = useRef<THREE.Object3D | null>(null);
+  const model13 = useRef<THREE.Object3D | null>(null);
+  const model14 = useRef<THREE.Object3D | null>(null);
+  const model15 = useRef<THREE.Object3D | null>(null);
+  const model16 = useRef<THREE.Object3D | null>(null);
+  const model17 = useRef<THREE.Object3D | null>(null);
+  const model18 = useRef<THREE.Object3D | null>(null);
+  const model19 = useRef<THREE.Object3D | null>(null);
+  const model20 = useRef<THREE.Object3D | null>(null);
 
   const fishInfoArray: number[] = [];
   const beforeFishInfoArray: number[] = [];
@@ -238,6 +349,16 @@ const FishBowlPage = () => {
     const loader8 = new GLTFLoader();
     const loader9 = new GLTFLoader();
     const loader10 = new GLTFLoader();
+    const loader11 = new GLTFLoader();
+    const loader12 = new GLTFLoader();
+    const loader13 = new GLTFLoader();
+    const loader14 = new GLTFLoader();
+    const loader15 = new GLTFLoader();
+    const loader16 = new GLTFLoader();
+    const loader17 = new GLTFLoader();
+    const loader18 = new GLTFLoader();
+    const loader19 = new GLTFLoader();
+    const loader20 = new GLTFLoader();
 
     results.forEach((result) => {
       if (result.isPending) {
@@ -266,6 +387,8 @@ const FishBowlPage = () => {
 
     let camera = new THREE.PerspectiveCamera(20, 1);
     camera.position.set(0, 0, 8);
+    //camera.lookAt(scene.position);
+    camera.rotateZ(Math.PI * 3 / 2); // 카메라 회전
 
     scene.background = new THREE.Color("black");
 
@@ -279,56 +402,106 @@ const FishBowlPage = () => {
     console.log("start");
 
 
-
     // 1번 숭어
-    if (fishInfoArray[3] === 1) {
+    if (fishInfoArray[3] >= 1) {
       loadFishModel(loader1, fishInfoArray[3], model1, mixer1, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
     }
 
     // 2번 쥐노래미
-    if (fishInfoArray[9] === 1) {
+    if (fishInfoArray[9] >= 1) {
       loadFishModel(loader2, fishInfoArray[9], model2, mixer2, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
     }
 
     // 3번 광어
-    if (fishInfoArray[5] === 1) {
+    if (fishInfoArray[5] >= 1) {
       loadFishModel(loader3, fishInfoArray[5], model3, mixer3, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7, 0.7, 0.7), scene);
     }
 
     // 4번 전갱이
-    if (fishInfoArray[2] === 1) {
+    if (fishInfoArray[2] >= 1) {
       loadFishModel(loader4, fishInfoArray[2], model4, mixer4, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
     }
 
     // 5번 참돔
-    if (fishInfoArray[0] === 1) {
+    if (fishInfoArray[0] >= 1) {
       loadFishModel(loader5, fishInfoArray[0], model5, mixer5, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
     }
 
     // 6번 돌돔
-    if (fishInfoArray[8] === 1) {
+    if (fishInfoArray[8] >= 1) {
       loadFishModel(loader6, fishInfoArray[8], model6, mixer6, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1, 1, 1), scene);
     }
 
     // 7번 농어
-    if (fishInfoArray[1] === 1) {
+    if (fishInfoArray[1] >= 1) {
       loadFishModel(loader7, fishInfoArray[1], model7, mixer7, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6, 0.6, 0.6), scene);
     }
 
     // 8번 우럭
-    if (fishInfoArray[6] === 1) {
+    if (fishInfoArray[6] >= 1) {
       loadFishModel(loader8, fishInfoArray[6], model8, mixer8, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5, 0.5, 0.5), scene);
     }
 
     // 9번 고등어
-    if (fishInfoArray[4] === 1) {
+    if (fishInfoArray[4] >= 1) {
       loadFishModel(loader9, fishInfoArray[4], model9, mixer9, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
     }
 
     // 10번 감성돔
-    if (fishInfoArray[7] === 1) {
+    if (fishInfoArray[7] >= 1) {
       loadFishModel(loader10, fishInfoArray[7], model10, mixer10, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
     }
+
+    // 11번 숭어
+    if (fishInfoArray[3] >= 2) {
+      loadFishModel(loader11, fishInfoArray[3], model11, mixer11, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
+    }
+
+    // 12번 쥐노래미
+    if (fishInfoArray[9] >= 2) {
+      loadFishModel(loader12, fishInfoArray[9], model12, mixer12, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
+    }
+
+    // 13번 광어
+    if (fishInfoArray[5] >= 2) {
+      loadFishModel(loader13, fishInfoArray[5], model13, mixer13, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7, 0.7, 0.7), scene);
+    }
+
+    // 14번 전갱이
+    if (fishInfoArray[2] >= 2) {
+      loadFishModel(loader14, fishInfoArray[2], model14, mixer14, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
+    }
+
+    // 15번 참돔
+    if (fishInfoArray[0] >= 2) {
+      loadFishModel(loader15, fishInfoArray[0], model15, mixer15, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
+    }
+
+    // 16번 돌돔
+    if (fishInfoArray[8] >= 2) {
+      loadFishModel(loader16, fishInfoArray[8], model16, mixer16, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1, 1, 1), scene);
+    }
+
+    // 17번 농어
+    if (fishInfoArray[1] >= 2) {
+      loadFishModel(loader17, fishInfoArray[1], model17, mixer17, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6, 0.6, 0.6), scene);
+    }
+
+    // 18번 우럭
+    if (fishInfoArray[6] >= 2) {
+      loadFishModel(loader18, fishInfoArray[6], model18, mixer18, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5, 0.5, 0.5), scene);
+    }
+
+    // 19번 고등어
+    if (fishInfoArray[4] >= 2) {
+      loadFishModel(loader19, fishInfoArray[4], model19, mixer19, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
+    }
+
+    // 20번 감성돔
+    if (fishInfoArray[7] >= 2) {
+      loadFishModel(loader20, fishInfoArray[7], model20, mixer20, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
+    }
+
 
     animate(scene, renderer, camera);
 
@@ -345,7 +518,7 @@ const FishBowlPage = () => {
     onWindowResize();
 
     return () => {
-      window.removeEventListener('resize', onWindowResize);
+      // window.removeEventListener('resize', onWindowResize); //비율 맞추는거
       // cleanup logic if needed
     };
   }, [results]);
@@ -464,7 +637,7 @@ const FishBowlPage = () => {
             sw1 = sw;
             ysw1 = ysw;
           }
-          else if (checknum === 2) {
+          if (checknum === 2) {
             xpos2 = xpos;
             ypos2 = ypos;
             beforexpos2 = beforexpos;
@@ -474,7 +647,7 @@ const FishBowlPage = () => {
             sw2 = sw;
             ysw2 = ysw;
           }
-          else if (checknum === 4) {
+          if (checknum === 4) {
             xpos4 = xpos;
             ypos4 = ypos;
             beforexpos4 = beforexpos;
@@ -484,7 +657,7 @@ const FishBowlPage = () => {
             sw4 = sw;
             ysw4 = ysw;
           }
-          else if (checknum === 6) {
+          if (checknum === 6) {
             xpos6 = xpos;
             ypos6 = ypos;
             beforexpos6 = beforexpos;
@@ -494,7 +667,7 @@ const FishBowlPage = () => {
             sw6 = sw;
             ysw6 = ysw;
           }
-          else if (checknum === 7) {
+          if (checknum === 7) {
             xpos7 = xpos;
             ypos7 = ypos;
             beforexpos7 = beforexpos;
@@ -504,7 +677,7 @@ const FishBowlPage = () => {
             sw7 = sw;
             ysw7 = ysw;
           }
-          else if (checknum === 9) {
+          if (checknum === 9) {
             xpos9 = xpos;
             ypos9 = ypos;
             beforexpos9 = beforexpos;
@@ -513,6 +686,66 @@ const FishBowlPage = () => {
             yrand9 = yrand;
             sw9 = sw;
             ysw9 = ysw;
+          }
+          if (checknum === 11) {
+            xpos11 = xpos;
+            ypos11 = ypos;
+            beforexpos11 = beforexpos;
+            beforeypos11 = beforeypos;
+            xrand11 = xrand;
+            yrand11 = yrand;
+            sw11 = sw;
+            ysw11 = ysw;
+          }
+          if (checknum === 12) {
+            xpos12 = xpos;
+            ypos12 = ypos;
+            beforexpos12 = beforexpos;
+            beforeypos12 = beforeypos;
+            xrand12 = xrand;
+            yrand12 = yrand;
+            sw12 = sw;
+            ysw12 = ysw;
+          }
+          if (checknum === 14) {
+            xpos14 = xpos;
+            ypos14 = ypos;
+            beforexpos14 = beforexpos;
+            beforeypos14 = beforeypos;
+            xrand14 = xrand;
+            yrand14 = yrand;
+            sw14 = sw;
+            ysw14 = ysw;
+          }
+          if (checknum === 16) {
+            xpos16 = xpos;
+            ypos16 = ypos;
+            beforexpos16 = beforexpos;
+            beforeypos16 = beforeypos;
+            xrand16 = xrand;
+            yrand16 = yrand;
+            sw16 = sw;
+            ysw16 = ysw;
+          }
+          if (checknum === 17) {
+            xpos17 = xpos;
+            ypos17 = ypos;
+            beforexpos17 = beforexpos;
+            beforeypos17 = beforeypos;
+            xrand17 = xrand;
+            yrand17 = yrand;
+            sw17 = sw;
+            ysw17 = ysw;
+          }
+          if (checknum === 19) {
+            xpos19 = xpos;
+            ypos19 = ypos;
+            beforexpos19 = beforexpos;
+            beforeypos19 = beforeypos;
+            xrand19 = xrand;
+            yrand19 = yrand;
+            sw19 = sw;
+            ysw19 = ysw;
           }
         }
       }
@@ -644,6 +877,36 @@ const FishBowlPage = () => {
             sw10 = sw;
             ysw10 = ysw;
           }
+          else if (checknum === 15) {
+            xpos15 = xpos;
+            ypos15 = ypos;
+            beforexpos15 = beforexpos;
+            beforeypos15 = beforeypos;
+            xrand15 = xrand;
+            yrand15 = yrand;
+            sw15 = sw;
+            ysw15 = ysw;
+          }
+          else if (checknum === 18) {
+            xpos18 = xpos;
+            ypos18 = ypos;
+            beforexpos18 = beforexpos;
+            beforeypos18 = beforeypos;
+            xrand18 = xrand;
+            yrand18 = yrand;
+            sw18 = sw;
+            ysw18 = ysw;
+          }
+          else if (checknum === 20) {
+            xpos20 = xpos;
+            ypos20 = ypos;
+            beforexpos20 = beforexpos;
+            beforeypos20 = beforeypos;
+            xrand20 = xrand;
+            yrand20 = yrand;
+            sw20 = sw;
+            ysw20 = ysw;
+          }
         }
       }
     }
@@ -669,10 +932,9 @@ const FishBowlPage = () => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
-          if (fishInfoArray[5] === 0) {
+          if (fishInfoArray[fishIndex] === 0) {
             model.current.visible = false;
-          }
-          else {
+          } else {
             model.current.visible = true;
           }
           if (beforexpos < xrand) {
@@ -744,6 +1006,16 @@ const FishBowlPage = () => {
             sw3 = sw;
             ysw3 = ysw;
           }
+          if (checknum === 13) {
+            xpos13 = xpos;
+            ypos13 = ypos;
+            beforexpos13 = beforexpos;
+            beforeypos13 = beforeypos;
+            xrand13 = xrand;
+            yrand13 = yrand;
+            sw13 = sw;
+            ysw13 = ysw;
+          }
         }
       }
     }
@@ -793,7 +1065,7 @@ const FishBowlPage = () => {
 
 
           if (sw === 3) {
-            model.current.rotation.y = -1.5;
+            //model.current.rotation.y = -1.5;
           }
           if (sw === 2) {
             model.current.rotation.y += rotationvalue;
@@ -823,7 +1095,7 @@ const FishBowlPage = () => {
             sw1 = sw;
             ysw1 = ysw;
           }
-          else if (checknum === 2) {
+          if (checknum === 2) {
             xpos2 = xpos;
             ypos2 = ypos;
             beforexpos2 = beforexpos;
@@ -833,7 +1105,7 @@ const FishBowlPage = () => {
             sw2 = sw;
             ysw2 = ysw;
           }
-          else if (checknum === 4) {
+          if (checknum === 4) {
             xpos4 = xpos;
             ypos4 = ypos;
             beforexpos4 = beforexpos;
@@ -843,7 +1115,7 @@ const FishBowlPage = () => {
             sw4 = sw;
             ysw4 = ysw;
           }
-          else if (checknum === 9) {
+          if (checknum === 9) {
             xpos9 = xpos;
             ypos9 = ypos;
             beforexpos9 = beforexpos;
@@ -852,6 +1124,46 @@ const FishBowlPage = () => {
             yrand9 = yrand;
             sw9 = sw;
             ysw9 = ysw;
+          }
+          if (checknum === 11) {
+            xpos11 = xpos;
+            ypos11 = ypos;
+            beforexpos11 = beforexpos;
+            beforeypos11 = beforeypos;
+            xrand11 = xrand;
+            yrand11 = yrand;
+            sw11 = sw;
+            ysw11 = ysw;
+          }
+          if (checknum === 12) {
+            xpos12 = xpos;
+            ypos12 = ypos;
+            beforexpos12 = beforexpos;
+            beforeypos12 = beforeypos;
+            xrand12 = xrand;
+            yrand12 = yrand;
+            sw12 = sw;
+            ysw12 = ysw;
+          }
+          if (checknum === 14) {
+            xpos14 = xpos;
+            ypos14 = ypos;
+            beforexpos14 = beforexpos;
+            beforeypos14 = beforeypos;
+            xrand14 = xrand;
+            yrand14 = yrand;
+            sw14 = sw;
+            ysw14 = ysw;
+          }
+          if (checknum === 19) {
+            xpos19 = xpos;
+            ypos19 = ypos;
+            beforexpos19 = beforexpos;
+            beforeypos19 = beforeypos;
+            xrand19 = xrand;
+            yrand19 = yrand;
+            sw19 = sw;
+            ysw19 = ysw;
           }
         }
       }
@@ -902,7 +1214,7 @@ const FishBowlPage = () => {
 
 
           if (sw === 3) {
-            model.current.rotation.y = 1.5;
+            //model.current.rotation.y = 1.5;
           }
           if (sw === 2) {
             model.current.rotation.y += rotationvalue;
@@ -932,7 +1244,7 @@ const FishBowlPage = () => {
             sw6 = sw;
             ysw6 = ysw;
           }
-          else if (checknum === 7) {
+          if (checknum === 7) {
             xpos7 = xpos;
             ypos7 = ypos;
             beforexpos7 = beforexpos;
@@ -941,6 +1253,26 @@ const FishBowlPage = () => {
             yrand7 = yrand;
             sw7 = sw;
             ysw7 = ysw;
+          }
+          if (checknum === 16) {
+            xpos16 = xpos;
+            ypos16 = ypos;
+            beforexpos16 = beforexpos;
+            beforeypos16 = beforeypos;
+            xrand16 = xrand;
+            yrand16 = yrand;
+            sw16 = sw;
+            ysw16 = ysw;
+          }
+          if (checknum === 17) {
+            xpos17 = xpos;
+            ypos17 = ypos;
+            beforexpos17 = beforexpos;
+            beforeypos17 = beforeypos;
+            xrand17 = xrand;
+            yrand17 = yrand;
+            sw17 = sw;
+            ysw17 = ysw;
           }
         }
       }
@@ -991,7 +1323,7 @@ const FishBowlPage = () => {
 
 
           if (sw === 3) {
-            model.current.rotation.y = 1.5;
+            //model.current.rotation.y = 1.5;
           }
           if (sw === 2) {
             model.current.rotation.y -= rotationvalue;
@@ -1041,6 +1373,36 @@ const FishBowlPage = () => {
             sw10 = sw;
             ysw10 = ysw;
           }
+          else if (checknum === 15) {
+            xpos15 = xpos;
+            ypos15 = ypos;
+            beforexpos15 = beforexpos;
+            beforeypos15 = beforeypos;
+            xrand15 = xrand;
+            yrand15 = yrand;
+            sw15 = sw;
+            ysw15 = ysw;
+          }
+          else if (checknum === 18) {
+            xpos18 = xpos;
+            ypos18 = ypos;
+            beforexpos18 = beforexpos;
+            beforeypos18 = beforeypos;
+            xrand18 = xrand;
+            yrand18 = yrand;
+            sw18 = sw;
+            ysw18 = ysw;
+          }
+          else if (checknum === 20) {
+            xpos20 = xpos;
+            ypos20 = ypos;
+            beforexpos20 = beforexpos;
+            beforeypos20 = beforeypos;
+            xrand20 = xrand;
+            yrand20 = yrand;
+            sw20 = sw;
+            ysw20 = ysw;
+          }
         }
       }
     }
@@ -1089,7 +1451,7 @@ const FishBowlPage = () => {
 
 
           if (sw === 3) {
-            model.current.rotation.z = 0;
+            //model.current.rotation.z = 0;
           }
           if (sw === 2) {
             model.current.rotation.z += rotationvalue;
@@ -1111,6 +1473,16 @@ const FishBowlPage = () => {
             sw3 = sw;
             ysw3 = ysw;
           }
+          if (checknum === 13) {
+            xpos13 = xpos;
+            ypos13 = ypos;
+            beforexpos13 = beforexpos;
+            beforeypos13 = beforeypos;
+            xrand13 = xrand;
+            yrand13 = yrand;
+            sw13 = sw;
+            ysw13 = ysw;
+          }
         }
       }
     }
@@ -1118,13 +1490,23 @@ const FishBowlPage = () => {
     //cnt++;
     //console.log(cnt,)
 
-    //1번 숭어
+    // 1번 숭어
     if (mixer1.current) {
       if (visited[3] === 0) {
         firstFront(mixer1, model1, 3, xpos1, ypos1, beforexpos1, beforeypos1, xrand1, yrand1, sw1, ysw1, xspeed, yspeed, rotationvalue, 1, 0);
       }
       else {
         updateFishModelFront(mixer1, model1, 3, xpos1, ypos1, beforexpos1, beforeypos1, xrand1, yrand1, sw1, ysw1, xspeed, yspeed, rotationvalue, 1, 0);
+      }
+    }
+
+    // 11번 숭어
+    if (mixer11.current) {
+      if (visited[13] === 0) {
+        firstFront(mixer11, model11, 13, xpos11, ypos11, beforexpos11, beforeypos11, xrand11, yrand11, sw11, ysw11, xspeed, yspeed, rotationvalue, 11, 0);
+      }
+      else {
+        updateFishModelFront(mixer11, model11, 13, xpos11, ypos11, beforexpos11, beforeypos11, xrand11, yrand11, sw11, ysw11, xspeed, yspeed, rotationvalue, 11, 0);
       }
     }
 
@@ -1141,7 +1523,7 @@ const FishBowlPage = () => {
     //3번 광어
     if (mixer3.current) {
       if (visited[5] === 0) {
-        console.log(ypos3);
+        //console.log(ypos3);
         firstFlat(mixer3, model3, 5, xpos3, ypos3, beforexpos3, beforeypos3, xrand3, yrand3, sw3, ysw3, xspeed, yspeed, rotationvalue, 3, 0);
       }
       else {
@@ -1218,6 +1600,100 @@ const FishBowlPage = () => {
         updateFishModelBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
       }
     }
+
+
+
+    // 12번 쥐노래미
+    if (mixer12.current) {
+      if (visited[19] === 0) {
+        firstFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
+      }
+    }
+
+    // 13번 광어
+    if (mixer13.current) {
+      if (visited[15] === 0) {
+        //console.log(ypos13);
+        firstFlat(mixer13, model13, 15, xpos13, ypos13, beforexpos13, beforeypos13, xrand13, yrand13, sw13, ysw13, xspeed, yspeed, rotationvalue, 13, 0);
+      }
+      else {
+        updateFishModelFlat(mixer13, model13, 15, xpos13, ypos13, beforexpos13, beforeypos13, xrand13, yrand13, sw13, ysw13, xspeed, yspeed, rotationvalue, 13, 0);
+      }
+    }
+
+    // 14번 전갱이
+    if (mixer14.current) {
+      if (visited[12] === 0) {
+        firstFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, -0.5);
+      }
+    }
+
+    // 15번 참돔
+    if (mixer15.current) {
+      if (visited[10] === 0) {
+        firstBack(mixer15, model15, 10, xpos15, ypos15, beforexpos15, beforeypos15, xrand15, yrand15, sw15, ysw15, xspeed, yspeed, rotationvalue, 15, 2);
+      }
+      else {
+        updateFishModelBack(mixer15, model15, 10, xpos15, ypos15, beforexpos15, beforeypos15, xrand15, yrand15, sw15, ysw15, xspeed, yspeed, rotationvalue, 15, 2);
+      }
+    }
+
+    // 16번 돌돔
+    if (mixer16.current) {
+      if (visited[18] === 0) {
+        firstFrontRe(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -2);
+      }
+      else {
+        updateFishModelFront(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -2);
+      }
+    }
+
+    // 17번 농어
+    if (mixer17.current) {
+      if (visited[11] === 0) {
+        firstFrontRe(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0.5);
+      }
+      else {
+        updateFishModelFront(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0.5);
+      }
+    }
+
+    // 18번 우럭
+    if (mixer18.current) {
+      if (visited[16] === 0) {
+        firstBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1.5);
+      }
+      else {
+        updateFishModelBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1.5);
+      }
+    }
+
+    // 19번 고등어
+    if (mixer19.current) {
+      if (visited[14] === 0) {
+        firstFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, -0.5);
+      }
+    }
+
+    // 20번 감성돔
+    if (mixer20.current) {
+      if (visited[17] === 0) {
+        firstBack(mixer20, model20, 17, xpos20, ypos20, beforexpos20, beforeypos20, xrand20, yrand20, sw20, ysw20, xspeed, yspeed, rotationvalue, 20, 2);
+      }
+      else {
+        updateFishModelBack(mixer20, model20, 17, xpos20, ypos20, beforexpos20, beforeypos20, xrand20, yrand20, sw20, ysw20, xspeed, yspeed, rotationvalue, 20, 2);
+      }
+    }
+
 
     renderer.render(scene, camera);
   }
