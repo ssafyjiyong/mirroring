@@ -127,6 +127,25 @@ export const prohibitFishApi = async (token) => {
   }
 };
 
+// Method GET
+export const methodGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/method/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch my fish");
+  }
+};
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
@@ -154,6 +173,8 @@ export const loginApi = async ({ email, password1 }) => {
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
 
+    window.location.reload();
+    
     return response.data;
   } catch (error) {
     console.log(error);
@@ -197,6 +218,7 @@ export const planRegisterApi = async ({
         },
       }
     );
+    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(date, location, area, method);
@@ -204,7 +226,7 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async (file,uid) => {
+export const classifyApiCreditCard = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -215,17 +237,25 @@ export const classifyApiCreditCard = async (file,uid) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    // length 값을 정수로 변환하여 저장
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiCigarette = async ({file, uid}) => {
+export const classifyApiCigarette = async ({ file, uid }) => {
   const formData = new FormData();
-  formData.append("uid", 2);
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "cigarette");
 
   for (let [key, value] of formData.entries()) {
@@ -238,14 +268,20 @@ export const classifyApiCigarette = async ({file, uid}) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiNone = async (file,uid) => {
+export const classifyApiNone = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
   formData.append("uid", uid);
@@ -256,7 +292,11 @@ export const classifyApiNone = async (file,uid) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const { species } = response.data;
+
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
@@ -316,6 +356,7 @@ export const surveyPatchApi = async ({ token }) => {
       }
     );
     console.log("성공");
+    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(error);
@@ -341,7 +382,6 @@ export const scheduleDoneApi = async ({ token, pk }) => {
     throw error;
   }
 };
-
 
 //DELETE 요청 API
 export const planCancelApi = async (token, planid) => {

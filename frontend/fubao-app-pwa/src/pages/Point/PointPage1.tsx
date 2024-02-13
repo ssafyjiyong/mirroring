@@ -2,7 +2,9 @@ import React from 'react'
 
 const PointPage1 = () => {
   return (
-    <div>PointPage1</div>
+    <div>
+      <p>PointPage1</p>
+    </div>
   )
 }
 
