@@ -17,12 +17,17 @@ from location.models import location
 from .serializers import AreaSerializer, BaitSerializer, MethodSerializer, EquipmentSerializer, ReleaseSerializer, ProhibitSerializer
 
 class weatherSunsetAPIView(APIView):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     def get(self, request):
-        data=json.loads(request.body)       
+        lat=request.POST['lat']
+        lon=request.POST['lon']
+        # data=json.loads(request.body)
         
-        nowData=weatherAPI(data['lat'],data['lon'])
-        sunrise,sunset=sunsetAPI(data['lat'],data['lon'])
+        # nowData=weatherAPI(data['lat'],data['lon'])
+        # sunrise,sunset=sunsetAPI(data['lat'],data['lon'])  
+        
+        nowData=weatherAPI(lat,lon)
+        sunrise,sunset=sunsetAPI(lat,lon)
         
         context={
             "weather":nowData,
