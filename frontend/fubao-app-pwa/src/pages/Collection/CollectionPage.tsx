@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { myFishApi } from "../../store/api";
+import { useQuery } from "@tanstack/react-query";
 
 interface FishInfo {
   name: string;
@@ -102,6 +104,20 @@ const fishInfos = [
 ];
 
 const CollectionPage = () => {
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["mapInfo"],
+    queryFn: myFishApi,
+    retry: 0,
+  });
+
+  const [myfish, setMyfish] = useState<FishInfo[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setMyfish(data[2]);
+    }
+  }, [data]);
+
   return (
     <div
       style={{
@@ -131,11 +147,17 @@ const CollectionPage = () => {
           <FontAwesomeIcon icon="fish" size="1x" color="#1565C0" />
           <span> 도감 완성도</span>
         </div>
-        <span>0/10</span>
+        <span>{data ? `${data[0]}/10` : "0/10"}</span>
       </div>
 
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <div style={{ display: "flex", flexWrap: "wrap", maxWidth:"326.4px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ display: "flex", flexWrap: "wrap", maxWidth: "326.4px" }}>
           {fishInfos.map(({ name, image, link, level }) => (
             <Link
               to={link}
