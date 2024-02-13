@@ -91,7 +91,6 @@ export const prohibitFishApi = async (token) => {
   }
 };
 
-
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
