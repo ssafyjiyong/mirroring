@@ -172,8 +172,6 @@ export const loginApi = async ({ email, password1 }) => {
 
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
-
-    window.location.reload();
     
     return response.data;
   } catch (error) {
@@ -303,6 +301,42 @@ export const classifyApiNone = async ({ file, uid }) => {
   }
 };
 
+// 사전 설문 방법
+export const surveyMethodApi = async ({ token, weight, method }) => {
+  try {
+    const response = await axios.post(`${API_URL}/review/method/`, 
+      { weight, method },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const surveyFishApi = async ({ token, fishId, preference }) => {
+  try {
+    const response = await axios.post(`${API_URL}/fish/myfish/${fishId}/`, 
+      { preference },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
 // PUT 요청 API
 
 // PATCH 요청 API
@@ -356,7 +390,6 @@ export const surveyPatchApi = async ({ token }) => {
       }
     );
     console.log("성공");
-    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(error);
@@ -580,5 +613,20 @@ export const FishApi10 = async (token) => {
       error.response ? error.response.data : error.message
     );
     throw new Error("Failed to fetch fish10");
+  }
+};
+
+// DELETE API
+export const removeProfileApi = async (token) => {
+  try {
+    const response = await axios.delete(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 };
