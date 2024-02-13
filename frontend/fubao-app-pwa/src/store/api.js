@@ -323,6 +323,26 @@ export const surveyPatchApi = async ({ token }) => {
   }
 };
 
+export const scheduleDoneApi = async ({ token, pk }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/schedule/${pk}/`,
+      { done: true },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
 //DELETE 요청 API
 export const planCancelApi = async (token, planid) => {
   try {
