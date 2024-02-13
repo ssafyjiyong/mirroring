@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import useStore from "../store/store";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 
 const Container = styled.nav`
   display: flex;
@@ -34,23 +35,22 @@ const ButtonText = styled.span`
 `;
 
 const ViewAllPage = () => {
-
   const { resetStore } = useStore();
   const navigate = useNavigate();
 
   const logout = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       try {
         await logoutApi(token); // 로그아웃 API 호출
-        localStorage.removeItem('token'); // 로컬 스토리지에서 토큰 삭제
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
         resetStore(); // 스토어를 초기 상태로 재설정
       } catch (error) {
-        console.error('로그아웃 실패:', error);
+        console.error("로그아웃 실패:", error);
         // 오류 처리 로직
       }
     }
-  }
+  };
 
   const logoutConfirm = () => {
     Swal.fire({
@@ -61,19 +61,32 @@ const ViewAllPage = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "네",
       cancelButtonText: "아니요",
-    }).then(result => {
+    }).then((result) => {
       if (result.isConfirmed) {
         logout();
-        navigate("/introduction")
+        navigate("/introduction");
       }
     });
-  }
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   return (
-    <Container>
+    <Container style={{ position:"relative" }}>
+      <ChevronLeftIcon
+        sx={{
+          position: "absolute",
+          top: 22,
+          left: 20,
+          cursor: "pointer",
+        }}
+        onClick={handleBack}
+      />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex" }}>
-        {/* 로그인 정보 토대로 닉네임 받아서 각 프로필 페이지로 이동 라우터 설정도 해야함 */}
+          {/* 로그인 정보 토대로 닉네임 받아서 각 프로필 페이지로 이동 라우터 설정도 해야함 */}
           <Link to="/profile" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="user" size="3x" />
@@ -149,10 +162,9 @@ const ViewAllPage = () => {
             marginTop: "2rem",
           }}
         >
-          <span
-          style={{ cursor: "pointer" }}
-          onClick={logoutConfirm}
-          >로그아웃</span>
+          <span style={{ cursor: "pointer" }} onClick={logoutConfirm}>
+            로그아웃
+          </span>
           <span>　|　</span>
           <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
         </div>

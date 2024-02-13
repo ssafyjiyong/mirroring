@@ -235,7 +235,6 @@ export const planRegisterApi = async ({
         },
       }
     );
-    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(date, location, area, method);
