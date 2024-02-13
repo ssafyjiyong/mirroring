@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -14,8 +14,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
+import { AxiosError } from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { loginApi } from "../../store/api";
 
 function Copyright(props: any) {
   return (
@@ -39,11 +41,39 @@ const Login = () => {
   const defaultTheme = createTheme();
   const navigate = useNavigate();
 
+  const [email, setEmail] = useState("");
+  const [password1, setPassword1] = useState("");
+
+  const [rememberMe, setRememberMe] = useState(false);
+
+  // 컴포넌트 마운트 시 localStorage에서 이메일과 rememberMe 상태 로드
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("email");
+    const storedRememberMe = localStorage.getItem("rememberMe") === "true";
+    if (storedEmail && storedRememberMe) {
+      setEmail(storedEmail);
+      setRememberMe(storedRememberMe);
+    }
+  }, []);
+
+  const loginMutation = useMutation({
+    mutationFn: loginApi,
+    onSuccess: () => {
+      navigate("/");
+    },
+    onError: (error: AxiosError) => {
+      Swal.fire({
+        title: "로그인 에러",
+        html: "로그인에 실패했습니다. <br> 이메일, 비밀번호를 확인해주세요.",
+        icon: "error",
+        confirmButtonColor: "#d42c348b",
+        confirmButtonText: "확인",
+      });
+    },
+  });
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const email = data.get("email") as string;
-    const password = data.get("password") as string;
 
     // 이메일 형식 확인
     if (!email.includes("@") || !email.includes(".")) {
@@ -58,16 +88,35 @@ const Login = () => {
     }
 
     // 비밀번호 글자수 확인
-    if (password.length < 8) {
+    if (password1.length < 8) {
       Swal.fire({
         title: "비밀번호 재입력",
-        text: "비밀번호는 최소 8글자 이상이어야 합니다.",
+        text: "비밀번호는 8글자 이상입니다.",
         icon: "error",
         confirmButtonColor: "#3085d6",
         confirmButtonText: "확인",
       });
       return;
     }
+
+    // "로그인 정보 기억하기"가 선택된 경우, 이메일과 체크박스 상태를 localStorage에 저장
+    if (rememberMe) {
+      localStorage.setItem("email", email);
+      localStorage.setItem("rememberMe", rememberMe.toString());
+    } else {
+      // 선택되지 않은 경우, localStorage에서 데이터 제거
+      localStorage.removeItem("email");
+      localStorage.removeItem("rememberMe");
+    }
+
+    loginMutation.mutate({ email, password1 });
+  };
+
+  // 체크박스 상태 변경 핸들러
+  const handleRememberMeChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setRememberMe(event.target.checked);
   };
 
   const handleBack = () => {
@@ -120,6 +169,10 @@ const Login = () => {
               name="email"
               autoComplete="email"
               autoFocus
+              value={email}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
             />
             <TextField
               margin="normal"
@@ -130,39 +183,43 @@ const Login = () => {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={password1}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword1(e.target.value)
+              }
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary" checked={rememberMe} onChange={handleRememberMeChange} />}
               label="로그인 정보 기억하기"
             />
 
-            <Button
+            {/* <Button
               fullWidth
               variant="contained"
               color="success"
               sx={{ mt: 3 }}
             >
               Google 로그인하기
-            </Button>
+            </Button> */}
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               로그인
             </Button>
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   비밀번호 찾기
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2" onClick={handleSignup}>
-                  {"회원가입"}
+                  {"아직 계정이 없으신가요?"}
                 </Link>
               </Grid>
             </Grid>

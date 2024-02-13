@@ -30,7 +30,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +38,8 @@ INSTALLED_APPS = [
     'fish',
     'schedule',
     'information',
+    'location',
+    'review',
 
     # DRF
     'drf_yasg',
@@ -66,6 +67,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # #ssl
+    # 'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +89,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://i10c104.p.ssafy.io:3000',
 ]
 
 REST_FRAMEWORK = {
@@ -92,6 +97,7 @@ REST_FRAMEWORK = {
     # Token 인증을 기본으로 사용하도록 설정
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     # permission
     # API 접근에 대한 기본 권한 설정. 모든 요청 허용
@@ -161,7 +167,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+# 이미지 저장을 위한 코드(지용)
+STATIC_URL = 'profile_images/'
+STATIC_ROOT = ''
+STATICFILES_DIRS = [
+    BASE_DIR / 'profile_images',
+]
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
