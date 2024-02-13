@@ -48,6 +48,7 @@ const store = (set) => ({
       }
     } catch (error) {
       console.error(error);
+      set({ schedule: null });
       console.log("일정 등록 안되어 있으면 에러뜸. 정상임 걱정 ㄴㄴ.")
     }
   },

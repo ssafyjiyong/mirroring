@@ -11,14 +11,6 @@ import Recommendation from "../components/Main/Recommendation";
 import Fubaoguide from "../components/Main/Fubaoguide";
 import MenuComponent from "../components/Main/MenuComponent";
 import CameraOpen from "../components/Main/CameraOpen";
-import Method1 from "../components/Main/Method1";
-import Method2 from "../components/Main/Method2";
-import Method3 from "../components/Main/Method3";
-import Method4 from "../components/Main/Method4";
-import Point1 from "../components/Main/Point1";
-import Point2 from "../components/Main/Point2";
-import Point3 from "../components/Main/Point3";
-import Point4 from "../components/Main/Point4";
 import Etiquette from "../components/Main/Etiquette";
 import Swal from "sweetalert2";
 import "../FontAwsome";
@@ -167,14 +159,6 @@ function HomePage() {
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
       {/* <Recommendation /> */}
-      <Point1 id="point" />
-      <Point2 />
-      <Point3 />
-      <Point4 />
-      <Method1 id="method" />
-      <Method2 />
-      <Method3 />
-      <Method4 />
 
       {/* 설문모달 */}
       <React.Fragment>

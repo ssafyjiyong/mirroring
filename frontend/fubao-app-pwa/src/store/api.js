@@ -127,6 +127,25 @@ export const prohibitFishApi = async (token) => {
   }
 };
 
+// Method GET
+export const methodGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/method/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch my fish");
+  }
+};
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
@@ -154,6 +173,8 @@ export const loginApi = async ({ email, password1 }) => {
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
 
+    window.location.reload();
+    
     return response.data;
   } catch (error) {
     console.log(error);
@@ -197,6 +218,7 @@ export const planRegisterApi = async ({
         },
       }
     );
+    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(date, location, area, method);
@@ -334,6 +356,7 @@ export const surveyPatchApi = async ({ token }) => {
       }
     );
     console.log("성공");
+    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(error);

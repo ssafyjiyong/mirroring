@@ -24,6 +24,8 @@ import PlanManagePage from "./pages/Plan/PlanManagePage";
 import ProfilePage from "./pages/User/ProfilePage";
 import ViewAllPage from "./pages/ViewAllPage";
 import MapPage from "./pages/Map/MapPage";
+import MethodTotal from "./pages/Method/MethodTotal";
+import PointTotal from "./pages/Point/PointTotal";
 import MethodPage1 from "./pages/Method/MethodPage1";
 import MethodPage2 from "./pages/Method/MethodPage2";
 import MethodPage3 from "./pages/Method/MethodPage3";
@@ -62,6 +64,8 @@ function App() {
         <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
         <Route path="/etiquetteinfo" element={<EtiquettePage />} />
         <Route path="/fishinfo" element={<FishInfoPage />} />
+        <Route path="/method" element={<MethodTotal />} />
+        <Route path="/point" element={<PointTotal />} />
         <Route path="/locationinfo" element={<LocationInfoPage />} />
         <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
         <Route path="/releaseinfo" element={<ReleaseInfo />} />
