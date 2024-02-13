@@ -639,12 +639,14 @@ export const weatherGetApi = async ({ lat, lon }) => {
   // for (let [key, value] of formData.entries()) {
   //   console.log(key, value,typeof(value));
   // }
-
   try {
     console.log(lat,lon);
-    const response = await axios.get(`${API_URL}/information/weatherSunset/`,
-    {lat:lat,lon:lon},
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
     {     
+      params: {
+        lat: lat,
+        lon: lon,
+      },
       headers: {
         "Content-Type": "application/json",
       },

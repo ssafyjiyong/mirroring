@@ -106,11 +106,6 @@ const MapComponent = () => {
     );
   };
 
-  // const openWeatherModal=()=>{
-  //   setWeatherModalProps({
-  //     conClose: ()=>setWeatherModalProps
-  //   })
-  // }
 
   return (
     <div style={{ position: "relative" }}>
