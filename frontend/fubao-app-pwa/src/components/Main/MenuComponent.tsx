@@ -341,7 +341,9 @@ const MenuComponent = ({ profile }: Props) => {
         >
           <ModalClose variant="plain" sx={{ m: 1 }} />
 
-          {creditCardMutation.isPending || cigaretteMutation.isPending || noneMutation.isPending ? (
+          {creditCardMutation.isPending ||
+          cigaretteMutation.isPending ||
+          noneMutation.isPending ? (
             <div style={{ display: "flex", justifyContent: "center" }}>
               분석중입니다. 조금만 기다려주세요.
             </div>

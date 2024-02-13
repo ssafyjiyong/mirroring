@@ -13,6 +13,11 @@ import {
 import useKakaoLoader from "./useKakaoLoader";
 import { mapInfoApi } from "../../store/api";
 import { useQuery } from "@tanstack/react-query";
+import { Modal } from "@mui/joy";
+
+import Weather from "../Modal/Weather";
+import Button from "@mui/joy/Button";
+import ModalClose from "@mui/joy/ModalClose";
 
 interface MapState {
   center: {
@@ -52,6 +57,7 @@ const MapComponent = () => {
   });
 
   const [positions, setPositions] = useState<Position[]>([]);
+  const [openWeather, setOpenWeather] = useState<boolean>(false);
 
   useEffect(() => {
     if (data) {
@@ -101,7 +107,7 @@ const MapComponent = () => {
   };
 
   return (
-    <div style={{ position:"relative" }}>
+    <div style={{ position: "relative" }}>
       <Map // 지도를 표시할 Container
         center={state.center}
         style={{
@@ -130,6 +136,13 @@ const MapComponent = () => {
                 <div style={{ minWidth: "150px" }}>
                   <div style={{ padding: "5px", color: "#000" }}>
                     {pos.address}
+                    <button onClick={() => setOpenWeather(true)}>
+                      open modal
+                    </button>
+                    <Weather
+                      open={openWeather}
+                      onClose={() => setOpenWeather(false)}
+                    ></Weather>
                   </div>
                 </div>
               )}
