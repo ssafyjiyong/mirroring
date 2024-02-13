@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { WhiteBox, AlignDiv, PendingBox } from "./styles";
-import Button from "@mui/joy/Button";
 import AspectRatio from "@mui/joy/AspectRatio";
 import Box from "@mui/joy/Box";
 import Card from "@mui/joy/Card";
@@ -148,21 +147,6 @@ const MenuComponent = ({ profile }: Props) => {
   // 카메라 관련 함수들
   const [fileSelected, setFileSelected] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
-  // 임시
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (selectedFile) {
-      const url = URL.createObjectURL(selectedFile);
-      setPreviewUrl(url);
-
-      // 생성된 URL을 컴포넌트가 언마운트될 때 해제
-      return () => URL.revokeObjectURL(url);
-    } else {
-      setPreviewUrl(null);
-    }
-  }, [selectedFile]);
 
   const navigate = useNavigate();
 
@@ -357,7 +341,7 @@ const MenuComponent = ({ profile }: Props) => {
         >
           <ModalClose variant="plain" sx={{ m: 1 }} />
 
-          {creditCardMutation.isPending ? (
+          {creditCardMutation.isPending || cigaretteMutation.isPending || noneMutation.isPending ? (
             <div style={{ display: "flex", justifyContent: "center" }}>
               분석중입니다. 조금만 기다려주세요.
             </div>

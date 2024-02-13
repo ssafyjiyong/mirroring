@@ -23,8 +23,18 @@ const ContentBox = styled.div`
   align-items: center;
 `;
 
+// 조사를 결정하는 함수
+function chooseJosa(word:string, josaPair:string) {
+  const lastChar = word.charCodeAt(word.length - 1);
+  const jongSung = (lastChar - 44032) % 28;
+  const [first, second] = josaPair.split('/');
+  return jongSung ? first : second;
+}
+
 const ResultPage = () => {
   const { profile } = useStore() as { profile: ProfileType | null };
+
+  const nickname = profile?.nickname || '낚시왕푸바오';
 
   // 현재 날짜 가져오기
   const today = new Date();
@@ -42,15 +52,11 @@ const ResultPage = () => {
       <span>{dateString}</span>
       <ContentBox>
         <div>
-          <span>"</span>
-          <span>{profile?.nickname}</span>
-          <span>직접 낚은 월척을 자랑했다.</span>
-          <span>{profile?.nickname}</span>
-          <span>무려</span>
-          <span>(길이)</span>
-          <span>의</span>
-          <span>(어종)</span>
-          <span>낚았다."</span>
+          <p>
+          "{profile?.nickname}{chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다. {profile?.nickname}{chooseJosa(nickname, "은/는")} 무려
+          <span>(길이)</span>의
+          <span> (어종)</span>{chooseJosa(nickname, "을/를")}낚았다."
+          </p>
         </div>
       </ContentBox>
     </>

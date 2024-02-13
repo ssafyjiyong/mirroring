@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
-import { currentUserApi, scheduleFetchApi } from './api'
+import { currentUserApi, scheduleFetchApi, scheduleDoneApi } from './api'
 
 const initialState = {
   profile: null,
@@ -27,8 +27,20 @@ const store = (set) => ({
       const token = localStorage.getItem('token');
       if (token) {
         const schedule = await scheduleFetchApi(token); // 단일 일정 객체를 로드
-        set({ schedule });
-        console.log(schedule);
+        console.log(`일정 불러오기: ${schedule}`);
+        
+        const currentTime = new Date();
+        if (currentTime.getTime() > new Date(schedule.date).getTime()) {
+          const pk = schedule.id;
+          scheduleDoneApi({token, pk})
+          // 로컬 저장소에서 스케줄 정보 삭제
+          set({ schedule: null });
+          console.log(`일정 삭제됨: ${schedule}`);
+        } else {
+          // 스케줄이 아직 지나지 않았다면, 상태 업데이트만 수행
+          set({ schedule });
+          console.log(`일정 업데이트됨: ${schedule}`);
+        }
       }
     } catch (error) {
       console.error(error);

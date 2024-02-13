@@ -193,33 +193,33 @@ const Login = () => {
               label="로그인 정보 기억하기"
             />
 
-            <Button
+            {/* <Button
               fullWidth
               variant="contained"
               color="success"
               sx={{ mt: 3 }}
             >
               Google 로그인하기
-            </Button>
+            </Button> */}
 
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 1, mb: 2 }}
             >
               로그인
             </Button>
 
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                {/* <Link href="#" variant="body2">
                   비밀번호 찾기
-                </Link>
+                </Link> */}
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2" onClick={handleSignup}>
-                  {"회원가입"}
+                  {"아직 계정이 없으신가요?"}
                 </Link>
               </Grid>
             </Grid>
