@@ -35,6 +35,7 @@ import PointPage1 from "./pages/Point/PointPage1";
 import PointPage2 from "./pages/Point/PointPage2";
 import PointPage3 from "./pages/Point/PointPage3";
 import PointPage4 from "./pages/Point/PointPage4";
+import FishPage from "./pages/Fish/FishPage";
 import FishPage1 from "./pages/Fish/FishPage1";
 import FishPage2 from "./pages/Fish/FishPage2";
 import FishPage3 from "./pages/Fish/FishPage3";
@@ -93,6 +94,7 @@ function App() {
         <Route path="/point2" element={<PointPage2 />} />
         <Route path="/point3" element={<PointPage3 />} />
         <Route path="/point4" element={<PointPage4 />} />
+        <Route path="/fish/:id" element={<FishPage />} />
         <Route path="/fish1" element={<FishPage1 />} />
         <Route path="/fish2" element={<FishPage2 />} />
         <Route path="/fish3" element={<FishPage3 />} />
