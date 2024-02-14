@@ -1,5 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Fish from "../../components/Main/Fish";
+import Fish1 from "../../components/Main/Fish1";
+import Fish2 from "../../components/Main/Fish2";
+import Fish3 from "../../components/Main/Fish3";
+import Fish4 from "../../components/Main/Fish4";
+import Fish5 from "../../components/Main/Fish5";
+import Fish6 from "../../components/Main/Fish6";
+import Fish7 from "../../components/Main/Fish7";
+import Fish8 from "../../components/Main/Fish8";
+import Fish9 from "../../components/Main/Fish9";
+import Fish10 from "../../components/Main/Fish10";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { fishGetApi } from "../../store/api";
 import { useNavigate } from "react-router-dom";
@@ -60,9 +70,19 @@ const FishTotal = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIcon>
       </Link>
-      {fish.map((fishData) => (
-        <Fish key={fishData.id} fishData={fishData} />
-      ))}
+      {/* {fish.map((fishItem) => (
+        <Fish key={fishItem.id} fishData={fishItem} />
+      ))} */}
+      <Fish1 fishData={fish[0]} />
+      <Fish2 fishData={fish[1]} />
+      <Fish3 fishData={fish[2]} />
+      <Fish4 fishData={fish[3]} />
+      <Fish5 fishData={fish[4]} />
+      <Fish6 fishData={fish[5]} />
+      <Fish7 fishData={fish[6]} />
+      <Fish8 fishData={fish[7]} />
+      <Fish9 fishData={fish[8]} />
+      <Fish10 fishData={fish[9]} />
     </div>
   )
 }
