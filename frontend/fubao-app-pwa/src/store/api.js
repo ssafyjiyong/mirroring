@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000";
-// const API_URL = "https://i10c104.p.ssafy.io/api";
+// const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://i10c104.p.ssafy.io/api";
 const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
 
 // GET 요청 API
