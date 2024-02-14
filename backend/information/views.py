@@ -137,9 +137,9 @@ class HomeView(APIView):
         }
 
         context = {
-            "recommend": recommend,
-            "schedules": schedule_serializer.data,
-            "user": user_profile_serializer.data,
+            "recommendation": recommend,
+            "schedule": schedule_serializer.data,
+            "profile": user_profile_serializer.data,
         }
         return Response(context, status=status.HTTP_200_OK)
 
