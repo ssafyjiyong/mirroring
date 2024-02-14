@@ -2,15 +2,67 @@ import Weather from "../Modal/Weather";
 import React, { useEffect, useState } from "react";
 import { weatherGetApi } from "../../store/api";
 
-// const pos={
-//     lat = 34.5436111;
-//     lon = 127.4536111;
-// };
+const pos={
+    lat : 34.5436111,
+    lon : 127.4536111,
+};
+interface weatherInfo {
+  //온도
+  TMP: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 풍향
+  VEC: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 풍속
+  WSD: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 하늘상태
+  SKY: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 강수확률
+  POP: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 파고
+  WAV: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+  // 1시간 강수량
+  PCP: [
+    {
+      fcstTime: string;
+      fsctValue: String;
+    },
+  ];
+}
+
 
 const TestPage = () => {
   const [open, setOpenWeather] = useState<boolean>(false);
-  const [weather, setWeather] = useState<Weather | null>(null); // method 상태
-  const [sunset, setSunset] = useState(null);
+  const [wetherInfo, setWeather] = useState<weatherInfo | null>(null); // method 상태
+  const [sunset, setSunset] = useState();
   const [sunrise, setSunrise] = useState(null);
   const lat = 34.5436111;
   const lon = 127.4536111;
@@ -41,6 +93,10 @@ const TestPage = () => {
     <div>
       <button onClick={showMeWeather}>open modal </button>
       <Weather
+        weatherInfo={wetherInfo!}
+        sunset={sunset!}
+        pos={pos}
+        open={open}
         onClose={() => setOpenWeather(false)}
       ></Weather>
     </div>

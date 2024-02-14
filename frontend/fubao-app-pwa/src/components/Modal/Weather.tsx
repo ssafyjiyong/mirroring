@@ -10,7 +10,7 @@ import Sheet from "@mui/joy/Sheet";
 import { useQuery } from "@tanstack/react-query";
 import Table from "@mui/joy/Table";
 
-interface Weather {
+interface weatherInfo {
   //온도
   TMP: [
     {
@@ -62,9 +62,6 @@ interface Weather {
   ];
 }
 
-// interface Props {
-//   Pos: Pos
-// }
 
 const Title = styled.p`
   margin: 0.5rem 0.5rem;
@@ -83,39 +80,52 @@ function sortSKY(num:String) {
     return "흐림";
   }
 };
+
+interface sunset{
+  sunset:string
+}
+
+interface pos{
+  lat:number
+  lon:number
+}
+
 interface WeatherProps {
+  weatherInfo:weatherInfo;
+  sunset:sunset
+  pos:pos;
   open: boolean;
   onClose: () => void;
 }
 
 
-
-const Weather: React.FC<WeatherProps> = ({Pos}) => {
-// const Weather= ({
+const Weather: React.FC<WeatherProps> = ({
+  pos,
+  sunset,
   open,
   onClose,
 }) => {
   // const [open, setOpenWeather] = useState<boolean>(false);
-  const [weather, setWeather] = useState<Weather | null>(null); // method 상태
-  const [sunset, setSunset] = useState(null);
+  const [weather, setWeather] = useState<weatherInfo | null>(null); // method 상태
+  // const [sunset, setSunset] = useState(null);
   const [sunrise, setSunrise] = useState(null);
   const lat = 34.5436111;
   const lon = 127.4536111;
 
-  const fetchWeather = async () => {
-    try {
-      console.log(lat, lon);
-      const response = await weatherGetApi({ lat, lon });
-      console.log(response);
-      setWeather(response.weather);
-      setSunset(response.sunset);
-      setSunrise(response.sunrise);
-      // setSunset(response['']);
-      // setPCP(response.PCP);
-    } catch (error) {
-      console.error("API 호출 중 에러 발생:", error);
-    }
-  };
+  // const fetchWeather = async () => {
+  //   try {
+  //     console.log(lat, lon);
+  //     const response = await weatherGetApi({ lat, lon });
+  //     console.log(response);
+  //     setWeather(response.weather);
+  //     setSunset(response.sunset);
+  //     setSunrise(response.sunrise);
+  //     // setSunset(response['']);
+  //     // setPCP(response.PCP);
+  //   } catch (error) {
+  //     console.error("API 호출 중 에러 발생:", error);
+  //   }
+  // };
 
   // const showMeWeather= (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
   //   fetchWeather();
@@ -125,11 +135,11 @@ const Weather: React.FC<WeatherProps> = ({Pos}) => {
   return (
     <>
       {/* <button onClick ={ showMeWeather }> open modal </button> */}
-      {/* <Modal
+      <Modal
         open={open}
-        onClose={() => setOpenWeather(false)}
+        onClose={onClose}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      > */}
+      > 
         <ModalDialog>
           <ModalClose variant="plain" sx={{ m: 1 }} />
           <Typography
@@ -159,7 +169,7 @@ const Weather: React.FC<WeatherProps> = ({Pos}) => {
                     <div>🌞 일출시간 : {sunrise}</div>
                   </div>
                 )}
-                {sunset && <div> 🌝 일몰시간 : {sunset}</div>}
+                {sunset && <div> 🌝 일몰시간 : {sunset.sunset}</div>}
                 <table aria-label="basic table">
                   <thead>
                     {/* <tr>
@@ -221,6 +231,7 @@ const Weather: React.FC<WeatherProps> = ({Pos}) => {
             )}
           </Typography>
         </ModalDialog>
+      </Modal>
     </>
   );
 };

@@ -87,6 +87,8 @@ function App() {
         <Route path="/point3" element={<PointPage3 />} />
         <Route path="/point4" element={<PointPage4 />} />
         <Route path="/fish/:id" element={<FishPage />} />
+
+        <Route path="/map/test" element={<TestPage />} />
       </Routes>
       <ConditionalBottomNav />
     </Router>
