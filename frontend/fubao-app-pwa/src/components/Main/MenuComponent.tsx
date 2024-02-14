@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import "react-datepicker/dist/react-datepicker.css";
-import { ProfileType } from "../../store/types";
 import { useNavigate } from "react-router-dom";
-interface Props {
-  profile: ProfileType | null;
-}
 
 const WhiteBoxHere = styled.div`
   display: flex;
@@ -34,7 +30,7 @@ const TextBar = styled.p`
   color: #b4bbc0;
 `;
 
-const MenuComponent = ({ profile }: Props) => {
+const MenuComponent = () => {
   const navigate = useNavigate();
 
 
