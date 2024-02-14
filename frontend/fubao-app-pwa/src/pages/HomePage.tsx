@@ -226,6 +226,7 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
+      setOpen(false);
       try {
         await loadData();
         if (!profile?.presurvey) {
