@@ -5,13 +5,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { myFishApi } from "../../store/api";
 import { useQuery } from "@tanstack/react-query";
-
-interface FishInfo {
-  name: string;
-  image: string;
-  link: string;
-  level: number;
-}
+import CollectionLoading from "../../components/Loading/CollectionLoading";
 
 const InfoBox = styled.div`
   display: flex;
@@ -34,90 +28,80 @@ const FishName = styled.p`
   margin: 0.1rem;
 `;
 
-// 물고기정보
-// 1:참돔
-// 2:농어
-// 3:전갱이
-// 4:숭어
-// 5:고등어
-// 6:광어
-// 7:우럭
-// 8:감성돔
-// 9:돌돔
-// 10:쥐노래미
-
 // 물고기 정보 배열
 const fishInfos = [
   {
     name: "참돔",
-    image: "/imgs/fish_silhouette/chamdom.png",
+    image: "1.png",
     link: "/detail/1",
     level: 2,
   },
   {
     name: "농어",
-    image: "/imgs/fish_silhouette/nonguh.png",
+    image: "2.png",
     link: "/detail/2",
     level: 1,
   },
   {
     name: "전갱이",
-    image: "/imgs/fish_silhouette/jeongang.png",
+    image: "3.png",
     link: "/detail/3",
-    level: 1,
+    level: 3,
   },
   {
     name: "숭어",
-    image: "/imgs/fish_silhouette/sunguh.png",
+    image: "4.png",
     link: "/detail/4",
-    level: 1,
+    level: 2,
   },
   {
     name: "고등어",
-    image: "/imgs/fish_silhouette/godeunguh.png",
+    image: "5.png",
     link: "/detail/5",
     level: 1,
   },
   {
     name: "광어",
-    image: "/imgs/fish_silhouette/kwanguh.png",
+    image: "6.png",
     link: "/detail/6",
-    level: 1,
+    level: 2,
   },
   {
     name: "우럭",
-    image: "/imgs/fish_silhouette/wuroek.png",
+    image: "7.png",
     link: "/detail/7",
-    level: 1,
+    level: 2,
   },
   {
     name: "감성돔",
-    image: "/imgs/fish_silhouette/gamsungdom.png",
+    image: "8.png",
     link: "/detail/8",
     level: 1,
   },
   {
     name: "돌돔",
-    image: "/imgs/fish_silhouette/doldom.png",
+    image: "9.png",
     link: "/detail/9",
     level: 2,
   },
   {
     name: "쥐노래미",
-    image: "/imgs/fish_silhouette/gnoraemi.png",
+    image: "10.png",
     link: "/detail/10",
-    level: 2,
+    level: 3,
   },
-  {
-    name: "미정",
-    image: "/imgs/fish_silhouette/temp.png",
-    link: "#",
-    level: 4,
-  },
+  // {
+  //   name: "미정",
+  //   image: "temp.png",
+  //   link: "#",
+  //   level: 4,
+  // },
 ];
 
 const CollectionPage = () => {
-  const { data, error, isError, isLoading } = useQuery({
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { data, error, isError } = useQuery({
     queryKey: ["fishData"],
     queryFn: async () => {
       const token = localStorage.getItem("token");
@@ -126,22 +110,22 @@ const CollectionPage = () => {
     },
   });
 
-  const [myfish, setMyfish] = useState();
-
   useEffect(() => {
+    setIsLoading(true);
     if (data) {
-      setMyfish(data[2]);
+      setIsLoading(false);
+      console.log(data)
     }
   }, [data]);
-
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
 
   if (isError) {
     return <p>데이터를 가져오지 못해습니다.</p>;
   }
-  
+
+  if (isLoading) {
+    return <CollectionLoading />;
+  }
+
   return (
     <div
       style={{
@@ -182,7 +166,7 @@ const CollectionPage = () => {
         }}
       >
         <div style={{ display: "flex", flexWrap: "wrap", maxWidth: "326.4px" }}>
-          {fishInfos.map(({ name, image, link, level }) => (
+          {fishInfos.map(({ name, image, link, level }, index) => (
             <Link
               to={link}
               style={{ textDecoration: "none", color: "black" }}
@@ -198,11 +182,19 @@ const CollectionPage = () => {
                       color="#FFC107"
                     />
                   ))}
-                  <img
-                    src={image}
-                    alt={name}
-                    style={{ width: "5.5rem", borderRadius: "10px" }}
-                  />
+                  {data && (
+                    <div style={{ display:"flex", justifyContent:"center", alignContent:"center" }}>
+                      <img
+                        src={
+                          data[2][index].count === 0
+                            ? `/imgs/fish_silhouette/${image}`
+                            : `/imgs/fish/${image}`
+                        }
+                        alt={name}
+                        style={{ width: "5.5rem", borderRadius: "10px" }}
+                      />
+                    </div>
+                  )}
                 </FishBox>
                 <FishName>{name}</FishName>
               </InfoBox>

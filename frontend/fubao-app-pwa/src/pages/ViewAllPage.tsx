@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { HomeIcon } from "../styles/globalStyles";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { logoutApi } from "../store/api";
+import { logoutApi, removeProfileApi } from "../store/api";
 import Swal from "sweetalert2";
 import useStore from "../store/store";
+import { Link } from "react-router-dom";
+import { HomeIcon } from "../styles/globalStyles";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -65,6 +65,37 @@ const ViewAllPage = () => {
       if (result.isConfirmed) {
         logout();
         navigate("/introduction");
+      }
+    });
+  };
+
+  const removeProfile = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await removeProfileApi(token);
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        sessionStorage.removeItem("user");
+        resetStore(); // 스토어를 초기 상태로 재설정
+        navigate("/introduction");
+      } catch (error) {
+        console.error("회원탈퇴 실패:", error);
+      }
+    }
+  };
+
+  const removeProfileConfirm = () => {
+    Swal.fire({
+      title: "회원탈퇴",
+      text: "정말로 회원탈퇴 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeProfile();
       }
     });
   };
@@ -166,7 +197,9 @@ const ViewAllPage = () => {
             로그아웃
           </span>
           <span>　|　</span>
-          <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
+          <span onClick={removeProfileConfirm} style={{ color: "#DD0C0C" }}>
+            회원탈퇴
+          </span>
         </div>
       </div>
 
