@@ -1,14 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Fish1 from "../../components/Main/Fish1";
-import Fish2 from "../../components/Main/Fish2";
-import Fish3 from "../../components/Main/Fish3";
-import Fish4 from "../../components/Main/Fish4";
-import Fish5 from "../../components/Main/Fish5";
-import Fish6 from "../../components/Main/Fish6";
-import Fish7 from "../../components/Main/Fish7";
-import Fish8 from "../../components/Main/Fish8";
-import Fish9 from "../../components/Main/Fish9";
-import Fish10 from "../../components/Main/Fish10";
 import Fish from "../../components/Main/Fish";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { fishGetApi } from "../../store/api";
