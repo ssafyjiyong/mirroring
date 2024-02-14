@@ -120,12 +120,12 @@ class HomeView(APIView):
         fish_id, selected_fish = pick_fish(method_id, request.user)
         location_id, selected_location = pick_location(fish_id, request.user)
         try:
-            schedules_queryset = schedule.objects.filter(done=False)
+            schedules_queryset = schedule.objects.filter(user=request.user, done=False).latest('date')
         except Http404:
             schedules_queryset = []
 
         user_profile_serializer = UserProfileSerializer(request.user)
-        schedule_serializer = ScheduleSerializer(schedules_queryset, many=True)
+        schedule_serializer = ScheduleSerializer(schedules_queryset)
 
         recommend = {
             "method_id": method_id,
