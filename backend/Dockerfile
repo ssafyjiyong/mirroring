@@ -13,6 +13,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+WORKDIR /usr/src/app/backend
+
 # RUN python manage.py collectstatic
 RUN python manage.py makemigrations
 RUN python manage.py migrate
