@@ -74,7 +74,7 @@ function HomePage() {
 
       // 모든 물고기 설문 API 호출 실행
       await Promise.all(fishApiCalls);
-      await surveyPatchApi({ token })
+      await surveyPatchApi({ token });
       Swal.fire("성공", "모든 설문이 제출되었습니다.", "success");
       setOpen(false);
     } catch (error) {
@@ -174,7 +174,11 @@ function HomePage() {
           <FontAwesomeIcon
             icon="user"
             color="#778a9b"
-            style={{ margin: "0.3rem 1rem 0.1rem 0.3rem", fontSize: "1.4rem" }}
+            style={{
+              margin: "0.3rem 1rem 0.1rem 0.3rem",
+              fontSize: "1.4rem",
+              cursor: "pointer",
+            }}
             onClick={goToProfile}
           />
           <FontAwesomeIcon
@@ -183,6 +187,7 @@ function HomePage() {
             style={{
               margin: "0.3rem 0.8rem 0.1rem 0.3rem",
               fontSize: "1.4rem",
+              cursor: "pointer",
             }}
             onClick={logoutConfirm}
           />
