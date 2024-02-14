@@ -43,3 +43,19 @@ export interface ScheduleType {
   method: Method;
   area: Area;
 }
+
+// recommendation 전체 구조를 위한 인터페이스
+export interface RecommendationType {
+  fish_id: number;
+  location_id: number;
+  method_id: number;
+  selected_fish: string;
+  selected_location: string;
+  selected_method: string;
+}
+
+export interface informationType {
+  recommendation: RecommendationType;
+  schedule: ScheduleType[];
+  profile: ProfileType;
+}

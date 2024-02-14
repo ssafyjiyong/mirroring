@@ -92,7 +92,7 @@ const ProfilePage = () => {
       if (result.isConfirmed) {
         removeProfile();
       }
-    })
+    });
   };
 
   // ProfileUpdate 모달의 상태
@@ -100,6 +100,15 @@ const ProfilePage = () => {
 
   // NicknameUpdate 모달의 상태
   const [openNicknameUpdate, setOpenNicknameUpdate] = useState(false);
+
+  const formatDate = (dateString: string) => {
+    return dateString.split("-").join(".");
+  };
+
+  const formattedDate =
+    profile && profile.latest_schedule_date
+      ? formatDate(profile.latest_schedule_date)
+      : "출조예정";
 
   return (
     <div style={{ padding: "1rem" }}>
@@ -173,11 +182,7 @@ const ProfilePage = () => {
           <span>잡은 물고기 수</span>
         </div>
         <div style={{ textAlign: "center" }}>
-          <Circle>
-            {profile && profile.latest_schedule_date
-              ? profile.latest_schedule_date
-              : "출조예정"}
-          </Circle>
+          <Circle>{formattedDate}</Circle>
           <span>마지막 낚시일</span>
         </div>
       </div>
@@ -192,7 +197,9 @@ const ProfilePage = () => {
         >
           <span onClick={logoutConfirm}>로그아웃</span>
           <span>　|　</span>
-          <span onClick={removeProfileConfirm} style={{ color: "#DD0C0C" }}>회원탈퇴</span>
+          <span onClick={removeProfileConfirm} style={{ color: "#DD0C0C" }}>
+            회원탈퇴
+          </span>
         </div>
       ) : (
         <div

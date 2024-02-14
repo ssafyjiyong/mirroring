@@ -184,6 +184,44 @@ export const pointGetApi = async (token) => {
   }
 };
 
+// recommendation GET
+export const recommendationGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/recommendation/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// information GET
+export const informationGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {

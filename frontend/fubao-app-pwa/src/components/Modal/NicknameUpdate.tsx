@@ -13,7 +13,7 @@ interface NicknameUpdateProps {
 }
 
 const NicknameUpdate = ({ openNicknameUpdate, setOpenNicknameUpdate }: NicknameUpdateProps) => {
-  const { loadProfile } = useStore();
+  const { loadData } = useStore();
   const [nickname, setNickname] = useState("");
 
   const handleFormSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,7 +39,7 @@ const NicknameUpdate = ({ openNicknameUpdate, setOpenNicknameUpdate }: NicknameU
 
       try {
         await nicknamePatchApi({ token, nickname });
-        loadProfile();
+        loadData();
         setOpenNicknameUpdate(false);
       } catch (error) {
         console.error("닉네임 변경 실패:", error);

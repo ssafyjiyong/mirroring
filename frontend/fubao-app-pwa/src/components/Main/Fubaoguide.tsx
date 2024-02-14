@@ -11,7 +11,11 @@ import { AxiosError } from "axios";
 import Sheet from "@mui/joy/Sheet";
 import styled from "styled-components";
 import useStore from "../../store/store";
-import { ProfileType, ScheduleType } from "../../store/types";
+import {
+  ProfileType,
+  ScheduleType,
+  RecommendationType,
+} from "../../store/types";
 import { useNavigate } from "react-router-dom";
 import {
   classifyApiCreditCard,
@@ -37,9 +41,10 @@ const Container = styled.button`
 `;
 
 const Fubaoguide = () => {
-  const { profile, schedule } = useStore() as {
+  const { profile, schedule, recommendation } = useStore() as {
     profile: ProfileType | null;
     schedule: ScheduleType | null;
+    recommendation: RecommendationType | null;
   };
 
   // 현재 날짜 가져오기
@@ -222,11 +227,21 @@ const Fubaoguide = () => {
         {!schedule || !schedule.id ? (
           <div className="speech-bubble">
             <Text>
-              {`${profile?.nickname}님의 취향 분석 결과,`}
+              {`${profile?.nickname}님의 취향 분석 완료!`}
               <br />
-              (추천장소)에서 (추천방법)으로
+              <span style={{ fontWeight: "500" }}>
+                {recommendation?.selected_location}
+              </span>
+              에서{" "}
+              <span style={{ fontWeight: "500" }}>
+                {recommendation?.selected_method}
+              </span>
+              로
               <br />
-              (추천어종) 잡아보는건 어때요?
+              <span style={{ fontWeight: "500" }}>
+                {recommendation?.selected_fish}
+              </span>
+              {" "}잡아보는건 어때요?
               <br />
               아래에서 관련 정보를 살펴보세요!
             </Text>
