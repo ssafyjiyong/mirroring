@@ -240,8 +240,8 @@ const Fubaoguide = () => {
               <br />
               <span style={{ fontWeight: "500" }}>
                 {recommendation?.selected_fish}
-              </span>
-              {" "}잡아보는건 어때요?
+              </span>{" "}
+              잡아보는건 어때요?
               <br />
               아래에서 관련 정보를 살펴보세요!
             </Text>
@@ -339,10 +339,16 @@ const Fubaoguide = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignContent: "center",
+                alignItems: "center",
               }}
             >
               <p>어우, 실허네 그놈.</p>
+              <img
+                src="/classify.png"
+                alt="loading"
+                style={{ width: "7em", height: "7em" }}
+                className="infinite_rotating_logo"
+              />
               <p>어디보자. 잠시만 기다려봐.</p>
             </div>
           ) : (
