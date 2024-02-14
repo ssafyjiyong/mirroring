@@ -36,8 +36,10 @@ class ScheduleAPIView(APIView):
         # schedule_instance = get_object_or_404(schedule, user=request.user, done=False)
         # print(schedule_instance)
         except schedule.DoesNotExist:
-            schedule_instance=[]
-            return Response(schedule_instance, status=status.HTTP_200_OK)
+            context={
+                "schedule":"null"
+            }
+            return Response(context, status=status.HTTP_200_OK)
         
        
 class ScheduleDoneAPIView(APIView):
