@@ -83,18 +83,11 @@ function sortSKY(num:String) {
     return "흐림";
   }
 };
-interface WeatherProps {
-  open: boolean;
-  onClose: () => void;
-}
 
 
 
-const Weather: React.FC<WeatherProps> = ({Pos}) => {
-// const Weather= ({
-  open,
-  onClose,
-}) => {
+// const Weather: React.FC<Props> = ({Pos}) => {
+const Weather= () => {
   // const [open, setOpenWeather] = useState<boolean>(false);
   const [weather, setWeather] = useState<Weather | null>(null); // method 상태
   const [sunset, setSunset] = useState(null);

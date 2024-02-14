@@ -49,7 +49,7 @@ import TheFirstPage from "./pages/TheFirstPage";
 import IntroductionPage from "./pages/IntroductionPage";
 import RequireAuth from "./components/RequireAuth";
 
-import Weather from "./components/Modal/Weather";
+import TestPage from "./components/Map/TestPage";
 
 function App() {
   
@@ -105,6 +105,7 @@ function App() {
         <Route path="/fish8" element={<FishPage8 />} />
         <Route path="/fish9" element={<FishPage9 />} />
         <Route path="/fish10" element={<FishPage10 />} />
+        <Route path="/map/location/weather/test" element={<TestPage />}/>
       </Routes>
       <ConditionalBottomNav />
     </Router>
