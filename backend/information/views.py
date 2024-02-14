@@ -100,6 +100,8 @@ class recommendationView(APIView):
         method_id, selected_method = pick_method(request.user)
         fish_id, selected_fish = pick_fish(method_id, request.user)
         location_id, selected_location = pick_location(fish_id,request.user)
+        location_lat = location.objects.filter(id=location_id)
+        location_lon = location.objects.filter(id=location_id)
 
         context = {
             "method_id": method_id,
@@ -108,6 +110,8 @@ class recommendationView(APIView):
             "selected_fish": selected_fish,
             "location_id": location_id,
             "selected_location": selected_location,
+            "location_lat": location_lat,
+            "location_lon": location_lon,
         }
         return Response(context, status=status.HTTP_200_OK)
 
@@ -119,6 +123,8 @@ class HomeView(APIView):
         method_id, selected_method = pick_method(request.user)
         fish_id, selected_fish = pick_fish(method_id, request.user)
         location_id, selected_location = pick_location(fish_id, request.user)
+        location_lat = location.objects.filter(id=location_id)
+        location_lon = location.objects.filter(id=location_id)
         try:
             schedules_queryset = schedule.objects.filter(user=request.user, done=False).latest('date')
         except Http404:
@@ -134,6 +140,8 @@ class HomeView(APIView):
             "selected_fish": selected_fish,
             "location_id": location_id,
             "selected_location": selected_location,
+            "location_lat": location_lat,
+            "location_lon": location_lon,
         }
 
         context = {
