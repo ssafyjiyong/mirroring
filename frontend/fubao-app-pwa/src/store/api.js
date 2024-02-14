@@ -142,7 +142,45 @@ export const methodGetApi = async (token) => {
       "An error occurred during the API call:",
       error.response ? error.response.data : error.message
     );
-    throw new Error("Failed to fetch my fish");
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// Fish GET
+export const fishGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// Point GET
+export const pointGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/area/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch point");
   }
 };
 
@@ -216,7 +254,6 @@ export const planRegisterApi = async ({
         },
       }
     );
-    window.location.reload();
     return response.data;
   } catch (error) {
     console.log(date, location, area, method);

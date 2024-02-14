@@ -5,8 +5,8 @@ export const Wireframe = styled.div`
 `;
 
 export const HomeIcon = styled.div`
-    position: fixed;
-    top: 2rem;
+    position: absolute;
+    top: 1.7rem;
     right: 2rem;
     display: flex;
     justify-content: center;
