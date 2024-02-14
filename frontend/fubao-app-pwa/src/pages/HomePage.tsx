@@ -40,11 +40,13 @@ import {
   surveyFishApi,
 } from "../store/api";
 import useStore from "../store/store";
+import EntryLoading from "../components/Entry/EntryLoading";
 
 type SelectedState = number[];
 
 function HomePage() {
-  const { resetStore, loadData } = useStore();
+  const { resetStore, loadData, schedule, recommendation } = useStore();
+  const [isLoading, setIsLoading] = useState<boolean>(true); 
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedMethods, setSelectedMethods] = useState<SelectedState>([]);
@@ -100,14 +102,6 @@ function HomePage() {
     }
   };
 
-  useEffect(() => {
-    loadData();
-
-    // if (profile && !profile.presurvey) {
-    //   setOpen(true);
-    // }
-  }, []);
-
   const logout = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -145,6 +139,26 @@ function HomePage() {
   const goToProfile = () => {
     navigate("/profile");
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // setIsLoading(true); // 데이터 로딩 시작 전에 isLoading을 true로 설정
+        await loadData();
+      } catch (error) {
+        console.error("데이터 로딩 중 오류 발생:", error);
+      } finally {
+        setIsLoading(false); // 데이터 로딩이 완료되거나 오류가 발생하면 isLoading을 false로 설정
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 로딩 상태에 따른 조건부 렌더링
+  if (isLoading) {
+    return <EntryLoading />; // 로딩 중이면 EntryLoading 컴포넌트 표시
+  }
 
   return (
     <div
@@ -212,25 +226,39 @@ function HomePage() {
       <Fubaoguide />
       <MenuComponent />
 
-      <LocationComponent />
-      <Method1 />
-      <Method2 />
-      <Method3 />
-      <Method4 />
-      <Point1 />
-      <Point2 />
-      <Point3 />
-      <Point4 />
-      <Fish1 />
-      <Fish2 />
-      <Fish3 />
-      <Fish4 />
-      <Fish5 />
-      <Fish6 />
-      <Fish7 />
-      <Fish8 />
-      <Fish9 />
-      <Fish10 />
+      {
+      schedule && schedule.length > 0 ? (
+        <>
+        <LocationComponent />
+        <Method1 />
+        <Method2 />
+        <Method3 />
+        <Method4 />
+        <Point1 />
+        <Point2 />
+        <Point3 />
+        <Point4 />
+        </>
+      ) : (
+        <>
+        <LocationComponent />
+        <Method1 />
+        <Method2 />
+        <Method3 />
+        <Method4 />
+        <Fish1 />
+        <Fish2 />
+        <Fish3 />
+        <Fish4 />
+        <Fish5 />
+        <Fish6 />
+        <Fish7 />
+        <Fish8 />
+        <Fish9 />
+        <Fish10 />
+        </>
+      )
+    }
 
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
