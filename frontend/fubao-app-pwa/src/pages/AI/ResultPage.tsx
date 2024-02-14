@@ -13,7 +13,7 @@ const TitleBox = styled.div`
   align-items: center;
   font-size: 1.5rem;
   font-weight: 600;
-  padding: 0.5rem 1rem 1rem;
+  padding: 0.5rem 1rem 0rem;
 `;
 
 const ContentBox = styled.div`
@@ -24,7 +24,8 @@ const ContentBox = styled.div`
   align-items: center;
   font-size: 1.2rem;
   font-weight: 400;
-  padding: 0.5rem 1rem 1rem;
+  padding-bottom: 1rem;
+  margin: 0.5rem 1rem 0rem;
   /* text-align: center; */
 `;
 
@@ -95,7 +96,7 @@ const ResultPage = () => {
       style={{
         backgroundColor: "#E3F2FD",
         height: "100vh",
-        padding: "1rem 0rem 0rem",
+        padding: "1rem 0rem 1rem",
         position:"relative",
       }}
     >
@@ -169,8 +170,10 @@ const ResultPage = () => {
         </ContentBox>
       </div>
 
-        <Button onClick={handleSaveImage}>이미지 저장</Button>
+<div style={{display:"flex", justifyContent:"end", backgroundColor: "#E3F2FD", paddingRight:"1rem", marginTop:"0.5rem"}}>
+        <Button onClick={handleSaveImage} style={{ marginRight:"0.5rem" }}>이미지 저장</Button>
         <Button color="danger" onClick={goToHome}>돌아가기</Button>
+</div>
 
     </div>
   );
