@@ -60,7 +60,7 @@ const Fish: React.FC<FishProps> = ({ fishData }) => {
         <img
           src={fishImages[fishData.id - 1].image}
           alt={fishData.name_kor}
-          style={{ maxHeight: "150px", maxWidth: "500px" }}
+          style={{ maxHeight: "150px", maxWidth: "80%" }}
         />
       </div>
       <div style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
