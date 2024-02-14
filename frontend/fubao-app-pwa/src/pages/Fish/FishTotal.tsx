@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Fish from "../../components/Main/Fish";
 import Fish1 from "../../components/Main/Fish1";
 import Fish2 from "../../components/Main/Fish2";
 import Fish3 from "../../components/Main/Fish3";
@@ -11,50 +10,18 @@ import Fish8 from "../../components/Main/Fish8";
 import Fish9 from "../../components/Main/Fish9";
 import Fish10 from "../../components/Main/Fish10";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { fishGetApi } from "../../store/api";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HomeIcon } from "../../styles/globalStyles";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-type FishData = {
-  id: number;
-  name_kor: string;
-  name_eng: string;
-  fish_difficulty: number;
-  subtitle: string;
-  document: string;
-  release_standard: number;
-  prohibit: number;
-  bait: number[];
-  area: number[];
-  equipment: number[];
-  method: number[];
-};
-
 const FishTotal = () => {
-    const [fish, setFish] = useState<FishData[]>([]);
-    const token = localStorage.getItem("token");
     const navigate = useNavigate();
   
     const handleBack = () => {
       navigate(-1);
     };
-  
-    useEffect(() => {
-      const fetchFish = async () => {
-        try {
-          const response = await fishGetApi(token);
-          setFish(response);
-          console.log(response);
-        } catch (error) {
-          console.error("API 호출 중 에러 발생:", error);
-        }
-      };
-  
-      fetchFish();
-    }, [token]);
 
   return (
 <div style={{ position:"relative", padding: "1rem 1rem 2rem", backgroundColor: "#E3F2FD" }}>
@@ -73,16 +40,16 @@ const FishTotal = () => {
       {/* {fish.map((fishItem) => (
         <Fish key={fishItem.id} fishData={fishItem} />
       ))} */}
-      <Fish1 fishData={fish[0]} />
-      <Fish2 fishData={fish[1]} />
-      <Fish3 fishData={fish[2]} />
-      <Fish4 fishData={fish[3]} />
-      <Fish5 fishData={fish[4]} />
-      <Fish6 fishData={fish[5]} />
-      <Fish7 fishData={fish[6]} />
-      <Fish8 fishData={fish[7]} />
-      <Fish9 fishData={fish[8]} />
-      <Fish10 fishData={fish[9]} />
+      <Fish1 />
+      <Fish2 />
+      <Fish3 />
+      <Fish4 />
+      <Fish5 />
+      <Fish6 />
+      <Fish7 />
+      <Fish8 />
+      <Fish9 />
+      <Fish10 />
     </div>
   )
 }
