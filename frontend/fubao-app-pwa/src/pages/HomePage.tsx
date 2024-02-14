@@ -21,13 +21,11 @@ import {
   surveyFishApi,
 } from "../store/api";
 import useStore from "../store/store";
-import { ProfileType } from "../store/types";
 
 type SelectedState = number[];
 
 function HomePage() {
-  const { profile } = useStore() as { profile: ProfileType | null };
-  const { loadProfile, resetStore, loadSchedule } = useStore();
+  const { profile, resetStore, loadData } = useStore();
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedMethods, setSelectedMethods] = useState<SelectedState>([]);
@@ -84,14 +82,11 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      loadProfile();
-      loadSchedule();
-    }
+    loadData();
 
-    if (profile && !profile.presurvey) {
-      setOpen(true);
-    }
+    // if (profile && !profile.presurvey) {
+    //   setOpen(true);
+    // }
   }, []);
 
   const logout = async () => {
@@ -132,6 +127,23 @@ function HomePage() {
     navigate("/profile");
   };
 
+  // App설치 관련(테스트중)
+  let deferredPrompt:any;
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+  });
+
+  const installApp = () => {
+    if (!deferredPrompt) {
+      alert("이미 앱이 설치되어 있거나 앱을 설치할 수 없는 환경입니다");
+      return;
+    }
+
+    deferredPrompt.prompt();
+  };
+
   return (
     <div
       style={{
@@ -169,6 +181,8 @@ function HomePage() {
           >
             FUBAO
           </span>
+          {/* 테스트중 */}
+          <button onClick={installApp}>앱 설치하기</button>
         </div>
         <div>
           <FontAwesomeIcon
@@ -194,6 +208,7 @@ function HomePage() {
         </div>
       </div>
       <Etiquette />
+      {/* <Time /> */}
       <Fubaoguide />
       <MenuComponent profile={profile} />
 
