@@ -35,16 +35,7 @@ import PointPage1 from "./pages/Point/PointPage1";
 import PointPage2 from "./pages/Point/PointPage2";
 import PointPage3 from "./pages/Point/PointPage3";
 import PointPage4 from "./pages/Point/PointPage4";
-import FishPage1 from "./pages/Fish/FishPage1";
-import FishPage2 from "./pages/Fish/FishPage2";
-import FishPage3 from "./pages/Fish/FishPage3";
-import FishPage4 from "./pages/Fish/FishPage4";
-import FishPage5 from "./pages/Fish/FishPage5";
-import FishPage6 from "./pages/Fish/FishPage6";
-import FishPage7 from "./pages/Fish/FishPage7";
-import FishPage8 from "./pages/Fish/FishPage8";
-import FishPage9 from "./pages/Fish/FishPage9";
-import FishPage10 from "./pages/Fish/FishPage10";
+import FishPage from "./pages/Fish/FishPage";
 import TheFirstPage from "./pages/TheFirstPage";
 import IntroductionPage from "./pages/IntroductionPage";
 import RequireAuth from "./components/RequireAuth";
@@ -95,17 +86,7 @@ function App() {
         <Route path="/point2" element={<PointPage2 />} />
         <Route path="/point3" element={<PointPage3 />} />
         <Route path="/point4" element={<PointPage4 />} />
-        <Route path="/fish1" element={<FishPage1 />} />
-        <Route path="/fish2" element={<FishPage2 />} />
-        <Route path="/fish3" element={<FishPage3 />} />
-        <Route path="/fish4" element={<FishPage4 />} />
-        <Route path="/fish5" element={<FishPage5 />} />
-        <Route path="/fish6" element={<FishPage6 />} />
-        <Route path="/fish7" element={<FishPage7 />} />
-        <Route path="/fish8" element={<FishPage8 />} />
-        <Route path="/fish9" element={<FishPage9 />} />
-        <Route path="/fish10" element={<FishPage10 />} />
-        <Route path="/map/location/weather/test" element={<TestPage />}/>
+        <Route path="/fish/:id" element={<FishPage />} />
       </Routes>
       <ConditionalBottomNav />
     </Router>

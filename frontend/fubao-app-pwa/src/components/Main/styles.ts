@@ -17,7 +17,17 @@ export const EtiquetteWhiteBox = styled.div`
     height: 3.7rem;
     background-color: white;
     padding: 1rem;
-    margin: 1.3rem 0;
+    margin: 1.3rem 0rem 0.5rem;
+`;
+
+export const EtiquetteWhiteBox1 = styled.div`
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    height: 3.7rem;
+    background-color: white;
+    padding: 1rem;
+    margin: 1.3rem 0rem 0.5rem;
 `;
 
 export const PendingBox = styled.div`

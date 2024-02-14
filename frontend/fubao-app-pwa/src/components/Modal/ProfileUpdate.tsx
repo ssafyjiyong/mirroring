@@ -24,7 +24,7 @@ const VisuallyHiddenInput = styled("input")`
 `;
 
 const ProfileUpdate = ({ openProfileUpdate, setOpenProfileUpdate }: ProfileUpdateProps) => {
-  const { loadProfile } = useStore();
+  const { loadData } = useStore();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,7 +38,7 @@ const ProfileUpdate = ({ openProfileUpdate, setOpenProfileUpdate }: ProfileUpdat
       try {
         const profile_img = selectedFile;
         await profileImgPatchApi({ token, profile_img });
-        loadProfile();
+        loadData();
         setOpenProfileUpdate(false);
       } catch (error) {
         console.error("프로필 이미지 변경 실패:", error);

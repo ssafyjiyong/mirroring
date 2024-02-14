@@ -6,15 +6,19 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import get_object_or_404
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
+from django.http import Http404
 
 from .weather import weatherAPI
 from .sunset import sunsetAPI
 from .models import fishing_method, fishing_area, fishing_bait, fishing_equipment, release_fish, prohibit_fish
 from fish.models import fish, user_fish
 from review.models import method_reivew ,location_review
-
 from location.models import location
+from schedule.models import schedule
+from user.serializers import UserProfileSerializer
 from .serializers import AreaSerializer, BaitSerializer, MethodSerializer, EquipmentSerializer, ReleaseSerializer, ProhibitSerializer
+from schedule.serializers import ScheduleSerializer
+
 
 class weatherSunsetAPIView(APIView):
     # permission_classes = [IsAuthenticated]
@@ -100,7 +104,11 @@ class recommendationView(APIView):
         method_id, selected_method = pick_method(request.user)
         fish_id, selected_fish = pick_fish(method_id, request.user)
         location_id, selected_location = pick_location(fish_id,request.user)
+        location_obj = location.objects.get(id=location_id)
 
+        location_lat = location_obj.lattitude
+        location_lon = location_obj.longitude
+        
         context = {
             "method_id": method_id,
             "selected_method": selected_method,
@@ -108,7 +116,55 @@ class recommendationView(APIView):
             "selected_fish": selected_fish,
             "location_id": location_id,
             "selected_location": selected_location,
+            "location_lat": location_lat,
+            "location_lon": location_lon,
         }
+        return Response(context, status=status.HTTP_200_OK)
+
+class HomeView(APIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        method_id, selected_method = pick_method(request.user)
+        fish_id, selected_fish = pick_fish(method_id, request.user)
+        location_id, selected_location = pick_location(fish_id, request.user)
+        location_obj = location.objects.get(id=location_id)
+
+        location_lat = location_obj.lattitude
+        location_lon = location_obj.longitude
+
+        try:
+            schedules_queryset = schedule.objects.filter(user=request.user, done=False).latest('date')
+        except schedule.DoesNotExist:
+            schedules_queryset = []
+
+        user_profile_serializer = UserProfileSerializer(request.user)
+        recommend = {
+            "method_id": method_id,
+            "selected_method": selected_method,
+            "fish_id": fish_id,
+            "selected_fish": selected_fish,
+            "location_id": location_id,
+            "selected_location": selected_location,
+            "location_lat": location_lat,
+            "location_lon": location_lon,
+        }
+        
+        if schedules_queryset:
+            schedule_serializer = ScheduleSerializer(schedules_queryset)
+            context = {
+                "recommendation": recommend,
+                "schedule": schedule_serializer.data,
+                "profile": user_profile_serializer.data,
+            }
+        else:
+            context = {
+                "recommendation": recommend,
+                "schedule": [],
+                "profile": user_profile_serializer.data,
+            }
+
         return Response(context, status=status.HTTP_200_OK)
 
 class FishMethodsView(APIView):

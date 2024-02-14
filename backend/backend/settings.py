@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # my_settings.py 불러오기
 from my_settings import SECRET_KEY, DATABASES
@@ -173,6 +173,7 @@ STATIC_ROOT = ''
 STATICFILES_DIRS = [
     BASE_DIR / 'profile_images',
 ]
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

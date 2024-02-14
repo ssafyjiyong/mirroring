@@ -10,10 +10,16 @@ from fish_detection import *
 from werkzeug.utils import secure_filename
 
 # 어종 판별 모듈 관련
+import sys, os, glob
+from keras.models import Sequential
+from keras.layers import Convolution2D, MaxPooling2D
+from keras.layers import Activation, Dropout, Flatten, Dense
+# from keras.utils import np_utils
+from keras import utils
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
-from fish_species_classification import *
+from fish_species_classification_cnn import *
 
 # db 저장 모듈 관련
 from db_connection import *

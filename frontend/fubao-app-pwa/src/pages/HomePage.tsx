@@ -8,6 +8,25 @@ import Checkbox from "@mui/joy/Checkbox";
 import Sheet from "@mui/joy/Sheet";
 import Fubaoguide from "../components/Main/Fubaoguide";
 import MenuComponent from "../components/Main/MenuComponent";
+import LocationComponent from "../components/Main/LocationComponent";
+import Method1 from "../components/Main/Method1";
+import Method2 from "../components/Main/Method2";
+import Method3 from "../components/Main/Method3";
+import Method4 from "../components/Main/Method4";
+import Point1 from "../components/Main/Point1";
+import Point2 from "../components/Main/Point2";
+import Point3 from "../components/Main/Point3";
+import Point4 from "../components/Main/Point4";
+import Fish1 from "../components/Main/Fish1";
+import Fish2 from "../components/Main/Fish2";
+import Fish3 from "../components/Main/Fish3";
+import Fish4 from "../components/Main/Fish4";
+import Fish5 from "../components/Main/Fish5";
+import Fish6 from "../components/Main/Fish6";
+import Fish7 from "../components/Main/Fish7";
+import Fish8 from "../components/Main/Fish8";
+import Fish9 from "../components/Main/Fish9";
+import Fish10 from "../components/Main/Fish10";
 import Etiquette from "../components/Main/Etiquette";
 import Swal from "sweetalert2";
 import "../FontAwsome";
@@ -21,13 +40,11 @@ import {
   surveyFishApi,
 } from "../store/api";
 import useStore from "../store/store";
-import { ProfileType } from "../store/types";
 
 type SelectedState = number[];
 
 function HomePage() {
-  const { profile } = useStore() as { profile: ProfileType | null };
-  const { loadProfile, resetStore, loadSchedule } = useStore();
+  const { resetStore, loadData } = useStore();
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedMethods, setSelectedMethods] = useState<SelectedState>([]);
@@ -84,14 +101,11 @@ function HomePage() {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      loadProfile();
-      loadSchedule();
-    }
+    loadData();
 
-    if (profile && !profile.presurvey) {
-      setOpen(true);
-    }
+    // if (profile && !profile.presurvey) {
+    //   setOpen(true);
+    // }
   }, []);
 
   const logout = async () => {
@@ -194,8 +208,29 @@ function HomePage() {
         </div>
       </div>
       <Etiquette />
+      {/* <Time /> */}
       <Fubaoguide />
-      <MenuComponent profile={profile} />
+      <MenuComponent />
+
+      <LocationComponent />
+      <Method1 />
+      <Method2 />
+      <Method3 />
+      <Method4 />
+      <Point1 />
+      <Point2 />
+      <Point3 />
+      <Point4 />
+      <Fish1 />
+      <Fish2 />
+      <Fish3 />
+      <Fish4 />
+      <Fish5 />
+      <Fish6 />
+      <Fish7 />
+      <Fish8 />
+      <Fish9 />
+      <Fish10 />
 
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
