@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import "../../FontAwsome";
 import { fishGetApi } from "../../store/api";
 import { useParams } from "react-router-dom";
@@ -31,6 +32,30 @@ const fishImages = [
   { name: '돌돔', image: '/imgs/fish/doldom.png', link: '/detail/돌돔'}, // 9. 돌돔
   { name: '쥐노래미', image: '/imgs/fish/gnoraemi.png', link: '/detail/쥐노래미'}, // 10. 쥐노래미
 ];
+
+const Title = styled.p`
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #202125;
+`;
+
+const Subtitle = styled.p`
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #AEB1BA;
+`;
+
+const AlignDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #202125;
+`;
 
 const FishPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -65,11 +90,17 @@ const FishPage: React.FC = () => {
   }
 
   return (
-    <div>
-      <h2>{fishData.name_kor}</h2>
-      <p>{fishData.subtitle}</p>
-      <img src={fishImage.image} alt={fishData.name_kor} />
+    <div style={{ padding:"1rem 1rem 2rem" }}>
+      <Title>{fishData.name_kor}</Title>
+      <Subtitle>{fishData.subtitle}</Subtitle>
       <p>{fishData.document}</p>
+      <AlignDiv>
+        <img 
+          src={fishImage.image}
+          alt={fishData.name_kor}
+          style={{ width: "100%", maxWidth: "500px", height: "auto", margin: "3rem 0rem" }}
+        />
+      </AlignDiv>
     </div>
   );
 };
