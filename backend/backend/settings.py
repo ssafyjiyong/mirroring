@@ -173,7 +173,7 @@ STATIC_ROOT = ''
 STATICFILES_DIRS = [
     BASE_DIR / 'profile_images',
 ]
-STATIC_ROOT='/static/files/profile/'
+STATIC_ROOT=BASE_DIR / 'profile_images'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
