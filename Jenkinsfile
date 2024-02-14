@@ -21,6 +21,16 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Copy my_settings file'){
+            steps{
+                script {
+                    sh '''
+                        cp /home/ubuntu/jenkins-data/settingsFiles/my_settings.py ./backend
+                    '''
+                }           
+            }
+
+        }
 
         stage('Parallel Build Docker Image') {
             parallel{
