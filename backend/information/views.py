@@ -157,7 +157,7 @@ class HomeView(APIView):
         else:
             context = {
                 "recommendation": recommend,
-                "schedule": "null",
+                "schedule": None,
                 "profile": user_profile_serializer.data,
             }
 

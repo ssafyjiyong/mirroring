@@ -37,7 +37,7 @@ class ScheduleAPIView(APIView):
         # print(schedule_instance)
         except schedule.DoesNotExist:
             context={
-                "schedule":"null"
+                "schedule":None
             }
             return Response(context, status=status.HTTP_200_OK)
         
