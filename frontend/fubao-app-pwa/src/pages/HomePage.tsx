@@ -41,12 +41,17 @@ import {
 } from "../store/api";
 import useStore from "../store/store";
 import EntryLoading from "../components/Entry/EntryLoading";
+import { RecommendationType, ScheduleType } from "../store/types";
 
 type SelectedState = number[];
 
 function HomePage() {
-  const { resetStore, loadData, schedule, recommendation } = useStore();
-  const [isLoading, setIsLoading] = useState<boolean>(true); 
+  const { resetStore, loadData } = useStore();
+  const { schedule, recommendation } = useStore() as {
+    schedule: ScheduleType[];
+    recommendation: RecommendationType | null;
+  };
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedMethods, setSelectedMethods] = useState<SelectedState>([]);
@@ -140,6 +145,65 @@ function HomePage() {
     navigate("/profile");
   };
 
+  // 조건부 렌더링을 위한 함수(스케줄 등록하지않은 경우)
+  const renderRecommendationComponent = () => {
+    if (!schedule || schedule.length <= 0) {
+      return (
+        <>
+          <LocationComponent />
+          {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
+            recommendation.method_id === 1 ? <Method1 /> :
+            recommendation.method_id === 2 ? <Method2 /> :
+            recommendation.method_id === 3 ? <Method3 /> :
+            recommendation.method_id === 4 ? <Method4 /> : null
+          )}
+          {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
+            recommendation.fish_id === 1 ? <Fish1 /> :
+            recommendation.fish_id === 2 ? <Fish2 /> :
+            recommendation.fish_id === 3 ? <Fish3 /> :
+            recommendation.fish_id === 4 ? <Fish4 /> :
+            recommendation.fish_id === 5 ? <Fish5 /> :
+            recommendation.fish_id === 6 ? <Fish6 /> :
+            recommendation.fish_id === 7 ? <Fish7 /> :
+            recommendation.fish_id === 8 ? <Fish8 /> :
+            recommendation.fish_id === 9 ? <Fish9 /> :
+            recommendation.fish_id === 10 ? <Fish10 /> : null
+          )}
+        </>
+      );
+    }
+    return null; // schedule이 존재하면 아무것도 렌더링하지 않음
+  };
+
+    // 조건부 렌더링을 위한 함수(스케줄 등록한 경우)
+    const renderScheduleComponent = () => {
+      if (schedule.length > 0) {
+        return (
+          <>
+            {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
+              recommendation.method_id === 1 ? <Method1 /> :
+              recommendation.method_id === 2 ? <Method2 /> :
+              recommendation.method_id === 3 ? <Method3 /> :
+              recommendation.method_id === 4 ? <Method4 /> : null
+            )}
+            {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
+              recommendation.fish_id === 1 ? <Fish1 /> :
+              recommendation.fish_id === 2 ? <Fish2 /> :
+              recommendation.fish_id === 3 ? <Fish3 /> :
+              recommendation.fish_id === 4 ? <Fish4 /> :
+              recommendation.fish_id === 5 ? <Fish5 /> :
+              recommendation.fish_id === 6 ? <Fish6 /> :
+              recommendation.fish_id === 7 ? <Fish7 /> :
+              recommendation.fish_id === 8 ? <Fish8 /> :
+              recommendation.fish_id === 9 ? <Fish9 /> :
+              recommendation.fish_id === 10 ? <Fish10 /> : null
+            )}
+          </>
+        );
+      }
+      return null; // schedule이 존재하면 아무것도 렌더링하지 않음
+    };
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -226,8 +290,9 @@ function HomePage() {
       <Fubaoguide />
       <MenuComponent />
 
-      {
-      schedule && schedule.length > 0 ? (
+      {renderRecommendationComponent()}
+      {/* {
+      schedule.length > 0 ? (
         <>
         <LocationComponent />
         <Method1 />
@@ -258,7 +323,7 @@ function HomePage() {
         <Fish10 />
         </>
       )
-    }
+    } */}
 
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}
