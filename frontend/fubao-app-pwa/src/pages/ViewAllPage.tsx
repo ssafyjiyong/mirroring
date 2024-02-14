@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { HomeIcon } from "../styles/globalStyles";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { logoutApi } from "../store/api";
 import Swal from "sweetalert2";
 import useStore from "../store/store";
+import { Link } from "react-router-dom";
+import { HomeIcon } from "../styles/globalStyles";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
