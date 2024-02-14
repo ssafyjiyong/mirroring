@@ -62,7 +62,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/collection" element={<RequireAuth><CollectionPage /></RequireAuth>} />
-        <Route path="/detail/:fishname" element={<RequireAuth><DetailPage /></RequireAuth>} />
+        <Route path="/detail/:fishid" element={<RequireAuth><DetailPage /></RequireAuth>} />
         <Route path="/fishbowl" element={<FishBowlPage />} />
         <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
         <Route path="/etiquetteinfo" element={<EtiquettePage />} />
