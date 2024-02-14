@@ -75,7 +75,7 @@ const ProfileUpdate = ({ openProfileUpdate, setOpenProfileUpdate }: ProfileUpdat
           fontWeight="lg"
           mb={1}
         >
-          프로필을 변경하시겠습니까?
+        {selectedFile ? "프로필을 변경하시겠습니까?" : "이미지를 선택해주세요."}
         </Typography>
         <div
           style={{
@@ -109,7 +109,7 @@ const ProfileUpdate = ({ openProfileUpdate, setOpenProfileUpdate }: ProfileUpdat
                 </SvgIcon>
               }
             >
-              프로필 사진 선택
+              이미지 업로드
               <VisuallyHiddenInput
                 type="file"
                 onChange={handleFileChange}
@@ -118,7 +118,7 @@ const ProfileUpdate = ({ openProfileUpdate, setOpenProfileUpdate }: ProfileUpdat
             </Button>
           )}
           {selectedFile && (
-            <Button onClick={profileImgPatch}>프로필 변경하기</Button>
+            <Button onClick={profileImgPatch}>확인</Button>
           )}
         </div>
       </Sheet>

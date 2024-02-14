@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <div className="AppStyle">
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <App />
     </QueryClientProvider>
   </div>

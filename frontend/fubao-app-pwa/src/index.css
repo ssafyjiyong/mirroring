@@ -133,3 +133,28 @@ code {
 .profile-img-container:hover .camera-icon {
   display: block; /* 호버 시 보여줌 */
 }
+
+.speech-bubble {
+	position: relative;
+	background: #ffffff;
+	border-radius: 15px;
+  padding: 0.1rem;
+  max-width:280px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 30%;
+	width: 0;
+	height: 0;
+	border: 1em solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -0.391em;
+	margin-bottom: -0.781em;
+}

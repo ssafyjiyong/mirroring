@@ -7,7 +7,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import IsAuthenticated
 
 from .models import schedule
-from .serializers import ScheduleAllSerializer, ScheduleDoneSerializer
+from .serializers import ScheduleAllSerializer, ScheduleDoneSerializer,ScheduleSerializer
 
 
 # Create your views here.
@@ -28,13 +28,15 @@ class ScheduleAPIView(APIView):
     
     # 일정 조회(단일)
     @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
-    def get(self, request, pk):
-        schedule_instance = get_object_or_404(schedule, id=pk, user=request.user, done=False)
-        serializer = ScheduleAllSerializer(schedule_instance)
+    def get(self, request):
+        schedule_instance = get_object_or_404(schedule, user=request.user, done=False)
+        serializer = ScheduleSerializer(schedule_instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
     
     
 class ScheduleDoneAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     #해당 일정 완료 처리  
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
     def patch(self, request,pk):

@@ -24,20 +24,18 @@ interface MapState {
 }
 
 interface Position {
+  id: number;
   lat: number;
   lng: number;
   name: string;
+  address: string;
   isOpen?: boolean;
 }
 
 const MapComponent = () => {
   useKakaoLoader();
 
-  const {
-    data,
-    error,
-    isPending,
-  } = useQuery({
+  const { data, error, isPending } = useQuery({
     queryKey: ["mapInfo"],
     queryFn: mapInfoApi,
     retry: 0, // 실패시 재호출 몇번 할지
@@ -92,16 +90,18 @@ const MapComponent = () => {
   }, [data]);
 
   const toggleMarker = (index: number) => {
-    setPositions(positions.map((pos, posIndex) => {
-      if (index === posIndex) {
-        return { ...pos, isOpen: !pos.isOpen };
-      }
-      return pos;
-    }));
-  };  
+    setPositions(
+      positions.map((pos, posIndex) => {
+        if (index === posIndex) {
+          return { ...pos, isOpen: !pos.isOpen };
+        }
+        return pos;
+      })
+    );
+  };
 
   return (
-    <>
+    <div style={{ position:"relative" }}>
       <Map // 지도를 표시할 Container
         center={state.center}
         style={{
@@ -118,7 +118,7 @@ const MapComponent = () => {
         >
           {positions.map((pos, index) => (
             <MapMarker
-              key={`${pos.lat}-${pos.lng}`}
+              key={pos.id}
               position={{
                 lat: pos.lat,
                 lng: pos.lng,
@@ -129,7 +129,7 @@ const MapComponent = () => {
               {pos.isOpen && (
                 <div style={{ minWidth: "150px" }}>
                   <div style={{ padding: "5px", color: "#000" }}>
-                    {pos.name}
+                    {pos.address}
                   </div>
                 </div>
               )}
@@ -168,15 +168,7 @@ const MapComponent = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIconLeft>
       </Link>
-
-      <div>
-        {/* 데이터가 성공적으로 로드되었을 때 UI 렌더링 */}
-        {data && <div>{JSON.stringify(data)}</div>}
-        {error && <div>{JSON.stringify(error)}</div>}
-        {isPending && <div>{JSON.stringify(isPending)}</div>}
-      </div>
-
-    </>
+    </div>
   );
 };
 
