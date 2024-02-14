@@ -74,13 +74,13 @@ def pick_fish(method_id, user):
 def pick_location(fish_id,user):
     # 해당 물고기를 잡을 수 있는 location_id 리스트
     location_list=location.objects.filter(fish=fish_id)
-
+    
     #location_review에서 location_id인 것과 가중치만 모은 리스트
     for lo in location_list:
         location_ids=[review.location_id for review in location_review.objects.filter(location=lo.pk,user=user)]
         location_weight=[review.weight for review in location_review.objects.filter(location=lo.pk,user=user)]
-
         
+    # print(location_ids)
     if location_ids:
         selected_location_id=random.choices(location_ids,location_weight)[0]    
         
@@ -129,15 +129,13 @@ class HomeView(APIView):
 
         location_lat = location_obj.lattitude
         location_lon = location_obj.longitude
-        
+
         try:
             schedules_queryset = schedule.objects.filter(user=request.user, done=False).latest('date')
-        except Http404:
+        except schedule.DoesNotExist:
             schedules_queryset = []
 
         user_profile_serializer = UserProfileSerializer(request.user)
-        schedule_serializer = ScheduleSerializer(schedules_queryset)
-
         recommend = {
             "method_id": method_id,
             "selected_method": selected_method,
@@ -148,12 +146,21 @@ class HomeView(APIView):
             "location_lat": location_lat,
             "location_lon": location_lon,
         }
+        
+        if schedules_queryset:
+            schedule_serializer = ScheduleSerializer(schedules_queryset)
+            context = {
+                "recommendation": recommend,
+                "schedule": schedule_serializer.data,
+                "profile": user_profile_serializer.data,
+            }
+        else:
+            context = {
+                "recommendation": recommend,
+                "schedule": [],
+                "profile": user_profile_serializer.data,
+            }
 
-        context = {
-            "recommendation": recommend,
-            "schedule": schedule_serializer.data,
-            "profile": user_profile_serializer.data,
-        }
         return Response(context, status=status.HTTP_200_OK)
 
 class FishMethodsView(APIView):
