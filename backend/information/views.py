@@ -19,8 +19,11 @@ from .serializers import AreaSerializer, BaitSerializer, MethodSerializer, Equip
 class weatherSunsetAPIView(APIView):
     # permission_classes = [IsAuthenticated]
     def get(self, request):
+        
         lat=request.GET['lat']
         lon=request.GET['lon']
+        print(lat, lon)
+        
         # data=json.loads(request.body)
         
         # data=json.loads(request.body)
