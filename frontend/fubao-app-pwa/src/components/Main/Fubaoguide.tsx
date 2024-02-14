@@ -43,7 +43,7 @@ const Container = styled.button`
 const Fubaoguide = () => {
   const { profile, schedule, recommendation } = useStore() as {
     profile: ProfileType | null;
-    schedule: ScheduleType[];
+    schedule: ScheduleType | null;
     recommendation: RecommendationType | null;
   };
 
@@ -56,8 +56,8 @@ const Fubaoguide = () => {
 
   // 디데이 계산 함수
   const calculateDday = () => {
-    if (schedule && schedule.length>0) {
-      const eventDate = new Date(schedule[0].date);
+    if (schedule && schedule.date) {
+      const eventDate = new Date(schedule.date);
       eventDate.setHours(0, 0, 0, 0);
       const diffTime = eventDate.getTime() - today.getTime();
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -224,7 +224,7 @@ const Fubaoguide = () => {
   return (
     <div style={{ margin: "2rem 0rem 0rem" }}>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        {schedule.length <= 0 ? (
+        {!schedule || !schedule.id ? (
           <div className="speech-bubble">
             <Text>
               {`${profile?.nickname}님의 취향 분석 완료!`}
@@ -288,7 +288,7 @@ const Fubaoguide = () => {
         <label htmlFor="file">
           <img
             src={
-              schedule.length <= 0
+              !schedule || !schedule.id
                 ? "/imgs/my_panda.png"
                 : dday === 0
                   ? "/imgs/panda_camera.png"

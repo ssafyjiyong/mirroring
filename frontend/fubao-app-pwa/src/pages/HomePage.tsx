@@ -9,6 +9,7 @@ import Sheet from "@mui/joy/Sheet";
 import Fubaoguide from "../components/Main/Fubaoguide";
 import MenuComponent from "../components/Main/MenuComponent";
 import LocationComponent from "../components/Main/LocationComponent";
+import PlanLocation from "../components/Main/PlanLocation";
 import Method1 from "../components/Main/Method1";
 import Method2 from "../components/Main/Method2";
 import Method3 from "../components/Main/Method3";
@@ -48,7 +49,7 @@ type SelectedState = number[];
 function HomePage() {
   const { resetStore, loadData } = useStore();
   const { schedule, recommendation } = useStore() as {
-    schedule: ScheduleType[];
+    schedule: ScheduleType | null;
     recommendation: RecommendationType | null;
   };
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -147,67 +148,84 @@ function HomePage() {
 
   // 조건부 렌더링을 위한 함수(스케줄 등록하지않은 경우)
   const renderRecommendationComponent = () => {
-    if (!schedule || schedule.length <= 0) {
+    if (!schedule) {
       return (
         <>
           <LocationComponent />
-          {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
-            recommendation.method_id === 1 ? <Method1 /> :
-            recommendation.method_id === 2 ? <Method2 /> :
-            recommendation.method_id === 3 ? <Method3 /> :
-            recommendation.method_id === 4 ? <Method4 /> : null
-          )}
-          {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
-            recommendation.fish_id === 1 ? <Fish1 /> :
-            recommendation.fish_id === 2 ? <Fish2 /> :
-            recommendation.fish_id === 3 ? <Fish3 /> :
-            recommendation.fish_id === 4 ? <Fish4 /> :
-            recommendation.fish_id === 5 ? <Fish5 /> :
-            recommendation.fish_id === 6 ? <Fish6 /> :
-            recommendation.fish_id === 7 ? <Fish7 /> :
-            recommendation.fish_id === 8 ? <Fish8 /> :
-            recommendation.fish_id === 9 ? <Fish9 /> :
-            recommendation.fish_id === 10 ? <Fish10 /> : null
-          )}
+          {recommendation?.method_id && // method_id가 있을 경우에만 렌더링
+            (recommendation.method_id === 1 ? (
+              <Method1 />
+            ) : recommendation.method_id === 2 ? (
+              <Method2 />
+            ) : recommendation.method_id === 3 ? (
+              <Method3 />
+            ) : recommendation.method_id === 4 ? (
+              <Method4 />
+            ) : null)}
+          {recommendation?.fish_id && // fish_id가 있을 경우에만 렌더링
+            (recommendation.fish_id === 1 ? (
+              <Fish1 />
+            ) : recommendation.fish_id === 2 ? (
+              <Fish2 />
+            ) : recommendation.fish_id === 3 ? (
+              <Fish3 />
+            ) : recommendation.fish_id === 4 ? (
+              <Fish4 />
+            ) : recommendation.fish_id === 5 ? (
+              <Fish5 />
+            ) : recommendation.fish_id === 6 ? (
+              <Fish6 />
+            ) : recommendation.fish_id === 7 ? (
+              <Fish7 />
+            ) : recommendation.fish_id === 8 ? (
+              <Fish8 />
+            ) : recommendation.fish_id === 9 ? (
+              <Fish9 />
+            ) : recommendation.fish_id === 10 ? (
+              <Fish10 />
+            ) : null)}
         </>
       );
     }
     return null; // schedule이 존재하면 아무것도 렌더링하지 않음
   };
 
-    // 조건부 렌더링을 위한 함수(스케줄 등록한 경우)
-    const renderScheduleComponent = () => {
-      if (schedule.length > 0) {
-        return (
-          <>
-            {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
-              recommendation.method_id === 1 ? <Method1 /> :
-              recommendation.method_id === 2 ? <Method2 /> :
-              recommendation.method_id === 3 ? <Method3 /> :
-              recommendation.method_id === 4 ? <Method4 /> : null
-            )}
-            {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
-              recommendation.fish_id === 1 ? <Fish1 /> :
-              recommendation.fish_id === 2 ? <Fish2 /> :
-              recommendation.fish_id === 3 ? <Fish3 /> :
-              recommendation.fish_id === 4 ? <Fish4 /> :
-              recommendation.fish_id === 5 ? <Fish5 /> :
-              recommendation.fish_id === 6 ? <Fish6 /> :
-              recommendation.fish_id === 7 ? <Fish7 /> :
-              recommendation.fish_id === 8 ? <Fish8 /> :
-              recommendation.fish_id === 9 ? <Fish9 /> :
-              recommendation.fish_id === 10 ? <Fish10 /> : null
-            )}
-          </>
-        );
-      }
-      return null; // schedule이 존재하면 아무것도 렌더링하지 않음
-    };
-  
+  // 조건부 렌더링을 위한 함수(스케줄 등록한 경우)
+  const renderScheduleComponent = () => {
+    if (schedule) {
+      return (
+        <>
+        <PlanLocation />
+          {schedule.area &&
+            (schedule.area.id === 1 ? (
+              <Point1 />
+            ) : schedule.area.id === 2 ? (
+              <Point2 />
+            ) : schedule.area.id === 3 ? (
+              <Point3 />
+            ) : schedule.area.id === 4 ? (
+              <Point4 />
+            ) : null)}
+          {schedule.method &&
+            (schedule.method.id === 1 ? (
+              <Method1 />
+            ) : schedule.method.id === 2 ? (
+              <Method2 />
+            ) : schedule.method.id === 3 ? (
+              <Method3 />
+            ) : schedule.method.id === 4 ? (
+              <Method4 />
+            ) : null)}
+        </>
+      );
+    }
+    return null; // schedule이 존재하지 않으면 아무것도 렌더링하지 않음
+  };
+
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        // setIsLoading(true); // 데이터 로딩 시작 전에 isLoading을 true로 설정
         await loadData();
       } catch (error) {
         console.error("데이터 로딩 중 오류 발생:", error);
@@ -290,40 +308,8 @@ function HomePage() {
       <Fubaoguide />
       <MenuComponent />
 
+      {renderScheduleComponent()}
       {renderRecommendationComponent()}
-      {/* {
-      schedule.length > 0 ? (
-        <>
-        <LocationComponent />
-        <Method1 />
-        <Method2 />
-        <Method3 />
-        <Method4 />
-        <Point1 />
-        <Point2 />
-        <Point3 />
-        <Point4 />
-        </>
-      ) : (
-        <>
-        <LocationComponent />
-        <Method1 />
-        <Method2 />
-        <Method3 />
-        <Method4 />
-        <Fish1 />
-        <Fish2 />
-        <Fish3 />
-        <Fish4 />
-        <Fish5 />
-        <Fish6 />
-        <Fish7 />
-        <Fish8 />
-        <Fish9 />
-        <Fish10 />
-        </>
-      )
-    } */}
 
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}

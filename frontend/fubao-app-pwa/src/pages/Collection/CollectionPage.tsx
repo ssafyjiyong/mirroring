@@ -10,6 +10,7 @@ interface FishInfo {
   name: string;
   image: string;
   link: string;
+  level: number;
 }
 
 const InfoBox = styled.div`
@@ -33,66 +34,78 @@ const FishName = styled.p`
   margin: 0.1rem;
 `;
 
+// 물고기정보
+// 1:참돔
+// 2:농어
+// 3:전갱이
+// 4:숭어
+// 5:고등어
+// 6:광어
+// 7:우럭
+// 8:감성돔
+// 9:돌돔
+// 10:쥐노래미
+
 // 물고기 정보 배열
 const fishInfos = [
   {
-    name: "감성돔",
-    image: "/imgs/fish_silhouette/gamsungdom.png",
-    link: "/detail/감성돔",
-    level: 1,
-  },
-  {
-    name: "고등어",
-    image: "/imgs/fish_silhouette/godeunguh.png",
-    link: "/detail/고등어",
-    level: 1,
-  },
-  {
-    name: "광어",
-    image: "/imgs/fish_silhouette/kwanguh.png",
-    link: "/detail/광어",
-    level: 1,
+    name: "참돔",
+    image: "/imgs/fish_silhouette/chamdom.png",
+    link: "/detail/1",
+    level: 2,
   },
   {
     name: "농어",
     image: "/imgs/fish_silhouette/nonguh.png",
-    link: "/detail/농어",
+    link: "/detail/2",
     level: 1,
   },
   {
     name: "전갱이",
     image: "/imgs/fish_silhouette/jeongang.png",
-    link: "/detail/전갱이",
+    link: "/detail/3",
     level: 1,
   },
   {
     name: "숭어",
     image: "/imgs/fish_silhouette/sunguh.png",
-    link: "/detail/숭어",
+    link: "/detail/4",
+    level: 1,
+  },
+  {
+    name: "고등어",
+    image: "/imgs/fish_silhouette/godeunguh.png",
+    link: "/detail/5",
+    level: 1,
+  },
+  {
+    name: "광어",
+    image: "/imgs/fish_silhouette/kwanguh.png",
+    link: "/detail/6",
     level: 1,
   },
   {
     name: "우럭",
     image: "/imgs/fish_silhouette/wuroek.png",
-    link: "/detail/우럭",
+    link: "/detail/7",
+    level: 1,
+  },
+  {
+    name: "감성돔",
+    image: "/imgs/fish_silhouette/gamsungdom.png",
+    link: "/detail/8",
     level: 1,
   },
   {
     name: "돌돔",
     image: "/imgs/fish_silhouette/doldom.png",
-    link: "/detail/돌돔",
-    level: 2,
-  },
-  {
-    name: "참돔",
-    image: "/imgs/fish_silhouette/chamdom.png",
-    link: "/detail/참돔",
+    link: "/detail/9",
     level: 2,
   },
   {
     name: "쥐노래미",
     image: "/imgs/fish_silhouette/gnoraemi.png",
-    link: "/detail/쥐노래미",
+    link: "/detail/10",
     level: 2,
   },
   {
@@ -104,13 +117,16 @@ const fishInfos = [
 ];
 
 const CollectionPage = () => {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["mapInfo"],
-    queryFn: myFishApi,
-    retry: 0,
+  const { data, error, isError, isLoading } = useQuery({
+    queryKey: ["fishData"],
+    queryFn: async () => {
+      const token = localStorage.getItem("token");
+      const response = await myFishApi(token);
+      return response;
+    },
   });
 
-  const [myfish, setMyfish] = useState<FishInfo[]>([]);
+  const [myfish, setMyfish] = useState();
 
   useEffect(() => {
     if (data) {
@@ -118,6 +134,14 @@ const CollectionPage = () => {
     }
   }, [data]);
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>데이터를 가져오지 못해습니다.</p>;
+  }
+  
   return (
     <div
       style={{

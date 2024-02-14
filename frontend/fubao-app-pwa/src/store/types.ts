@@ -56,6 +56,6 @@ export interface RecommendationType {
 
 export interface informationType {
   recommendation: RecommendationType;
-  schedule: ScheduleType[];
+  schedule: ScheduleType;
   profile: ProfileType;
 }
