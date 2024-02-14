@@ -48,7 +48,7 @@ const ResultPage = () => {
   const nickname = profile?.nickname || "낚시왕푸바오";
 
   const length = localStorage.getItem("length");
-  const species = localStorage.getItem("species");
+  const species: string | null = localStorage.getItem("species");
 
   // 현재 날짜 가져오기
   const today = new Date();
@@ -73,7 +73,7 @@ const ResultPage = () => {
     }
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const goToHome = () => {
     navigate("/home");
   };
@@ -82,6 +82,8 @@ const ResultPage = () => {
   useEffect(() => {
     const handleUnload = () => {
       localStorage.removeItem("selectedImage"); // 'selectedImage' 키로 저장된 항목을 localStorage에서 삭제
+      localStorage.removeItem("species");
+      localStorage.removeItem("length");
     };
 
     window.addEventListener("beforeunload", handleUnload);
@@ -95,12 +97,13 @@ const ResultPage = () => {
     <div
       style={{
         backgroundColor: "#E3F2FD",
-        height: "100vh",
+        minHeight: "100vh",
+        height: "auto",
         padding: "1rem 0rem 1rem",
-        position:"relative",
+        position: "relative",
       }}
     >
-      <div style={{ backgroundColor: "white", margin: "0rem 1rem"}}>
+      <div style={{ backgroundColor: "white", margin: "0rem 1rem" }}>
         <div
           style={{
             display: "flex",
@@ -150,31 +153,41 @@ const ResultPage = () => {
         <AlignBox>
           <span>
             {profile?.nickname}
-            {chooseJosa(nickname, "이/가")} 올린 {length}cm {species}
+            {chooseJosa(nickname, "이/가")} 올린 {length ? `${length}cm ` : ""}
+            {species}
           </span>
         </AlignBox>
         <ContentBox>
-          <div>
             <p style={{ marginBottom: "0rem" }}>
               {profile?.nickname}
               {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
               {profile?.nickname}
-              {chooseJosa(nickname, "은/는")} 무려
-              <span style={{ fontWeight: "600" }}>{length}cm</span>의
+              {chooseJosa(nickname, "은/는")}
+              {length && <span style={{ fontWeight: "600" }}>{length}cm의</span>}
               <span style={{ fontWeight: "600" }}> {species}</span>
-              {chooseJosa(nickname, "을/를")}낚았다. 낚시터 곳곳에서는 월척을
+              {chooseJosa(species!, "을/를")} 낚았다. 낚시터 곳곳에서는 월척을
               낚은 {profile?.nickname}
               {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
             </p>
-          </div>
         </ContentBox>
       </div>
 
-<div style={{display:"flex", justifyContent:"end", backgroundColor: "#E3F2FD", paddingRight:"1rem", marginTop:"0.5rem"}}>
-        <Button onClick={handleSaveImage} style={{ marginRight:"0.5rem" }}>이미지 저장</Button>
-        <Button color="danger" onClick={goToHome}>돌아가기</Button>
-</div>
-
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "end",
+          backgroundColor: "#E3F2FD",
+          paddingRight: "1rem",
+          paddingTop: "0.5rem",
+        }}
+      >
+        <Button onClick={handleSaveImage} style={{ marginRight: "0.5rem" }}>
+          이미지 저장
+        </Button>
+        <Button color="danger" onClick={goToHome}>
+          돌아가기
+        </Button>
+      </div>
     </div>
   );
 };
