@@ -1,45 +1,34 @@
-from django.shortcuts import render, get_object_or_404
-
-from django.contrib.auth import authenticate
-from django.contrib.auth import login as auth_login
-from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.decorators import login_required
-
-# rest framework
-from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated, AllowAny
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.response import Response
+from django.shortcuts import render
+from rest_framework.generics import RetrieveUpdateAPIView
+from dj_rest_auth.registration.views import RegisterView
 from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from .serializers import CustomRegisterSerializer, UserSerializer, UserProfileSerializer
 
-# serializers
-from .serializers import UserSerializer
+# Create your views here.
+class CustomRegisterView(RegisterView):
+    serializer_class = CustomRegisterSerializer
 
-# model
-from .models import User
+class UserProfileView(RetrieveUpdateAPIView):
+    permission_classes = [IsAuthenticated]
 
-# Create your views here.    
-# 회원 가입    
-@api_view(['POST'])
-def signup(request):
-    serializer = UserSerializer(data=request.data)
-    if serializer.is_valid():
-        user = serializer.save()
-        return Response({'id': user.id, 'email': user.email}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-# 로그인
-def signin(request):
-    pass
+    def get_object(self):
+        return self.request.user
 
-# 로그아웃
-def signout(request):
-    pass
+    def get(self, request, *args, **kwargs):
+        self.serializer_class = UserProfileSerializer
+        return self.retrieve(request, *args, **kwargs)
 
-# 회원 탈퇴
-def deleteid(request):
-    pass
+    def patch(self, request, *args, **kwargs):
+        self.serializer_class = UserSerializer
+        return self.partial_update(request, *args, **kwargs)
 
-# 회원정보 수정
-def updateuser(request):
-    pass
+    def put(self, request, *args, **kwargs):
+        self.serializer_class = UserSerializer
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        user = self.get_object()
+        user.delete()
+        return Response({"detail": "User deleted successfully."}, status=status.HTTP_204_NO_CONTENT)

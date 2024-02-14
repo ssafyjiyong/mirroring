@@ -1,0 +1,75 @@
+import React, { useEffect, useState } from 'react';
+import { prohibitFishApi } from "../../store/api";
+import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell, Paper } from '@mui/material';
+
+type ProhibitInfo = {
+  id: number;
+  name_kor: string;
+  name_eng: string;
+  standard_start: string | null;
+  standard_end: string | null;
+};
+
+// 물고기 images
+const fishImages = [
+  { name: '참돔', image: '/imgs/fish/chamdom.png', link: '/detail/참돔'}, // 1. 참돔
+  { name: '농어', image: '/imgs/fish/nonguh.png', link: '/detail/농어'}, // 2. 농어
+  { name: '전갱이', image: '/imgs/fish/jeongang.png', link: '/detail/전갱이'}, // 3. 전갱이
+  { name: '숭어', image: '/imgs/fish/sunguh.png', link: '/detail/숭어'}, // 4. 숭어
+  { name: '고등어', image: '/imgs/fish/godeunguh.png', link: '/detail/고등어'}, // 5. 고등어
+  { name: '광어', image: '/imgs/fish/kwanguh.png', link: '/detail/광어'}, // 6. 광어
+  { name: '우럭', image: '/imgs/fish/wuroek.png', link: '/detail/우럭'}, // 7. 우럭
+  { name: '감성돔', image: '/imgs/fish/gamsungdom.png', link: '/detail/감성돔'}, // 8. 감성돔
+  { name: '돌돔', image: '/imgs/fish/doldom.png', link: '/detail/돌돔'}, // 9. 돌돔
+  { name: '쥐노래미', image: '/imgs/fish/gnoraemi.png', link: '/detail/쥐노래미'}, // 10. 쥐노래미
+];
+
+const ProhibitionInfoPage = () => {
+  const [prohibitInfo, setProhibitInfo] = useState<ProhibitInfo[]>([]); // 이곳에 API로부터 받아온 정보를 저장 (type지정해둔것도 사용!)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = localStorage.getItem('token'); // token 가져와서
+        const apiResponse = await prohibitFishApi(token); // prohibitFishApi 호출할 때 토큰 주기
+        setProhibitInfo(apiResponse);
+      } catch (error) {
+        console.error('API 호출 중 오류 발생:', error);
+      }
+    };
+
+    fetchData(); // useEffect가 실행될 때 API 호출
+  }, []);
+  return (
+    <>
+      <div style={{ padding: '1rem' }}>금어기 표</div>
+      <TableContainer component={Paper} style={{ padding: '1rem', paddingBottom: '3rem' }}>
+        <Table aria-label='release_standards'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Image</TableCell>
+              <TableCell>Document</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {prohibitInfo.map((info) => (
+              <TableRow key={info.id} style={{ borderBottom: 'none' }}>
+                <TableCell>
+                  <img src={fishImages[info.id - 1]?.image} alt={info.name_kor} style={{ width: '3rem', borderRadius: '5px' }} />
+                </TableCell>
+                <TableCell>
+                  <div>한국어 이름: {info.name_kor}</div>
+                  <div>영어 이름: {info.name_eng}</div>
+                  <div>금지 시작일: {info.standard_start ? info.standard_start : "금어기 기준이"}</div>
+                  <div>금지 종료일: {info.standard_end ? info.standard_end : "없어요"}</div>
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
+  )
+}
+
+export default ProhibitionInfoPage

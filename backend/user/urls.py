@@ -1,19 +1,9 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from .views import CustomRegisterView, UserProfileView
 
 urlpatterns = [
-    # 회원 가입
-    path('signup/', views.signup, name='signup'),
-    
-    # 로그인
-    path('signin/', views.signin, name='signin'),
-
-    # 로그아웃
-    path('signout/', views.signout, name='signout'),
-    
-    # 회원 탈퇴
-    path('deleteid/', views.deleteid, name='deleteid'),
-    
-    # 회원정보 수정
-    path('updateuser/', views.updateuser, name='updateuser'),
+    path('', include('dj_rest_auth.urls')),
+    path('register/', include('dj_rest_auth.registration.urls')),
+    # path('register/', CustomRegisterView.as_view(), name='rest_register'),
+    path('profile/', UserProfileView.as_view(), name='profile'),
 ]
