@@ -9,6 +9,7 @@ import Fish7 from "../../components/Main/Fish7";
 import Fish8 from "../../components/Main/Fish8";
 import Fish9 from "../../components/Main/Fish9";
 import Fish10 from "../../components/Main/Fish10";
+import Fish from "../../components/Main/Fish";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { fishGetApi } from "../../store/api";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +18,23 @@ import { HomeIcon } from "../../styles/globalStyles";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+type FishData = {
+  id: number;
+  name_kor: string;
+  name_eng: string;
+  fish_difficulty: number;
+  subtitle: string;
+  document: string;
+  release_standard: number;
+  prohibit: number;
+  bait: number[];
+  area: number[];
+  equipment: number[];
+  method: number[];
+};
+
 const FishTotal = () => {
-    const [fish, setFish] = useState([]);
+    const [fish, setFish] = useState<FishData[]>([]);
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
   
@@ -54,16 +70,9 @@ const FishTotal = () => {
           <FontAwesomeIcon icon="home" />
         </HomeIcon>
       </Link>
-      <Fish1 />
-      <Fish2 />
-      <Fish3 />
-      <Fish4 />
-      <Fish5 />
-      <Fish6 />
-      <Fish7 />
-      <Fish8 />
-      <Fish9 />
-      <Fish10 />
+      {fish.map((fishData) => (
+        <Fish key={fishData.id} fishData={fishData} />
+      ))}
     </div>
   )
 }
