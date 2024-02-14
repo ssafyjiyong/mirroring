@@ -17,7 +17,6 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 0.4rem;
 `;
 
@@ -225,7 +224,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
               <Span>일정: </Span>
               <DatePicker
                 className="datePicker"
-                dateFormat="yyyy.MM.dd"
+                dateFormat="yyyy-MM-dd"
                 shouldCloseOnSelect
                 minDate={new Date()}
                 maxDate={new Date(year + 1 + "-" + month + "-" + day)}
@@ -250,6 +249,14 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                 freeSolo
                 disableClearable
                 options={LocationOptions.map((option) => option.title)}
+                sx={{
+                  borderRadius:"10px",
+                  margin: "0.5rem 0rem",
+                  width: "21rem",
+                  borderColor: "#ccc",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: 16,
+                }}
                 // value={location}
                 // readOnly
                 // onClick={handleOpenMapModal}
