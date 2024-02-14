@@ -25,7 +25,7 @@ pipeline {
             steps{
                 script {
                     sh '''
-                        cp /settingsFiles/my_settings.py ./backend/my_settings.py
+                        cp /var/jenkins_home/settingsFiles/my_settings.py ./backend/my_settings.py
                     '''
                 }           
             }
