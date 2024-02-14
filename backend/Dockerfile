@@ -13,9 +13,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-RUN python manage.py collectstatic
+# RUN python manage.py collectstatic
 RUN python manage.py makemigrations
-
 
 EXPOSE 8000
 
