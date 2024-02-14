@@ -77,6 +77,9 @@ const ResultPage = () => {
   const goToHome = () => {
     navigate("/home");
   };
+  const goToCollection = () => {
+    navigate("/collection");
+  };
 
   // 페이지 벗어나면 스토리지 이미지 지우기
   useEffect(() => {
@@ -181,6 +184,9 @@ const ResultPage = () => {
           paddingTop: "0.5rem",
         }}
       >
+        <Button color="success" onClick={goToCollection} style={{ marginRight: "0.5rem" }}>
+          도감보기
+        </Button>
         <Button onClick={handleSaveImage} style={{ marginRight: "0.5rem" }}>
           이미지 저장
         </Button>
