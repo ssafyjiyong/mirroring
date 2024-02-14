@@ -40,11 +40,18 @@ import {
   surveyFishApi,
 } from "../store/api";
 import useStore from "../store/store";
+import EntryLoading from "../components/Entry/EntryLoading";
+import { RecommendationType, ScheduleType } from "../store/types";
 
 type SelectedState = number[];
 
 function HomePage() {
   const { resetStore, loadData } = useStore();
+  const { schedule, recommendation } = useStore() as {
+    schedule: ScheduleType[];
+    recommendation: RecommendationType | null;
+  };
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedMethods, setSelectedMethods] = useState<SelectedState>([]);
@@ -100,14 +107,6 @@ function HomePage() {
     }
   };
 
-  useEffect(() => {
-    loadData();
-
-    // if (profile && !profile.presurvey) {
-    //   setOpen(true);
-    // }
-  }, []);
-
   const logout = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -145,6 +144,85 @@ function HomePage() {
   const goToProfile = () => {
     navigate("/profile");
   };
+
+  // 조건부 렌더링을 위한 함수(스케줄 등록하지않은 경우)
+  const renderRecommendationComponent = () => {
+    if (!schedule || schedule.length <= 0) {
+      return (
+        <>
+          <LocationComponent />
+          {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
+            recommendation.method_id === 1 ? <Method1 /> :
+            recommendation.method_id === 2 ? <Method2 /> :
+            recommendation.method_id === 3 ? <Method3 /> :
+            recommendation.method_id === 4 ? <Method4 /> : null
+          )}
+          {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
+            recommendation.fish_id === 1 ? <Fish1 /> :
+            recommendation.fish_id === 2 ? <Fish2 /> :
+            recommendation.fish_id === 3 ? <Fish3 /> :
+            recommendation.fish_id === 4 ? <Fish4 /> :
+            recommendation.fish_id === 5 ? <Fish5 /> :
+            recommendation.fish_id === 6 ? <Fish6 /> :
+            recommendation.fish_id === 7 ? <Fish7 /> :
+            recommendation.fish_id === 8 ? <Fish8 /> :
+            recommendation.fish_id === 9 ? <Fish9 /> :
+            recommendation.fish_id === 10 ? <Fish10 /> : null
+          )}
+        </>
+      );
+    }
+    return null; // schedule이 존재하면 아무것도 렌더링하지 않음
+  };
+
+    // 조건부 렌더링을 위한 함수(스케줄 등록한 경우)
+    const renderScheduleComponent = () => {
+      if (schedule.length > 0) {
+        return (
+          <>
+            {recommendation?.method_id && ( // method_id가 있을 경우에만 렌더링
+              recommendation.method_id === 1 ? <Method1 /> :
+              recommendation.method_id === 2 ? <Method2 /> :
+              recommendation.method_id === 3 ? <Method3 /> :
+              recommendation.method_id === 4 ? <Method4 /> : null
+            )}
+            {recommendation?.fish_id && ( // fish_id가 있을 경우에만 렌더링
+              recommendation.fish_id === 1 ? <Fish1 /> :
+              recommendation.fish_id === 2 ? <Fish2 /> :
+              recommendation.fish_id === 3 ? <Fish3 /> :
+              recommendation.fish_id === 4 ? <Fish4 /> :
+              recommendation.fish_id === 5 ? <Fish5 /> :
+              recommendation.fish_id === 6 ? <Fish6 /> :
+              recommendation.fish_id === 7 ? <Fish7 /> :
+              recommendation.fish_id === 8 ? <Fish8 /> :
+              recommendation.fish_id === 9 ? <Fish9 /> :
+              recommendation.fish_id === 10 ? <Fish10 /> : null
+            )}
+          </>
+        );
+      }
+      return null; // schedule이 존재하면 아무것도 렌더링하지 않음
+    };
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // setIsLoading(true); // 데이터 로딩 시작 전에 isLoading을 true로 설정
+        await loadData();
+      } catch (error) {
+        console.error("데이터 로딩 중 오류 발생:", error);
+      } finally {
+        setIsLoading(false); // 데이터 로딩이 완료되거나 오류가 발생하면 isLoading을 false로 설정
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // 로딩 상태에 따른 조건부 렌더링
+  if (isLoading) {
+    return <EntryLoading />; // 로딩 중이면 EntryLoading 컴포넌트 표시
+  }
 
   return (
     <div
@@ -212,25 +290,40 @@ function HomePage() {
       <Fubaoguide />
       <MenuComponent />
 
-      <LocationComponent />
-      <Method1 />
-      <Method2 />
-      <Method3 />
-      <Method4 />
-      <Point1 />
-      <Point2 />
-      <Point3 />
-      <Point4 />
-      <Fish1 />
-      <Fish2 />
-      <Fish3 />
-      <Fish4 />
-      <Fish5 />
-      <Fish6 />
-      <Fish7 />
-      <Fish8 />
-      <Fish9 />
-      <Fish10 />
+      {renderRecommendationComponent()}
+      {/* {
+      schedule.length > 0 ? (
+        <>
+        <LocationComponent />
+        <Method1 />
+        <Method2 />
+        <Method3 />
+        <Method4 />
+        <Point1 />
+        <Point2 />
+        <Point3 />
+        <Point4 />
+        </>
+      ) : (
+        <>
+        <LocationComponent />
+        <Method1 />
+        <Method2 />
+        <Method3 />
+        <Method4 />
+        <Fish1 />
+        <Fish2 />
+        <Fish3 />
+        <Fish4 />
+        <Fish5 />
+        <Fish6 />
+        <Fish7 />
+        <Fish8 />
+        <Fish9 />
+        <Fish10 />
+        </>
+      )
+    } */}
 
       {/* <Foryou /> */}
       {/* <CameraOpen /> */}

@@ -31,7 +31,7 @@ const Etiquette = () => {
   const [planRegisterOpen, setplanRegisterOpen] = useState<boolean>(false);
 
   const { schedule } = useStore() as {
-    schedule: ScheduleType | null;
+    schedule: ScheduleType[];
   };
 
   const handleClick = () => {
@@ -96,8 +96,8 @@ const Etiquette = () => {
 
   // 디데이 계산 함수
   const calculateDday = () => {
-    if (schedule && schedule.date) {
-      const eventDate = new Date(schedule.date);
+    if (schedule && schedule.length>0) {
+      const eventDate = new Date(schedule[0].date);
       eventDate.setHours(0, 0, 0, 0);
       const diffTime = eventDate.getTime() - today.getTime();
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -110,7 +110,7 @@ const Etiquette = () => {
 
   return (
     <>
-      {schedule ? (
+      {schedule.length > 0 ? (
         dday === 0 ? (
           <EtiquetteWhiteBox
             onClick={handleClick}

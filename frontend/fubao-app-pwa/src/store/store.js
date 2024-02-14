@@ -4,7 +4,7 @@ import { scheduleDoneApi, informationGetApi } from "./api";
 
 const initialState = {
   profile: null,
-  schedule: null,
+  schedule: [],
   recommendation: null,
   information: null,
 };
@@ -30,7 +30,7 @@ const store = (set) => ({
       currentTime.setHours(0, 0, 0, 0);
 
       // 스케줄 배열이 비어있지 않고, 첫 번째 스케줄의 날짜가 현재 날짜보다 이전인지 확인
-      let updatedSchedule = schedule.length > 0 ? schedule[0] : null;
+      let updatedSchedule = schedule.length > 0 ? schedule[0] : [];
       if (updatedSchedule) {
         const scheduleDate = new Date(updatedSchedule.date);
         scheduleDate.setHours(0, 0, 0, 0);
@@ -38,7 +38,7 @@ const store = (set) => ({
         if (currentTime.getTime() > scheduleDate.getTime()) {
           // 현재 날짜가 스케줄 날짜보다 이후라면, 스케줄 완료 처리
           await scheduleDoneApi({ token, pk: updatedSchedule.id });
-          updatedSchedule = null; // 스케줄 정보 삭제
+          updatedSchedule = []; // 스케줄 정보 삭제
           console.log(`Schedule completed and removed.`);
         }
       }
@@ -80,7 +80,7 @@ const store = (set) => ({
   //     console.log("일정 등록 안되어 있으면 에러뜸. 정상임 걱정 ㄴㄴ.");
   //   }
   // },
-  clearSchedule: () => set({ schedule: null }),
+  clearSchedule: () => set({ schedule: [] }),
   resetStore: () => set({ ...initialState }),
 });
 
