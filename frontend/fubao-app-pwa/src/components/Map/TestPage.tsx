@@ -62,7 +62,7 @@ interface weatherInfo {
 const TestPage = () => {
   const [open, setOpenWeather] = useState<boolean>(false);
   const [wetherInfo, setWeather] = useState<weatherInfo | null>(null); // method 상태
-  const [sunset, setSunset] = useState();
+  const [sunset, setSunset] = useState(null);
   const [sunrise, setSunrise] = useState(null);
   const lat = 34.5436111;
   const lon = 127.4536111;

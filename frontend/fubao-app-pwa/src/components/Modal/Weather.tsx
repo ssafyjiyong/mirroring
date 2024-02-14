@@ -82,7 +82,7 @@ function sortSKY(num:String) {
 };
 
 interface sunset{
-  sunset:string
+  sunset:string |null
 }
 
 interface pos{
@@ -100,6 +100,7 @@ interface WeatherProps {
 
 
 const Weather: React.FC<WeatherProps> = ({
+  weatherInfo,
   pos,
   sunset,
   open,
