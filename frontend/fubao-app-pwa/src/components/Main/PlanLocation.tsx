@@ -3,20 +3,20 @@ import { useNavigate } from "react-router-dom";
 import { WhiteBox, MyText } from "./styles";
 import "../../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { ProfileType, RecommendationType } from "../../store/types";
+import { ProfileType, ScheduleType } from "../../store/types";
 import useStore from "../../store/store";
 
+const PlanLocation = () => {
+    const navigate = useNavigate();
+    const { profile, schedule } = useStore() as {
+      profile: ProfileType | null;
+      schedule: ScheduleType | null;
+    };
+  
+    const handleClick = () => {
+      navigate("/map");
+    };
 
-const LocationComponent = () => {
-  const navigate = useNavigate();
-  const { profile, recommendation } = useStore() as {
-    profile: ProfileType | null;
-    recommendation: RecommendationType | null;
-  };
-
-  const handleClick = () => {
-    navigate("/map");
-  };
   return (
     <WhiteBox
       style={{
@@ -26,11 +26,9 @@ const LocationComponent = () => {
       }}
     >
       <MyText>
-        {profile?.nickname}님을 위한
+        이번 낚시 장소는
         <br />
-        안성맞춤 추천장소
-        <br />
-        {recommendation?.selected_location}
+        {schedule?.location.address}
       </MyText>
 
       <div style={{ position: "absolute", bottom: "0.5rem", left: "0.8rem" }}>
@@ -42,7 +40,7 @@ const LocationComponent = () => {
         <span style={{ color:"black", marginRight:"0.5rem", cursor:"pointer" }}>지도로 보기</span>
       </div>
     </WhiteBox>
-  );
-};
+  )
+}
 
-export default LocationComponent;
+export default PlanLocation

@@ -10,6 +10,7 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PlanRegisterMap from "../Map/PlanRegisterMap";
+import Autocomplete from '@mui/joy/Autocomplete'; // 장소 검색 관련
 
 const Container = styled.div`
   display: flex;
@@ -93,6 +94,17 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
   ) => {
     setSelectedMethodOption(selectedMethodOption);
   };
+
+  // 장소 검색창 옵션
+  const LocationOptions = [
+    { title: 'The Shawshank Redemption', value: "1" },
+    { title: 'The Godfather', value: "2" },
+    { title: 'The Godfather: Part II', value: "3" },
+    { title: 'The Dark Knight', value: "4" },
+    { title: '12 Angry Men', value: "5" },
+    { title: "Schindler's List", value: "6" },
+    { title: 'Pulp Fiction', value: "7" },
+  ];
 
   const PointOptions = [
     { value: "1", label: "방파제" },
@@ -223,10 +235,21 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
             </AlignDiv>
             <AlignDiv>
               <Span>장소: </Span>
-              <Input
+              {/* <Input
                 name="location"
                 type="text"
                 placeholder="장소 (예시: 부산항)"
+                // value={location}
+                // readOnly
+                // onClick={handleOpenMapModal}
+              /> */}
+              <Autocomplete
+                name="location"
+                type="search"
+                placeholder="장소 (예시: 부산항)"
+                freeSolo
+                disableClearable
+                options={LocationOptions.map((option) => option.title)}
                 // value={location}
                 // readOnly
                 // onClick={handleOpenMapModal}
