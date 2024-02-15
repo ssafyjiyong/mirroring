@@ -1,21 +1,5 @@
 # 푸바오: 푸른 바다로 오세요
 
-<!-- 필수 항목 -->
-
-## 카테고리
-
-| Application                          | Domain                                | Language                      | Framework                               |
-| ------------------------------------ | ------------------------------------- | ----------------------------- | --------------------------------------- |
-| :black_square_button: Desktop Web    | :white_check_mark: AI                 | :white_check_mark: JavaScript | :black_square_button: Vue.js            |
-| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React                |
-| :black_square_button: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++   | :black_square_button: Angular           |
-| :white_check_mark: Android App       | :white_check_mark: IoT                | :black_square_button: C#      | :white_check_mark: Node.js              |
-| :black_square_button: iOS App        | :black_square_button: AR/VR/Metaverse | :white_check_mark: Python     | :white_check_mark: Flask/Django         |
-| :white_check_mark: Desktop App       | :black_square_button: Game            | :black_square_button: Java    | :black_square_button: Spring/Springboot |
-|                                      |                                       | :black_square_button: Kotlin  |                                         |
-
-<!-- 필수 항목 -->
-
 ## 프로젝트 소개
 
 - 프로젝트명: 푸바오
@@ -53,6 +37,25 @@
 // 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
 
 ### 개발 환경
+
+* Management Tool
+JIRA, GitLab, MatterMost, Notion, Figma
+
+* IDE
+VScode, Jupyter NoteBook, Colab
+
+* Infra
+Amazon AWS, NginX, Docker, Ubuntu, Jenkins
+
+* Frontend
+HTML5, CSS, Javascript, TypeScript, React, Axios, Styled Components, zustand, react-query, prettier, three.js
+
+* Backend
+Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
+
+* AI
+Flask, Tensorflow, Keras, numpy
+
 
 ### 서비스 화면
 
@@ -115,6 +118,22 @@ Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용�
 
 * CI/CD<br/>
 ![image](/uploads/d0f5b19d3fea0eafe661ad9dfe153a05/image.png)
+
+<!-- 필수 항목 -->
+
+## 카테고리
+
+| Application                          | Domain                                | Language                      | Framework                               |
+| ------------------------------------ | ------------------------------------- | ----------------------------- | --------------------------------------- |
+| :black_square_button: Desktop Web    | :white_check_mark: AI                 | :white_check_mark: JavaScript | :black_square_button: Vue.js            |
+| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React                |
+| :black_square_button: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++   | :black_square_button: Angular           |
+| :white_check_mark: Android App       | :white_check_mark: IoT                | :black_square_button: C#      | :white_check_mark: Node.js              |
+| :black_square_button: iOS App        | :black_square_button: AR/VR/Metaverse | :white_check_mark: Python     | :white_check_mark: Flask/Django         |
+| :white_check_mark: Desktop App       | :black_square_button: Game            | :black_square_button: Java    | :black_square_button: Spring/Springboot |
+|                                      |                                       | :black_square_button: Kotlin  |                                         |
+
+<!-- 필수 항목 -->
 
 ## Git Commit Convention
 
