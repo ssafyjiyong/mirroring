@@ -62,6 +62,9 @@
 - 추천 컴포넌트 및 일정 등록<br/>
 ![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
 
+- 도감 등록<br/>
+![ezgif.com-resize_collection](/uploads/a90addf4768065c215c91ff23141a4fd/ezgif.com-resize_collection.gif)
+
 ### 주요 기능
 
 1.	맞춤 정보 제공<br/>
@@ -101,9 +104,11 @@ Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용�
 * ERD<br/>
 ![image](/uploads/041e5bb3996239d6e8a4f5755ea44515/image.png)
 
-* Architecture
+* Architecture<br/>
+![image](/uploads/e1ff1bc81e984661a068bed9e1a26654/image.png)
 
-* CI/CD
+* CI/CD<br/>
+![image](/uploads/d0f5b19d3fea0eafe661ad9dfe153a05/image.png)
 
 ## Git Commit Convention
 
