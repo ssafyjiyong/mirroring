@@ -79,7 +79,7 @@ pipeline {
                 stage('Delete Previous Front Docker Container'){
                     steps {
                         script {
-                            def frontContainerExists = sh(script: "docker ps -a --filter name=${FRONT_CONTAINER_NAME} --format '{{.Names}}'", returnStatus: true) == 0
+                            def frontContainerExists = sh(script: "docker ps -a --filter name=${FRONT_CONTAINER_NAME}'", returnStatus: true) == 0
                             if (frontContainerExists) {
                                 sh "docker stop ${FRONT_CONTAINER_NAME}"
                                 sh "docker rm ${FRONT_CONTAINER_NAME}"
@@ -109,7 +109,7 @@ pipeline {
                 stage('Delete Previous AI Docker Container'){
                     steps {
                         script {
-                            def aiContainerExists = sh(script: "docker ps -a --filter name=${AI_CONTAINER_NAME} --format '{{.Names}}'", returnStatus: true) == 0
+                            def aiContainerExists = sh(script: "docker ps -a --filter name=${AI_CONTAINER_NAME}'", returnStatus: true) == 0
                             if (aiContainerExists) {
                                 sh "docker stop ${AI_CONTAINER_NAME}"
                                 sh "docker rm ${AI_CONTAINER_NAME}"
