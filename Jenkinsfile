@@ -32,47 +32,47 @@ pipeline {
 
         }
 
-        stage('Parallel Build Docker Image') {
-            parallel{
-                stage('front Build Docker Image'){
-                    steps {
-                        script {
-                            sh '''
-                                cd ./frontend/fubao-app-pwa
-                                docker build -t ${FRONT_DOCKER_IMAGE_NAME} .
-                            '''
-                        }
-                    }
-                }
+        // stage('Parallel Build Docker Image') {
+        //     parallel{
+        //         stage('front Build Docker Image'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         cd ./frontend/fubao-app-pwa
+        //                         docker build -t ${FRONT_DOCKER_IMAGE_NAME} .
+        //                     '''
+        //                 }
+        //             }
+        //         }
 
 
-                stage('back Build Docker Image'){
-                    steps {
-                        script {
-                            sh '''
-                                cd ./backend
-                                docker build -t ${BACK_DOCKER_IMAGE_NAME} .
-                            '''
-                        }
-                    }
-                }
+        //         stage('back Build Docker Image'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         cd ./backend
+        //                         docker build -t ${BACK_DOCKER_IMAGE_NAME} .
+        //                     '''
+        //                 }
+        //             }
+        //         }
 
 
-                stage('ai Build Docker Image'){
-                    steps {
-                        script {
-                            sh '''
-                                cd ./fish_classification
-                                docker build -t ${AI_DOCKER_IMAGE_NAME} .
-                            '''
-                        }
-                    }
-                }
+        //         stage('ai Build Docker Image'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         cd ./fish_classification
+        //                         docker build -t ${AI_DOCKER_IMAGE_NAME} .
+        //                     '''
+        //                 }
+        //             }
+        //         }
 
                 
-            }
+        //     }
 
-        }
+        // }
 
         stage('Delete Previous Docker Container') {
             parallel{
