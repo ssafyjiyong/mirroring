@@ -59,10 +59,10 @@ def edge_detection(img):
 
     edged = cv2.Canny(gray, 75, 180, True)
     # edged = cv2.Canny(gray, 75, 200, True)
-    cv2.imshow("grayscale", gray)
-    wait()
-    cv2.imshow("edged", edged)
-    wait()
+    # cv2.imshow("grayscale", gray)
+    # wait()
+    # cv2.imshow("edged", edged)
+    # wait()
 
     return edged
 
@@ -169,8 +169,8 @@ def contours(edge, resize_img, src, ckpnt, vertex):
         cv2.drawContours(resize_img, screenCnt, 2, (0, 255, 0), 15) #녹
         cv2.drawContours(resize_img, screenCnt, 3, (0, 0, 255), 15) #적
 
-        cv2.imshow("With_Color_Image", resize_img)
-        wait()
+        # cv2.imshow("With_Color_Image", resize_img)
+        # wait()
 
         # 3.C  네 꼭지점(좌상, 좌하, 우상, 우하)의 좌표를 출력한다.
         vertex = solving_vertex(screenCnt.reshape(4,2), src)
