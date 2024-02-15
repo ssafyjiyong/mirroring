@@ -226,7 +226,6 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
-      setOpen(false);
       try {
         await loadData();
         if (!profile?.presurvey) {
@@ -322,6 +321,7 @@ function HomePage() {
 
       {/* 설문모달 */}
       <React.Fragment>
+        {open && !profile?.presurvey && 
         <Modal
           aria-labelledby="modal-title"
           aria-describedby="modal-desc"
@@ -342,7 +342,6 @@ function HomePage() {
               boxShadow: "lg",
             }}
           >
-            <ModalClose variant="plain" sx={{ m: 1 }} />
             <Typography
               component="h2"
               id="modal-title"
@@ -459,6 +458,7 @@ function HomePage() {
             </Box>
           </Sheet>
         </Modal>
+        }
       </React.Fragment>
 
       {/* 리뷰 모달 */}
