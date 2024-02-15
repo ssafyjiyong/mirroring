@@ -206,7 +206,7 @@ export const informationGetApi = async (token) => {
 // myfish GET
 export const myfishGetApi = async ({token, fishid}) => {
   try {
-    const response = await axios.get(`${API_URL}/fish/myfish/${fishid}`, {
+    const response = await axios.get(`${API_URL}/fish/myfish/${fishid}/`, {
       headers: {
         Authorization: `Token ${token}`,
         "Content-Type": "application/json",

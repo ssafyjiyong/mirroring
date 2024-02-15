@@ -12,6 +12,9 @@ import { planCancelApi, planFetchApi } from "../../store/api";
 import useStore from "../../store/store";
 import { ScheduleType } from "../../store/types";
 import Autocomplete from "@mui/joy/Autocomplete"; // 장소 검색 관련
+import location from "../../data/location.json"
+
+const LocationOptions = location;
 
 const Container = styled.div`
   display: flex;
@@ -111,17 +114,6 @@ const PlanManagePage = () => {
   ) => {
     setSelectedMethodOption(selectedMethodOption);
   };
-
-  // 장소 검색창 옵션
-  const LocationOptions = [
-    { title: "The Shawshank Redemption", value: "1" },
-    { title: "The Godfather", value: "2" },
-    { title: "The Godfather: Part II", value: "3" },
-    { title: "The Dark Knight", value: "4" },
-    { title: "12 Angry Men", value: "5" },
-    { title: "Schindler's List", value: "6" },
-    { title: "Pulp Fiction", value: "7" },
-  ];
 
   const PointOptions = [
     { value: "1", label: "방파제" },

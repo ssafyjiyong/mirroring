@@ -11,6 +11,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PlanRegisterMap from "../Map/PlanRegisterMap";
 import Autocomplete from '@mui/joy/Autocomplete'; // 장소 검색 관련
+import location from "../../data/location.json"
+
+const LocationOptions = location;
 
 const Container = styled.div`
   display: flex;
@@ -94,17 +97,6 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     setSelectedMethodOption(selectedMethodOption);
   };
 
-  // 장소 검색창 옵션
-  const LocationOptions = [
-    { title: 'The Shawshank Redemption', value: "1" },
-    { title: 'The Godfather', value: "2" },
-    { title: 'The Godfather: Part II', value: "3" },
-    { title: 'The Dark Knight', value: "4" },
-    { title: '12 Angry Men', value: "5" },
-    { title: "Schindler's List", value: "6" },
-    { title: 'Pulp Fiction', value: "7" },
-  ];
-
   const PointOptions = [
     { value: "1", label: "방파제" },
     { value: "2", label: "갯바위" },
@@ -184,6 +176,8 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     ModalDialogProps["layout"] | undefined
   >(undefined);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
   return (
     <Modal
       aria-labelledby="modal-title"
@@ -257,8 +251,13 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                   boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
                   fontSize: 16,
                 }}
-                // value={location}
-                // readOnly
+                value={selectedValue}
+                onChange={(event, newValue) => {
+                  // newValue는 선택된 옵션의 title입니다.
+                  // 해당 title에 맞는 value를 찾아 selectedValue 상태를 업데이트 합니다.
+                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  setSelectedValue(value);
+                }}
                 // onClick={handleOpenMapModal}
               />
             </AlignDiv>
