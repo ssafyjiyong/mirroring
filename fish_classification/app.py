@@ -19,7 +19,7 @@ from keras import utils
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
-from fish_species_classification_cnn import *
+from fish_species_classification import *
 
 # db 저장 모듈 관련
 from db_connection import *
