@@ -79,10 +79,13 @@ pipeline {
                 stage('Delete Previous Front Docker Container'){
                     steps {
                         script {
-                            sh '''
-                                docker stop ${FRONT_CONTAINER_NAME}
-                                docker rm ${FRONT_CONTAINER_NAME}
-                            '''
+                            def frontContainerExists = sh(script: "docker ps -a --filter name=${FRONT_CONTAINER_NAME} --format '{{.Names}}'", returnStatus: true) == 0
+                            if (frontContainerExists) {
+                                sh "docker stop ${FRONT_CONTAINER_NAME}"
+                                sh "docker rm ${FRONT_CONTAINER_NAME}"
+                            } else {
+                                echo "Frontend container does not exist. Skipping deletion."
+                            }
                         }
                     }
 
@@ -91,10 +94,13 @@ pipeline {
                 stage('Delete Previous back Docker Container'){
                     steps {
                         script {
-                            sh '''
-                                docker stop ${BACK_CONTAINER_NAME}
-                                docker rm ${BACK_CONTAINER_NAME}
-                            '''
+                            def backContainerExists = sh(script: "docker ps -a --filter name=${BACK_CONTAINER_NAME}'", returnStatus: true) == 0
+                            if (backContainerExists) {
+                                sh "docker stop ${BACK_CONTAINER_NAME}"
+                                sh "docker rm ${BACK_CONTAINER_NAME}"
+                            } else {
+                                echo "Backend container does not exist. Skipping deletion."
+                            }
                         }
                     }
 
@@ -103,10 +109,13 @@ pipeline {
                 stage('Delete Previous AI Docker Container'){
                     steps {
                         script {
-                            sh '''
-                                docker stop ${AI_CONTAINER_NAME}
-                                docker rm ${AI_CONTAINER_NAME}
-                            '''
+                            def aiContainerExists = sh(script: "docker ps -a --filter name=${AI_CONTAINER_NAME} --format '{{.Names}}'", returnStatus: true) == 0
+                            if (aiContainerExists) {
+                                sh "docker stop ${AI_CONTAINER_NAME}"
+                                sh "docker rm ${AI_CONTAINER_NAME}"
+                            } else {
+                                echo "AI container does not exist. Skipping deletion."
+                            }
                         }
                     }
 

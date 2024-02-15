@@ -95,3 +95,76 @@ CHARACTER SET euckr FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"' ESCAPED BY '"' 
 LINES TERMINATED BY '\r\n' 
 IGNORE 1 LINES (`id`, `location_id`,`fish_id`);
+
+
+if (mixer3.current) {
+      mixer3.current.update(anispeed);
+      if (model3.current) {
+        if (fishInfoArray[5] === 0) {
+          model3.current.visible = false;
+        }
+        else {
+          model3.current.visible = true;
+        }
+        if (beforexpos3 < xrand3) {
+          if (xpos3 >= xrand3) {
+            beforexpos3 = xpos3;
+            xpos3 -= xspeed;
+            sw3 = 5;
+          } else {
+            if (model3.current.rotation.x > 0) {
+              sw3 = 1;
+            } else {
+              sw3 = 3;
+            }
+          }
+        } else if (beforexpos3 > xrand3) {
+          if (xpos3 <= xrand3) {
+            beforexpos3 = xpos3;
+            xpos3 += xspeed;
+            sw3 = 5;
+          } else {
+            if (model3.current.rotation.x < 3) {
+              sw3 = 2;
+            } else {
+              sw3 = 4;
+            }
+          }
+        } else if (model3.current.rotation.x < 0) {
+          sw3 = 4;
+          model3.current.rotation.x += rotationvalue;
+        } else if (model3.current.rotation.x > 3) {
+          sw3 = 3;
+          model3.current.rotation.x -= rotationvalue;
+        }
+
+        //up
+        if (sw3 === 1) {
+          if (model3.current.rotation.y < 2.6) {
+            model3.current.rotation.x -= rotationvalue;
+            model3.current.rotation.y += 0.6;
+          } else {
+            model3.current.rotation.x -= rotationvalue;
+          }
+        }
+        //down
+        else if (sw3 === 2) {
+          if (model3.current.rotation.y > -2.6) {
+            model3.current.rotation.x += rotationvalue;
+            model3.current.rotation.y -= 0.6;
+          } else {
+            model3.current.rotation.x += rotationvalue;
+          }
+        } else if (sw3 === 3) {
+          xpos3 += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
+        } else if (sw3 === 4) {
+          xpos3 -= xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
+        } else if (sw3 === 5) {
+          xrand3 = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+        }
+        // console.log("bepos:", beforexpos3);
+        // console.log("xpos:", xpos3);
+        // console.log("xrand:", xrand3);
+        model3.current.position.set(-0.6, xpos3, 0);
+      }
+    }
