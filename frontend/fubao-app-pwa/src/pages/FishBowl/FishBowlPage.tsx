@@ -286,16 +286,16 @@ const FishBowlPage = () => {
   const token = localStorage.getItem("token");
   const results = useQueries({
     queries: [
-      { queryKey: ['getFish1'], queryFn: () => FishApi1(token), refetchInterval: 1000 },
-      { queryKey: ['getFish2'], queryFn: () => FishApi2(token), refetchInterval: 1000 },
-      { queryKey: ['getFish3'], queryFn: () => FishApi3(token), refetchInterval: 1000 },
-      { queryKey: ['getFish4'], queryFn: () => FishApi4(token), refetchInterval: 1000 },
-      { queryKey: ['getFish5'], queryFn: () => FishApi5(token), refetchInterval: 1000 },
-      { queryKey: ['getFish6'], queryFn: () => FishApi6(token), refetchInterval: 1000 },
-      { queryKey: ['getFish7'], queryFn: () => FishApi7(token), refetchInterval: 1000 },
-      { queryKey: ['getFish8'], queryFn: () => FishApi8(token), refetchInterval: 1000 },
-      { queryKey: ['getFish9'], queryFn: () => FishApi9(token), refetchInterval: 1000 },
-      { queryKey: ['getFish10'], queryFn: () => FishApi10(token), refetchInterval: 1000 },
+      { queryKey: ['getFish1'], queryFn: () => FishApi1(token), refetchInterval: 5000 },
+      { queryKey: ['getFish2'], queryFn: () => FishApi2(token), refetchInterval: 5000 },
+      { queryKey: ['getFish3'], queryFn: () => FishApi3(token), refetchInterval: 5000 },
+      { queryKey: ['getFish4'], queryFn: () => FishApi4(token), refetchInterval: 5000 },
+      { queryKey: ['getFish5'], queryFn: () => FishApi5(token), refetchInterval: 5000 },
+      { queryKey: ['getFish6'], queryFn: () => FishApi6(token), refetchInterval: 5000 },
+      { queryKey: ['getFish7'], queryFn: () => FishApi7(token), refetchInterval: 5000 },
+      { queryKey: ['getFish8'], queryFn: () => FishApi8(token), refetchInterval: 5000 },
+      { queryKey: ['getFish9'], queryFn: () => FishApi9(token), refetchInterval: 5000 },
+      { queryKey: ['getFish10'], queryFn: () => FishApi10(token), refetchInterval: 5000 },
     ]
   });
 
