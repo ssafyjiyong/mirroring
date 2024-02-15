@@ -62,33 +62,31 @@ function App() {
         <Route path="/home" element={<RequireAuth><HomePage /></RequireAuth>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        <Route path="/result" element={<ResultPage />} />
+        <Route path="/result" element={<RequireAuth><ResultPage /></RequireAuth>} />
         <Route path="/collection" element={<RequireAuth><CollectionPage /></RequireAuth>} />
-        <Route path="/detail/:fishname" element={<RequireAuth><DetailPage /></RequireAuth>} />
+        <Route path="/detail/:fishid" element={<RequireAuth><DetailPage /></RequireAuth>} />
         <Route path="/fishbowl" element={<FishBowlPage />} />
-        <Route path="/equipmentinfo" element={<EquipmentInfoPage />} />
-        <Route path="/etiquetteinfo" element={<EtiquettePage />} />
-        <Route path="/fishinfo" element={<FishTotal />} />
-        <Route path="/method" element={<MethodTotal />} />
-        <Route path="/point" element={<PointTotal />} />
+        <Route path="/equipmentinfo" element={<RequireAuth><EquipmentInfoPage /></RequireAuth>} />
+        <Route path="/etiquetteinfo" element={<RequireAuth><EtiquettePage /></RequireAuth>} />
+        <Route path="/fishinfo" element={<RequireAuth><FishTotal /></RequireAuth>} />
+        <Route path="/method" element={<RequireAuth><MethodTotal /></RequireAuth>} />
+        <Route path="/point" element={<RequireAuth><PointTotal /></RequireAuth>} />
         <Route path="/locationinfo" element={<RequireAuth><LocationInfoPage /></RequireAuth>} />
-        <Route path="/prohibitioninfo" element={<ProhibitionInfoPage />} />
-        <Route path="/releaseinfo" element={<ReleaseInfo />} />
+        <Route path="/prohibitioninfo" element={<RequireAuth><ProhibitionInfoPage /></RequireAuth>} />
+        <Route path="/releaseinfo" element={<RequireAuth><ReleaseInfo /></RequireAuth>} />
         <Route path="/map" element={<RequireAuth><MapPage /></RequireAuth>} />
         <Route path="/planmanage" element={<RequireAuth><PlanManagePage /></RequireAuth>} />
         <Route path="/profile" element={<RequireAuth><ProfilePage /></RequireAuth>} />
         <Route path="/viewall" element={<RequireAuth><ViewAllPage /></RequireAuth>} />
-        <Route path="/method1" element={<MethodPage1 />} />
-        <Route path="/method2" element={<MethodPage2 />} />
-        <Route path="/method3" element={<MethodPage3 />} />
-        <Route path="/method4" element={<MethodPage4 />} />
-        <Route path="/point1" element={<PointPage1 />} />
-        <Route path="/point2" element={<PointPage2 />} />
-        <Route path="/point3" element={<PointPage3 />} />
-        <Route path="/point4" element={<PointPage4 />} />
-        <Route path="/fish/:id" element={<FishPage />} />
-
-        <Route path="/map/test" element={<TestPage />} />
+        <Route path="/method1" element={<RequireAuth><MethodPage1 /></RequireAuth>} />
+        <Route path="/method2" element={<RequireAuth><MethodPage2 /></RequireAuth>} />
+        <Route path="/method3" element={<RequireAuth><MethodPage3 /></RequireAuth>} />
+        <Route path="/method4" element={<RequireAuth><MethodPage4 /></RequireAuth>} />
+        <Route path="/point1" element={<RequireAuth><PointPage1 /></RequireAuth>} />
+        <Route path="/point2" element={<RequireAuth><PointPage2 /></RequireAuth>} />
+        <Route path="/point3" element={<RequireAuth><PointPage3 /></RequireAuth>} />
+        <Route path="/point4" element={<RequireAuth><PointPage4 /></RequireAuth>} />
+        <Route path="/fish/:id" element={<RequireAuth><FishPage /></RequireAuth>} />
       </Routes>
       <ConditionalBottomNav />
     </Router>

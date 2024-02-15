@@ -30,7 +30,7 @@ const store = (set) => ({
       currentTime.setHours(0, 0, 0, 0);
 
       // 스케줄 배열이 비어있지 않고, 첫 번째 스케줄의 날짜가 현재 날짜보다 이전인지 확인
-      let updatedSchedule = schedule.length > 0 ? schedule[0] : null;
+      let updatedSchedule = schedule ? schedule : null;
       if (updatedSchedule) {
         const scheduleDate = new Date(updatedSchedule.date);
         scheduleDate.setHours(0, 0, 0, 0);

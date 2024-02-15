@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 import styled from "styled-components";
 
 const EntryLoadingBox = styled.div`
@@ -30,19 +30,19 @@ const BiggerP = styled.p`
   margin: 0;
 `;
 
-const EntryLoading = () => {
-  return (
-    <EntryLoadingBox>
-      <SmallP>맞춤 정보를 로딩중입니다.</SmallP>
-      <img
-        src="/Fubao_logo_nobackground.png"
-        alt="Fubao_Logo"
-        style={{ width: "7em", height: "7em", margin: "1rem" }}
-        className="infinite_rotating_logo"
-      />
-      <BiggerP>푸바오: 푸른 바다로 오세요</BiggerP>
-    </EntryLoadingBox>
-  );
-};
+const CollectionLoading = () => {
+    return (
+        <EntryLoadingBox>
+          <SmallP>도감을 로딩중입니다.</SmallP>
+          <img
+            src="/Fubao_logo_nobackground.png"
+            alt="Fubao_Logo"
+            style={{ width: "7em", height: "7em", margin: "1rem" }}
+            className="infinite_rotating_logo"
+          />
+          <BiggerP>도감을 가득채워보세요!</BiggerP>
+        </EntryLoadingBox>
+      );
+}
 
-export default EntryLoading;
+export default CollectionLoading

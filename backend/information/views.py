@@ -15,6 +15,7 @@ from fish.models import fish, user_fish
 from review.models import method_reivew ,location_review
 from location.models import location
 from schedule.models import schedule
+from .models import fishing_method
 from user.serializers import UserProfileSerializer
 from .serializers import AreaSerializer, BaitSerializer, MethodSerializer, EquipmentSerializer, ReleaseSerializer, ProhibitSerializer
 from schedule.serializers import ScheduleSerializer
@@ -50,11 +51,12 @@ def pick_method(user):
     method_reviews = method_reivew.objects.filter(user=user)
     method_ids = [review.method_id for review in method_reviews]
     weights = [review.weight for review in method_reviews]
+    # print(method_ids)
 
-    if weights:
+    if method_ids:
         selected_method_id = random.choices(method_ids, weights)[0]
     else:
-        selected_method_id = random.choice(method_ids)
+        selected_method_id = random.choice([m.pk for m in fishing_method.objects.all()])
         
     selected_method = fishing_method.objects.get(pk=selected_method_id).title
     return selected_method_id, selected_method
@@ -161,7 +163,7 @@ class HomeView(APIView):
         else:
             context = {
                 "recommendation": recommend,
-                "schedule": [],
+                "schedule": None,
                 "profile": user_profile_serializer.data,
             }
 
