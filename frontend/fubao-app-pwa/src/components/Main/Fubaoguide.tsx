@@ -285,7 +285,47 @@ const Fubaoguide = () => {
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
       >
-        <label htmlFor="file">
+        {!schedule || !schedule.id ? (
+            <img
+              src="/imgs/my_panda.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+        ) : dday === 0 ? (
+          <label htmlFor="file">
+            <img
+              src="/imgs/panda_camera.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+          </label>
+        ) : (
+            <img
+              src="/imgs/panda_trip.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+        )}
+
+        {/* <label htmlFor="file">
           <img
             src={
               !schedule || !schedule.id
@@ -303,7 +343,7 @@ const Fubaoguide = () => {
               cursor: "pointer",
             }}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* 카메라 오픈 모달 */}
