@@ -40,8 +40,6 @@ import TheFirstPage from "./pages/TheFirstPage";
 import IntroductionPage from "./pages/IntroductionPage";
 import RequireAuth from "./components/RequireAuth";
 
-import TestPage from "./components/Map/TestPage";
-
 function App() {
   
   function ConditionalBottomNav() {

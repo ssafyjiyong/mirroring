@@ -725,20 +725,14 @@ export const removeProfileApi = async (token) => {
 };
 
 // 날씨 GET API
-export const weatherGetApi = async ({ lat, lon }) => {
-  // const formData = new FormData();
-  // formData.append("lat", lat);
-  // formData.append("lon", lon);
-  // for (let [key, value] of formData.entries()) {
-  //   console.log(key, value,typeof(value));
-  // }
+export const weatherGetApi = async ({ lat, lng }) => {
   try {
-    console.log(lat,lon);
+    // console.log(lat,lng);
     const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
     {     
       params: {
         lat: lat,
-        lon: lon,
+        lon: lng,
       },
       headers: {
         "Content-Type": "application/json",
