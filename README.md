@@ -2,7 +2,7 @@
 
 ## 프로젝트 소개
 
-- 프로젝트명: 푸바오
+- 프로젝트명: 푸바오 (푸른 바다로 오세요)
 - 서비스 특징: 20, 30대 바다 낚시 입문자를 위한 바다 낚시 입문 가이드 앱 서비스
 - 주요 기능
   - 맞춤 정보 제공
@@ -20,40 +20,26 @@
   - URL: https://i10c104.p.ssafy.io/
   - 테스트 계정: ssafy@ssafy.com / ssafy1111
 
-<!-- 자유 양식 -->
-
-## 팀 소개
-
-- 김지용: 팀장, 프론트엔드 개발
-- 고광현: 프론트엔드 개발
-- 김민영: 서기, 백엔드 개발
-- 박미성: AI 모델
-- 오유진: 발표, 백엔드 개발
-
-<!-- 자유 양식 -->
-
 ## 프로젝트 상세 설명
-
-// 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
 
 ### 개발 환경
 
-* Management Tool
+* Management Tool<br/>
 JIRA, GitLab, MatterMost, Notion, Figma
 
-* IDE
+* IDE<br/>
 VScode, Jupyter NoteBook, Colab
 
-* Infra
+* Infra<br/>
 Amazon AWS, NginX, Docker, Ubuntu, Jenkins
 
-* Frontend
+* Frontend<br/>
 HTML5, CSS, Javascript, TypeScript, React, Axios, Styled Components, zustand, react-query, prettier, three.js
 
-* Backend
+* Backend<br/>
 Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
 
-* AI
+* AI<br/>
 Flask, Tensorflow, Keras, numpy
 
 
@@ -61,6 +47,9 @@ Flask, Tensorflow, Keras, numpy
 
 - 추천 컴포넌트 및 일정 등록<br/>
 ![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
+
+- 낚시 포인트 및 날씨 확인<br/>
+![ezgif.com-resize_point](/uploads/3e2ca6d1f9cc003363b2905494373401/ezgif.com-resize_point.gif)
 
 - 일정 등록 및 AI 카메라 작동<br/>
 ![ezgif.com-resize_register_plan](/uploads/fef71f330b54a87f6aee5542acfcbf61/ezgif.com-resize_register_plan.gif)
@@ -118,6 +107,18 @@ Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용�
 
 * CI/CD<br/>
 ![image](/uploads/d0f5b19d3fea0eafe661ad9dfe153a05/image.png)
+
+<!-- 자유 양식 -->
+
+## 팀 소개
+
+- 김지용: 팀장, 프론트엔드 개발
+- 고광현: 프론트엔드 개발
+- 김민영: 서기, 백엔드 개발
+- 박미성: AI 모델
+- 오유진: 발표, 백엔드 개발
+
+<!-- 자유 양식 -->
 
 <!-- 필수 항목 -->
 
