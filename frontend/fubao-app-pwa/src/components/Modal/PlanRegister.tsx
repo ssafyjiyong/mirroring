@@ -228,18 +228,10 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
             </AlignDiv>
             <AlignDiv>
               <Span>장소: </Span>
-              {/* <Input
-                name="location"
-                type="text"
-                placeholder="장소 (예시: 부산항)"
-                // value={location}
-                // readOnly
-                // onClick={handleOpenMapModal}
-              /> */}
               <Autocomplete
                 name="location"
                 type="search"
-                placeholder="장소 (예시: 부산항)"
+                placeholder="검색, 선택하시면 해당 ID가 입력됩니다."
                 freeSolo
                 disableClearable
                 options={LocationOptions.map((option) => option.title)}
@@ -253,12 +245,9 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                 }}
                 value={selectedValue}
                 onChange={(event, newValue) => {
-                  // newValue는 선택된 옵션의 title입니다.
-                  // 해당 title에 맞는 value를 찾아 selectedValue 상태를 업데이트 합니다.
                   const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
                   setSelectedValue(value);
                 }}
-                // onClick={handleOpenMapModal}
               />
             </AlignDiv>
             

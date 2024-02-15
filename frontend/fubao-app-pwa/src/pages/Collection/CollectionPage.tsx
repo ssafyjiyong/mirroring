@@ -6,6 +6,9 @@ import styled from "styled-components";
 import { myFishApi } from "../../store/api";
 import { useQuery } from "@tanstack/react-query";
 import CollectionLoading from "../../components/Loading/CollectionLoading";
+import { HomeIcon } from "../../styles/globalStyles";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { useNavigate } from "react-router-dom";
 
 const InfoBox = styled.div`
   display: flex;
@@ -100,6 +103,10 @@ const fishInfos = [
 
 const CollectionPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const { data, error, isError } = useQuery({
     queryKey: ["fishData"],
@@ -133,13 +140,23 @@ const CollectionPage = () => {
         padding: "1rem",
         paddingBottom: "2rem",
         backgroundColor: "#E3F2FD",
+        position: "relative",
       }}
     >
+      <ChevronLeftIcon
+        sx={{
+          position: "absolute",
+          top: 22,
+          left: 20,
+          cursor: "pointer",
+        }}
+        onClick={handleBack}
+      />
       <p
         style={{
           fontWeight: 600,
           fontSize: "1.5rem",
-          margin: "1rem 0.5rem 0.5rem",
+          margin: "3rem 0.5rem 0.5rem",
         }}
       >
         도감리스트
@@ -208,6 +225,11 @@ const CollectionPage = () => {
           ))}
         </div>
       </div>
+      <Link to="/">
+        <HomeIcon>
+          <FontAwesomeIcon icon="home" />
+        </HomeIcon>
+      </Link>
     </div>
   );
 };

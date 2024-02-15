@@ -24,6 +24,7 @@ const LocationComponent = () => {
         backgroundImage: "url('/imgs/mappoint.png')",
         backgroundRepeat: "no-repeat",
       }}
+      onClick={handleClick}
     >
       <MyText>
         {profile?.nickname}님을 위한
@@ -33,13 +34,13 @@ const LocationComponent = () => {
         {recommendation?.selected_location}
       </MyText>
 
-      <div style={{ position: "absolute", bottom: "0.5rem", left: "0.8rem" }}>
+      {/* <div style={{ position: "absolute", bottom: "0.5rem", left: "0.8rem" }}>
         <span style={{ color:"black", marginRight:"0.5rem", cursor:"pointer" }}>날씨 보기</span>
-      </div>
+      </div> */}
 
-      <div onClick={handleClick} style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
+      <div style={{ position: "absolute", bottom: "0.5rem", right: "0.5rem" }}>
         {/* <FontAwesomeIcon icon="map" size="1x" color="black" style={{ padding:"0rem 0.3rem" }} /> */}
-        <span style={{ color:"black", marginRight:"0.5rem", cursor:"pointer" }}>지도로 보기</span>
+        <span style={{ color:"black", marginRight:"0.5rem" }}>지도로 보기</span>
       </div>
     </WhiteBox>
   );

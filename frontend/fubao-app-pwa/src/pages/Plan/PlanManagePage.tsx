@@ -185,6 +185,7 @@ const PlanManagePage = () => {
   const year = today.getFullYear();
   const month = ("0" + (today.getMonth() + 1)).slice(-2);
   const day = ("0" + today.getDate()).slice(-2);
+  const [selectedValue, setSelectedValue] = useState('');
 
   return (
     <Container>
@@ -207,24 +208,26 @@ const PlanManagePage = () => {
           <AlignDiv>
             <Span>장소: </Span>
             <Autocomplete
-              name="location"
-              type="search"
-              placeholder={schedule?.location.address}
-              freeSolo
-              disableClearable
-              options={LocationOptions.map((option) => option.title)}
-              sx={{
-                borderRadius: "10px",
-                margin: "0.5rem 0rem",
-                width: "21rem",
-                borderColor: "#ccc",
-                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                fontSize: 16,
-              }}
-              // value={location}
-              // readOnly
-              // onClick={handleOpenMapModal}
-            />
+                name="location"
+                type="search"
+                placeholder={schedule?.location.address}
+                freeSolo
+                disableClearable
+                options={LocationOptions.map((option) => option.title)}
+                sx={{
+                  borderRadius:"10px",
+                  margin: "0.5rem 0rem",
+                  width: "21rem",
+                  borderColor: "#ccc",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: 16,
+                }}
+                value={selectedValue}
+                onChange={(event, newValue) => {
+                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  setSelectedValue(value);
+                }}
+              />
           </AlignDiv>
           <AlignDiv>
             <Span>포인트: </Span>
