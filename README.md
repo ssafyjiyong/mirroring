@@ -59,6 +59,7 @@
 - AI 어종 판별 및 길이 측정
 
 - 추천 컴포넌트 및 일정 등록
+<br/>
 ![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
 
 ### 주요 기능
