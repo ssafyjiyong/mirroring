@@ -32,88 +32,88 @@ pipeline {
 
         }
 
-        // stage('Parallel Build Docker Image') {
-        //     parallel{
-        //         stage('front Build Docker Image'){
-        //             steps {
-        //                 script {
-        //                     sh '''
-        //                         cd ./frontend/fubao-app-pwa
-        //                         docker build -t ${FRONT_DOCKER_IMAGE_NAME} .
-        //                     '''
-        //                 }
-        //             }
-        //         }
+        stage('Parallel Build Docker Image') {
+            parallel{
+                stage('front Build Docker Image'){
+                    steps {
+                        script {
+                            sh '''
+                                cd ./frontend/fubao-app-pwa
+                                docker build -t ${FRONT_DOCKER_IMAGE_NAME} .
+                            '''
+                        }
+                    }
+                }
 
 
-        //         stage('back Build Docker Image'){
-        //             steps {
-        //                 script {
-        //                     sh '''
-        //                         cd ./backend
-        //                         docker build -t ${BACK_DOCKER_IMAGE_NAME} .
-        //                     '''
-        //                 }
-        //             }
-        //         }
+                stage('back Build Docker Image'){
+                    steps {
+                        script {
+                            sh '''
+                                cd ./backend
+                                docker build -t ${BACK_DOCKER_IMAGE_NAME} .
+                            '''
+                        }
+                    }
+                }
 
 
-        //         stage('ai Build Docker Image'){
-        //             steps {
-        //                 script {
-        //                     sh '''
-        //                         cd ./fish_classification
-        //                         docker build -t ${AI_DOCKER_IMAGE_NAME} .
-        //                     '''
-        //                 }
-        //             }
-        //         }
+                stage('ai Build Docker Image'){
+                    steps {
+                        script {
+                            sh '''
+                                cd ./fish_classification
+                                docker build -t ${AI_DOCKER_IMAGE_NAME} .
+                            '''
+                        }
+                    }
+                }
 
                 
-        //     }
-
-        // }
-
-        stage('Delete Previous Docker Container') {
-            parallel{
-                stage('Delete Previous Front Docker Container'){
-                    steps {
-                        script {
-                            sh '''
-                                docker stop ${FRONT_CONTAINER_NAME}
-                                docker rm ${FRONT_CONTAINER_NAME}
-                            '''
-                        }
-                    }
-
-                }
-
-                stage('Delete Previous back Docker Container'){
-                    steps {
-                        script {
-                            sh '''
-                                docker stop ${BACK_CONTAINER_NAME}
-                                docker rm ${BACK_CONTAINER_NAME}
-                            '''
-                        }
-                    }
-
-                }
-
-                stage('Delete Previous AI Docker Container'){
-                    steps {
-                        script {
-                            sh '''
-                                docker stop ${AI_CONTAINER_NAME}
-                                docker rm ${AI_CONTAINER_NAME}
-                            '''
-                        }
-                    }
-
-                }
             }
 
         }
+
+        // stage('Delete Previous Docker Container') {
+        //     parallel{
+        //         stage('Delete Previous Front Docker Container'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         docker stop ${FRONT_CONTAINER_NAME}
+        //                         docker rm ${FRONT_CONTAINER_NAME}
+        //                     '''
+        //                 }
+        //             }
+
+        //         }
+
+        //         stage('Delete Previous back Docker Container'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         docker stop ${BACK_CONTAINER_NAME}
+        //                         docker rm ${BACK_CONTAINER_NAME}
+        //                     '''
+        //                 }
+        //             }
+
+        //         }
+
+        //         stage('Delete Previous AI Docker Container'){
+        //             steps {
+        //                 script {
+        //                     sh '''
+        //                         docker stop ${AI_CONTAINER_NAME}
+        //                         docker rm ${AI_CONTAINER_NAME}
+        //                     '''
+        //                 }
+        //             }
+
+        //         }
+        //     }
+
+        // }
 
         stage('Parallel Run Docker Container') {
             parallel{
