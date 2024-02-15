@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import RetrieveUpdateAPIView
 from dj_rest_auth.registration.views import RegisterView
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from .serializers import CustomRegisterSerializer, UserSerializer, UserProfileSerializer

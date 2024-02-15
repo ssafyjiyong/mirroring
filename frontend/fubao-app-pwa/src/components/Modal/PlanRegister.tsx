@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Modal from "@mui/joy/Modal";
+import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
 import Sheet from "@mui/joy/Sheet";
@@ -8,13 +9,17 @@ import Button from "@mui/joy/Button";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PlanRegisterMap from "../Map/PlanRegisterMap";
+import Autocomplete from '@mui/joy/Autocomplete'; // 장소 검색 관련
+import location from "../../data/location.json"
+
+const LocationOptions = location;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
   padding: 0.4rem;
 `;
 
@@ -74,7 +79,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     value: string;
     label: string;
   } | null>(null);
-  
+
   const [selectedMethodOption, setSelectedMethodOption] = useState<{
     value: string;
     label: string;
@@ -158,6 +163,21 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     />
   );
 
+  const [isMapOpen, setIsMapOpen] = useState(false); // Map 모달 상태
+  const [location, setLocation] = useState(""); // 선택된 장소 정보
+  const handleOpenMapModal = () => {
+    setIsMapOpen(true);
+  };
+  const handleSelectLocation = (selectedLocation: any) => {
+    setLocation(selectedLocation.address); // 선택된 장소의 주소를 location 상태에 저장
+    setIsMapOpen(false); // Map 모달 닫기
+  };
+  const [layout, setLayout] = React.useState<
+    ModalDialogProps["layout"] | undefined
+  >(undefined);
+
+  const [selectedValue, setSelectedValue] = useState('');
+
   return (
     <Modal
       aria-labelledby="modal-title"
@@ -198,7 +218,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
               <Span>일정: </Span>
               <DatePicker
                 className="datePicker"
-                dateFormat="yyyy.MM.dd"
+                dateFormat="yyyy-MM-dd"
                 shouldCloseOnSelect
                 minDate={new Date()}
                 maxDate={new Date(year + 1 + "-" + month + "-" + day)}
@@ -208,12 +228,38 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
             </AlignDiv>
             <AlignDiv>
               <Span>장소: </Span>
-              <Input
+              <Autocomplete
                 name="location"
-                type="text"
-                placeholder="장소 (예시 부산항)"
+                type="search"
+                placeholder="검색, 선택하시면 해당 ID가 입력됩니다."
+                freeSolo
+                disableClearable
+                options={LocationOptions.map((option) => option.title)}
+                sx={{
+                  borderRadius:"10px",
+                  margin: "0.5rem 0rem",
+                  width: "21rem",
+                  borderColor: "#ccc",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: 16,
+                }}
+                value={selectedValue}
+                onChange={(event, newValue) => {
+                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  setSelectedValue(value);
+                }}
               />
             </AlignDiv>
+            
+            {isMapOpen && (
+              <Modal open={!!layout} onClose={() => setLayout(undefined)}>
+                <ModalDialog layout={layout}>
+                  <ModalClose />
+                  <PlanRegisterMap />
+                </ModalDialog>
+              </Modal>
+            )}
+            
             <AlignDiv>
               <Span>포인트: </Span>
               <PointSelect />

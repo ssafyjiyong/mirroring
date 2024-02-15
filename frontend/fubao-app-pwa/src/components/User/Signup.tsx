@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
-import { signupApi } from "../../store/api";
+import { signupApi, loginApi } from "../../store/api";
 
 function Copyright(props: any) {
   return (
@@ -57,7 +57,11 @@ const SignUp = () => {
         cancelButtonText: "아니요",
       }).then(result => {
         if (result.isConfirmed) {
-          navigate("/login");
+          loginApi({ email, password1 }).then(() => {
+            navigate("/home");
+          }).catch((error) => {
+            console.log(error);
+          });
         }
       });
     },

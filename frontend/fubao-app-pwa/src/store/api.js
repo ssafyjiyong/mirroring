@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_URL = "http://127.0.0.1:8000";
-const API_URL_FLASK = "http://54.180.108.229:5000";
+// const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://i10c104.p.ssafy.io/api";
+const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
 
 // GET 요청 API
 export const currentUserApi = async (token) => {
@@ -19,6 +20,24 @@ export const currentUserApi = async (token) => {
       error.response ? error.response.data : error.message
     );
     throw new Error("Failed to fetch user profile");
+  }
+};
+
+export const scheduleFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/schedule/myschedule/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch schedule");
   }
 };
 
@@ -52,6 +71,157 @@ export const mapInfoApi = async () => {
   }
 };
 
+export const planFetchApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
+
+// 방생기준 GET
+export const releaseFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/release/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish release standard");
+  }
+};
+
+// 금어기 GET
+export const prohibitFishApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/prohibit/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish prohibit standard");
+  }
+};
+
+// Method GET
+export const methodGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/method/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// Point GET
+export const pointGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/area/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch point");
+  }
+};
+
+// recommendation GET
+export const recommendationGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/recommendation/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// information GET
+export const informationGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/information/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
+// myfish GET
+export const myfishGetApi = async ({token, fishid}) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/${fishid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
@@ -78,7 +248,7 @@ export const loginApi = async ({ email, password1 }) => {
 
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
-
+    
     return response.data;
   } catch (error) {
     console.log(error);
@@ -129,9 +299,10 @@ export const planRegisterApi = async ({
   }
 };
 
-export const classifyApiCreditCard = async (file) => {
+export const classifyApiCreditCard = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "credit_card");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
@@ -139,33 +310,54 @@ export const classifyApiCreditCard = async (file) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    // length 값을 정수로 변환하여 저장
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    // 로컬 스토리지에 저장
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiCigarette = async (file) => {
+export const classifyApiCigarette = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "cigarette");
+
+  for (let [key, value] of formData.entries()) {
+    console.log(key, value);
+  }
+
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const lengthInt = Math.floor(response.data.length / 10);
+    const { species } = response.data;
+
+    localStorage.setItem("length", lengthInt.toString());
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
   }
 };
 
-export const classifyApiNone = async (file) => {
+export const classifyApiNone = async ({ file, uid }) => {
   const formData = new FormData();
   formData.append("file", file);
+  formData.append("uid", uid);
   formData.append("object", "none");
   try {
     const response = await axios.post(`${API_URL_FLASK}/predict`, formData, {
@@ -173,10 +365,68 @@ export const classifyApiNone = async (file) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log(response.data);
+
+    const { species } = response.data;
+
+    localStorage.setItem("species", species);
+
     return response.data;
   } catch (error) {
     throw error;
+  }
+};
+
+// 사전 설문 방법
+export const surveyMethodApi = async ({ token, weight, method }) => {
+  try {
+    const response = await axios.post(`${API_URL}/review/method/`, 
+      { weight, method },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const surveyFishApi = async ({ token, fishId, preference }) => {
+  try {
+    const response = await axios.post(`${API_URL}/fish/myfish/${fishId}/`, 
+      { preference },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// Fish GET
+export const fishGetApi = async (token) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch fish list");
   }
 };
 
@@ -221,7 +471,62 @@ export const nicknamePatchApi = async ({ token, nickname }) => {
   }
 };
 
+export const surveyPatchApi = async ({ token }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/user/profile/`,
+      { presurvey: true },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const scheduleDoneApi = async ({ token, pk }) => {
+  try {
+    const response = await axios.patch(
+      `${API_URL}/schedule/done/${pk}/`,
+      { done: true },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 //DELETE 요청 API
+export const planCancelApi = async (token, planid) => {
+  try {
+    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch user profile");
+  }
+};
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {
@@ -401,5 +706,45 @@ export const FishApi10 = async (token) => {
       error.response ? error.response.data : error.message
     );
     throw new Error("Failed to fetch fish10");
+  }
+};
+
+// DELETE API
+export const removeProfileApi = async (token) => {
+  try {
+    const response = await axios.delete(`${API_URL}/user/profile/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// 날씨 GET API
+export const weatherGetApi = async ({ lat, lng }) => {
+  try {
+    // console.log(lat,lng);
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
+    {     
+      params: {
+        lat: lat,
+        lon: lng,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+  });
+  
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch weather at");
   }
 };

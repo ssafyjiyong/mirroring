@@ -133,3 +133,54 @@ code {
 .profile-img-container:hover .camera-icon {
   display: block; /* 호버 시 보여줌 */
 }
+
+.speech-bubble {
+	position: relative;
+	background: #ffffff;
+	border-radius: 15px;
+  padding: 0.1rem;
+  max-width:280px;
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 30%;
+	width: 0;
+	height: 0;
+	border: 1em solid transparent;
+	border-top-color: #ffffff;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -0.391em;
+	margin-bottom: -0.781em;
+}
+
+img.infinite_rotating_logo{
+  animation: rotate_image 5s linear infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotate_image{
+100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 1234px) {
+  table {
+    font-size: 12px; /* 폰트 크기 축소 */
+    margin: 15px 0px 0px; /* 셀 패딩 조정 */
+  }
+  th, td {
+    padding: 5px; /* 셀 패딩 조정 */
+    min-width: 50px; /* 셀의 최소 너비 조정 */
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}

@@ -11,10 +11,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # my_settings.py 불러오기
 from my_settings import SECRET_KEY, DATABASES
@@ -29,7 +29,6 @@ SECRET_KEY = SECRET_KEY
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -68,6 +67,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # #ssl
+    # 'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -87,6 +89,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'https://i10c104.p.ssafy.io:3000',
 ]
 
 REST_FRAMEWORK = {
@@ -170,6 +173,7 @@ STATIC_ROOT = ''
 STATICFILES_DIRS = [
     BASE_DIR / 'profile_images',
 ]
+STATIC_ROOT=os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'

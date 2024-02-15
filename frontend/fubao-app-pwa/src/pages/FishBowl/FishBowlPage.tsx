@@ -51,185 +51,189 @@ let check: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 let visited: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let csw: number = 1;
 
-let xpos1: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+//xrand = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+//yrand = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
+
+
+let xpos1: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos1: number = 1.5;
 let beforexpos1: number = xpos1;
 let beforeypos1: number = ypos1;
 let sw1: number = 3;
 let ysw1: number = 1;
-let xrand1: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand1: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand1: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 // let yrand1: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos2: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos2: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos2: number = 1.5;
 let beforexpos2: number = xpos2;
 let beforeypos2: number = ypos2;
 let sw2: number = 3;
 let ysw2: number = 1;
-let xrand2: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand2: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand2: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos3: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos3: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos3: number = 1.5;
 let beforexpos3: number = xpos3;
 let beforeypos3: number = ypos3;
 let sw3: number = 3;
 let ysw3: number = 1;
-let xrand3: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand3: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand3: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos4: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos4: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos4: number = 1.5;
 let beforexpos4: number = xpos4;
 let beforeypos4: number = ypos4;
 let sw4: number = 3;
 let ysw4: number = 1;
-let xrand4: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand4: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand4: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos5: number = Math.round(((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let xpos5: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos5: number = 1.5;
 let beforexpos5: number = 0;
 let beforeypos5: number = 0;
 let sw5: number = 3;
 let ysw5: number = 1;
-let xrand5: number = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let xrand5: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand5: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
 
-let xpos6: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos6: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos6: number = 1.5;
 let beforexpos6: number = xpos6;
 let beforeypos6: number = ypos6;
 let sw6: number = 3;
 let ysw6: number = 1;
-let xrand6: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-let yrand6: number = -0.6;
+let xrand6: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let yrand6: number = -0.8;
 
-let xpos7: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos7: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos7: number = 1.5;
 let beforexpos7: number = xpos7;
 let beforeypos7: number = ypos7;
 let sw7: number = 3;
 let ysw7: number = 1;
-let xrand7: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand7: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand7: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos8: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos8: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos8: number = 1.5;
 let beforexpos8: number = 0;
 let beforeypos8: number = 0;
 let sw8: number = 3;
 let ysw8: number = 1;
-let xrand8: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand8: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand8: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos9: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos9: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos9: number = 1.5;
 let beforexpos9: number = xpos9;
 let beforeypos9: number = ypos9;
 let sw9: number = 3;
 let ysw9: number = 1;
-let xrand9: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand9: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand9: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos10: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos10: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos10: number = 1.5;
 let beforexpos10: number = xpos1;
 let beforeypos10: number = ypos1;
 let sw10: number = 3;
 let ysw10: number = 1;
-let xrand10: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand10: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand10: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos11: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos11: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos11: number = 1.5;
 let beforexpos11: number = xpos11;
 let beforeypos11: number = ypos11;
 let sw11: number = 3;
 let ysw11: number = 1;
-let xrand11: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand11: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand11: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos12: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos12: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos12: number = 1.5;
 let beforexpos12: number = xpos12;
 let beforeypos12: number = ypos12;
 let sw12: number = 3;
 let ysw12: number = 1;
-let xrand12: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand12: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand12: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos13: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos13: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos13: number = 1.5;
 let beforexpos13: number = xpos13;
 let beforeypos13: number = ypos13;
 let sw13: number = 3;
 let ysw13: number = 1;
-let xrand13: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand13: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand13: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos14: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos14: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos14: number = 1.5;
 let beforexpos14: number = xpos14;
 let beforeypos14: number = ypos14;
 let sw14: number = 3;
 let ysw14: number = 1;
-let xrand14: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand14: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand14: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos15: number = Math.round(((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let xpos15: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos15: number = 1.5;
 let beforexpos15: number = 0;
 let beforeypos15: number = 0;
 let sw15: number = 3;
 let ysw15: number = 1;
-let xrand15: number = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+let xrand15: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand15: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
 
-let xpos16: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos16: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos16: number = 1.5;
 let beforexpos16: number = xpos16;
 let beforeypos16: number = ypos16;
 let sw16: number = 3;
 let ysw16: number = 1;
-let xrand16: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
-let yrand16: number = -0.6;
+let xrand16: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let yrand16: number = -0.8;
 
-let xpos17: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos17: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos17: number = 1.5;
 let beforexpos17: number = xpos17;
 let beforeypos17: number = ypos17;
 let sw17: number = 3;
 let ysw17: number = 1;
-let xrand17: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand17: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand17: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos18: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos18: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos18: number = 1.5;
 let beforexpos18: number = 0;
 let beforeypos18: number = 0;
 let sw18: number = 3;
 let ysw18: number = 1;
-let xrand18: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand18: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand18: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos19: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos19: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos19: number = 1.5;
 let beforexpos19: number = xpos19;
 let beforeypos19: number = ypos19;
 let sw19: number = 3;
 let ysw19: number = 1;
-let xrand19: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand19: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand19: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
-let xpos20: number = Math.round(((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xpos20: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos20: number = 1.5;
 let beforexpos20: number = xpos1;
 let beforeypos20: number = ypos1;
 let sw20: number = 3;
 let ysw20: number = 1;
-let xrand20: number = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+let xrand20: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand20: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 
@@ -276,7 +280,7 @@ const FishBowlPage = () => {
   const model19 = useRef<THREE.Object3D | null>(null);
   const model20 = useRef<THREE.Object3D | null>(null);
 
-  const fishInfoArray: number[] = [];
+  const fishInfoArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const beforeFishInfoArray: number[] = [];
 
   const token = localStorage.getItem("token");
@@ -321,7 +325,7 @@ const FishBowlPage = () => {
 
       // 씬에 모델 추가
       scene.add(model.current);
-      model.current.visible = false;
+      model.current.visible = true;
 
       const animations = gltf.animations || [];
       if (mixer.current) {
@@ -386,7 +390,7 @@ const FishBowlPage = () => {
     renderer.outputEncoding = THREE.sRGBEncoding;
 
     let camera = new THREE.PerspectiveCamera(20, 1);
-    camera.position.set(0, 0, 8);
+    camera.position.set(0, 0, 5);
     //camera.lookAt(scene.position);
     camera.rotateZ(Math.PI * 3 / 2); // 카메라 회전
 
@@ -401,6 +405,16 @@ const FishBowlPage = () => {
 
     console.log("start");
 
+    // fishInfoArray[0] = 1;
+    // fishInfoArray[1] = 1;
+    // fishInfoArray[2] = 1;
+    // fishInfoArray[3] = 1;
+    // fishInfoArray[4] = 1;
+    // fishInfoArray[5] = 1;
+    // fishInfoArray[6] = 1;
+    // fishInfoArray[7] = 1;
+    // fishInfoArray[8] = 1;
+    // fishInfoArray[9] = 1;
 
     // 1번 숭어
     if (fishInfoArray[3] >= 1) {
@@ -614,9 +628,9 @@ const FishBowlPage = () => {
           } else if (sw === 4) {
             xpos += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           } else if (sw === 5) {
-            xrand = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
           } else if (sw === 6) {
-            yrand = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
           }
 
           if (ysw === 1) {
@@ -834,9 +848,9 @@ const FishBowlPage = () => {
           } else if (sw === 4) {
             xpos += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           } else if (sw === 5) {
-            xrand = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
           } else if (sw === 6) {
-            yrand = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
           }
 
           if (ysw === 1) {
@@ -991,10 +1005,10 @@ const FishBowlPage = () => {
           } else if (sw === 4) {
             xpos -= xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           } else if (sw === 5) {
-            xrand = (((Math.random() * (1.15 + 1.15)) - 1.15) * 1e2) / 1e2;
+            xrand = (((Math.random() * (1.4 + 0.5)) - 0.5) * 1e2) / 1e2;
           }
 
-          model.current.position.set(-0.6, xpos, zpos);
+          model.current.position.set(-0.8, xpos, zpos);
 
           if (checknum === 3) {
             xpos3 = xpos;
@@ -1075,96 +1089,95 @@ const FishBowlPage = () => {
           } else if (sw === 4) {
             xpos += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           }
-          else if (sw === 6) {
-            yrand = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
-          }
+        } else if (sw === 6) {
+          yrand = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
+        }
 
-          if (ysw === 2) {
-            ypos -= 0.02;
-          }
+        if (ysw === 2) {
+          ypos -= 0.02;
+        }
 
-          model.current.position.set(ypos, xpos, zpos);
+        model.current.position.set(ypos, xpos, zpos);
 
-          if (checknum === 1) {
-            xpos1 = xpos;
-            ypos1 = ypos;
-            beforexpos1 = beforexpos;
-            beforeypos1 = beforeypos;
-            xrand1 = xrand;
-            yrand1 = yrand;
-            sw1 = sw;
-            ysw1 = ysw;
-          }
-          if (checknum === 2) {
-            xpos2 = xpos;
-            ypos2 = ypos;
-            beforexpos2 = beforexpos;
-            beforeypos2 = beforeypos;
-            xrand2 = xrand;
-            yrand2 = yrand;
-            sw2 = sw;
-            ysw2 = ysw;
-          }
-          if (checknum === 4) {
-            xpos4 = xpos;
-            ypos4 = ypos;
-            beforexpos4 = beforexpos;
-            beforeypos4 = beforeypos;
-            xrand4 = xrand;
-            yrand4 = yrand;
-            sw4 = sw;
-            ysw4 = ysw;
-          }
-          if (checknum === 9) {
-            xpos9 = xpos;
-            ypos9 = ypos;
-            beforexpos9 = beforexpos;
-            beforeypos9 = beforeypos;
-            xrand9 = xrand;
-            yrand9 = yrand;
-            sw9 = sw;
-            ysw9 = ysw;
-          }
-          if (checknum === 11) {
-            xpos11 = xpos;
-            ypos11 = ypos;
-            beforexpos11 = beforexpos;
-            beforeypos11 = beforeypos;
-            xrand11 = xrand;
-            yrand11 = yrand;
-            sw11 = sw;
-            ysw11 = ysw;
-          }
-          if (checknum === 12) {
-            xpos12 = xpos;
-            ypos12 = ypos;
-            beforexpos12 = beforexpos;
-            beforeypos12 = beforeypos;
-            xrand12 = xrand;
-            yrand12 = yrand;
-            sw12 = sw;
-            ysw12 = ysw;
-          }
-          if (checknum === 14) {
-            xpos14 = xpos;
-            ypos14 = ypos;
-            beforexpos14 = beforexpos;
-            beforeypos14 = beforeypos;
-            xrand14 = xrand;
-            yrand14 = yrand;
-            sw14 = sw;
-            ysw14 = ysw;
-          }
-          if (checknum === 19) {
-            xpos19 = xpos;
-            ypos19 = ypos;
-            beforexpos19 = beforexpos;
-            beforeypos19 = beforeypos;
-            xrand19 = xrand;
-            yrand19 = yrand;
-            sw19 = sw;
-            ysw19 = ysw;
-          }
+        if (checknum === 1) {
+          xpos1 = xpos;
+          ypos1 = ypos;
+          beforexpos1 = beforexpos;
+          beforeypos1 = beforeypos;
+          xrand1 = xrand;
+          yrand1 = yrand;
+          sw1 = sw;
+          ysw1 = ysw;
+        }
+        if (checknum === 2) {
+          xpos2 = xpos;
+          ypos2 = ypos;
+          beforexpos2 = beforexpos;
+          beforeypos2 = beforeypos;
+          xrand2 = xrand;
+          yrand2 = yrand;
+          sw2 = sw;
+          ysw2 = ysw;
+        }
+        if (checknum === 4) {
+          xpos4 = xpos;
+          ypos4 = ypos;
+          beforexpos4 = beforexpos;
+          beforeypos4 = beforeypos;
+          xrand4 = xrand;
+          yrand4 = yrand;
+          sw4 = sw;
+          ysw4 = ysw;
+        }
+        if (checknum === 9) {
+          xpos9 = xpos;
+          ypos9 = ypos;
+          beforexpos9 = beforexpos;
+          beforeypos9 = beforeypos;
+          xrand9 = xrand;
+          yrand9 = yrand;
+          sw9 = sw;
+          ysw9 = ysw;
+        }
+        if (checknum === 11) {
+          xpos11 = xpos;
+          ypos11 = ypos;
+          beforexpos11 = beforexpos;
+          beforeypos11 = beforeypos;
+          xrand11 = xrand;
+          yrand11 = yrand;
+          sw11 = sw;
+          ysw11 = ysw;
+        }
+        if (checknum === 12) {
+          xpos12 = xpos;
+          ypos12 = ypos;
+          beforexpos12 = beforexpos;
+          beforeypos12 = beforeypos;
+          xrand12 = xrand;
+          yrand12 = yrand;
+          sw12 = sw;
+          ysw12 = ysw;
+        }
+        if (checknum === 14) {
+          xpos14 = xpos;
+          ypos14 = ypos;
+          beforexpos14 = beforexpos;
+          beforeypos14 = beforeypos;
+          xrand14 = xrand;
+          yrand14 = yrand;
+          sw14 = sw;
+          ysw14 = ysw;
+        }
+        if (checknum === 19) {
+          xpos19 = xpos;
+          ypos19 = ypos;
+          beforexpos19 = beforexpos;
+          beforeypos19 = beforeypos;
+          xrand19 = xrand;
+          yrand19 = yrand;
+          sw19 = sw;
+          ysw19 = ysw;
         }
       }
     }
@@ -1225,7 +1238,7 @@ const FishBowlPage = () => {
             xpos += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           }
           else if (sw === 6) {
-            yrand = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
           }
 
           if (ysw === 2) {
@@ -1334,7 +1347,7 @@ const FishBowlPage = () => {
             xpos += xspeed + (((Math.random() * (0.0005 + 0.0005)) - 0.0005) * 1e2) / 1e2;
           }
           else if (sw === 6) {
-            yrand = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+            yrand = (((Math.random() * (1.1 + 1.1)) - 1.1) * 1e2) / 1e2;
           }
 
           if (ysw === 2) {
@@ -1435,7 +1448,7 @@ const FishBowlPage = () => {
           }
 
           if (beforeypos > yrand) {
-            if (ypos <= -0.6) {
+            if (ypos <= -0.8) {
               //beforeypos = ypos;
               sw = 2;
               ysw = 1;
@@ -1520,16 +1533,6 @@ const FishBowlPage = () => {
       }
     }
 
-    // 12번 쥐노래미
-    if (mixer12.current) {
-      if (visited[19] === 0) {
-        firstFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
-      }
-    }
-
     //3번 광어
     if (mixer3.current) {
       if (visited[5] === 0) {
@@ -1538,6 +1541,88 @@ const FishBowlPage = () => {
       }
       else {
         updateFishModelFlat(mixer3, model3, 5, xpos3, ypos3, beforexpos3, beforeypos3, xrand3, yrand3, sw3, ysw3, xspeed, yspeed, rotationvalue, 3, 0);
+      }
+    }
+
+    //4번 전갱이
+    if (mixer4.current) {
+      if (visited[2] === 0) {
+        firstFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, 1);
+      }
+      else {
+        updateFishModelFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, 1);
+      }
+    }
+
+    //5번 참돔
+    if (mixer5.current) {
+      if (visited[0] === 0) {
+        firstBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
+      }
+      else {
+        updateFishModelBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
+      }
+    }
+
+    //6번 돌돔
+    if (mixer6.current) {
+      if (visited[8] === 0) {
+        firstFrontRe(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -1);
+      }
+      else {
+        updateFishModelFront(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -1);
+      }
+    }
+
+    //7번 농어
+    if (mixer7.current) {
+      if (visited[1] === 0) {
+        firstFrontRe(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0);
+      }
+      else {
+        updateFishModelFront(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0);
+      }
+    }
+
+    //8번 우럭
+    if (mixer8.current) {
+      if (visited[6] === 0) {
+        firstBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1);
+      }
+      else {
+        updateFishModelBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1);
+      }
+    }
+
+    //9번 고등어
+    if (mixer9.current) {
+      if (visited[4] === 0) {
+        firstFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, 0);
+      }
+      else {
+        updateFishModelFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, 0);
+      }
+    }
+
+    //10번 감성돔
+    if (mixer10.current) {
+      if (visited[7] === 0) {
+        firstBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
+      }
+      else {
+        updateFishModelBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
+      }
+    }
+
+
+
+    // 12번 쥐노래미
+    if (mixer12.current) {
+      if (visited[19] === 0) {
+        firstFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
+      }
+      else {
+        updateFishModelFront(mixer12, model12, 19, xpos12, ypos12, beforexpos12, beforeypos12, xrand12, yrand12, sw12, ysw12, xspeed, yspeed, rotationvalue, 12, -0.5);
       }
     }
 
@@ -1552,33 +1637,13 @@ const FishBowlPage = () => {
       }
     }
 
-    //4번 전갱이
-    if (mixer4.current) {
-      if (visited[2] === 0) {
-        firstFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer4, model4, 2, xpos4, ypos4, beforexpos4, beforeypos4, xrand4, yrand4, sw4, ysw4, xspeed, yspeed, rotationvalue, 4, -0.5);
-      }
-    }
-
     // 14번 전갱이
     if (mixer14.current) {
       if (visited[12] === 0) {
-        firstFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, -0.5);
+        firstFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, 1);
       }
       else {
-        updateFishModelFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, -0.5);
-      }
-    }
-
-    //5번 참돔
-    if (mixer5.current) {
-      if (visited[0] === 0) {
-        firstBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
-      }
-      else {
-        updateFishModelBack(mixer5, model5, 0, xpos5, ypos5, beforexpos5, beforeypos5, xrand5, yrand5, sw5, ysw5, xspeed, yspeed, rotationvalue, 5, 2);
+        updateFishModelFront(mixer14, model14, 12, xpos14, ypos14, beforexpos14, beforeypos14, xrand14, yrand14, sw14, ysw14, xspeed, yspeed, rotationvalue, 14, 1);
       }
     }
 
@@ -1592,93 +1657,43 @@ const FishBowlPage = () => {
       }
     }
 
-    //6번 돌돔
-    if (mixer6.current) {
-      if (visited[8] === 0) {
-        firstFrontRe(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
-      }
-      else {
-        updateFishModelFront(mixer6, model6, 8, xpos6, ypos6, beforexpos6, beforeypos6, xrand6, yrand6, sw6, ysw6, xspeed, yspeed, rotationvalue, 6, -2);
-      }
-    }
-
     // 16번 돌돔
     if (mixer16.current) {
       if (visited[18] === 0) {
-        firstFrontRe(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -2);
+        firstFrontRe(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -1);
       }
       else {
-        updateFishModelFront(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -2);
-      }
-    }
-
-    //7번 농어
-    if (mixer7.current) {
-      if (visited[1] === 0) {
-        firstFrontRe(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
-      }
-      else {
-        updateFishModelFront(mixer7, model7, 1, xpos7, ypos7, beforexpos7, beforeypos7, xrand7, yrand7, sw7, ysw7, xspeed, yspeed, rotationvalue, 7, 0.5);
+        updateFishModelFront(mixer16, model16, 18, xpos16, ypos16, beforexpos16, beforeypos16, xrand16, yrand16, sw16, ysw16, xspeed, yspeed, rotationvalue, 16, -1);
       }
     }
 
     // 17번 농어
     if (mixer17.current) {
       if (visited[11] === 0) {
-        firstFrontRe(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0.5);
+        firstFrontRe(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0);
       }
       else {
-        updateFishModelFront(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0.5);
-      }
-    }
-
-    //8번 우럭
-    if (mixer8.current) {
-      if (visited[6] === 0) {
-        firstBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
-      }
-      else {
-        updateFishModelBack(mixer8, model8, 6, xpos8, ypos8, beforexpos8, beforeypos8, xrand8, yrand8, sw8, ysw8, xspeed, yspeed, rotationvalue, 8, 1.5);
+        updateFishModelFront(mixer17, model17, 11, xpos17, ypos17, beforexpos17, beforeypos17, xrand17, yrand17, sw17, ysw17, xspeed, yspeed, rotationvalue, 17, 0);
       }
     }
 
     // 18번 우럭
     if (mixer18.current) {
       if (visited[16] === 0) {
-        firstBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1.5);
+        firstBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1);
       }
       else {
-        updateFishModelBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1.5);
-      }
-    }
-
-    //9번 고등어
-    if (mixer9.current) {
-      if (visited[4] === 0) {
-        firstFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
-      }
-      else {
-        updateFishModelFront(mixer9, model9, 4, xpos9, ypos9, beforexpos9, beforeypos9, xrand9, yrand9, sw9, ysw9, xspeed, yspeed, rotationvalue, 9, -0.5);
+        updateFishModelBack(mixer18, model18, 16, xpos18, ypos18, beforexpos18, beforeypos18, xrand18, yrand18, sw18, ysw18, xspeed, yspeed, rotationvalue, 18, 1);
       }
     }
 
     // 19번 고등어
     if (mixer19.current) {
       if (visited[14] === 0) {
-        firstFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, -0.5);
+        firstFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, 0);
       }
       else {
-        updateFishModelFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, -0.5);
-      }
-    }
-
-    //10번 감성돔
-    if (mixer10.current) {
-      if (visited[7] === 0) {
-        firstBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
-      }
-      else {
-        updateFishModelBack(mixer10, model10, 7, xpos10, ypos10, beforexpos10, beforeypos10, xrand10, yrand10, sw10, ysw10, xspeed, yspeed, rotationvalue, 10, 2);
+        updateFishModelFront(mixer19, model19, 14, xpos19, ypos19, beforexpos19, beforeypos19, xrand19, yrand19, sw19, ysw19, xspeed, yspeed, rotationvalue, 19, 0);
       }
     }
 
@@ -1691,6 +1706,7 @@ const FishBowlPage = () => {
         updateFishModelBack(mixer20, model20, 17, xpos20, ypos20, beforexpos20, beforeypos20, xrand20, yrand20, sw20, ysw20, xspeed, yspeed, rotationvalue, 20, 2);
       }
     }
+
 
     renderer.render(scene, camera);
   }

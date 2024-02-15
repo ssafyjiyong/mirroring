@@ -1,9 +1,15 @@
 import React from "react";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { logoutApi, removeProfileApi } from "../store/api";
+import Swal from "sweetalert2";
+import useStore from "../store/store";
 import { Link } from "react-router-dom";
 import { HomeIcon } from "../styles/globalStyles";
-import styled from "styled-components";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { ScheduleType } from "../store/types";
 
 const Container = styled.nav`
   display: flex;
@@ -21,6 +27,7 @@ const MyButton = styled.button`
   border: 0;
   background-color: transparent;
   margin: 1em;
+  cursor: pointer;
 `;
 
 const ButtonText = styled.span`
@@ -29,11 +36,93 @@ const ButtonText = styled.span`
 `;
 
 const ViewAllPage = () => {
+  const { resetStore } = useStore();
+  const navigate = useNavigate();
+
+  const { schedule } = useStore() as {
+    schedule: ScheduleType | null;
+  };
+
+  const logout = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await logoutApi(token); // 로그아웃 API 호출
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        resetStore(); // 스토어를 초기 상태로 재설정
+      } catch (error) {
+        console.error("로그아웃 실패:", error);
+        // 오류 처리 로직
+      }
+    }
+  };
+
+  const logoutConfirm = () => {
+    Swal.fire({
+      title: "로그아웃",
+      text: "정말로 로그아웃 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logout();
+        navigate("/introduction");
+      }
+    });
+  };
+
+  const removeProfile = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        await removeProfileApi(token);
+        localStorage.removeItem("token"); // 로컬 스토리지에서 토큰 삭제
+        sessionStorage.removeItem("user");
+        resetStore(); // 스토어를 초기 상태로 재설정
+        navigate("/introduction");
+      } catch (error) {
+        console.error("회원탈퇴 실패:", error);
+      }
+    }
+  };
+
+  const removeProfileConfirm = () => {
+    Swal.fire({
+      title: "회원탈퇴",
+      text: "정말로 회원탈퇴 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        removeProfile();
+      }
+    });
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   return (
-    <Container>
+    <Container style={{ position: "relative" }}>
+      <ChevronLeftIcon
+        sx={{
+          position: "absolute",
+          top: 22,
+          left: 20,
+          cursor: "pointer",
+        }}
+        onClick={handleBack}
+      />
       <div style={{ display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex" }}>
-        {/* 로그인 정보 토대로 닉네임 받아서 각 프로필 페이지로 이동 라우터 설정도 해야함 */}
+          {/* 로그인 정보 토대로 닉네임 받아서 각 프로필 페이지로 이동 라우터 설정도 해야함 */}
           <Link to="/profile" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="user" size="3x" />
@@ -41,12 +130,19 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/planmanage" style={{ textDecoration: "none" }}>
-            <MyButton>
+          {schedule && schedule.date ? (
+            <Link to="/planmanage" style={{ textDecoration: "none" }}>
+              <MyButton>
+                <FontAwesomeIcon icon="calendar-day" size="3x" />
+                <ButtonText>일정관리</ButtonText>
+              </MyButton>
+            </Link>
+          ) : (
+            <MyButton disabled style={{cursor:"not-allowed"}}>
               <FontAwesomeIcon icon="calendar-day" size="3x" />
               <ButtonText>일정관리</ButtonText>
             </MyButton>
-          </Link>
+          )}
 
           <Link to="/collection" style={{ textDecoration: "none" }}>
             <MyButton>
@@ -64,14 +160,14 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/#point" style={{ textDecoration: "none" }}>
+          <Link to="/point" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="check" size="3x" />
               <ButtonText>포인트</ButtonText>
             </MyButton>
           </Link>
 
-          <Link to="/#method" style={{ textDecoration: "none" }}>
+          <Link to="/method" style={{ textDecoration: "none" }}>
             <MyButton>
               <FontAwesomeIcon icon="clipboard-question" size="3x" />
               <ButtonText>방법</ButtonText>
@@ -109,9 +205,13 @@ const ViewAllPage = () => {
             marginTop: "2rem",
           }}
         >
-          <span>로그아웃</span>
+          <span style={{ cursor: "pointer" }} onClick={logoutConfirm}>
+            로그아웃
+          </span>
           <span>　|　</span>
-          <span style={{ color: "#DD0C0C" }}>회원탈퇴</span>
+          <span onClick={removeProfileConfirm} style={{ color: "#DD0C0C" }}>
+            회원탈퇴
+          </span>
         </div>
       </div>
 

@@ -28,13 +28,23 @@ class ScheduleAPIView(APIView):
     
     # 일정 조회(단일)
     @swagger_auto_schema(responses={"200": ScheduleAllSerializer})
-    def get(self, request, pk):
-        schedule_instance = get_object_or_404(schedule, id=pk, user=request.user, done=False)
-        serializer = ScheduleSerializer(schedule_instance)
-        return Response(serializer.data, status=status.HTTP_200_OK)
-    
-    
+    def get(self, request):
+        try:   
+            schedule_instance=schedule.objects.filter(user=request.user, done=False).latest('date')
+            serializer = ScheduleSerializer(schedule_instance)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        # schedule_instance = get_object_or_404(schedule, user=request.user, done=False)
+        # print(schedule_instance)
+        except schedule.DoesNotExist:
+            context={
+                "schedule":None
+            }
+            return Response(context, status=status.HTTP_200_OK)
+        
+       
 class ScheduleDoneAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+    
     #해당 일정 완료 처리  
     @swagger_auto_schema(request_body=ScheduleDoneSerializer, responses={"200": ScheduleDoneSerializer})
     def patch(self, request,pk):
