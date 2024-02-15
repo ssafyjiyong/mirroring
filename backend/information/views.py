@@ -135,7 +135,6 @@ class HomeView(APIView):
 
         location_lat = location_obj.lattitude
         location_lon = location_obj.longitude
-
         try:
             schedules_queryset = schedule.objects.filter(user=request.user, done=False).latest('date')
         except schedule.DoesNotExist:
