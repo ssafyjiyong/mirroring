@@ -114,12 +114,12 @@ const CollectionPage = () => {
     setIsLoading(true);
     if (data) {
       setIsLoading(false);
-      console.log(data)
+      console.log(data);
     }
   }, [data]);
 
   if (isError) {
-    return <p>데이터를 가져오지 못해습니다.</p>;
+    return <p>데이터를 가져오지 못했습니다.</p>;
   }
 
   if (isLoading) {
@@ -155,7 +155,7 @@ const CollectionPage = () => {
           <FontAwesomeIcon icon="fish" size="1x" color="#1565C0" />
           <span> 도감 완성도</span>
         </div>
-        <span>{data ? `${data[0]}/10` : "0/10"}</span>
+        <span>{data ? `${data.length > 0 ? data[0] : 0}/10` : "0/10"}</span>
       </div>
 
       <div
@@ -182,8 +182,14 @@ const CollectionPage = () => {
                       color="#FFC107"
                     />
                   ))}
-                  {data && (
-                    <div style={{ display:"flex", justifyContent:"center", alignContent:"center" }}>
+                  {data && data.length > 2 && data[2][index] && (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignContent: "center",
+                      }}
+                    >
                       <img
                         src={
                           data[2][index].count === 0
