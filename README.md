@@ -57,7 +57,9 @@
 ### 서비스 화면
 
 - AI 어종 판별 및 길이 측정
-  ![AI-ezgif.com-video-to-gif-converter](/uploads/eac895b31f11c4536e3f9418f1881e2f/AI-ezgif.com-video-to-gif-converter.gif)
+
+- 추천 컴포넌트 및 일정 등록
+![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
 
 ### 주요 기능
 
