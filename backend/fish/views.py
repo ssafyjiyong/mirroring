@@ -87,7 +87,8 @@ class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishDetailSerializer})
     def get(self, request, pk):
         user_id = request.user.pk
-        myfish = get_object_or_404(user_fish, user_id=user_id, fish_id=pk).sort()
+        myfish = get_object_or_404(user_fish, user_id=user_id, fish_id=pk)
+        myfish = sorted(myfish, key=lambda x: x.fish_id)
         serializer = UserFishDetailSerializer(myfish)
         return Response(serializer.data)
     
