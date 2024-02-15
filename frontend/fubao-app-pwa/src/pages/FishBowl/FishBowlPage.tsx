@@ -1063,14 +1063,8 @@ const FishBowlPage = () => {
 
           if (beforeypos > yrand) {
             if (ypos <= yrand) {
-              //beforeypos = ypos;
-              sw = 2;
-              ysw = 1;
-              //visited[3] = 1;
-              if (model.current.rotation.y >= 0) {
-                visited[fishIndex] = 1;
-                sw = 6;
-              }
+              visited[fishIndex] = 1;
+              sw = 6;
             } else {
               ysw = 2;
             }
@@ -1211,14 +1205,8 @@ const FishBowlPage = () => {
 
           if (beforeypos > yrand) {
             if (ypos <= yrand) {
-              //beforeypos = ypos;
-              sw = 2;
-              ysw = 1;
-              //visited[3] = 1;
-              if (model.current.rotation.y >= 3) {
-                visited[fishIndex] = 1;
-                sw = 6;
-              }
+              visited[fishIndex] = 1;
+              sw = 6;
             } else {
               ysw = 2;
             }
@@ -1320,14 +1308,8 @@ const FishBowlPage = () => {
 
           if (beforeypos > yrand) {
             if (ypos <= yrand) {
-              //beforeypos = ypos;
-              sw = 2;
-              ysw = 1;
-              //visited[3] = 1;
-              if (model.current.rotation.y <= 0) {
-                visited[fishIndex] = 1;
-                sw = 6;
-              }
+              visited[fishIndex] = 1;
+              sw = 6;
             } else {
               ysw = 2;
             }
@@ -1449,17 +1431,13 @@ const FishBowlPage = () => {
 
           if (beforeypos > yrand) {
             if (ypos <= -0.8) {
-              //beforeypos = ypos;
-              sw = 2;
-              ysw = 1;
-              //visited[3] = 1;
-              if (model.current.rotation.z >= 1.5) {
-                visited[fishIndex] = 1;
-              }
-            } else {
+              visited[fishIndex] = 1;
+            }
+            else {
               ysw = 2;
             }
           }
+
 
 
 
