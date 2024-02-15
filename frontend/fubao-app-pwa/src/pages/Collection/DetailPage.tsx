@@ -78,7 +78,7 @@ const DetailPage = () => {
   const lengthInt = Math.floor((data?.max_length || 0) / 10);
 
   return (
-    <div style={{ padding: "3rem 1rem", backgroundColor: "#E3F2FD" }}>
+    <div style={{ position:"relative", padding: "3rem 1rem", backgroundColor: "#E3F2FD" }}>
       <ChevronLeftIcon
         sx={{
           position: "absolute",

@@ -128,12 +128,8 @@ const Weather: React.FC<WeatherProps> = ({
                   </div>
                 )}
                 {sunset && <div> 🌝 일몰시간 : {sunset}</div>}
+                <div className="table-container">
                 <table aria-label="basic table">
-                  <thead>
-                    {/* <tr>
-                      <th style={{ width: "40%" }}></th>
-                    </tr> */}
-                  </thead>
                   <tbody>
                     <tr key="시간">
                       <td>시간</td>
@@ -187,6 +183,7 @@ const Weather: React.FC<WeatherProps> = ({
                     </tr>
                   </tbody>
                 </table>
+                </div>
               </div>
             )}
           </Typography>

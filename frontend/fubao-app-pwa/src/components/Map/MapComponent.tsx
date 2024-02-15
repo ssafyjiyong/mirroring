@@ -113,25 +113,26 @@ const MapComponent = () => {
   // const lat = 34.5436111;
   // const lon = 127.4536111;
 
-  const fetchWeather = async (lat:any,lng:any) => {
-    try{
+  const fetchWeather = async (lat: any, lng: any) => {
+    try {
       console.log(lat, lng);
       const response = await weatherGetApi({ lat, lng });
       // console.log(response);
-      console.log(response.weather)
+      console.log(response.weather);
       setWeather(response.weather);
       setSunset(response.sunset);
       setSunrise(response.sunrise);
-    } 
-    catch (error) {
+    } catch (error) {
       console.error("API 호출 중 에러 발생:", error);
     }
   };
 
   const showMeWeather = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,lat:any,lng:any
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+    lat: any,
+    lng: any
   ) => {
-    fetchWeather(lat,lng);
+    fetchWeather(lat, lng);
     setOpenWeather(true);
   };
 
@@ -163,9 +164,19 @@ const MapComponent = () => {
             >
               {pos.isOpen && (
                 <div style={{ minWidth: "150px" }}>
-                  <div style={{ padding: "5px", color: "#000" }}>
-                    {pos.address}
-                    <button onClick={(e)=> showMeWeather(e,pos.lat,pos.lng)}>open modal </button>
+                  <div
+                    style={{
+                      padding: "5px",
+                      color: "#000",
+                      width: "200px",
+                      display: "flex",
+                      justifyContent: "space-around",
+                    }}
+                  >
+                    <span>{pos.address}</span>
+                    <button onClick={(e) => showMeWeather(e, pos.lat, pos.lng)} style={{ cursor:"pointer", border:"0", backgroundColor:"white", color:"#2979FF"}}>
+                      날씨보기{" "}
+                    </button>
                     <Weather
                       id={pos.id}
                       weatherInfo={wetherInfo}

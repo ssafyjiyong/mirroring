@@ -169,3 +169,18 @@ img.infinite_rotating_logo{
     transform: rotate(360deg);
   }
 }
+
+@media (max-width: 1234px) {
+  table {
+    font-size: 12px; /* 폰트 크기 축소 */
+    margin: 15px 0px 0px; /* 셀 패딩 조정 */
+  }
+  th, td {
+    padding: 5px; /* 셀 패딩 조정 */
+    min-width: 50px; /* 셀의 최소 너비 조정 */
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+}

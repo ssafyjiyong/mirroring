@@ -9,6 +9,7 @@ import { HomeIcon } from "../styles/globalStyles";
 import "../FontAwsome";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import { ScheduleType } from "../store/types";
 
 const Container = styled.nav`
   display: flex;
@@ -37,6 +38,10 @@ const ButtonText = styled.span`
 const ViewAllPage = () => {
   const { resetStore } = useStore();
   const navigate = useNavigate();
+
+  const { schedule } = useStore() as {
+    schedule: ScheduleType | null;
+  };
 
   const logout = async () => {
     const token = localStorage.getItem("token");
@@ -105,7 +110,7 @@ const ViewAllPage = () => {
   };
 
   return (
-    <Container style={{ position:"relative" }}>
+    <Container style={{ position: "relative" }}>
       <ChevronLeftIcon
         sx={{
           position: "absolute",
@@ -125,12 +130,19 @@ const ViewAllPage = () => {
             </MyButton>
           </Link>
 
-          <Link to="/planmanage" style={{ textDecoration: "none" }}>
-            <MyButton>
+          {schedule && schedule.date ? (
+            <Link to="/planmanage" style={{ textDecoration: "none" }}>
+              <MyButton>
+                <FontAwesomeIcon icon="calendar-day" size="3x" />
+                <ButtonText>일정관리</ButtonText>
+              </MyButton>
+            </Link>
+          ) : (
+            <MyButton disabled style={{cursor:"not-allowed"}}>
               <FontAwesomeIcon icon="calendar-day" size="3x" />
               <ButtonText>일정관리</ButtonText>
             </MyButton>
-          </Link>
+          )}
 
           <Link to="/collection" style={{ textDecoration: "none" }}>
             <MyButton>
