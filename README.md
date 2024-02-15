@@ -56,14 +56,20 @@
 
 ### 서비스 화면
 
-- AI 어종 판별 및 길이 측정<br/>
-![ezgif.com-resize](/uploads/f0ffac18da02b7c76d5fd9336f7787b2/ezgif.com-resize.gif)
-
 - 추천 컴포넌트 및 일정 등록<br/>
 ![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
 
+- 일정 등록 및 AI 카메라 작동<br/>
+![ezgif.com-resize_register_plan](/uploads/fef71f330b54a87f6aee5542acfcbf61/ezgif.com-resize_register_plan.gif)
+
+- AI 어종 판별 및 길이 측정<br/>
+![ezgif.com-resize](/uploads/f0ffac18da02b7c76d5fd9336f7787b2/ezgif.com-resize.gif)
+
 - 도감 등록<br/>
 ![ezgif.com-resize_collection](/uploads/a90addf4768065c215c91ff23141a4fd/ezgif.com-resize_collection.gif)
+
+- 어항<br/>
+![ezgif.com-video-to-gif-converter_fish_bowl](/uploads/2ba75dd776dd080161cad4b428b29cc0/ezgif.com-video-to-gif-converter_fish_bowl.gif)
 
 ### 주요 기능
 
