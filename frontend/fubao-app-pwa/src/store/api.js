@@ -723,3 +723,28 @@ export const removeProfileApi = async (token) => {
     throw error;
   }
 };
+
+// 날씨 GET API
+export const weatherGetApi = async ({ lat, lng }) => {
+  try {
+    // console.log(lat,lng);
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
+    {     
+      params: {
+        lat: lat,
+        lon: lng,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+  });
+  
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch weather at");
+  }
+};
