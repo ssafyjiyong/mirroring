@@ -1,14 +1,11 @@
 
-import React, { useEffect, useState } from "react";
-import { weatherGetApi } from "../../store/api";
+import React from "react";
 import styled from "styled-components";
 import Modal from "@mui/joy/Modal";
 import ModalDialog, { ModalDialogProps } from "@mui/joy/ModalDialog";
 import ModalClose from "@mui/joy/ModalClose";
 import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
-import { useQuery } from "@tanstack/react-query";
-import Table from "@mui/joy/Table";
+
 
 interface weatherInfo {
   //온도
@@ -81,19 +78,10 @@ function sortSKY(num:String) {
   }
 };
 
-interface sunset{
-  sunset:string |null
-}
-
-interface pos{
-  lat:number
-  lon:number
-}
-
 interface WeatherProps {
   weatherInfo:weatherInfo;
-  sunset:sunset
-  pos:pos;
+  sunset:string;
+  sunrise:string;
   open: boolean;
   onClose: () => void;
 }
@@ -101,41 +89,14 @@ interface WeatherProps {
 
 const Weather: React.FC<WeatherProps> = ({
   weatherInfo,
-  pos,
+  sunrise,
   sunset,
   open,
   onClose,
 }) => {
-  // const [open, setOpenWeather] = useState<boolean>(false);
-  const [weather, setWeather] = useState<weatherInfo | null>(null); // method 상태
-  // const [sunset, setSunset] = useState(null);
-  const [sunrise, setSunrise] = useState(null);
-  const lat = 34.5436111;
-  const lon = 127.4536111;
-
-  // const fetchWeather = async () => {
-  //   try {
-  //     console.log(lat, lon);
-  //     const response = await weatherGetApi({ lat, lon });
-  //     console.log(response);
-  //     setWeather(response.weather);
-  //     setSunset(response.sunset);
-  //     setSunrise(response.sunrise);
-  //     // setSunset(response['']);
-  //     // setPCP(response.PCP);
-  //   } catch (error) {
-  //     console.error("API 호출 중 에러 발생:", error);
-  //   }
-  // };
-
-  // const showMeWeather= (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-  //   fetchWeather();
-  //   setOpenWeather(true);
-  // }
 
   return (
     <>
-      {/* <button onClick ={ showMeWeather }> open modal </button> */}
       <Modal
         open={open}
         onClose={onClose}
@@ -163,14 +124,14 @@ const Weather: React.FC<WeatherProps> = ({
             mb={1}
             textAlign={"center"}
           >
-            {weather && (
+            {weatherInfo && (
               <div>
                 {sunrise && (
                   <div>
                     <div>🌞 일출시간 : {sunrise}</div>
                   </div>
                 )}
-                {sunset && <div> 🌝 일몰시간 : {sunset.sunset}</div>}
+                {sunset && <div> 🌝 일몰시간 : {sunset}</div>}
                 <table aria-label="basic table">
                   <thead>
                     {/* <tr>
@@ -180,49 +141,49 @@ const Weather: React.FC<WeatherProps> = ({
                   <tbody>
                     <tr key="시간">
                       시간
-                      {weather.PCP.map((row) => (
+                      {weatherInfo.PCP.map((row) => (
                         <td>{row.fcstTime.substr(0, 2)}시</td>
                       ))}
                     </tr>
                     <tr key="날씨">
                       날씨
-                      {weather.SKY.map((row) => (
+                      {weatherInfo.SKY.map((row) => (
                         <td>{sortSKY(row.fsctValue)}</td>
                       ))}
                     </tr>
                     <tr key="기온">
                       기온
-                      {weather.TMP.map((row) => (
+                      {weatherInfo.TMP.map((row) => (
                         <td>{row.fsctValue}℃</td>
                       ))}
                     </tr>
                     <tr key="강수량">
                       강수량
-                      {weather.PCP.map((row) => (
+                      {weatherInfo.PCP.map((row) => (
                         <td>{row.fsctValue}</td>
                       ))}
                     </tr>
                     <tr key="강수확률">
                       강수확률
-                      {weather.POP.map((row) => (
+                      {weatherInfo.POP.map((row) => (
                         <td>{row.fsctValue}%</td>
                       ))}
                     </tr>
                     <tr key="풍속">
                       풍속
-                      {weather.WSD.map((row) => (
+                      {weatherInfo.WSD.map((row) => (
                         <td>{row.fsctValue}m/s</td>
                       ))}
                     </tr>
                     <tr key="파고">
                       파고
-                      {weather.WAV.map((row) => (
+                      {weatherInfo.WAV.map((row) => (
                         <td>{row.fsctValue}M</td>
                       ))}
                     </tr>
                     <tr key="풍향">
                       풍향
-                      {weather.VEC.map((row) => (
+                      {weatherInfo.VEC.map((row) => (
                         <td>{row.fsctValue}deg</td>
                       ))}
                     </tr>

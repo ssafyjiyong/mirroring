@@ -59,11 +59,13 @@ interface weatherInfo {
 }
 
 
+
+
 const TestPage = () => {
   const [open, setOpenWeather] = useState<boolean>(false);
-  const [wetherInfo, setWeather] = useState<weatherInfo | null>(null); // method 상태
-  const [sunset, setSunset] = useState(null);
-  const [sunrise, setSunrise] = useState(null);
+  const [wetherInfo, setWeather] = useState<any>(null); // method 상태
+  const [sunset, setSunset] = useState<any>(null);
+  const [sunrise, setSunrise] = useState<any>(null);
   const lat = 34.5436111;
   const lon = 127.4536111;
 
@@ -75,8 +77,7 @@ const TestPage = () => {
       setWeather(response.weather);
       setSunset(response.sunset);
       setSunrise(response.sunrise);
-      // setSunset(response['']);
-      // setPCP(response.PCP);
+      
     } catch (error) {
       console.error("API 호출 중 에러 발생:", error);
     }
@@ -92,10 +93,11 @@ const TestPage = () => {
   return (
     <div>
       <button onClick={showMeWeather}>open modal </button>
+      {sunset}
       <Weather
-        weatherInfo={wetherInfo!}
-        sunset={sunset!}
-        pos={pos}
+        weatherInfo={wetherInfo}
+        sunset={sunset}
+        sunrise={sunrise}
         open={open}
         onClose={() => setOpenWeather(false)}
       ></Weather>
