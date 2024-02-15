@@ -161,17 +161,17 @@ const ResultPage = () => {
           </span>
         </AlignBox>
         <ContentBox>
-            <p style={{ marginBottom: "0rem" }}>
-              {profile?.nickname}
-              {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
-              {profile?.nickname}
-              {chooseJosa(nickname, "은/는")}
-              {length && <span style={{ fontWeight: "600" }}>{length}cm의</span>}
-              <span style={{ fontWeight: "600" }}> {species}</span>
-              {chooseJosa(species!, "을/를")} 낚았다. 낚시터 곳곳에서는 월척을
-              낚은 {profile?.nickname}
-              {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
-            </p>
+          <p style={{ marginBottom: "0rem" }}>
+            {profile?.nickname}
+            {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
+            {profile?.nickname}
+            {chooseJosa(nickname, "은/는")}
+            {length && <span style={{ fontWeight: "600" }}>{length}cm의</span>}
+            <span style={{ fontWeight: "600" }}> {species}</span>
+            {chooseJosa(species!, "을/를")} 낚았다. 낚시터 곳곳에서는 월척을
+            낚은 {profile?.nickname}
+            {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
+          </p>
         </ContentBox>
       </div>
 
@@ -184,13 +184,23 @@ const ResultPage = () => {
           paddingTop: "0.5rem",
         }}
       >
-        <Button color="success" onClick={goToCollection} style={{ marginRight: "0.5rem" }}>
+        <Button
+          color="success"
+          onClick={goToCollection}
+          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+        >
           도감보기
         </Button>
-        <Button onClick={handleSaveImage} style={{ marginRight: "0.5rem" }}>
+        <Button onClick={handleSaveImage}
+          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+          >
           이미지 저장
         </Button>
-        <Button color="danger" onClick={goToHome}>
+        <Button color="danger"
+        onClick={goToHome}
+        sx={{ fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+
+        >
           돌아가기
         </Button>
       </div>
