@@ -21,7 +21,7 @@ const LocationComponent = () => {
     <WhiteBox
       style={{
         position: "relative",
-        backgroundImage: "url('/imgs/map_point.png')",
+        backgroundImage: "url('/imgs/mappoint.png')",
         backgroundRepeat: "no-repeat",
       }}
     >
