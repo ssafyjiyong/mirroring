@@ -39,13 +39,14 @@ class MyFishListView(APIView):
     @swagger_auto_schema(responses={"200": UserFishSerializer})
     def get(self, request):
         fishlist = user_fish.objects.filter(user=request.user)
+        myfishlist = sorted(fishlist, key=lambda x: x.fish_id)
         myfishdone = 0
         myfishall = 0
         for f in fishlist:
             if f.count > 0:
                 myfishdone += 1
                 myfishall += f.count
-        seriarizer = UserFishSerializer(fishlist, many=True)
+        seriarizer = UserFishSerializer(myfishlist, many=True)
         return Response([myfishdone, myfishall, seriarizer.data], status=status.HTTP_200_OK)
     
     @swagger_auto_schema(responses={"201": UserFishSerializer})
@@ -88,7 +89,6 @@ class MyFishView(APIView):
     def get(self, request, pk):
         user_id = request.user.pk
         myfish = get_object_or_404(user_fish, user_id=user_id, fish_id=pk)
-        myfish = sorted(myfish, key=lambda x: x.fish_id)
         serializer = UserFishDetailSerializer(myfish)
         return Response(serializer.data)
     
