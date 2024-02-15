@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useStore from "../../store/store";
 import { ProfileType } from "../../store/types";
 import Button from "@mui/joy/Button";
 import { useNavigate } from "react-router-dom";
+import JSConfetti from 'js-confetti';
+import Swal from "sweetalert2";
 
 const TitleBox = styled.div`
   border-radius: 10px;
@@ -81,16 +83,48 @@ const ResultPage = () => {
     navigate("/collection");
   };
 
+  // 빵빠레 효과
+  const [jsConfetti, setJsConfetti] = useState<JSConfetti | null>(null);
+
   // 페이지 벗어나면 스토리지 이미지 지우기
   useEffect(() => {
+    
+    Swal.fire({
+      title: "도감에 넣었어요!",
+      text: "집에 있는 스마트 어항도 확인해보세요!",
+      icon: "success"
+    }).then(() => {
+      
+      if (!jsConfetti) {
+        const confettiInstance = new JSConfetti();
+        setJsConfetti(confettiInstance);
+    
+        confettiInstance.addConfetti({
+          confettiColors: ["#CAB0FF"],
+          confettiNumber: 500,
+        });
+    
+        // JSConfetti가 생성하는 캔버스 요소의 z-index 설정
+        const canvasElements = document.getElementsByTagName('canvas');
+        if (canvasElements.length > 0) {
+          // 마지막에 추가된 캔버스 요소가 JSConfetti에 의해 추가된 것으로 가정
+          const lastCanvasElement = canvasElements[canvasElements.length - 1];
+          lastCanvasElement.style.zIndex = '1001';
+        }
+      }
+    });
+
+
+    // 페이지 벗어날 때 실행될 함수
     const handleUnload = () => {
-      localStorage.removeItem("selectedImage"); // 'selectedImage' 키로 저장된 항목을 localStorage에서 삭제
+      localStorage.removeItem("selectedImage");
       localStorage.removeItem("species");
       localStorage.removeItem("length");
     };
 
     window.addEventListener("beforeunload", handleUnload);
 
+    // Cleanup 함수
     return () => {
       window.removeEventListener("beforeunload", handleUnload);
     };
