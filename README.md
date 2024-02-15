@@ -1,4 +1,4 @@
-# 웹/모바일(웹 IoT) 스켈레톤 프로젝트
+# 푸바오: 푸른 바다로 오세요
 
 <!-- 필수 항목 -->
 
@@ -7,7 +7,7 @@
 | Application                          | Domain                                | Language                      | Framework                               |
 | ------------------------------------ | ------------------------------------- | ----------------------------- | --------------------------------------- |
 | :black_square_button: Desktop Web    | :white_check_mark: AI                 | :white_check_mark: JavaScript | :black_square_button: Vue.js            |
-| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React         |
+| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React                |
 | :black_square_button: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++   | :black_square_button: Angular           |
 | :white_check_mark: Android App       | :white_check_mark: IoT                | :black_square_button: C#      | :white_check_mark: Node.js              |
 | :black_square_button: iOS App        | :black_square_button: AR/VR/Metaverse | :white_check_mark: Python     | :white_check_mark: Flask/Django         |
@@ -18,21 +18,23 @@
 
 ## 프로젝트 소개
 
-- 프로젝트명: 임베디드 KIT 연동 웹 서비스
-- 서비스 특징: 웹/모바일(웹 IoT) 프로젝트를 위한 스켈레톤 프로젝트
+- 프로젝트명: 푸바오
+- 서비스 특징: 20, 30대 바다 낚시 입문자를 위한 바다 낚시 입문 가이드 앱 서비스
 - 주요 기능
-  - 회원 관리
-  - 카테고리 관리
-  - 투표 관리(키오스크 포함)
+  - 맞춤 정보 제공
+  - AI 이미지 인식
+  - 나만의 도감
+  - 어항
 - 주요 기술
-  - Single Page Application
-  - Raspberry Pi
-  - REST API
+  - 어종 판별
+  - 길이 측정
+  - 추천 알고리즘
+  - 홈 IoT
 - 참조 리소스
   - Material-UI: React Component Library
 - 배포 환경
-  - URL: // 웹 서비스, 랜딩 페이지, 프로젝트 소개 등의 배포 URL 기입
-  - 테스트 계정: // 로그인이 필요한 경우, 사용 가능한 테스트 계정(ID/PW) 기입
+  - URL: https://i10c104.p.ssafy.io/
+  - 테스트 계정: ssafy@ssafy.com / ssafy1111
 
 <!-- 자유 양식 -->
 
@@ -49,6 +51,19 @@
 ## 프로젝트 상세 설명
 
 // 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
+
+### 개발 환경
+
+### 서비스 화면
+
+- AI 어종 판별 및 길이 측정
+  ![AI-ezgif.com-video-to-gif-converter](/uploads/eac895b31f11c4536e3f9418f1881e2f/AI-ezgif.com-video-to-gif-converter.gif)
+
+### 주요 기능
+
+### 기술 소개
+
+### 설계 문서
 
 ## Git Commit Convention
 
