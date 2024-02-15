@@ -49,20 +49,20 @@ def grab_cut(resize_img, resized):
 #에지 검출 : 흑백 -> 가우시안블러링 -> 캐니
 def edge_detection(img):
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    gray = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 51, 0)
+    gray = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 51, 0)
     # _, gray = cv2.threshold(gray, 120, 255, cv2.THRESH_TOZERO)
-    gray = cv2.GaussianBlur(gray, (15, 15), 0)
+    gray = cv2.GaussianBlur(gray, (7, 7), 0)
     # _, gray = cv2.threshold(gray, 120, 255, cv2.THRESH_TOZERO)
     # gray = cv2.GaussianBlur(gray, (7, 7), 0)
     gray = cv2.bilateralFilter(gray, 9, 75, 75)
     gray = cv2.edgePreservingFilter(gray, flags=1, sigma_s=45, sigma_r=0.2)
 
-    edged = cv2.Canny(gray, 60, 180, True)
+    edged = cv2.Canny(gray, 75, 180, True)
     # edged = cv2.Canny(gray, 75, 200, True)
-    # cv2.imshow("grayscale", gray)
-    # wait()
-    # cv2.imshow("edged", edged)
-    # wait()
+    cv2.imshow("grayscale", gray)
+    wait()
+    cv2.imshow("edged", edged)
+    wait()
 
     return edged
 
@@ -169,8 +169,8 @@ def contours(edge, resize_img, src, ckpnt, vertex):
         cv2.drawContours(resize_img, screenCnt, 2, (0, 255, 0), 15) #녹
         cv2.drawContours(resize_img, screenCnt, 3, (0, 0, 255), 15) #적
 
-        # cv2.imshow("With_Color_Image", resize_img)
-        # wait()
+        cv2.imshow("With_Color_Image", resize_img)
+        wait()
 
         # 3.C  네 꼭지점(좌상, 좌하, 우상, 우하)의 좌표를 출력한다.
         vertex = solving_vertex(screenCnt.reshape(4,2), src)
