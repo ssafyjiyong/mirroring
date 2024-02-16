@@ -35,16 +35,28 @@ Amazon AWS, NginX, Docker, Ubuntu, Jenkins
 
 * Frontend<br/>
 HTML5, CSS, Javascript, TypeScript, React, Axios, Styled Components, zustand, react-query, prettier, three.js
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white">
+<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white">
+<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+<img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+<img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=white"
+<img src="https://img.shields.io/badge/threedotjs-000000?style=for-the-badge&logo=threedotjs&logoColor=white"
+
 
 * Backend<br/>
 <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
 <img src="https://img.shields.io/badge/django-092E20?style=flat-square&logo=django&logoColor=white"/>
-<img src="https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=Gunicorn&logoColor=white">
-<img src="https://img.shields.io/badge/mariadb-499848?style=for-the-badge&logo=mariadb&logoColor=white">
+<img src="https://img.shields.io/badge/Gunicorn-499848?style=flat-square&logo=Gunicorn&logoColor=white">
+<img src="https://img.shields.io/badge/mariadb-499848?style=flat-square&logo=mariadb&logoColor=white">
 Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
 
 * AI<br/>
-Flask, Tensorflow, Keras, numpy
+<img src="https://img.shields.io/badge/flask-499848?style=flat-square&logo=flask&logoColor=white">
+<img src="https://img.shields.io/badge/tensorflow-499848?style=flat-square&logo=tensorflow&logoColor=white">
+<img src="https://img.shields.io/badge/keras-499848?style=flat-square&logo=keras&logoColor=white">
+<img src="https://img.shields.io/badge/numpy-499848?style=flat-square&logo=numpy&logoColor=white">
 
 
 
