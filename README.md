@@ -42,7 +42,7 @@ Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
 * AI<br/>
 Flask, Tensorflow, Keras, numpy
 
-<img alt="Html" src ="https://img.shields.io/badge/Django.svg?&style=for-the-badge&logo=Django&logoColor=red"/>
+<img alt="Html" src ="https://img.shields.io/badge/github.svg?&style=for-the-badge&logo=github&logoColor=red"/>
 
 
 ## 서비스 화면
