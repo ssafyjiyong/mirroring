@@ -1,5 +1,6 @@
 # 푸바오: 푸른 바다로 오세요
 
+
 ## 프로젝트 소개
 
 - 프로젝트명: 푸바오 (푸른 바다로 오세요)
@@ -19,6 +20,7 @@
   - 테스트 계정: [ID] ssafy@ssafy.com [PW] ssafy1111
 - Notion
   - URL: https://i10c104.notion.site/Project-Home-60ae04bd7517456a80cbc9e2655270f3?pvs=4
+
 
 ## 개발 환경
 
@@ -42,7 +44,6 @@
 <img src="https://img.shields.io/badge/flask-000000?style=for-the-badge&logo=flask&logoColor=white"> <img src="https://img.shields.io/badge/tensorflow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white"> <img src="https://img.shields.io/badge/keras-D00000?style=for-the-badge&logo=keras&logoColor=white"> <img src="https://img.shields.io/badge/numpy-013243?style=for-the-badge&logo=numpy&logoColor=white">
 
 
-
 ## 서비스 화면
 
 - 추천 컴포넌트 및 일정 등록<br/>
@@ -63,19 +64,24 @@
 - 어항<br/>
 ![ezgif.com-video-to-gif-converter_fish_bowl](/uploads/2ba75dd776dd080161cad4b428b29cc0/ezgif.com-video-to-gif-converter_fish_bowl.gif)
 
+
 ## 주요 기능
 
 1.	맞춤 정보 제공<br/>
 일정 등록 전, 일정 등록 후, 일정 당일에 따른 바다 낚시 입문자 맞춤 정보를 제공해준다.
+
 2.	AI 이미지 인식<br/>
 AI 카메라를 통해 물고기 사진을 찍으면 AI를 통해 해당 어류의 어종을 판별해준다.<br/>
 또한 물고기 옆에 신용 카드 및 담뱃갑 등의 비교 물체를 놓고 사진을 찍으면 어류의 길이 측정도 동시에 해준다.
+
 3.	나만의 도감<br/>
 AI 카메라를 통해 판별된 어종이 도감에 자동으로 등록된다.<br/>
 도감에서 각 어종의 잡은 횟수 및 최대 길이를 확인할 수 있다.
+
 4.	어항<br/>
 도감에 어종이 등록되면 해당 어종의 물고기 에셋이 어항 속에 추가되고,<br/>
 어항 속을 헤엄치는 애니메이션을 볼 수 있다.
+
 
 ## 기술 소개
 
@@ -135,6 +141,7 @@ Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용�
 |                                      |                                       | :black_square_button: Kotlin  |                                         |
 
 <!-- 필수 항목 -->
+
 
 ## Git Commit Convention
 
