@@ -1,38 +1,112 @@
-# 웹/모바일(웹 IoT) 스켈레톤 프로젝트
-
-<!-- 필수 항목 -->
-
-## 카테고리
-
-| Application                          | Domain                                | Language                      | Framework                               |
-| ------------------------------------ | ------------------------------------- | ----------------------------- | --------------------------------------- |
-| :black_square_button: Desktop Web    | :white_check_mark: AI                 | :white_check_mark: JavaScript | :black_square_button: Vue.js            |
-| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React Native         |
-| :black_square_button: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++   | :black_square_button: Angular           |
-| :white_check_mark: Android App       | :white_check_mark: IoT                | :black_square_button: C#      | :white_check_mark: Node.js              |
-| :black_square_button: iOS App        | :black_square_button: AR/VR/Metaverse | :white_check_mark: Python     | :white_check_mark: Flask/Django         |
-| :white_check_mark: Desktop App       | :black_square_button: Game            | :black_square_button: Java    | :black_square_button: Spring/Springboot |
-|                                      |                                       | :black_square_button: Kotlin  |                                         |
-
-<!-- 필수 항목 -->
+# 푸바오: 푸른 바다로 오세요
 
 ## 프로젝트 소개
 
-- 프로젝트명: 임베디드 KIT 연동 웹 서비스
-- 서비스 특징: 웹/모바일(웹 IoT) 프로젝트를 위한 스켈레톤 프로젝트
+- 프로젝트명: 푸바오 (푸른 바다로 오세요)
+- 서비스 특징: 20, 30대 바다 낚시 입문자를 위한 바다 낚시 입문 가이드 앱 서비스
 - 주요 기능
-  - 회원 관리
-  - 카테고리 관리
-  - 투표 관리(키오스크 포함)
+  - 맞춤 정보 제공
+  - AI 이미지 인식
+  - 나만의 도감
+  - 어항
 - 주요 기술
-  - Single Page Application
-  - Raspberry Pi
-  - REST API
+  - 어종 판별
+  - 길이 측정
+  - 추천 알고리즘
+  - 홈 IoT
 - 참조 리소스
   - Material-UI: React Component Library
 - 배포 환경
-  - URL: // 웹 서비스, 랜딩 페이지, 프로젝트 소개 등의 배포 URL 기입
-  - 테스트 계정: // 로그인이 필요한 경우, 사용 가능한 테스트 계정(ID/PW) 기입
+  - URL: https://i10c104.p.ssafy.io/
+  - 테스트 계정: [ID] ssafy@ssafy.com [PW] ssafy1111
+- Notion
+  - URL: https://i10c104.notion.site/Project-Home-60ae04bd7517456a80cbc9e2655270f3?pvs=4
+
+## 개발 환경
+
+* Management Tool<br/>
+JIRA, GitLab, MatterMost, Notion, Figma
+
+* IDE<br/>
+VScode, Jupyter NoteBook, Colab
+
+* Infra<br/>
+Amazon AWS, NginX, Docker, Ubuntu, Jenkins
+
+* Frontend<br/>
+HTML5, CSS, Javascript, TypeScript, React, Axios, Styled Components, zustand, react-query, prettier, three.js
+
+* Backend<br/>
+Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
+
+* AI<br/>
+Flask, Tensorflow, Keras, numpy
+
+
+## 서비스 화면
+
+- 추천 컴포넌트 및 일정 등록<br/>
+![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
+
+- 낚시 포인트 및 날씨 확인<br/>
+![ezgif.com-resize_point](/uploads/3e2ca6d1f9cc003363b2905494373401/ezgif.com-resize_point.gif)
+
+- 일정 등록 및 AI 카메라 작동<br/>
+![ezgif.com-resize_register_plan](/uploads/fef71f330b54a87f6aee5542acfcbf61/ezgif.com-resize_register_plan.gif)
+
+- AI 어종 판별 및 길이 측정<br/>
+![ezgif.com-resize](/uploads/f0ffac18da02b7c76d5fd9336f7787b2/ezgif.com-resize.gif)
+
+- 도감 등록<br/>
+![ezgif.com-resize_collection](/uploads/a90addf4768065c215c91ff23141a4fd/ezgif.com-resize_collection.gif)
+
+- 어항<br/>
+![ezgif.com-video-to-gif-converter_fish_bowl](/uploads/2ba75dd776dd080161cad4b428b29cc0/ezgif.com-video-to-gif-converter_fish_bowl.gif)
+
+## 주요 기능
+
+1.	맞춤 정보 제공<br/>
+일정 등록 전, 일정 등록 후, 일정 당일에 따른 바다 낚시 입문자 맞춤 정보를 제공해준다.
+2.	AI 이미지 인식<br/>
+AI 카메라를 통해 물고기 사진을 찍으면 AI를 통해 해당 어류의 어종을 판별해준다.<br/>
+또한 물고기 옆에 신용 카드 및 담뱃갑 등의 비교 물체를 놓고 사진을 찍으면 어류의 길이 측정도 동시에 해준다.
+3.	나만의 도감<br/>
+AI 카메라를 통해 판별된 어종이 도감에 자동으로 등록된다.<br/>
+도감에서 각 어종의 잡은 횟수 및 최대 길이를 확인할 수 있다.
+4.	어항<br/>
+도감에 어종이 등록되면 해당 어종의 물고기 에셋이 어항 속에 추가되고,<br/>
+어항 속을 헤엄치는 애니메이션을 볼 수 있다.
+
+## 기술 소개
+
+1.	어종 판별<br/>
+11,854개의 구글 크롤링 이미지 데이터셋을 MobileNet 구조의 CNN 모델로<br/>
+학습시켜 인공지능 모델 파일 생성
+
+2.	길이 측정<br/>
+-	어류 객체 탐지<br/>
+Object Detection API 사용
+-	카드 객체 탐지<br/>
+OpenCV Canny 사용
+
+3.	추천 알고리즘<br/>
+가중치 랜덤 알고리즘을 통한 사용자 설문 및 리뷰 기반 추천
+
+4. 홈 IoT<br/>
+Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용해 애니메이션 수정<br/>
+또한 라즈베리파이와 와이파이 모듈(ESP8266)간에 MQTT를 사용해 통신하여 조명 제어
+
+
+## 설계 문서
+
+* ERD<br/>
+![image](/uploads/041e5bb3996239d6e8a4f5755ea44515/image.png)
+
+* Architecture<br/>
+![image](/uploads/e1ff1bc81e984661a068bed9e1a26654/image.png)
+
+* CI/CD<br/>
+![image](/uploads/d0f5b19d3fea0eafe661ad9dfe153a05/image.png)
 
 <!-- 자유 양식 -->
 
@@ -46,9 +120,21 @@
 
 <!-- 자유 양식 -->
 
-## 프로젝트 상세 설명
+<!-- 필수 항목 -->
 
-// 개발 환경, 기술 스택, 시스템 구성도, ERD, 기능 상세 설명 등
+## 카테고리
+
+| Application                          | Domain                                | Language                      | Framework                               |
+| ------------------------------------ | ------------------------------------- | ----------------------------- | --------------------------------------- |
+| :black_square_button: Desktop Web    | :white_check_mark: AI                 | :white_check_mark: JavaScript | :black_square_button: Vue.js            |
+| :black_square_button: Mobile Web     | :black_square_button: Big Data        | :white_check_mark: TypeScript | :white_check_mark: React                |
+| :black_square_button: Responsive Web | :black_square_button: Blockchain      | :black_square_button: C/C++   | :black_square_button: Angular           |
+| :white_check_mark: Android App       | :white_check_mark: IoT                | :black_square_button: C#      | :white_check_mark: Node.js              |
+| :black_square_button: iOS App        | :black_square_button: AR/VR/Metaverse | :white_check_mark: Python     | :white_check_mark: Flask/Django         |
+| :white_check_mark: Desktop App       | :black_square_button: Game            | :black_square_button: Java    | :black_square_button: Spring/Springboot |
+|                                      |                                       | :black_square_button: Kotlin  |                                         |
+
+<!-- 필수 항목 -->
 
 ## Git Commit Convention
 
@@ -81,20 +167,21 @@ footer : issue tracker ID 를 명시하고 싶은 경우에 작성
 
 ### 태그 종류
 
-- Feat : 새로운 기능을 추가하는 경우
-- Fix : 버그를 고친경우
+- Add : 코드나 테스트, 예제, 문서등의 추가 생성이 있는경우
+- Implement : 코드가 추가된 정도보다 더 주목할만한 구현체를 완성시켰을 때
+- Design : CSS 등 사용자가 UI 디자인을 변경했을 때
+- Temp : 작업 중에 사정상 임시로 저장할 경우
 - Docs : 문서를 수정한 경우
+- Fix : 버그를 고친경우
 - Style : 코드 포맷 변경, 세미콜론 누락, 코드 수정이 없는경우
 - Refactor : 코드 리펙토링
 - Test : 테스트 코드. 리펙토링 테스트 코드를 추가했을 때
-- Chore : 빌드 업무 수정, 패키지 매니저 수정
-- Design : CSS 등 사용자가 UI 디자인을 변경했을 때
 - Rename : 파일명(or 폴더명) 을 수정한 경우
 - Remove : 코드(파일) 의 삭제가 있을 때. "Clean", "Eliminate" 를 사용하기도 함
-- Add : 코드나 테스트, 예제, 문서등의 추가 생성이 있는경우
+- Chore : 빌드 업무 수정, 패키지 매니저 수정
 - Improve : 향상이 있는 경우. 호환성, 검증 기능, 접근성 등이 될수 있습니다.
-- Implement : 코드가 추가된 정도보다 더 주목할만한 구현체를 완성시켰을 때
 - Move : 코드의 이동이 있는경우
+- Feat : 새로운 기능을 추가하는 경우
 - Updated : 계정이나 버전 업데이트가 있을 때 사용. 주로 코드보다는 문서나, 리소스, 라이브러리등에 사용합니다.
 - Comment : 필요한 주석 추가 및 변경
 
