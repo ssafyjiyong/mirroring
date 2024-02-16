@@ -37,12 +37,15 @@ Amazon AWS, NginX, Docker, Ubuntu, Jenkins
 HTML5, CSS, Javascript, TypeScript, React, Axios, Styled Components, zustand, react-query, prettier, three.js
 
 * Backend<br/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
+<img src="https://img.shields.io/badge/django-092E20?style=flat-square&logo=django&logoColor=white"/>
+<img src="https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=Gunicorn&logoColor=white">
+<img src="https://img.shields.io/badge/mariadb-499848?style=for-the-badge&logo=mariadb&logoColor=white">
 Python , Django, djangorestframework, gunicorn, PyJWT, MariaDB
 
 * AI<br/>
 Flask, Tensorflow, Keras, numpy
 
-<img alt="Html" src ="https://img.shields.io/badge/github.svg?&style=for-the-badge&logo=github&logoColor=red"/>
 
 
 ## 서비스 화면
