@@ -14,8 +14,6 @@
   - 길이 측정
   - 추천 알고리즘
   - 홈 IoT
-- 참조 리소스
-  - Material-UI: React Component Library
 - 배포 환경
   - URL: https://i10c104.p.ssafy.io/
   - 테스트 계정: [ID] ssafy@ssafy.com [PW] ssafy1111
