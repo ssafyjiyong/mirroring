@@ -154,11 +154,6 @@ body : 긴 설명이 필요한 경우, 어떻게 작성했는지가 아닌 무�
 
 footer : issue tracker ID 를 명시하고 싶은 경우에 작성
 
-### Commit Example
-
-![Git Commit](imgs/git_commit.png)
-![Git Commit Convention](imgs/git_commit_convention.PNG)
-
 ### 타입(Commit Type)
 
 - 태그(tag) + 제목(subject) 형식
