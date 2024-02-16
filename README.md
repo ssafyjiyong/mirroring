@@ -19,6 +19,8 @@
 - 배포 환경
   - URL: https://i10c104.p.ssafy.io/
   - 테스트 계정: ssafy@ssafy.com / ssafy1111
+- Notion
+  - URL: https://i10c104.notion.site/Project-Home-60ae04bd7517456a80cbc9e2655270f3?pvs=4
 
 ## 개발 환경
 
