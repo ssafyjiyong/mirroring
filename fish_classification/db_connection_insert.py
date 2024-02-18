@@ -48,37 +48,64 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
 
         if row['count'] == 0: # 처음 잡은 물고기일 때
             print("1번")
-            sql = '''
-            UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+            sql_i = '''
+            INSERT INTO fish_user_fish ( max_length, count, image, preference, latest_length ) VALUES ( %s, %s, %s, %s, %s );
             '''
-            cursor.execute(sql, (fish_act_length, 1, img_save_name, user_id, fish_id))
+            sql_u = '''
+            UPDATE fish_user_fish SET max_length = %s, count = %s WHERE user_id = %s AND fish_id = %s;
+            '''
+
+            cursor.execute(sql_i, (fish_act_length, 1, img_save_name, row['preference'], fish_act_length))
+            cursor.execute(sql_u, (fish_act_length, 1, user_id, fish_id))
+
             connection.commit()
+            
             img_flag = True
 
         else: # 기존에 잡아봤던 물고기일 때
             cur_cnt = row['count'] + 1
 
             if row['max_length'] == None: # 기존 물고기의 길이가 없을 때
-                sql = '''
-                UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+                sql_i = '''
+                INSERT INTO fish_user_fish ( max_length, count, image, preference, latest_length ) VALUES ( %s, %s, %s, %s, %s );
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, img_save_name, user_id, fish_id))
+                sql_u = '''
+                UPDATE fish_user_fish SET max_length = %s, count = %s WHERE user_id = %s AND fish_id = %s;
+                '''
+
+                cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
+                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
+
                 connection.commit()
+
                 img_flag = True
                 print("2번")
             elif row['max_length'] < fish_act_length: # 현재 잡은 물고기 길이가 기존의 물고기 최고 길이보다 길 때
-                sql = '''
-                UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
+                sql_i = '''
+                INSERT INTO fish_user_fish ( max_length, count, image, preference, latest_length ) VALUES ( %s, %s, %s, %s, %s );
                 '''
-                cursor.execute(sql, (fish_act_length, cur_cnt, img_save_name, user_id, fish_id))
+                sql_u = '''
+                UPDATE fish_user_fish SET max_length = %s, count = %s WHERE user_id = %s AND fish_id = %s;
+                '''
+
+                cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
+                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
+
                 connection.commit()
+
                 img_flag = True
                 print("3번")
             else: # 현재 잡은 물고기 길이가 기존의 물고기 최고 길이보다 길지 않을 때
-                sql = '''
+                sql_i = '''
+                INSERT INTO fish_user_fish ( max_length, count, preference, latest_length ) VALUES ( %s, %s, %s, %s );
+                '''
+                sql_u = '''
                 UPDATE fish_user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
                 '''
-                cursor.execute(sql, (cur_cnt, user_id, fish_id))
+
+                cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference'], fish_act_length))
+                cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
+                
                 connection.commit()
                 print("4번")
 
@@ -121,19 +148,31 @@ def db_processing_no_obj(user_id, fish_id):
         row = cursor.fetchone()
 
         if row['count'] == 0: # 처음 잡은 물고기일 때
-            sql = '''
+            sql_i = '''
+            INSERT INTO fish_user_fish ( count, preference ) VALUES ( %s, %s );
+            '''
+            sql_u = '''
             UPDATE fish_user_fish SET count = 1 WHERE user_id = %s AND fish_id = %s;
             '''
-            cursor.execute(sql, (user_id, fish_id))
+
+            cursor.execute(sql_i, (1, row['preference']))
+            cursor.execute(sql_u, (user_id, fish_id))
+
             connection.commit()
             print("5번")
         else: # 기존에 잡아봤던 물고기일 때
             cur_cnt = row['count'] + 1
             
-            sql = '''
+            sql_i = '''
+            INSERT INTO fish_user_fish ( max_length, count, preference ) VALUES ( %s, %s, %s );
+            '''
+            sql_u = '''
             UPDATE fish_user_fish SET count = %s WHERE user_id = %s AND fish_id = %s;
             '''
-            cursor.execute(sql, (cur_cnt, user_id, fish_id))
+
+            cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference']))
+            cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
+
             connection.commit()
             print("6번")
 
