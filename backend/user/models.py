@@ -27,6 +27,7 @@ class User(AbstractUser):
     nickname = models.CharField(null=True, unique=True, max_length=8)
     profile_img = models.ImageField(upload_to='profile_images/', null=True, blank=True)
     presurvey = models.BooleanField(default = False)
+    fish_survey = models.BooleanField(default = False)
 
     objects = UserManager()
     
