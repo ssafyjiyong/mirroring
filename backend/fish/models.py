@@ -20,6 +20,7 @@ class user_fish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_fish_user')
     fish = models.ForeignKey(fish, on_delete=models.CASCADE, related_name='user_fish_fish')
     max_length = models.FloatField(null=True, blank=True)
+    latest_length = models.FloatField(null=True, blank=True)
     count = models.IntegerField(default=0)
     image = models.ImageField(null=True)
     preference = models.BooleanField(default=0)
