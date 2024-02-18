@@ -95,6 +95,11 @@ class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishDetailSerializer})
     def put(self, request, pk):
         myfish = get_object_or_404(user_fish, pk=pk, user=request.user)
+        latest_length = request.data.get('latest_length')
+        if latest_length is not None:
+            latest_length = float(latest_length)
+            if myfish.max_length is None or latest_length > myfish.max_length:
+                myfish.max_length = latest_length
         serializer = UserFishDetailSerializer(myfish, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -104,6 +109,11 @@ class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishDetailSerializer})
     def patch(self, request, pk):
         myfish = get_object_or_404(user_fish, pk=pk, user=request.user)
+        latest_length = request.data.get('latest_length')
+        if latest_length is not None:
+            latest_length = float(latest_length)
+            if myfish.max_length is None or latest_length > myfish.max_length:
+                myfish.max_length = latest_length
         serializer = UserFishDetailSerializer(myfish, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
