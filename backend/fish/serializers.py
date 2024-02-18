@@ -21,10 +21,10 @@ class UserFishDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = user_fish
         fields = '__all__'
-        read_only_fields = ('fish', )
+        read_only_fields = ('fish', 'user')
 
 class UserFishSerializer(serializers.ModelSerializer):
     class Meta:
         model = user_fish
         fields = '__all__'
-        read_only_fields = ('fish', )
+        read_only_fields = ('fish', 'user')
