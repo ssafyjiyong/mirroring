@@ -11,13 +11,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import PlanRegisterMap from "../Map/PlanRegisterMap";
 import Autocomplete from '@mui/joy/Autocomplete'; // 장소 검색 관련
+import location from "../../data/location.json"
+
+const LocationOptions = location;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   padding: 0.4rem;
 `;
 
@@ -94,17 +96,6 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
   ) => {
     setSelectedMethodOption(selectedMethodOption);
   };
-
-  // 장소 검색창 옵션
-  const LocationOptions = [
-    { title: 'The Shawshank Redemption', value: "1" },
-    { title: 'The Godfather', value: "2" },
-    { title: 'The Godfather: Part II', value: "3" },
-    { title: 'The Dark Knight', value: "4" },
-    { title: '12 Angry Men', value: "5" },
-    { title: "Schindler's List", value: "6" },
-    { title: 'Pulp Fiction', value: "7" },
-  ];
 
   const PointOptions = [
     { value: "1", label: "방파제" },
@@ -185,6 +176,8 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     ModalDialogProps["layout"] | undefined
   >(undefined);
 
+  const [selectedValue, setSelectedValue] = useState('');
+
   return (
     <Modal
       aria-labelledby="modal-title"
@@ -225,7 +218,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
               <Span>일정: </Span>
               <DatePicker
                 className="datePicker"
-                dateFormat="yyyy.MM.dd"
+                dateFormat="yyyy-MM-dd"
                 shouldCloseOnSelect
                 minDate={new Date()}
                 maxDate={new Date(year + 1 + "-" + month + "-" + day)}
@@ -235,24 +228,26 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
             </AlignDiv>
             <AlignDiv>
               <Span>장소: </Span>
-              {/* <Input
-                name="location"
-                type="text"
-                placeholder="장소 (예시: 부산항)"
-                // value={location}
-                // readOnly
-                // onClick={handleOpenMapModal}
-              /> */}
               <Autocomplete
                 name="location"
                 type="search"
-                placeholder="장소 (예시: 부산항)"
+                placeholder="검색, 선택하시면 해당 ID가 입력됩니다."
                 freeSolo
                 disableClearable
                 options={LocationOptions.map((option) => option.title)}
-                // value={location}
-                // readOnly
-                // onClick={handleOpenMapModal}
+                sx={{
+                  borderRadius:"10px",
+                  margin: "0.5rem 0rem",
+                  width: "21rem",
+                  borderColor: "#ccc",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: 16,
+                }}
+                value={selectedValue}
+                onChange={(event, newValue) => {
+                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  setSelectedValue(value);
+                }}
               />
             </AlignDiv>
             

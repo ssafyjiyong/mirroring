@@ -7,6 +7,7 @@ export const WhiteBox = styled.div`
     background-color: white;
     padding: 1rem;
     margin: 1.3rem 0;
+    cursor: pointer;
 `;
 
 export const EtiquetteWhiteBox = styled.div`

@@ -1,4 +1,34 @@
-import React from 'react'
+import React from "react";
+import styled from "styled-components";
+import { Link, useNavigate } from "react-router-dom";
+import { HomeIcon } from "../../styles/globalStyles";
+import "../../FontAwsome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+
+const Title = styled.p`
+  margin-top: 0.5rem;
+  margin-bottom: 0rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #202125;
+`;
+
+const Subtitle = styled.p`
+  margin-top: 0;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #aeb1ba;
+`;
+
+const AlignDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #202125;
+`;
 
 const title = ["낚시 에티켓"];
 const subTitle = ["오늘 처음이더라도 꼭 알아야할 에티켓"];
@@ -7,13 +37,45 @@ const content = [
 ];
 
 const EtiquettePage = () => {
-  return (
-    <div style={{ padding: "1rem" }}>      
-    {title}
-    {subTitle}
-    {content}
-    </div>
-  )
-}
+  const navigate = useNavigate();
 
-export default EtiquettePage
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <div style={{ padding: "3rem 1rem 2rem" }}>
+      <ChevronLeftIcon
+        sx={{
+          position: "absolute",
+          top: 22,
+          left: 20,
+          cursor: "pointer",
+        }}
+        onClick={handleBack}
+      />
+      <Title>{title}</Title>
+      <Subtitle>{subTitle}</Subtitle>
+      <p>{content}</p>
+      <AlignDiv>
+        <img
+          src="/imgs/general.jpg"
+          alt="etiqeutte"
+          style={{
+            width: "100%",
+            maxWidth: "500px",
+            height: "auto",
+            margin: "0.5rem 0rem",
+          }}
+        />
+      </AlignDiv>
+      <Link to="/">
+        <HomeIcon>
+          <FontAwesomeIcon icon="home" />
+        </HomeIcon>
+      </Link>
+    </div>
+  );
+};
+
+export default EtiquettePage;

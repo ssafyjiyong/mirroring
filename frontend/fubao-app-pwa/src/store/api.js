@@ -203,6 +203,25 @@ export const informationGetApi = async (token) => {
   }
 };
 
+// myfish GET
+export const myfishGetApi = async ({token, fishid}) => {
+  try {
+    const response = await axios.get(`${API_URL}/fish/myfish/${fishid}/`, {
+      headers: {
+        Authorization: `Token ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch method");
+  }
+};
+
 // POST 요청 API
 export const signupApi = async ({ email, password1, password2, nickname }) => {
   try {
@@ -702,5 +721,30 @@ export const removeProfileApi = async (token) => {
     return response.data;
   } catch (error) {
     throw error;
+  }
+};
+
+// 날씨 GET API
+export const weatherGetApi = async ({ lat, lng }) => {
+  try {
+    // console.log(lat,lng);
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
+    {     
+      params: {
+        lat: lat,
+        lon: lng,
+      },
+      headers: {
+        "Content-Type": "application/json",
+      },
+  });
+  
+    return response.data;
+  } catch (error) {
+    console.error(
+      "An error occurred during the API call:",
+      error.response ? error.response.data : error.message
+    );
+    throw new Error("Failed to fetch weather at");
   }
 };

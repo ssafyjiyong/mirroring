@@ -24,10 +24,14 @@ from schedule.serializers import ScheduleSerializer
 class weatherSunsetAPIView(APIView):
     # permission_classes = [IsAuthenticated]
     def get(self, request):
+        
         lat=request.GET['lat']
         lon=request.GET['lon']
+        print(lat, lon)
+        
         # data=json.loads(request.body)
         
+        # data=json.loads(request.body)
         # nowData=weatherAPI(data['lat'],data['lon'])
         # sunrise,sunset=sunsetAPI(data['lat'],data['lon'])  
         
@@ -259,3 +263,4 @@ class FishReleaseView(APIView):
         release = get_object_or_404(release_fish, pk=pk)
         serializer = ReleaseSerializer(release)
         return Response(serializer.data, status=status.HTTP_200_OK)
+     

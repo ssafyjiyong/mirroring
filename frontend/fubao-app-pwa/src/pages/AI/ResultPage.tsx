@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useStore from "../../store/store";
 import { ProfileType } from "../../store/types";
 import Button from "@mui/joy/Button";
 import { useNavigate } from "react-router-dom";
+import JSConfetti from 'js-confetti';
+import Swal from "sweetalert2";
 
 const TitleBox = styled.div`
   border-radius: 10px;
@@ -77,17 +79,52 @@ const ResultPage = () => {
   const goToHome = () => {
     navigate("/home");
   };
+  const goToCollection = () => {
+    navigate("/collection");
+  };
+
+  // 빵빠레 효과
+  const [jsConfetti, setJsConfetti] = useState<JSConfetti | null>(null);
 
   // 페이지 벗어나면 스토리지 이미지 지우기
   useEffect(() => {
+    
+    Swal.fire({
+      title: "도감에 넣었어요!",
+      text: "집에 있는 스마트 어항도 확인해보세요!",
+      icon: "success"
+    }).then(() => {
+      
+      if (!jsConfetti) {
+        const confettiInstance = new JSConfetti();
+        setJsConfetti(confettiInstance);
+    
+        confettiInstance.addConfetti({
+          confettiColors: ["#CAB0FF"],
+          confettiNumber: 500,
+        });
+    
+        // JSConfetti가 생성하는 캔버스 요소의 z-index 설정
+        const canvasElements = document.getElementsByTagName('canvas');
+        if (canvasElements.length > 0) {
+          // 마지막에 추가된 캔버스 요소가 JSConfetti에 의해 추가된 것으로 가정
+          const lastCanvasElement = canvasElements[canvasElements.length - 1];
+          lastCanvasElement.style.zIndex = '1001';
+        }
+      }
+    });
+
+
+    // 페이지 벗어날 때 실행될 함수
     const handleUnload = () => {
-      localStorage.removeItem("selectedImage"); // 'selectedImage' 키로 저장된 항목을 localStorage에서 삭제
+      localStorage.removeItem("selectedImage");
       localStorage.removeItem("species");
       localStorage.removeItem("length");
     };
 
     window.addEventListener("beforeunload", handleUnload);
 
+    // Cleanup 함수
     return () => {
       window.removeEventListener("beforeunload", handleUnload);
     };
@@ -158,17 +195,17 @@ const ResultPage = () => {
           </span>
         </AlignBox>
         <ContentBox>
-            <p style={{ marginBottom: "0rem" }}>
-              {profile?.nickname}
-              {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
-              {profile?.nickname}
-              {chooseJosa(nickname, "은/는")}
-              {length && <span style={{ fontWeight: "600" }}>{length}cm의</span>}
-              <span style={{ fontWeight: "600" }}> {species}</span>
-              {chooseJosa(species!, "을/를")} 낚았다. 낚시터 곳곳에서는 월척을
-              낚은 {profile?.nickname}
-              {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
-            </p>
+          <p style={{ marginBottom: "0rem" }}>
+            {profile?.nickname}
+            {chooseJosa(nickname, "이/가")} 직접 낚은 월척을 자랑했다.{" "}
+            {profile?.nickname}
+            {chooseJosa(nickname, "은/는")}
+            {length && <span style={{ fontWeight: "600" }}>{length}cm의</span>}
+            <span style={{ fontWeight: "600" }}> {species}</span>
+            {chooseJosa(species!, "을/를")} 낚았다. 낚시터 곳곳에서는 월척을
+            낚은 {profile?.nickname}
+            {chooseJosa(nickname, "을/를")} 대단하다는 듯 바라보고 있다.
+          </p>
         </ContentBox>
       </div>
 
@@ -181,10 +218,23 @@ const ResultPage = () => {
           paddingTop: "0.5rem",
         }}
       >
-        <Button onClick={handleSaveImage} style={{ marginRight: "0.5rem" }}>
+        <Button
+          color="success"
+          onClick={goToCollection}
+          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+        >
+          도감보기
+        </Button>
+        <Button onClick={handleSaveImage}
+          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+          >
           이미지 저장
         </Button>
-        <Button color="danger" onClick={goToHome}>
+        <Button color="danger"
+        onClick={goToHome}
+        sx={{ fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+
+        >
           돌아가기
         </Button>
       </div>

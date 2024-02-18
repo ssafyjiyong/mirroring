@@ -50,7 +50,7 @@ const MethodPage1 = () => {
   }
 
   if (isError || !method) {
-    return <p>데이터를 가져오지 못해습니다.</p>;
+    return <p>데이터를 가져오지 못했습니다.</p>;
   }
 
   // method 상태를 사용하여 해당 데이터 렌더링

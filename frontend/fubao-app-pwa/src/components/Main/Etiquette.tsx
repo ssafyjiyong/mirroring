@@ -132,7 +132,7 @@ const Etiquette = () => {
           </EtiquetteWhiteBox1>
         )
       ) : (
-        <EtiquetteWhiteBox onClick={() => setplanRegisterOpen(true)}>
+        <EtiquetteWhiteBox onClick={() => setplanRegisterOpen(true)} style={{ cursor: "pointer" }}>
           <div>
             <EtiquetteTextS>푸바오와 함께 낚시하러 가요</EtiquetteTextS>
             <EtiquetteTextL>일정 등록하고 맞춤 정보 받기</EtiquetteTextL>

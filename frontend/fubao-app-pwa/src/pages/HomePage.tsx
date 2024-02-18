@@ -42,13 +42,14 @@ import {
 } from "../store/api";
 import useStore from "../store/store";
 import EntryLoading from "../components/Entry/EntryLoading";
-import { RecommendationType, ScheduleType } from "../store/types";
+import { ProfileType, RecommendationType, ScheduleType } from "../store/types";
 
 type SelectedState = number[];
 
 function HomePage() {
   const { resetStore, loadData } = useStore();
-  const { schedule, recommendation } = useStore() as {
+  const { profile, schedule, recommendation } = useStore() as {
+    profile: ProfileType | null;
     schedule: ScheduleType | null;
     recommendation: RecommendationType | null;
   };
@@ -227,6 +228,9 @@ function HomePage() {
       setIsLoading(true);
       try {
         await loadData();
+        if (!profile?.presurvey) {
+          setOpen(true);
+        }
       } catch (error) {
         console.error("데이터 로딩 중 오류 발생:", error);
       } finally {
@@ -317,6 +321,7 @@ function HomePage() {
 
       {/* 설문모달 */}
       <React.Fragment>
+        {open && !profile?.presurvey && 
         <Modal
           aria-labelledby="modal-title"
           aria-describedby="modal-desc"
@@ -337,7 +342,6 @@ function HomePage() {
               boxShadow: "lg",
             }}
           >
-            <ModalClose variant="plain" sx={{ m: 1 }} />
             <Typography
               component="h2"
               id="modal-title"
@@ -454,6 +458,7 @@ function HomePage() {
             </Box>
           </Sheet>
         </Modal>
+        }
       </React.Fragment>
 
       {/* 리뷰 모달 */}

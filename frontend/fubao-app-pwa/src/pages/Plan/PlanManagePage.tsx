@@ -9,6 +9,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { planCancelApi, planFetchApi } from "../../store/api";
+import useStore from "../../store/store";
+import { ScheduleType } from "../../store/types";
+import Autocomplete from "@mui/joy/Autocomplete"; // 장소 검색 관련
+import location from "../../data/location.json"
+
+const LocationOptions = location;
 
 const Container = styled.div`
   display: flex;
@@ -53,16 +59,21 @@ const AlignDiv = styled.div`
 const PlanManagePage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const navigate = useNavigate();
-  const API_URL = "http://127.0.0.1:8000";
+  const API_URL = "https://i10c104.p.ssafy.io/api";
+  const { schedule } = useStore() as {
+    schedule: ScheduleType | null;
+  };
 
   const Cancel = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const token = localStorage.getItem("token");
 
-    axios.delete(`${API_URL}/schedule/1/`, {
-      headers: {
-        // 임시토큰값
-        Authorization: 'Token fdb1edc661bfe5cbc0d620d696c703a5509b641e',
-      },
-    })
+    axios
+      .delete(`${API_URL}/schedule/done/${schedule?.id}/`, {
+        headers: {
+          // 임시토큰값
+          Authorization: `Token ${token}`,
+        },
+      })
       .then((response) => {
         Swal.fire({
           title: "일정 삭제 완료",
@@ -86,7 +97,7 @@ const PlanManagePage = () => {
     value: string;
     label: string;
   } | null>(null);
-  
+
   const [selectedMethodOption, setSelectedMethodOption] = useState<{
     value: string;
     label: string;
@@ -122,7 +133,7 @@ const PlanManagePage = () => {
     <Select
       options={PointOptions}
       value={selectedPointOption}
-      placeholder="원래 등록한 값"
+      placeholder={schedule?.area.title}
       onChange={handlePointChange}
       required
       name="area"
@@ -148,7 +159,7 @@ const PlanManagePage = () => {
     <Select
       options={MethodOptions}
       value={selectedMethodOption}
-      placeholder="원래 등록한 값"
+      placeholder={schedule?.method.title}
       onChange={handleMethodChange}
       required
       name="method"
@@ -170,6 +181,11 @@ const PlanManagePage = () => {
     />
   );
 
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = ("0" + (today.getMonth() + 1)).slice(-2);
+  const day = ("0" + today.getDate()).slice(-2);
+  const [selectedValue, setSelectedValue] = useState('');
 
   return (
     <Container>
@@ -178,51 +194,67 @@ const PlanManagePage = () => {
       <form action="">
         <RegisterBox>
           <AlignDiv>
-            <Span>일정: </Span>
-              <DatePicker
+            <Span>일정:</Span>
+            <DatePicker
                 className="datePicker"
-                dateFormat="yyyy.MM.dd" // 날짜 형태
-                shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
-                minDate={new Date("2000-01-01")} // minDate 이전 날짜 선택 불가
-                maxDate={new Date()} // maxDate 이후 날짜 선택 불가
+                dateFormat="yyyy-MM-dd"
+                shouldCloseOnSelect
+                minDate={new Date()}
+                maxDate={new Date(year + 1 + "-" + month + "-" + day)}
                 selected={selectedDate}
                 onChange={(date) => setSelectedDate(date)}
               />
           </AlignDiv>
           <AlignDiv>
-          <Span>장소: </Span>
-              <Input
+            <Span>장소: </Span>
+            <Autocomplete
                 name="location"
-                type="text"
-                placeholder="원래 등록한 값"
+                type="search"
+                placeholder={schedule?.location.address}
+                freeSolo
+                disableClearable
+                options={LocationOptions.map((option) => option.title)}
+                sx={{
+                  borderRadius:"10px",
+                  margin: "0.5rem 0rem",
+                  width: "21rem",
+                  borderColor: "#ccc",
+                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                  fontSize: 16,
+                }}
+                value={selectedValue}
+                onChange={(event, newValue) => {
+                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  setSelectedValue(value);
+                }}
               />
           </AlignDiv>
           <AlignDiv>
-              <Span>포인트: </Span>
-              <PointSelect />
-            </AlignDiv>
-            <AlignDiv>
-              <Span>방법: </Span>
-              <MethodSelect />
-            </AlignDiv>
+            <Span>포인트: </Span>
+            <PointSelect />
+          </AlignDiv>
+          <AlignDiv>
+            <Span>방법: </Span>
+            <MethodSelect />
+          </AlignDiv>
           <div>
-          <Button
-            size="md"
-            variant="solid"
-            style={{ margin: "2rem", marginRight: "0.2rem" }}
-          >
-            수정하기
-          </Button>
+            <Button
+              size="md"
+              variant="solid"
+              style={{ margin: "2rem", marginRight: "0.2rem" }}
+            >
+              수정하기
+            </Button>
 
-          <Button
-            size="md"
-            variant="solid"
-            color="danger"
-            style={{ margin: "2rem", marginLeft: "0.2rem" }}
-            onClick={Cancel}
-          >
-            삭제하기
-          </Button>
+            <Button
+              size="md"
+              variant="solid"
+              color="danger"
+              style={{ margin: "2rem", marginLeft: "0.2rem" }}
+              onClick={Cancel}
+            >
+              삭제하기
+            </Button>
           </div>
         </RegisterBox>
       </form>

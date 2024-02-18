@@ -240,8 +240,8 @@ const Fubaoguide = () => {
               <br />
               <span style={{ fontWeight: "500" }}>
                 {recommendation?.selected_fish}
-              </span>
-              {" "}잡아보는건 어때요?
+              </span>{" "}
+              잡아보는건 어때요?
               <br />
               아래에서 관련 정보를 살펴보세요!
             </Text>
@@ -285,7 +285,47 @@ const Fubaoguide = () => {
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
         onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
       >
-        <label htmlFor="file">
+        {!schedule || !schedule.id ? (
+            <img
+              src="/imgs/my_panda.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+        ) : dday === 0 ? (
+          <label htmlFor="file">
+            <img
+              src="/imgs/panda_camera.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+          </label>
+        ) : (
+            <img
+              src="/imgs/panda_trip.png"
+              alt="panda"
+              style={{
+                width: "50vw",
+                height: "auto",
+                maxWidth: "200px",
+                marginTop: "0.7rem",
+                cursor: "pointer",
+              }}
+            />
+        )}
+
+        {/* <label htmlFor="file">
           <img
             src={
               !schedule || !schedule.id
@@ -303,7 +343,7 @@ const Fubaoguide = () => {
               cursor: "pointer",
             }}
           />
-        </label>
+        </label> */}
       </div>
 
       {/* 카메라 오픈 모달 */}
@@ -339,10 +379,16 @@ const Fubaoguide = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignContent: "center",
+                alignItems: "center",
               }}
             >
               <p>어우, 실허네 그놈.</p>
+              <img
+                src="/classify.png"
+                alt="loading"
+                style={{ width: "7em", height: "7em" }}
+                className="infinite_rotating_logo"
+              />
               <p>어디보자. 잠시만 기다려봐.</p>
             </div>
           ) : (

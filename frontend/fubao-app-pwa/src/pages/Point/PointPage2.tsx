@@ -50,7 +50,7 @@ const PointPage2 = () => {
   }
 
   if (isError || !point) {
-    return <p>데이터를 가져오지 못해습니다.</p>;
+    return <p>데이터를 가져오지 못했습니다.</p>;
   }
 
   return (
