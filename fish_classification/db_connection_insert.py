@@ -2,9 +2,6 @@ import pymysql as my
 import base64
 import json
 
-# 회원이면 dict 형태로 전달(리턴)
-# 회원아니면 None 형태로 전달(리턴)
-
 def db_processing(user_id, fish_id, fish_act_length, img_path):
     row        = None # 쿼리 결과
     connection = None
@@ -56,8 +53,9 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
             '''
 
             cursor.execute(sql_i, (fish_act_length, 1, img_save_name, row['preference'], fish_act_length))
+            connection.commit()
+            
             cursor.execute(sql_u, (fish_act_length, 1, user_id, fish_id))
-
             connection.commit()
             
             img_flag = True
@@ -74,8 +72,9 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
-                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
+                connection.commit()
 
+                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
                 connection.commit()
 
                 img_flag = True
@@ -89,8 +88,9 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
-                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
+                connection.commit()
 
+                cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
                 connection.commit()
 
                 img_flag = True
@@ -104,8 +104,9 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference'], fish_act_length))
+                connection.commit()
+
                 cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
-                
                 connection.commit()
                 print("4번")
 
@@ -156,8 +157,9 @@ def db_processing_no_obj(user_id, fish_id):
             '''
 
             cursor.execute(sql_i, (1, row['preference']))
-            cursor.execute(sql_u, (user_id, fish_id))
+            connection.commit()
 
+            cursor.execute(sql_u, (user_id, fish_id))
             connection.commit()
             print("5번")
         else: # 기존에 잡아봤던 물고기일 때
@@ -171,8 +173,9 @@ def db_processing_no_obj(user_id, fish_id):
             '''
 
             cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference']))
-            cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
+            connection.commit()
 
+            cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
             connection.commit()
             print("6번")
 
