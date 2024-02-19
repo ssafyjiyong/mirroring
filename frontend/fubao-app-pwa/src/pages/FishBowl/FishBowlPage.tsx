@@ -46,9 +46,10 @@ let rotationvalue: number = 0.25;
 let anispeed: number = 0.02;
 const avg: number = 0.9;
 let cnt = 0;
+let length: number;
 
-let check: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-let visited: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let check: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+let visited: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 let csw: number = 1;
 
 //xrand = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
@@ -60,7 +61,7 @@ let ypos1: number = 1.5;
 let beforexpos1: number = xpos1;
 let beforeypos1: number = ypos1;
 let sw1: number = 3;
-let ysw1: number = 1;
+let ysw1: number = 2;
 let xrand1: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand1: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 // let yrand1: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
@@ -70,7 +71,7 @@ let ypos2: number = 1.5;
 let beforexpos2: number = xpos2;
 let beforeypos2: number = ypos2;
 let sw2: number = 3;
-let ysw2: number = 1;
+let ysw2: number = 2;
 let xrand2: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand2: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -79,7 +80,7 @@ let ypos3: number = 1.5;
 let beforexpos3: number = xpos3;
 let beforeypos3: number = ypos3;
 let sw3: number = 3;
-let ysw3: number = 1;
+let ysw3: number = 2;
 let xrand3: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand3: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -88,16 +89,16 @@ let ypos4: number = 1.5;
 let beforexpos4: number = xpos4;
 let beforeypos4: number = ypos4;
 let sw4: number = 3;
-let ysw4: number = 1;
+let ysw4: number = 2;
 let xrand4: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand4: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos5: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos5: number = 1.5;
-let beforexpos5: number = 0;
-let beforeypos5: number = 0;
+let beforexpos5: number = xpos5;
+let beforeypos5: number = ypos5;
 let sw5: number = 3;
-let ysw5: number = 1;
+let ysw5: number = 2;
 let xrand5: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand5: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
 
@@ -106,7 +107,7 @@ let ypos6: number = 1.5;
 let beforexpos6: number = xpos6;
 let beforeypos6: number = ypos6;
 let sw6: number = 3;
-let ysw6: number = 1;
+let ysw6: number = 2;
 let xrand6: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand6: number = -0.8;
 
@@ -115,16 +116,16 @@ let ypos7: number = 1.5;
 let beforexpos7: number = xpos7;
 let beforeypos7: number = ypos7;
 let sw7: number = 3;
-let ysw7: number = 1;
+let ysw7: number = 2;
 let xrand7: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand7: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos8: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos8: number = 1.5;
-let beforexpos8: number = 0;
-let beforeypos8: number = 0;
+let beforexpos8: number = xpos8;
+let beforeypos8: number = ypos8;
 let sw8: number = 3;
-let ysw8: number = 1;
+let ysw8: number = 2;
 let xrand8: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand8: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -133,16 +134,16 @@ let ypos9: number = 1.5;
 let beforexpos9: number = xpos9;
 let beforeypos9: number = ypos9;
 let sw9: number = 3;
-let ysw9: number = 1;
+let ysw9: number = 2;
 let xrand9: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand9: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos10: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos10: number = 1.5;
-let beforexpos10: number = xpos1;
-let beforeypos10: number = ypos1;
+let beforexpos10: number = xpos10;
+let beforeypos10: number = ypos10;
 let sw10: number = 3;
-let ysw10: number = 1;
+let ysw10: number = 2;
 let xrand10: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand10: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -151,7 +152,7 @@ let ypos11: number = 1.5;
 let beforexpos11: number = xpos11;
 let beforeypos11: number = ypos11;
 let sw11: number = 3;
-let ysw11: number = 1;
+let ysw11: number = 2;
 let xrand11: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand11: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -160,7 +161,7 @@ let ypos12: number = 1.5;
 let beforexpos12: number = xpos12;
 let beforeypos12: number = ypos12;
 let sw12: number = 3;
-let ysw12: number = 1;
+let ysw12: number = 2;
 let xrand12: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand12: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -169,7 +170,7 @@ let ypos13: number = 1.5;
 let beforexpos13: number = xpos13;
 let beforeypos13: number = ypos13;
 let sw13: number = 3;
-let ysw13: number = 1;
+let ysw13: number = 2;
 let xrand13: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand13: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -178,16 +179,16 @@ let ypos14: number = 1.5;
 let beforexpos14: number = xpos14;
 let beforeypos14: number = ypos14;
 let sw14: number = 3;
-let ysw14: number = 1;
+let ysw14: number = 2;
 let xrand14: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand14: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos15: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos15: number = 1.5;
-let beforexpos15: number = 0;
-let beforeypos15: number = 0;
+let beforexpos15: number = xpos15;
+let beforeypos15: number = ypos15;
 let sw15: number = 3;
-let ysw15: number = 1;
+let ysw15: number = 2;
 let xrand15: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand15: number = (((Math.random() * (0.5 + 0.5)) - 0.5) * 1e2) / 1e2;
 
@@ -196,7 +197,7 @@ let ypos16: number = 1.5;
 let beforexpos16: number = xpos16;
 let beforeypos16: number = ypos16;
 let sw16: number = 3;
-let ysw16: number = 1;
+let ysw16: number = 2;
 let xrand16: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand16: number = -0.8;
 
@@ -205,16 +206,16 @@ let ypos17: number = 1.5;
 let beforexpos17: number = xpos17;
 let beforeypos17: number = ypos17;
 let sw17: number = 3;
-let ysw17: number = 1;
+let ysw17: number = 2;
 let xrand17: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand17: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos18: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos18: number = 1.5;
-let beforexpos18: number = 0;
-let beforeypos18: number = 0;
+let beforexpos18: number = xpos18;
+let beforeypos18: number = ypos18;
 let sw18: number = 3;
-let ysw18: number = 1;
+let ysw18: number = 2;
 let xrand18: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand18: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
@@ -223,18 +224,45 @@ let ypos19: number = 1.5;
 let beforexpos19: number = xpos19;
 let beforeypos19: number = ypos19;
 let sw19: number = 3;
-let ysw19: number = 1;
+let ysw19: number = 2;
 let xrand19: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand19: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 let xpos20: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let ypos20: number = 1.5;
-let beforexpos20: number = xpos1;
-let beforeypos20: number = ypos1;
+let beforexpos20: number = xpos20;
+let beforeypos20: number = ypos20;
 let sw20: number = 3;
-let ysw20: number = 1;
+let ysw20: number = 2;
 let xrand20: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
 let yrand20: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos21: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let ypos21: number = 1.5;
+let beforexpos21: number = xpos20;
+let beforeypos21: number = ypos20;
+let sw21: number = 3;
+let ysw21: number = 2;
+let xrand21: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let yrand21: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos22: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let ypos22: number = 1.5;
+let beforexpos22: number = xpos20;
+let beforeypos22: number = ypos20;
+let sw22: number = 3;
+let ysw22: number = 2;
+let xrand22: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let yrand22: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
+
+let xpos23: number = Math.round(((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let ypos23: number = 1.5;
+let beforexpos23: number = xpos20;
+let beforeypos23: number = ypos20;
+let sw23: number = 3;
+let ysw23: number = 2;
+let xrand23: number = (((Math.random() * (0.9 + 0.35)) - 0.35) * 1e2) / 1e2;
+let yrand23: number = (((Math.random() * (0.55 + 0.55)) - 0.55) * 1e2) / 1e2;
 
 
 const FishBowlPage = () => {
@@ -259,6 +287,9 @@ const FishBowlPage = () => {
   const mixer18 = useRef<THREE.AnimationMixer | null>(null);
   const mixer19 = useRef<THREE.AnimationMixer | null>(null);
   const mixer20 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer21 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer22 = useRef<THREE.AnimationMixer | null>(null);
+  const mixer23 = useRef<THREE.AnimationMixer | null>(null);
   const model1 = useRef<THREE.Object3D | null>(null);
   const model2 = useRef<THREE.Object3D | null>(null);
   const model3 = useRef<THREE.Object3D | null>(null);
@@ -279,9 +310,14 @@ const FishBowlPage = () => {
   const model18 = useRef<THREE.Object3D | null>(null);
   const model19 = useRef<THREE.Object3D | null>(null);
   const model20 = useRef<THREE.Object3D | null>(null);
+  const model21 = useRef<THREE.Object3D | null>(null);
+  const model22 = useRef<THREE.Object3D | null>(null);
+  const model23 = useRef<THREE.Object3D | null>(null);
 
   const fishInfoArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   const beforeFishInfoArray: number[] = [];
+  const fishLengthArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,];
+  const interArray: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   const token = localStorage.getItem("token");
   const results = useQueries({
@@ -296,10 +332,25 @@ const FishBowlPage = () => {
       { queryKey: ['getFish8'], queryFn: () => FishApi8(token), refetchInterval: 1000 },
       { queryKey: ['getFish9'], queryFn: () => FishApi9(token), refetchInterval: 1000 },
       { queryKey: ['getFish10'], queryFn: () => FishApi10(token), refetchInterval: 1000 },
-    ]
+    ],
   });
 
-  function loadFishModel(
+
+  const linearInterpolation = (lengthNum: number) => {
+    // 보간할 값의 범위 설정
+    var rangeStart = 0;
+    var rangeEnd = 50;
+
+    // 보간 결과의 범위 설정
+    var resultStart = 0;
+    var resultEnd = 2;
+
+    // 주어진 범위 내의 값으로 변환
+    var lengthResult = resultStart + (resultEnd - resultStart) * ((lengthNum - rangeStart) / (rangeEnd - rangeStart));
+    return lengthResult;
+  }
+
+  const loadFishModel = (
     loader: any,
     fishInfoArray: number,
     model: { current: THREE.Object3D | null },
@@ -308,8 +359,10 @@ const FishBowlPage = () => {
     position: THREE.Vector3,
     rotation: THREE.Euler,
     scale: THREE.Vector3,
-    scene: THREE.Scene
-  ) {
+    scene: THREE.Scene,
+    fishLenth: number,
+    fishnum: number
+  ): void => {
     loader.load(modelPath, (gltf: GLTF) => {
       //if (!model.current) return;
       model.current = gltf.scene;
@@ -321,6 +374,7 @@ const FishBowlPage = () => {
       model.current.rotation.copy(rotation);
 
       // 크기 설정
+      //scale[0]=1;
       model.current.scale.copy(scale);
 
       // 씬에 모델 추가
@@ -332,6 +386,7 @@ const FishBowlPage = () => {
         mixer.current.stopAllAction();
       }
       mixer.current = new THREE.AnimationMixer(model.current);
+      console.log("num: ", fishnum);
 
       animations.forEach((animation: THREE.AnimationClip) => {
         const action = mixer.current!.clipAction(animation);
@@ -341,8 +396,10 @@ const FishBowlPage = () => {
   }
 
 
-
   useEffect(() => {
+
+    if (!results) return;
+
     const loader1 = new GLTFLoader();
     const loader2 = new GLTFLoader();
     const loader3 = new GLTFLoader();
@@ -363,181 +420,210 @@ const FishBowlPage = () => {
     const loader18 = new GLTFLoader();
     const loader19 = new GLTFLoader();
     const loader20 = new GLTFLoader();
+    const loader21 = new GLTFLoader();
+    const loader22 = new GLTFLoader();
+    const loader23 = new GLTFLoader();
 
-    results.forEach((result) => {
-      if (result.isPending) {
-        // 로딩 상태 처리
-        console.log('Loading...');
-      } else if (result.error) {
-        // 에러 상태 처리
-        console.error('Error fetching data:', result.error);
-      } else if (result.data) {
-        // 데이터가 존재하는 경우, 안전하게 접근
-        console.log('FishId:', result.data.fish.id);
-        console.log('FishCNT:', result.data.count);
 
-        fishInfoArray[result.data.fish.id - 1] = result.data.count;
+    {
+      results && results.forEach((result) => {
+        if (result.isPending) {
+          // 로딩 상태 처리
+          console.log('Loading...');
+        } else if (result.error) {
+          // 에러 상태 처리
+          console.error('Error fetching data:', result.error);
+        } else if (result.data) {
+          // 데이터가 존재하는 경우, 안전하게 접근
+          console.log('FishId:', result.data.fish.id);
+          console.log('FishCNT:', result.data.count);
+          length = result.data.max_length;
+          length = length / 10;
+          length = Math.floor(length);
+          console.log('FishMaxLength:', length);
+
+          fishInfoArray[result.data.fish.id - 1] = result.data.count;
+          fishLengthArray[result.data.fish.id - 1] = length;
+          interArray[result.data.fish.id - 1] = linearInterpolation(length);
+        }
+      });
+
+      console.log('fishInfoArray:', fishInfoArray);
+      console.log('fishLengthArray:', fishLengthArray);
+      console.log('interArray:', interArray);
+
+      let scene = new THREE.Scene();
+      let renderer = new THREE.WebGLRenderer({
+        canvas: canvasRef.current!,
+        antialias: true,
+      });
+      renderer.outputEncoding = THREE.sRGBEncoding;
+
+      let camera = new THREE.PerspectiveCamera(20, 1);
+      camera.position.set(0, 0, 5);
+      //camera.lookAt(scene.position);
+      camera.rotateZ(Math.PI * 3 / 2); // 카메라 회전
+
+      scene.background = new THREE.Color("black");
+
+      const ambientLight = new THREE.AmbientLight(0xffffff, 3);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(1, 1, 1).normalize();
+
+      scene.add(ambientLight);
+      scene.add(directionalLight);
+
+      console.log("start");
+
+      // fishInfoArray[0] = 1;
+      // fishInfoArray[1] = 1;
+      // fishInfoArray[2] = 1;
+      // fishInfoArray[3] = 1;
+      // fishInfoArray[4] = 1;
+      // fishInfoArray[5] = 1;
+      // fishInfoArray[6] = 1;
+      // fishInfoArray[7] = 1;
+      // fishInfoArray[8] = 1;
+      // fishInfoArray[9] = 1;
+
+      // 1번 숭어
+      if (fishInfoArray[3] >= 1) {
+        loadFishModel(loader1, fishInfoArray[3], model1, mixer1, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * interArray[3], 1 * interArray[3], 1 * interArray[3]), scene, fishLengthArray[0], 3);
       }
-    });
 
-    console.log('fishInfoArray:', fishInfoArray);
+      // 2번 쥐노래미
+      if (fishInfoArray[9] >= 1) {
+        loadFishModel(loader2, fishInfoArray[9], model2, mixer2, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15 * interArray[9], 0.15 * interArray[9], 0.15 * interArray[9]), scene, fishLengthArray[1], 9);
+      }
 
-    let scene = new THREE.Scene();
-    let renderer = new THREE.WebGLRenderer({
-      canvas: canvasRef.current!,
-      antialias: true,
-    });
-    renderer.outputEncoding = THREE.sRGBEncoding;
+      // 3번 광어
+      if (fishInfoArray[5] >= 1) {
+        loadFishModel(loader3, fishInfoArray[5], model3, mixer3, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7 * interArray[5], 0.7 * interArray[5], 0.7 * interArray[5]), scene, fishLengthArray[2], 5);
+      }
 
-    let camera = new THREE.PerspectiveCamera(20, 1);
-    camera.position.set(0, 0, 5);
-    //camera.lookAt(scene.position);
-    camera.rotateZ(Math.PI * 3 / 2); // 카메라 회전
+      // 4번 전갱이
+      if (fishInfoArray[2] >= 1) {
+        loadFishModel(loader4, fishInfoArray[2], model4, mixer4, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15 * interArray[2], 0.15 * interArray[2], 0.15 * interArray[2]), scene, fishLengthArray[3], 2);
+      }
 
-    scene.background = new THREE.Color("black");
+      // 5번 참돔
+      if (fishInfoArray[0] >= 1) {
+        loadFishModel(loader5, fishInfoArray[0], model5, mixer5, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45 * 0.6, 0.45 * 0.6, 0.45 * 0.6), scene, fishLengthArray[4], 0);
+      }
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 3);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(1, 1, 1).normalize();
+      // 6번 돌돔
+      if (fishInfoArray[8] >= 1) {
+        loadFishModel(loader6, fishInfoArray[8], model6, mixer6, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1 * interArray[8], 1 * interArray[8], 1 * interArray[8]), scene, fishLengthArray[5], 8);
+      }
 
-    scene.add(ambientLight);
-    scene.add(directionalLight);
+      // 7번 농어
+      if (fishInfoArray[1] >= 1) {
+        loadFishModel(loader7, fishInfoArray[1], model7, mixer7, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6 * interArray[1], 0.6 * interArray[1], 0.6 * interArray[1]), scene, fishLengthArray[6], 1);
+      }
 
-    console.log("start");
+      // 8번 우럭
+      if (fishInfoArray[6] >= 1) {
+        loadFishModel(loader8, fishInfoArray[6], model8, mixer8, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5 * interArray[6], 0.5 * interArray[6], 0.5 * interArray[6]), scene, fishLengthArray[7], 6);
+      }
 
-    // fishInfoArray[0] = 1;
-    // fishInfoArray[1] = 1;
-    // fishInfoArray[2] = 1;
-    // fishInfoArray[3] = 1;
-    // fishInfoArray[4] = 1;
-    // fishInfoArray[5] = 1;
-    // fishInfoArray[6] = 1;
-    // fishInfoArray[7] = 1;
-    // fishInfoArray[8] = 1;
-    // fishInfoArray[9] = 1;
+      // 9번 고등어
+      if (fishInfoArray[4] >= 1) {
+        loadFishModel(loader9, fishInfoArray[4], model9, mixer9, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * interArray[4], 1 * interArray[4], 1 * interArray[4]), scene, fishLengthArray[8], 4);
+      }
 
-    // 1번 숭어
-    if (fishInfoArray[3] >= 1) {
-      loadFishModel(loader1, fishInfoArray[3], model1, mixer1, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
+      // 10번 감성돔
+      if (fishInfoArray[7] >= 1) {
+        loadFishModel(loader10, fishInfoArray[7], model10, mixer10, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45 * interArray[7], 0.45 * interArray[7], 0.45 * interArray[7]), scene, fishLengthArray[9], 7);
+      }
 
-    // 2번 쥐노래미
-    if (fishInfoArray[9] >= 1) {
-      loadFishModel(loader2, fishInfoArray[9], model2, mixer2, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
-    }
+      // 11번 숭어
+      if (fishInfoArray[3] >= 2) {
+        loadFishModel(loader11, fishInfoArray[3], model11, mixer11, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * interArray[3], 1 * interArray[3], 1 * interArray[3]), scene, fishLengthArray[0], 3);
+      }
 
-    // 3번 광어
-    if (fishInfoArray[5] >= 1) {
-      loadFishModel(loader3, fishInfoArray[5], model3, mixer3, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7, 0.7, 0.7), scene);
-    }
+      // 12번 쥐노래미
+      if (fishInfoArray[9] >= 2) {
+        loadFishModel(loader12, fishInfoArray[9], model12, mixer12, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15 * interArray[9], 0.15 * interArray[9], 0.15 * interArray[9]), scene, fishLengthArray[1], 9);
+      }
 
-    // 4번 전갱이
-    if (fishInfoArray[2] >= 1) {
-      loadFishModel(loader4, fishInfoArray[2], model4, mixer4, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
-    }
+      // 13번 광어
+      if (fishInfoArray[5] >= 2) {
+        loadFishModel(loader13, fishInfoArray[5], model13, mixer13, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7 * interArray[5], 0.7 * interArray[5], 0.7 * interArray[5]), scene, fishLengthArray[2], 5);
+      }
 
-    // 5번 참돔
-    if (fishInfoArray[0] >= 1) {
-      loadFishModel(loader5, fishInfoArray[0], model5, mixer5, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
-    }
+      // 14번 전갱이
+      if (fishInfoArray[2] >= 2) {
+        loadFishModel(loader14, fishInfoArray[2], model14, mixer14, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15 * interArray[2], 0.15 * interArray[2], 0.15 * interArray[2]), scene, fishLengthArray[3], 2);
+      }
 
-    // 6번 돌돔
-    if (fishInfoArray[8] >= 1) {
-      loadFishModel(loader6, fishInfoArray[8], model6, mixer6, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
+      // 15번 참돔
+      if (fishInfoArray[0] >= 2) {
+        loadFishModel(loader15, fishInfoArray[0], model15, mixer15, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45 * 1, 0.45 * 1, 0.45 * 1), scene, fishLengthArray[4], 0);
+      }
 
-    // 7번 농어
-    if (fishInfoArray[1] >= 1) {
-      loadFishModel(loader7, fishInfoArray[1], model7, mixer7, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6, 0.6, 0.6), scene);
-    }
+      // 16번 돌돔
+      if (fishInfoArray[8] >= 2) {
+        loadFishModel(loader16, fishInfoArray[8], model16, mixer16, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1 * interArray[8], 1 * interArray[8], 1 * interArray[8]), scene, fishLengthArray[5], 8);
+      }
 
-    // 8번 우럭
-    if (fishInfoArray[6] >= 1) {
-      loadFishModel(loader8, fishInfoArray[6], model8, mixer8, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5, 0.5, 0.5), scene);
-    }
+      // 17번 농어
+      if (fishInfoArray[1] >= 2) {
+        loadFishModel(loader17, fishInfoArray[1], model17, mixer17, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6 * interArray[1], 0.6 * interArray[1], 0.6 * interArray[1]), scene, fishLengthArray[6], 1);
+      }
 
-    // 9번 고등어
-    if (fishInfoArray[4] >= 1) {
-      loadFishModel(loader9, fishInfoArray[4], model9, mixer9, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
+      // 18번 우럭
+      if (fishInfoArray[6] >= 2) {
+        loadFishModel(loader18, fishInfoArray[6], model18, mixer18, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5 * interArray[6], 0.5 * interArray[6], 0.5 * interArray[6]), scene, fishLengthArray[7], 6);
+      }
 
-    // 10번 감성돔
-    if (fishInfoArray[7] >= 1) {
-      loadFishModel(loader10, fishInfoArray[7], model10, mixer10, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
-    }
+      // 19번 고등어
+      if (fishInfoArray[4] >= 2) {
+        loadFishModel(loader19, fishInfoArray[4], model19, mixer19, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * 0.6, 1 * 0.6, 1 * 0.6), scene, fishLengthArray[8], 4);
+      }
 
-    // 11번 숭어
-    if (fishInfoArray[3] >= 2) {
-      loadFishModel(loader11, fishInfoArray[3], model11, mixer11, 'low_poly_mugil/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
+      // 20번 감성돔
+      if (fishInfoArray[7] >= 2) {
+        loadFishModel(loader20, fishInfoArray[7], model20, mixer20, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45 * interArray[7], 0.45 * interArray[7], 0.45 * interArray[7]), scene, fishLengthArray[9], 7);
+      }
 
-    // 12번 쥐노래미
-    if (fishInfoArray[9] >= 2) {
-      loadFishModel(loader12, fishInfoArray[9], model12, mixer12, 'low_poly_salmon/scene.gltf', new THREE.Vector3(-0.55, -1.15, -0.5), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
-    }
+      // 21번 참돔
+      if (fishInfoArray[0] >= 3) {
+        loadFishModel(loader21, fishInfoArray[0], model21, mixer21, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45 * 0.8, 0.45 * 0.8, 0.45 * 0.8), scene, fishLengthArray[4], 0);
+      }
 
-    // 13번 광어
-    if (fishInfoArray[5] >= 2) {
-      loadFishModel(loader13, fishInfoArray[5], model13, mixer13, 'low_poly_flatfish/scene.gltf', new THREE.Vector3(-0.6, -1.2, 0), new THREE.Euler(0, 2.6, 1.5), new THREE.Vector3(0.7, 0.7, 0.7), scene);
-    }
+      // 22번 고등어
+      if (fishInfoArray[4] >= 3) {
+        loadFishModel(loader22, fishInfoArray[4], model22, mixer22, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * 0.5, 1 * 0.5, 1 * 0.5), scene, fishLengthArray[8], 4);
+      }
 
-    // 14번 전갱이
-    if (fishInfoArray[2] >= 2) {
-      loadFishModel(loader14, fishInfoArray[2], model14, mixer14, 'low_poly_barracuda/scene.gltf', new THREE.Vector3(0, 0, 1), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.15, 0.15, 0.15), scene);
-    }
-
-    // 15번 참돔
-    if (fishInfoArray[0] >= 2) {
-      loadFishModel(loader15, fishInfoArray[0], model15, mixer15, 'low_poly_redseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
-    }
-
-    // 16번 돌돔
-    if (fishInfoArray[8] >= 2) {
-      loadFishModel(loader16, fishInfoArray[8], model16, mixer16, 'low_poly_stoneseabream/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
-
-    // 17번 농어
-    if (fishInfoArray[1] >= 2) {
-      loadFishModel(loader17, fishInfoArray[1], model17, mixer17, 'low_poly_seabass/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 3, 1.5), new THREE.Vector3(0.6, 0.6, 0.6), scene);
-    }
-
-    // 18번 우럭
-    if (fishInfoArray[6] >= 2) {
-      loadFishModel(loader18, fishInfoArray[6], model18, mixer18, 'low_poly_sebastes/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(0.5, 0.5, 0.5), scene);
-    }
-
-    // 19번 고등어
-    if (fishInfoArray[4] >= 2) {
-      loadFishModel(loader19, fishInfoArray[4], model19, mixer19, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1, 1, 1), scene);
-    }
-
-    // 20번 감성돔
-    if (fishInfoArray[7] >= 2) {
-      loadFishModel(loader20, fishInfoArray[7], model20, mixer20, 'low_poly_blackseabream/scene.gltf', new THREE.Vector3(0, 0, 2), new THREE.Euler(1.5, 0, -1.5), new THREE.Vector3(0.45, 0.45, 0.45), scene);
-    }
+      // 23번 고등어
+      if (fishInfoArray[4] >= 4) {
+        loadFishModel(loader23, fishInfoArray[4], model23, mixer23, 'low_poly_mackerel/scene.gltf', new THREE.Vector3(0, 0, 0), new THREE.Euler(-1.5, 0, -1.5), new THREE.Vector3(1 * 0.45, 1 * 0.45, 1 * 0.45), scene, fishLengthArray[8], 4);
+      }
 
 
-    animate(scene, renderer, camera);
+      animate(scene, renderer, camera);
 
-    function onWindowResize() {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      const onWindowResize = () => {
+        const width = window.innerWidth || 0;
+        const height = window.innerHeight || 0;
 
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-      renderer.setSize(width, height);
-    }
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height);
+      };
 
-    window.addEventListener('resize', onWindowResize, false);
-    onWindowResize();
+      window.addEventListener('resize', onWindowResize, false);
+      onWindowResize();
 
-    return () => {
-      // window.removeEventListener('resize', onWindowResize); //비율 맞추는거
-      // cleanup logic if needed
+      return () => {
+        // window.removeEventListener('resize', onWindowResize); //비율 맞추는거
+        // cleanup logic if needed
+      }
     };
   }, [results]);
 
-  function animate(scene: THREE.Scene, renderer: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera) {
+  const animate = (scene: THREE.Scene, renderer: THREE.WebGLRenderer, camera: THREE.PerspectiveCamera): void => {
     if (animationId) {
       cancelAnimationFrame(animationId);
       animationId = null; // animationId를 초기화합니다.
@@ -545,9 +631,9 @@ const FishBowlPage = () => {
 
     animationId = requestAnimationFrame(() => animate(scene, renderer, camera));
 
-    function updateFishModelFront(
-      mixer: { current: any }, // mixer는 current 속성을 가진 객체
-      model: { current: any }, // model은 current 속성을 가진 객체
+    const updateFishModelFront = (
+      mixer: { current: any },
+      model: { current: any },
       fishIndex: number,
       xpos: number,
       ypos: number,
@@ -562,7 +648,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -761,11 +847,31 @@ const FishBowlPage = () => {
             sw19 = sw;
             ysw19 = ysw;
           }
+          if (checknum === 22) {
+            xpos22 = xpos;
+            ypos22 = ypos;
+            beforexpos22 = beforexpos;
+            beforeypos22 = beforeypos;
+            xrand22 = xrand;
+            yrand22 = yrand;
+            sw22 = sw;
+            ysw22 = ysw;
+          }
+          if (checknum === 23) {
+            xpos23 = xpos;
+            ypos23 = ypos;
+            beforexpos23 = beforexpos;
+            beforeypos23 = beforeypos;
+            xrand23 = xrand;
+            yrand23 = yrand;
+            sw23 = sw;
+            ysw23 = ysw;
+          }
         }
       }
     }
 
-    function updateFishModelBack(
+    const updateFishModelBack = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -782,8 +888,14 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
+        // if (checknum === 5) {
+        //   console.log("참돔");
+        // }
+        // else {
+        //   console.log("감성돔");
+        // }
         mixer.current.update(anispeed);
         if (model.current) {
           if (fishInfoArray[fishIndex] === 0) {
@@ -921,11 +1033,21 @@ const FishBowlPage = () => {
             sw20 = sw;
             ysw20 = ysw;
           }
+          else if (checknum === 21) {
+            xpos21 = xpos;
+            ypos21 = ypos;
+            beforexpos21 = beforexpos;
+            beforeypos21 = beforeypos;
+            xrand21 = xrand;
+            yrand21 = yrand;
+            sw21 = sw;
+            ysw21 = ysw;
+          }
         }
       }
     }
 
-    function updateFishModelFlat(
+    const updateFishModelFlat = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -942,7 +1064,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -1034,7 +1156,7 @@ const FishBowlPage = () => {
       }
     }
 
-    function firstFront(
+    const firstFront = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -1051,7 +1173,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -1173,10 +1295,30 @@ const FishBowlPage = () => {
           sw19 = sw;
           ysw19 = ysw;
         }
+        if (checknum === 22) {
+          xpos22 = xpos;
+          ypos22 = ypos;
+          beforexpos22 = beforexpos;
+          beforeypos22 = beforeypos;
+          xrand22 = xrand;
+          yrand22 = yrand;
+          sw22 = sw;
+          ysw22 = ysw;
+        }
+        if (checknum === 23) {
+          xpos23 = xpos;
+          ypos23 = ypos;
+          beforexpos23 = beforexpos;
+          beforeypos23 = beforeypos;
+          xrand23 = xrand;
+          yrand23 = yrand;
+          sw23 = sw;
+          ysw23 = ysw;
+        }
       }
     }
 
-    function firstFrontRe(
+    const firstFrontRe = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -1193,7 +1335,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -1279,7 +1421,7 @@ const FishBowlPage = () => {
       }
     }
 
-    function firstBack(
+    const firstBack = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -1296,7 +1438,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -1398,11 +1540,21 @@ const FishBowlPage = () => {
             sw20 = sw;
             ysw20 = ysw;
           }
+          else if (checknum === 21) {
+            xpos21 = xpos;
+            ypos21 = ypos;
+            beforexpos21 = beforexpos;
+            beforeypos21 = beforeypos;
+            xrand21 = xrand;
+            yrand21 = yrand;
+            sw21 = sw;
+            ysw21 = ysw;
+          }
         }
       }
     }
 
-    function firstFlat(
+    const firstFlat = (
       mixer: { current: any }, // mixer는 current 속성을 가진 객체
       model: { current: any }, // model은 current 속성을 가진 객체
       fishIndex: number,
@@ -1419,7 +1571,7 @@ const FishBowlPage = () => {
       rotationvalue: number,
       checknum: number,
       zpos: number
-    ) {
+    ): void => {
       if (mixer.current) {
         mixer.current.update(anispeed);
         if (model.current) {
@@ -1478,8 +1630,8 @@ const FishBowlPage = () => {
       }
     }
 
-    //cnt++;
-    //console.log(cnt,)
+    // cnt++;
+    // console.log(cnt)
 
     // 1번 숭어
     if (mixer1.current) {
@@ -1514,7 +1666,6 @@ const FishBowlPage = () => {
     //3번 광어
     if (mixer3.current) {
       if (visited[5] === 0) {
-        //console.log(ypos3);
         firstFlat(mixer3, model3, 5, xpos3, ypos3, beforexpos3, beforeypos3, xrand3, yrand3, sw3, ysw3, xspeed, yspeed, rotationvalue, 3, 0);
       }
       else {
@@ -1685,6 +1836,35 @@ const FishBowlPage = () => {
       }
     }
 
+    //21번 참돔
+    if (mixer21.current) {
+      if (visited[20] === 0) {
+        firstBack(mixer21, model21, 20, xpos21, ypos21, beforexpos21, beforeypos21, xrand21, yrand21, sw21, ysw21, xspeed, yspeed, rotationvalue, 21, 2);
+      }
+      else {
+        updateFishModelBack(mixer21, model21, 20, xpos21, ypos21, beforexpos21, beforeypos21, xrand21, yrand21, sw21, ysw21, xspeed, yspeed, rotationvalue, 21, 2);
+      }
+    }
+
+    // 22번 고등어
+    if (mixer22.current) {
+      if (visited[24] === 0) {
+        firstFront(mixer22, model22, 24, xpos22, ypos22, beforexpos22, beforeypos22, xrand22, yrand22, sw22, ysw22, xspeed, yspeed, rotationvalue, 22, 0);
+      }
+      else {
+        updateFishModelFront(mixer22, model22, 24, xpos22, ypos22, beforexpos22, beforeypos22, xrand22, yrand22, sw22, ysw22, xspeed, yspeed, rotationvalue, 22, 0);
+      }
+    }
+
+    // 23번 고등어
+    if (mixer23.current) {
+      if (visited[34] === 0) {
+        firstFront(mixer23, model23, 34, xpos23, ypos23, beforexpos23, beforeypos23, xrand23, yrand23, sw23, ysw23, xspeed, yspeed, rotationvalue, 23, 0);
+      }
+      else {
+        updateFishModelFront(mixer23, model23, 34, xpos23, ypos23, beforexpos23, beforeypos23, xrand23, yrand23, sw23, ysw23, xspeed, yspeed, rotationvalue, 23, 0);
+      }
+    }
 
     renderer.render(scene, camera);
   }

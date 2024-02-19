@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// const API_URL = "http://127.0.0.1:8000";
+//const API_URL = "http://127.0.0.1:8000";
 const API_URL = "https://i10c104.p.ssafy.io/api";
 const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
 
@@ -204,7 +204,7 @@ export const informationGetApi = async (token) => {
 };
 
 // myfish GET
-export const myfishGetApi = async ({token, fishid}) => {
+export const myfishGetApi = async ({ token, fishid }) => {
   try {
     const response = await axios.get(`${API_URL}/fish/myfish/${fishid}/`, {
       headers: {
@@ -248,7 +248,7 @@ export const loginApi = async ({ email, password1 }) => {
 
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
-    
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -379,7 +379,7 @@ export const classifyApiNone = async ({ file, uid }) => {
 // 사전 설문 방법
 export const surveyMethodApi = async ({ token, weight, method }) => {
   try {
-    const response = await axios.post(`${API_URL}/review/method/`, 
+    const response = await axios.post(`${API_URL}/review/method/`,
       { weight, method },
       {
         headers: {
@@ -396,7 +396,7 @@ export const surveyMethodApi = async ({ token, weight, method }) => {
 
 export const surveyFishApi = async ({ token, fishId, preference }) => {
   try {
-    const response = await axios.post(`${API_URL}/fish/myfish/${fishId}/`, 
+    const response = await axios.post(`${API_URL}/fish/myfish/${fishId}/`,
       { preference },
       {
         headers: {
@@ -728,17 +728,17 @@ export const removeProfileApi = async (token) => {
 export const weatherGetApi = async ({ lat, lng }) => {
   try {
     // console.log(lat,lng);
-    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
-    {     
-      params: {
-        lat: lat,
-        lon: lng,
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
-  });
-  
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`,
+      {
+        params: {
+          lat: lat,
+          lon: lng,
+        },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
     return response.data;
   } catch (error) {
     console.error(
