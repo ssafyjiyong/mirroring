@@ -2,9 +2,6 @@ import pymysql as my
 import base64
 import json
 
-# 회원이면 dict 형태로 전달(리턴)
-# 회원아니면 None 형태로 전달(리턴)
-
 def db_processing(user_id, fish_id, fish_act_length, img_path):
     row        = None # 쿼리 결과
     connection = None
