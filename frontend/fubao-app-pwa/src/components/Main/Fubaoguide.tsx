@@ -95,8 +95,8 @@ const Fubaoguide = () => {
       img.onload = () => {
         let canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        const MAX_WIDTH = 800; // 최대 너비
-        const MAX_HEIGHT = 450; // 최대 높이
+        const MAX_WIDTH = 960; // 최대 너비
+        const MAX_HEIGHT = 540; // 최대 높이
         let width = img.width;
         let height = img.height;
 
