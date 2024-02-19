@@ -11,7 +11,9 @@ from rest_framework.permissions import IsAuthenticated
 import json
 
 from .serializers import FishSerializer, FishDetailSerializer, UserFishSerializer, UserFishDetailSerializer
+from location.serializers import locationMapSerializer
 from .models import fish, user_fish
+import random
 
 # Create your views here.
 class FishListView(APIView):
@@ -25,12 +27,16 @@ class FishListView(APIView):
 
 class FishView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     @swagger_auto_schema(responses={"200": FishDetailSerializer})
     def get(self, request, pk):
         fish_instance = get_object_or_404(fish, pk=pk)
         serializer = FishDetailSerializer(fish_instance)
-        return Response(serializer.data)
+
+        fish_locations = random.choice(fish_instance.related_fish.all())
+        location_serializer = locationMapSerializer(fish_locations)
+
+        return Response({'fish': serializer.data, 'fish_locations': location_serializer.data})
     
 # @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
