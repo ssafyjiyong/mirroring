@@ -63,7 +63,7 @@ Flask, Tensorflow, Keras, numpy
 - 어항<br/>
 ![ezgif.com-video-to-gif-converter_fish_bowl](/uploads/2ba75dd776dd080161cad4b428b29cc0/ezgif.com-video-to-gif-converter_fish_bowl.gif)
 
-### 주요 기능
+## 주요 기능
 
 1.	맞춤 정보 제공<br/>
 일정 등록 전, 일정 등록 후, 일정 당일에 따른 바다 낚시 입문자 맞춤 정보를 제공해준다.
@@ -77,7 +77,7 @@ AI 카메라를 통해 판별된 어종이 도감에 자동으로 등록된다.<
 도감에 어종이 등록되면 해당 어종의 물고기 에셋이 어항 속에 추가되고,<br/>
 어항 속을 헤엄치는 애니메이션을 볼 수 있다.
 
-### 기술 소개
+## 기술 소개
 
 1.	어종 판별<br/>
 11,854개의 구글 크롤링 이미지 데이터셋을 MobileNet 구조의 CNN 모델로<br/>
@@ -97,7 +97,7 @@ Three.js를 사용해 물고기 에셋을 추가하고 블랜더 툴을 이용�
 또한 라즈베리파이와 와이파이 모듈(ESP8266)간에 MQTT를 사용해 통신하여 조명 제어
 
 
-### 설계 문서
+## 설계 문서
 
 * ERD<br/>
 ![image](/uploads/041e5bb3996239d6e8a4f5755ea44515/image.png)
