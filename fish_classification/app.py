@@ -22,7 +22,7 @@ import numpy as np
 from fish_species_classification import *
 
 # db 저장 모듈 관련
-from db_connection import *
+from db_connection_insert import *
 
 import base64
 import json
