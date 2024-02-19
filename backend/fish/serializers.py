@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import fish, user_fish
 from information.serializers import ReleaseShortSerializer, ProhibitShortSerializer, MethodSerializer, AreaSerializer, BaitSerializer
+from location.serializers import locationMapSerializer
 
 class FishSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,7 +14,7 @@ class FishDetailSerializer(serializers.ModelSerializer):
     method = MethodSerializer(many=True, read_only=True)
     area = AreaSerializer(many=True, read_only=True)
     bait = BaitSerializer(many=True, read_only=True)
-    
+
     class Meta:
         model = fish
         fields = '__all__'
