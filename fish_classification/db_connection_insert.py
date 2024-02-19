@@ -1,6 +1,7 @@
 import pymysql as my
 import base64
 import json
+# 어항 물고기 길이 변경 관련 모듈
 
 def db_processing(user_id, fish_id, fish_act_length, img_path):
     row        = None # 쿼리 결과
