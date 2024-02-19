@@ -82,21 +82,75 @@ const Fubaoguide = () => {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+
+      const img = new Image();
       const reader = new FileReader();
-
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        // Base64 문자열을 로컬 스토리지에 저장
-        localStorage.setItem("selectedImage", base64String);
-        setSelectedFile(file);
-        setFileSelected(true);
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        if (e.target?.result) {
+          img.src = e.target.result as string;
+        }
       };
-
       reader.readAsDataURL(file);
+
+      img.onload = () => {
+        let canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        const MAX_WIDTH = 800; // 최대 너비
+        const MAX_HEIGHT = 450; // 최대 높이
+        let width = img.width;
+        let height = img.height;
+
+        // 이미지 비율에 맞춰 최대 크기 조정
+        if (width > height) {
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+        } else {
+          if (height > MAX_HEIGHT) {
+            width *= MAX_HEIGHT / height;
+            height = MAX_HEIGHT;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        if (!ctx) {
+          return;
+        }
+        ctx.drawImage(img, 0, 0, width, height);
+
+        // 캔버스에서 이미지를 Blob으로 변환
+        canvas.toBlob(
+          (blob) => {
+            if (blob === null) {
+              return; // 혹은 적절한 에러 처리
+            }
+            const newFile = new File([blob], file.name, {
+              type: "image/jpeg",
+              lastModified: Date.now(),
+            });
+
+            // Blob을 Base64 문자열로 변환하여 로컬 스토리지에 저장
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              const base64String = reader.result as string;
+              localStorage.setItem("selectedImage", base64String);
+              setSelectedFile(newFile); // 새로운 파일 객체 설정
+              setFileSelected(true); // 파일 선택 상태 업데이트
+            };
+            reader.readAsDataURL(newFile);
+          },
+          "image/jpeg",
+        );
+        // JPEG 형식으로, 품질은 0.7로 설정
+      };
     } else {
       setSelectedFile(null);
       setFileSelected(false);
       localStorage.removeItem("selectedImage"); // 이미지 선택을 취소한 경우 로컬 스토리지에서 삭제
+      localStorage.removeItem("length");
     }
   };
 
@@ -286,17 +340,17 @@ const Fubaoguide = () => {
         onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
       >
         {!schedule || !schedule.id ? (
-            <img
-              src="/imgs/my_panda.png"
-              alt="panda"
-              style={{
-                width: "50vw",
-                height: "auto",
-                maxWidth: "200px",
-                marginTop: "0.7rem",
-                cursor: "pointer",
-              }}
-            />
+          <img
+            src="/imgs/my_panda.png"
+            alt="panda"
+            style={{
+              width: "50vw",
+              height: "auto",
+              maxWidth: "200px",
+              marginTop: "0.7rem",
+              cursor: "pointer",
+            }}
+          />
         ) : dday === 0 ? (
           <label htmlFor="file">
             <img
@@ -312,17 +366,17 @@ const Fubaoguide = () => {
             />
           </label>
         ) : (
-            <img
-              src="/imgs/panda_trip.png"
-              alt="panda"
-              style={{
-                width: "50vw",
-                height: "auto",
-                maxWidth: "200px",
-                marginTop: "0.7rem",
-                cursor: "pointer",
-              }}
-            />
+          <img
+            src="/imgs/panda_trip.png"
+            alt="panda"
+            style={{
+              width: "50vw",
+              height: "auto",
+              maxWidth: "200px",
+              marginTop: "0.7rem",
+              cursor: "pointer",
+            }}
+          />
         )}
 
         {/* <label htmlFor="file">
@@ -421,13 +475,6 @@ const Fubaoguide = () => {
                       />
                     </>
                   )}
-
-                  <input
-                    type="file"
-                    id="file"
-                    accept="image/*;capture=camera"
-                    onChange={handleFileChange}
-                  />
 
                   {fileSelected && (
                     <>
