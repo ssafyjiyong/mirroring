@@ -53,7 +53,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
             '''
 
             cursor.execute(sql_i, (fish_act_length, 1, img_save_name, row['preference'], fish_act_length))
-            connection.commit()
+            # connection.commit()
             
             cursor.execute(sql_u, (fish_act_length, 1, user_id, fish_id))
             connection.commit()
@@ -63,7 +63,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         else: # 기존에 잡아봤던 물고기일 때
             cur_cnt = row['count'] + 1
 
-            if row['max_length'] == None: # 기존 물고기의 길이가 없을 때
+            if row['max_length'] == 0: # 기존 물고기의 길이가 없을 때
                 sql_i = '''
                 INSERT INTO fish_user_fish ( max_length, count, image, preference, latest_length ) VALUES ( %s, %s, %s, %s, %s );
                 '''
@@ -72,7 +72,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
-                connection.commit()
+                # connection.commit()
 
                 cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
                 connection.commit()
@@ -88,7 +88,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (fish_act_length, cur_cnt, img_save_name, row['preference'], fish_act_length))
-                connection.commit()
+                # connection.commit()
 
                 cursor.execute(sql_u, (fish_act_length, cur_cnt, user_id, fish_id))
                 connection.commit()
@@ -104,7 +104,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
                 '''
 
                 cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference'], fish_act_length))
-                connection.commit()
+                # connection.commit()
 
                 cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
                 connection.commit()
@@ -157,7 +157,7 @@ def db_processing_no_obj(user_id, fish_id):
             '''
 
             cursor.execute(sql_i, (1, row['preference']))
-            connection.commit()
+            # connection.commit()
 
             cursor.execute(sql_u, (user_id, fish_id))
             connection.commit()
@@ -173,7 +173,7 @@ def db_processing_no_obj(user_id, fish_id):
             '''
 
             cursor.execute(sql_i, (row['max_length'], cur_cnt, row['preference']))
-            connection.commit()
+            # connection.commit()
 
             cursor.execute(sql_u, (cur_cnt, user_id, fish_id))
             connection.commit()
