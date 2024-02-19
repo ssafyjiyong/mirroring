@@ -17,7 +17,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         connection = my.connect(host    ='i10c104.p.ssafy.io', 
                             user        ='root',        #DB ID      
                             password    ='fubao82493',      
-                            database    ='fubao',
+                            database    ='fubaoDB',
                             cursorclass = my.cursors.DictCursor #딕셔너리로 받기위한 커서
                             )
 
@@ -58,7 +58,7 @@ def db_processing(user_id, fish_id, fish_act_length, img_path):
         else: # 기존에 잡아봤던 물고기일 때
             cur_cnt = row['count'] + 1
 
-            if row['max_length'] == None: # 기존 물고기의 길이가 없을 때
+            if row['max_length'] == 0: # 기존 물고기의 길이가 없을 때
                 sql = '''
                 UPDATE fish_user_fish SET max_length = %s, count = %s, image = %s WHERE user_id = %s AND fish_id = %s;
                 '''
@@ -100,7 +100,7 @@ def db_processing_no_obj(user_id, fish_id):
         connection = my.connect(host    ='i10c104.p.ssafy.io',   #루프백주소, 자기자신주소
                             user        ='root',        #DB ID      
                             password    ='fubao82493',        # 사용자가 지정한 비밀번호
-                            database    ='fubao',
+                            database    ='fubaoDB',
                             cursorclass = my.cursors.DictCursor #딕셔너리로 받기위한 커서
                             )
 
