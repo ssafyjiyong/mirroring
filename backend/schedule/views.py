@@ -41,6 +41,17 @@ class ScheduleAPIView(APIView):
             }
             return Response(context, status=status.HTTP_200_OK)
         
+    @swagger_auto_schema(request_body=ScheduleSerializer, responses={"200": ScheduleSerializer})
+    def patch(self,request,pk):
+        schedule_instance=get_object_or_404(schedule,id=pk,user=request.user)
+        serializer=ScheduleAllSerializer(schedule_instance,data=request.data)
+        if serializer.is_valid():
+            serializer.save(user=request.user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+            
+        
        
 class ScheduleDoneAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -61,5 +72,7 @@ class ScheduleDoneAPIView(APIView):
         schedule_instance = schedule.objects.get(id=pk,user=request.user)
         schedule_instance.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+
        
     
