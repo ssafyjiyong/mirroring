@@ -16,7 +16,7 @@ import location from "../../data/location.json";
 
 type SchedulePatchParams = {
   date: Date | string; // Date 객체 또는 ISO 형식의 문자열
-  location: number;
+  location: string;
   point: string; // 포인트 선택 값
   method: string; // 방법 선택 값
 };
@@ -213,6 +213,8 @@ const PlanManagePage = () => {
   const day = ("0" + today.getDate()).slice(-2);
   const [selectedValue, setSelectedValue] = useState("");
 
+  
+
   return (
     <Container>
       <p style={{ fontSize: "1.5rem", fontWeight: "bold" }}>일정관리</p>
@@ -274,17 +276,15 @@ const PlanManagePage = () => {
               onClick={() => {
                 if (
                   selectedDate &&
+                  selectedValue &&
                   selectedPointOption &&
                   selectedMethodOption
                 ) {
                   schedulePatch({
-                    date:
-                      selectedDate instanceof Date
-                        ? selectedDate.toISOString().split("T")[0]
-                        : selectedDate, // Date를 ISO 문자열로 변환
-                    location: parseInt(selectedValue, 10), // location을 숫자로 변환
-                    point: selectedPointOption.value, // point의 value
-                    method: selectedMethodOption.value, // method의 value
+                    date: selectedDate,
+                    location: selectedValue,
+                    point: selectedPointOption.value,
+                    method: selectedMethodOption.value
                   });
                 }
               }}
