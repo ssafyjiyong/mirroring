@@ -122,28 +122,25 @@ const Fubaoguide = () => {
         ctx.drawImage(img, 0, 0, width, height);
 
         // 캔버스에서 이미지를 Blob으로 변환
-        canvas.toBlob(
-          (blob) => {
-            if (blob === null) {
-              return; // 혹은 적절한 에러 처리
-            }
-            const newFile = new File([blob], file.name, {
-              type: "image/jpeg",
-              lastModified: Date.now(),
-            });
+        canvas.toBlob((blob) => {
+          if (blob === null) {
+            return; // 혹은 적절한 에러 처리
+          }
+          const newFile = new File([blob], file.name, {
+            type: "image/jpeg",
+            lastModified: Date.now(),
+          });
 
-            // Blob을 Base64 문자열로 변환하여 로컬 스토리지에 저장
-            const reader = new FileReader();
-            reader.onloadend = () => {
-              const base64String = reader.result as string;
-              localStorage.setItem("selectedImage", base64String);
-              setSelectedFile(newFile); // 새로운 파일 객체 설정
-              setFileSelected(true); // 파일 선택 상태 업데이트
-            };
-            reader.readAsDataURL(newFile);
-          },
-          "image/jpeg",
-        );
+          // Blob을 Base64 문자열로 변환하여 로컬 스토리지에 저장
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const base64String = reader.result as string;
+            localStorage.setItem("selectedImage", base64String);
+            setSelectedFile(newFile); // 새로운 파일 객체 설정
+            setFileSelected(true); // 파일 선택 상태 업데이트
+          };
+          reader.readAsDataURL(newFile);
+        }, "image/jpeg");
         // JPEG 형식으로, 품질은 0.7로 설정
       };
     } else {
@@ -161,6 +158,17 @@ const Fubaoguide = () => {
     if (fileInput) {
       fileInput.value = "";
     }
+  };
+
+  const imgSubmit = () => {
+    setFileSelected(true);
+    Swal.fire({
+      title: "사진 촬영 안내",
+      html: "길이 측정을 위해서 <br> <strong>카드</strong>나 <strong>담배갑</strong>을 준비해주세요. <br> 비교물품이 없어도 <br> 어종 판별이 가능합니다!",
+      icon: "info",
+      confirmButtonText: "OK",
+      showCloseButton: true,
+    });
   };
 
   const creditCardMutation = useMutation({
@@ -337,7 +345,9 @@ const Fubaoguide = () => {
 
       <div
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
-        onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
+        onClick={() => {
+          if (dday === 0) imgSubmit();
+        }}
       >
         {!schedule || !schedule.id ? (
           <img
