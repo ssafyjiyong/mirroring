@@ -161,15 +161,19 @@ const Fubaoguide = () => {
   };
 
   const imgSubmit = () => {
-    setFileSelected(true);
     Swal.fire({
       title: "사진 촬영 안내",
-      html: "길이 측정을 위해서 <br> <strong>카드</strong>나 <strong>담배갑</strong>을 준비해주세요. <br> 비교물품이 없어도 <br> 어종 판별이 가능합니다!",
+      html: "길이 측정을 위해서 <br> <strong>카드</strong>나 <strong>담뱃갑</strong>을 준비해주세요. <br> 비교물품이 없어도 <br> 어종 판별이 가능합니다!",
       icon: "info",
       confirmButtonText: "OK",
       showCloseButton: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setFileSelected(true);
+      }
     });
   };
+  
 
   const creditCardMutation = useMutation({
     mutationFn: classifyApiCreditCard,
