@@ -23,6 +23,8 @@ import {
   classifyApiNone,
 } from "../../store/api";
 import { useMutation } from "@tanstack/react-query";
+import "../../FontAwsome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Text = styled.p`
   font-size: 1.1rem;
@@ -95,8 +97,8 @@ const Fubaoguide = () => {
       img.onload = () => {
         let canvas = document.createElement("canvas");
         const ctx = canvas.getContext("2d");
-        const MAX_WIDTH = 1600; // 최대 너비
-        const MAX_HEIGHT = 900; // 최대 높이
+        const MAX_WIDTH = 1760; // 최대 너비
+        const MAX_HEIGHT = 990; // 최대 높이
         let width = img.width;
         let height = img.height;
 
@@ -159,21 +161,6 @@ const Fubaoguide = () => {
       fileInput.value = "";
     }
   };
-
-  const imgSubmit = () => {
-    Swal.fire({
-      title: "사진 촬영 안내",
-      html: "길이 측정을 위해서 <br> <strong>카드</strong>나 <strong>담뱃갑</strong>을 준비해주세요. <br> 비교물품이 없어도 <br> 어종 판별이 가능합니다!",
-      icon: "info",
-      confirmButtonText: "OK",
-      showCloseButton: true,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        setFileSelected(true);
-      }
-    });
-  };
-  
 
   const creditCardMutation = useMutation({
     mutationFn: classifyApiCreditCard,
@@ -314,6 +301,21 @@ const Fubaoguide = () => {
           </div>
         ) : dday === 0 ? (
           <div className="speech-bubble">
+            <FontAwesomeIcon
+              icon="circle-question"
+              color="#a1a1a1"
+              style={{ position: "absolute", top: "0.5rem", right: "0.5rem" }}
+              onClick={() => {
+                Swal.fire({
+                  title: "사진 촬영 안내",
+                  html: "길이 측정을 위해서 <br> <strong>카드</strong>나 <strong>담뱃갑</strong>을 준비해주세요. <br> 비교물품이 없어도 <br> 어종 판별이 가능합니다!",
+                  icon: "info",
+                  confirmButtonText: "OK",
+                  showCloseButton: true,
+                });
+              }}
+            />
+
             <Text>
               저에게 사진을 보여주시면,
               <br />
@@ -349,9 +351,7 @@ const Fubaoguide = () => {
 
       <div
         style={{ display: "flex", justifyContent: "center", cursor: "pointer" }}
-        onClick={() => {
-          if (dday === 0) imgSubmit();
-        }}
+        onClick={dday === 0 ? () => setcameraOpen(true) : undefined}
       >
         {!schedule || !schedule.id ? (
           <img
