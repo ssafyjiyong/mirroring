@@ -44,7 +44,7 @@ class ScheduleAPIView(APIView):
     @swagger_auto_schema(request_body=ScheduleSerializer, responses={"200": ScheduleSerializer})
     def patch(self,request,pk):
         schedule_instance=get_object_or_404(schedule,id=pk,user=request.user)
-        serializer=ScheduleAllSerializer(schedule_instance,data=request.data)
+        serializer=ScheduleAllSerializer(schedule_instance,data=request.data,partial=True)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
