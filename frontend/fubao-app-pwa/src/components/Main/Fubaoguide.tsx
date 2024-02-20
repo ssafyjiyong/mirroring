@@ -325,7 +325,7 @@ const Fubaoguide = () => {
         ) : (
           <div className="speech-bubble">
             <Text>
-              이번 낚시 일정에 도움이 될 정보를
+              이번 낚시 일정에 도움 될 정보를
               <br />
               스크롤해서 확인해보세요.
               <br />
