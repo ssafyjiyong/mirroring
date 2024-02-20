@@ -71,24 +71,6 @@ export const mapInfoApi = async () => {
   }
 };
 
-export const planFetchApi = async (token) => {
-  try {
-    const response = await axios.get(`${API_URL}/user/profile/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(
-      "An error occurred during the API call:",
-      error.response ? error.response.data : error.message
-    );
-    throw new Error("Failed to fetch user profile");
-  }
-};
-
 // 방생기준 GET
 export const releaseFishApi = async (token) => {
   try {
@@ -509,24 +491,28 @@ export const scheduleDoneApi = async ({ token, pk }) => {
   }
 };
 
-//DELETE 요청 API
-export const planCancelApi = async (token, planid) => {
+export const schedulePatchApi = async ({ token, id, date, location, point, method }) => {
   try {
-    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.patch(
+      `${API_URL}/schedule/myschedule/${id}/`,
+      { date, location, point, method },
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
     return response.data;
   } catch (error) {
-    console.error(
-      "An error occurred during the API call:",
-      error.response ? error.response.data : error.message
-    );
-    throw new Error("Failed to fetch user profile");
+    console.log(error);
+    throw error;
   }
 };
+
+//DELETE 요청 API
+
+
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {
