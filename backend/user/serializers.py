@@ -22,6 +22,7 @@ class CustomRegisterSerializer(RegisterSerializer):
     nickname = serializers.CharField(required=True, max_length=8)
     profile_img = serializers.ImageField(required=False, allow_null=True)
     presurvey = serializers.BooleanField(default=False)
+    fish_survey = serializers.BooleanField(default=False)
 
     def get_cleaned_data(self):
         return {
@@ -34,6 +35,7 @@ class CustomRegisterSerializer(RegisterSerializer):
             'date_of_birth': self.validated_data.get('date_of_birth', None),
             'profile_img': self.validated_data.get('profile_img', None),
             'presurvey': self.validated_data.get('presurvey', None),
+            'fish_survey': self.validated_data.get('fish_survey', None),
         }
         
     def save(self, request):
@@ -49,6 +51,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.date_of_birth = self.cleaned_data.get('date_of_birth')
         user.profile_img = self.cleaned_data.get('profile_img')
         user.presurvey = self.cleaned_data.get('presurvey')
+        user.fish_survey = self.cleaned_data.get('fish_survey')
         
         user.save()
         
@@ -78,7 +81,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img', 'presurvey']
+        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img', 'presurvey', 'fish_survey']
         read_only_fields = ('email', 'is_staff', 'is_active', 'date_joined', 'is_superuser'),
         
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -88,7 +91,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img', 'presurvey', 'total_fish_count', 'total_schedules', 'latest_schedule_date']
+        fields = ['id', 'is_superuser', 'email', 'name', 'date_joined', 'nickname', 'age', 'date_of_birth', 'gender', 'profile_img', 'presurvey', 'fish_survey', 'total_fish_count', 'total_schedules', 'latest_schedule_date']
         read_only_fields = ('email', 'is_staff', 'is_active', 'date_joined', 'is_superuser')
 
     def get_total_fish_count(self, obj):

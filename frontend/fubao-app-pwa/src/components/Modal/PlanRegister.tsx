@@ -9,9 +9,8 @@ import Button from "@mui/joy/Button";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import PlanRegisterMap from "../Map/PlanRegisterMap";
-import Autocomplete from '@mui/joy/Autocomplete'; // 장소 검색 관련
-import location from "../../data/location.json"
+import Autocomplete from "@mui/joy/Autocomplete"; // 장소 검색 관련
+import location from "../../data/location.json";
 
 const LocationOptions = location;
 
@@ -30,18 +29,6 @@ const RegisterBox = styled.form`
   align-items: center;
 `;
 
-const Input = styled.input`
-  border-radius: 10px;
-  width: 20rem;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  ::placeholder {
-    color: #ccc;
-  }
-`;
 
 const Span = styled.span`
   display: inline-block;
@@ -163,20 +150,11 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
     />
   );
 
-  const [isMapOpen, setIsMapOpen] = useState(false); // Map 모달 상태
-  const [location, setLocation] = useState(""); // 선택된 장소 정보
-  const handleOpenMapModal = () => {
-    setIsMapOpen(true);
-  };
-  const handleSelectLocation = (selectedLocation: any) => {
-    setLocation(selectedLocation.address); // 선택된 장소의 주소를 location 상태에 저장
-    setIsMapOpen(false); // Map 모달 닫기
-  };
   const [layout, setLayout] = React.useState<
     ModalDialogProps["layout"] | undefined
   >(undefined);
 
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
 
   return (
     <Modal
@@ -236,7 +214,7 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                 disableClearable
                 options={LocationOptions.map((option) => option.title)}
                 sx={{
-                  borderRadius:"10px",
+                  borderRadius: "10px",
                   margin: "0.5rem 0rem",
                   width: "21rem",
                   borderColor: "#ccc",
@@ -245,21 +223,15 @@ const PlanRegister: React.FC<PlanRegisterProps> = ({
                 }}
                 value={selectedValue}
                 onChange={(event, newValue) => {
-                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
+                  const value =
+                    LocationOptions.find(
+                      (option) => option.title === newValue
+                    )?.value.toString() || "";
                   setSelectedValue(value);
                 }}
               />
             </AlignDiv>
-            
-            {isMapOpen && (
-              <Modal open={!!layout} onClose={() => setLayout(undefined)}>
-                <ModalDialog layout={layout}>
-                  <ModalClose />
-                  <PlanRegisterMap />
-                </ModalDialog>
-              </Modal>
-            )}
-            
+
             <AlignDiv>
               <Span>포인트: </Span>
               <PointSelect />

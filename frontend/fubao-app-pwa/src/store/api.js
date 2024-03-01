@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// const API_URL = "http://127.0.0.1:8000";
+//const API_URL = "http://127.0.0.1:8000";
 const API_URL = "https://i10c104.p.ssafy.io/api";
 const API_URL_FLASK = "https://i10c104.p.ssafy.io/ai";
 
@@ -68,24 +68,6 @@ export const mapInfoApi = async () => {
     // 에러 처리 로직
     console.error("An error occurred during the API call:", error);
     throw new Error("Failed to fetch map info");
-  }
-};
-
-export const planFetchApi = async (token) => {
-  try {
-    const response = await axios.get(`${API_URL}/user/profile/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-    return response.data;
-  } catch (error) {
-    console.error(
-      "An error occurred during the API call:",
-      error.response ? error.response.data : error.message
-    );
-    throw new Error("Failed to fetch user profile");
   }
 };
 
@@ -204,7 +186,7 @@ export const informationGetApi = async (token) => {
 };
 
 // myfish GET
-export const myfishGetApi = async ({token, fishid}) => {
+export const myfishGetApi = async ({ token, fishid }) => {
   try {
     const response = await axios.get(`${API_URL}/fish/myfish/${fishid}/`, {
       headers: {
@@ -248,7 +230,7 @@ export const loginApi = async ({ email, password1 }) => {
 
     // 로그인에 성공하면 로컬 스토리지에 토큰 저장
     localStorage.setItem("token", response.data.key);
-    
+
     return response.data;
   } catch (error) {
     console.log(error);
@@ -278,20 +260,22 @@ export const planRegisterApi = async ({
   token,
 }) => {
   try {
-    const response = await axios.post(
-      `${API_URL}/schedule/`,
-      {
-        date,
-        location,
-        area,
-        method,
-      },
-      {
-        headers: {
-          Authorization: `Token ${token}`,
+    const response = await axios
+      .post(
+        `${API_URL}/schedule/`,
+        {
+          date,
+          location,
+          area,
+          method,
         },
-      }
-    );
+        {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      )
+      .then(console.log(date, location, area, method));
     return response.data;
   } catch (error) {
     console.log(date, location, area, method);
@@ -379,7 +363,8 @@ export const classifyApiNone = async ({ file, uid }) => {
 // 사전 설문 방법
 export const surveyMethodApi = async ({ token, weight, method }) => {
   try {
-    const response = await axios.post(`${API_URL}/review/method/`, 
+    const response = await axios.post(
+      `${API_URL}/review/method/`,
       { weight, method },
       {
         headers: {
@@ -396,7 +381,8 @@ export const surveyMethodApi = async ({ token, weight, method }) => {
 
 export const surveyFishApi = async ({ token, fishId, preference }) => {
   try {
-    const response = await axios.post(`${API_URL}/fish/myfish/${fishId}/`, 
+    const response = await axios.post(
+      `${API_URL}/fish/myfish/${fishId}/`,
       { preference },
       {
         headers: {
@@ -509,24 +495,48 @@ export const scheduleDoneApi = async ({ token, pk }) => {
   }
 };
 
-//DELETE 요청 API
-export const planCancelApi = async (token, planid) => {
+const formatDate = (date) => {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = `${d.getMonth() + 1}`.padStart(2, '0'); // 월은 0부터 시작하므로 1을 더하고, 두 자리수로 맞춥니다.
+  const day = `${d.getDate()}`.padStart(2, '0'); // 일자도 두 자리수로 맞춥니다.
+  return `${year}-${month}-${day}`;
+};
+
+export const schedulePatchApi = async ({
+  token,
+  id,
+  date,
+  location,
+  point,
+  method,
+}) => {
+  // 함수 본문 내에서 date를 변환합니다.
+  const formattedDate = formatDate(date);
+  
   try {
-    const response = await axios.delete(`${API_URL}/schedule/${planid}/`, {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await axios.patch(
+      `${API_URL}/schedule/myschedule/${id}/`,
+      { date: formattedDate, location, point, method }, // 변환된 date를 사용합니다.
+      {
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+      }
+    );
+    console.log("성공");
+    // 로그에는 변환된 날짜를 출력합니다.
+    console.log(formattedDate, location, point, method);
     return response.data;
   } catch (error) {
-    console.error(
-      "An error occurred during the API call:",
-      error.response ? error.response.data : error.message
-    );
-    throw new Error("Failed to fetch user profile");
+    console.log(formattedDate, location, point, method);
+    console.log(error);
+    throw error;
   }
 };
+
+
+//DELETE 요청 API
 
 //어항 물고기 호출(10종)
 export const FishApi1 = async (token) => {
@@ -728,8 +738,7 @@ export const removeProfileApi = async (token) => {
 export const weatherGetApi = async ({ lat, lng }) => {
   try {
     // console.log(lat,lng);
-    const response = await axios.get(`${API_URL}/information/weatherSunset/`, 
-    {     
+    const response = await axios.get(`${API_URL}/information/weatherSunset/`, {
       params: {
         lat: lat,
         lon: lng,
@@ -737,8 +746,8 @@ export const weatherGetApi = async ({ lat, lng }) => {
       headers: {
         "Content-Type": "application/json",
       },
-  });
-  
+    });
+
     return response.data;
   } catch (error) {
     console.error(

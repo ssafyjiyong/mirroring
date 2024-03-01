@@ -148,7 +148,7 @@ const MapComponent = () => {
         level={3} // 지도의 확대 레벨
         draggable
       >
-        <MarkerClusterer
+        {positions && <MarkerClusterer
           averageCenter={true} // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
           minLevel={10} // 클러스터 할 최소 지도 레벨
         >
@@ -190,7 +190,7 @@ const MapComponent = () => {
               )}
             </MapMarker>
           ))}
-        </MarkerClusterer>
+        </MarkerClusterer>}
 
         {!state.isLoading && (
           <MapMarker

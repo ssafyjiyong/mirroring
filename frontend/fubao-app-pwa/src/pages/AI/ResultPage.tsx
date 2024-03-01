@@ -4,7 +4,7 @@ import useStore from "../../store/store";
 import { ProfileType } from "../../store/types";
 import Button from "@mui/joy/Button";
 import { useNavigate } from "react-router-dom";
-import JSConfetti from 'js-confetti';
+import JSConfetti from "js-confetti";
 import Swal from "sweetalert2";
 
 const TitleBox = styled.div`
@@ -88,32 +88,54 @@ const ResultPage = () => {
 
   // 페이지 벗어나면 스토리지 이미지 지우기
   useEffect(() => {
-    
     Swal.fire({
       title: "도감에 넣었어요!",
       text: "집에 있는 스마트 어항도 확인해보세요!",
-      icon: "success"
+      icon: "success",
     }).then(() => {
-      
-      if (!jsConfetti) {
-        const confettiInstance = new JSConfetti();
-        setJsConfetti(confettiInstance);
-    
-        confettiInstance.addConfetti({
-          confettiColors: ["#CAB0FF"],
-          confettiNumber: 500,
+      if (species === "돌돔") {
+        Swal.fire({
+          title: "금어기 알림",
+          text: "돌돔은 1월부터 2월까지 금어기입니다.",
+          icon: "warning",
+        }).then(() => {
+          if (!jsConfetti) {
+            const confettiInstance = new JSConfetti();
+            setJsConfetti(confettiInstance);
+
+            confettiInstance.addConfetti({
+              confettiColors: ["#CAB0FF"],
+              confettiNumber: 500,
+            });
+
+            // JSConfetti가 생성하는 캔버스 요소의 z-index 설정
+            const canvasElements = document.getElementsByTagName("canvas");
+            if (canvasElements.length > 0) {
+              const lastCanvasElement =
+                canvasElements[canvasElements.length - 1];
+              lastCanvasElement.style.zIndex = "1001";
+            }
+          }
         });
-    
-        // JSConfetti가 생성하는 캔버스 요소의 z-index 설정
-        const canvasElements = document.getElementsByTagName('canvas');
-        if (canvasElements.length > 0) {
-          // 마지막에 추가된 캔버스 요소가 JSConfetti에 의해 추가된 것으로 가정
-          const lastCanvasElement = canvasElements[canvasElements.length - 1];
-          lastCanvasElement.style.zIndex = '1001';
+      } else {
+        if (!jsConfetti) {
+          const confettiInstance = new JSConfetti();
+          setJsConfetti(confettiInstance);
+
+          confettiInstance.addConfetti({
+            confettiColors: ["#CAB0FF"],
+            confettiNumber: 500,
+          });
+
+          // JSConfetti가 생성하는 캔버스 요소의 z-index 설정
+          const canvasElements = document.getElementsByTagName("canvas");
+          if (canvasElements.length > 0) {
+            const lastCanvasElement = canvasElements[canvasElements.length - 1];
+            lastCanvasElement.style.zIndex = "1001";
+          }
         }
       }
     });
-
 
     // 페이지 벗어날 때 실행될 함수
     const handleUnload = () => {
@@ -128,6 +150,7 @@ const ResultPage = () => {
     return () => {
       window.removeEventListener("beforeunload", handleUnload);
     };
+    // 종속성 배열에 species와 jsConfetti 추가
   }, []);
 
   return (
@@ -140,7 +163,13 @@ const ResultPage = () => {
         position: "relative",
       }}
     >
-      <div style={{ backgroundColor: "white", margin: "0rem 1rem" }}>
+      <div
+        style={{
+          backgroundColor: "white",
+          margin: "0rem 1rem",
+          borderRadius: "10px",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -220,20 +249,39 @@ const ResultPage = () => {
       >
         <Button
           color="success"
+          variant="soft"
           onClick={goToCollection}
-          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
+          sx={{
+            marginRight: "0.5rem",
+            fontFamily: "SpoqaHanSansNeo",
+            fontWeight: "400",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
         >
           도감보기
         </Button>
-        <Button onClick={handleSaveImage}
-          sx={{ marginRight: "0.5rem", fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
-          >
+        <Button
+          color="neutral"
+          onClick={handleSaveImage}
+          variant="soft"
+          sx={{
+            marginRight: "0.5rem",
+            fontFamily: "SpoqaHanSansNeo",
+            fontWeight: "400",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
+        >
           이미지 저장
         </Button>
-        <Button color="danger"
-        onClick={goToHome}
-        sx={{ fontFamily: "SpoqaHanSansNeo", fontWeight:"400" }}
-
+        <Button
+          color="danger"
+          variant="soft"
+          onClick={goToHome}
+          sx={{
+            fontFamily: "SpoqaHanSansNeo",
+            fontWeight: "400",
+            boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+          }}
         >
           돌아가기
         </Button>

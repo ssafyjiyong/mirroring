@@ -11,7 +11,9 @@ from rest_framework.permissions import IsAuthenticated
 import json
 
 from .serializers import FishSerializer, FishDetailSerializer, UserFishSerializer, UserFishDetailSerializer
+from location.serializers import locationMapSerializer
 from .models import fish, user_fish
+import random
 
 # Create your views here.
 class FishListView(APIView):
@@ -25,12 +27,16 @@ class FishListView(APIView):
 
 class FishView(APIView):
     permission_classes = [IsAuthenticated]
-    
+
     @swagger_auto_schema(responses={"200": FishDetailSerializer})
     def get(self, request, pk):
         fish_instance = get_object_or_404(fish, pk=pk)
         serializer = FishDetailSerializer(fish_instance)
-        return Response(serializer.data)
+
+        fish_locations = random.choice(fish_instance.related_fish.all())
+        location_serializer = locationMapSerializer(fish_locations)
+
+        return Response({'fish': serializer.data, 'fish_locations': location_serializer.data})
     
 # @method_decorator(login_required, name='dispatch')
 class MyFishListView(APIView):
@@ -95,6 +101,11 @@ class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishDetailSerializer})
     def put(self, request, pk):
         myfish = get_object_or_404(user_fish, pk=pk, user=request.user)
+        latest_length = request.data.get('latest_length')
+        if latest_length is not None:
+            latest_length = float(latest_length)
+            if myfish.max_length is None or latest_length > myfish.max_length:
+                myfish.max_length = latest_length
         serializer = UserFishDetailSerializer(myfish, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -104,6 +115,11 @@ class MyFishView(APIView):
     @swagger_auto_schema(responses={"200": UserFishDetailSerializer})
     def patch(self, request, pk):
         myfish = get_object_or_404(user_fish, pk=pk, user=request.user)
+        latest_length = request.data.get('latest_length')
+        if latest_length is not None:
+            latest_length = float(latest_length)
+            if myfish.max_length is None or latest_length > myfish.max_length:
+                myfish.max_length = latest_length
         serializer = UserFishDetailSerializer(myfish, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()

@@ -8,11 +8,18 @@ import "../../index.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import { planCancelApi, planFetchApi } from "../../store/api";
+import { schedulePatchApi } from "../../store/api";
 import useStore from "../../store/store";
 import { ScheduleType } from "../../store/types";
 import Autocomplete from "@mui/joy/Autocomplete"; // 장소 검색 관련
-import location from "../../data/location.json"
+import location from "../../data/location.json";
+
+type SchedulePatchParams = {
+  date: Date | string; // Date 객체 또는 ISO 형식의 문자열
+  location: string;
+  point: string; // 포인트 선택 값
+  method: string; // 방법 선택 값
+};
 
 const LocationOptions = location;
 
@@ -31,19 +38,6 @@ const RegisterBox = styled.div`
   align-items: center;
 `;
 
-const Input = styled.input`
-  border-radius: 10px;
-  width: 20rem;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  border: 1px solid #ccc;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  ::placeholder {
-    color: #ccc;
-  }
-`;
-
 const Span = styled.span`
   display: inline-block;
   width: 20rem;
@@ -60,13 +54,45 @@ const PlanManagePage = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const navigate = useNavigate();
   const API_URL = "https://i10c104.p.ssafy.io/api";
+  const token = localStorage.getItem("token");
+
   const { schedule } = useStore() as {
     schedule: ScheduleType | null;
   };
 
-  const Cancel = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const token = localStorage.getItem("token");
+  const schedulePatch = async ({
+    date,
+    location,
+    point,
+    method,
+  }: SchedulePatchParams) => {
+    if (token && schedule) {
+      const id = schedule.id; // 'myScheduleId' 대신 'id' 사용
+      try {
+        await schedulePatchApi({ token, id, date, location, point, method });
+        // 비동기 요청이 성공하면 Swal 알림 표시
+        Swal.fire({
+          title: "일정 수정 완료",
+          text: "등록된 일정이 성공적으로 수정되었습니다.", // 메시지 수정
+          icon: "success",
+        });
+        // Swal 알림 후 페이지 이동
+        navigate("/");
+      } catch (error) {
+        console.error("스케줄 변경 실패:", error);
+        Swal.fire({
+          title: "변경 실패",
+          text: "스케줄 변경에 실패했습니다.",
+          icon: "error",
+          confirmButtonColor: "#3085d6",
+          confirmButtonText: "확인",
+        });
+      }
+    }
+  };
+  
 
+  const Cancel = (event: React.MouseEvent<HTMLButtonElement>) => {
     axios
       .delete(`${API_URL}/schedule/done/${schedule?.id}/`, {
         headers: {
@@ -185,7 +211,9 @@ const PlanManagePage = () => {
   const year = today.getFullYear();
   const month = ("0" + (today.getMonth() + 1)).slice(-2);
   const day = ("0" + today.getDate()).slice(-2);
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
+
+  
 
   return (
     <Container>
@@ -196,38 +224,41 @@ const PlanManagePage = () => {
           <AlignDiv>
             <Span>일정:</Span>
             <DatePicker
-                className="datePicker"
-                dateFormat="yyyy-MM-dd"
-                shouldCloseOnSelect
-                minDate={new Date()}
-                maxDate={new Date(year + 1 + "-" + month + "-" + day)}
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date)}
-              />
+              className="datePicker"
+              dateFormat="yyyy-MM-dd"
+              shouldCloseOnSelect
+              minDate={new Date()}
+              maxDate={new Date(year + 1 + "-" + month + "-" + day)}
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+            />
           </AlignDiv>
           <AlignDiv>
             <Span>장소: </Span>
             <Autocomplete
-                name="location"
-                type="search"
-                placeholder={schedule?.location.address}
-                freeSolo
-                disableClearable
-                options={LocationOptions.map((option) => option.title)}
-                sx={{
-                  borderRadius:"10px",
-                  margin: "0.5rem 0rem",
-                  width: "21rem",
-                  borderColor: "#ccc",
-                  boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
-                  fontSize: 16,
-                }}
-                value={selectedValue}
-                onChange={(event, newValue) => {
-                  const value = LocationOptions.find(option => option.title === newValue)?.value.toString() || '';
-                  setSelectedValue(value);
-                }}
-              />
+              name="location"
+              type="search"
+              placeholder={schedule?.location.address}
+              freeSolo
+              disableClearable
+              options={LocationOptions.map((option) => option.title)}
+              sx={{
+                borderRadius: "10px",
+                margin: "0.5rem 0rem",
+                width: "21rem",
+                borderColor: "#ccc",
+                boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.1)",
+                fontSize: 16,
+              }}
+              value={selectedValue}
+              onChange={(event, newValue) => {
+                const value =
+                  LocationOptions.find(
+                    (option) => option.title === newValue
+                  )?.value.toString() || "";
+                setSelectedValue(value);
+              }}
+            />
           </AlignDiv>
           <AlignDiv>
             <Span>포인트: </Span>
@@ -242,6 +273,21 @@ const PlanManagePage = () => {
               size="md"
               variant="solid"
               style={{ margin: "2rem", marginRight: "0.2rem" }}
+              onClick={() => {
+                if (
+                  selectedDate &&
+                  selectedValue &&
+                  selectedPointOption &&
+                  selectedMethodOption
+                ) {
+                  schedulePatch({
+                    date: selectedDate,
+                    location: selectedValue,
+                    point: selectedPointOption.value,
+                    method: selectedMethodOption.value
+                  });
+                }
+              }}
             >
               수정하기
             </Button>
