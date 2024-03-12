@@ -46,23 +46,22 @@
 ## 서비스 화면
 
 - 추천 컴포넌트 및 일정 등록<br/>
-  ![X-ezgif.com-resize](/uploads/35fe047a80019d762227edab50d65447/X-ezgif.com-resize.gif)
+  ![X-ezgif.com-resize](/docs/service1.gif)
 
 - 낚시 포인트 및 날씨 확인<br/>
-  ![ezgif.com-resize_point](/uploads/3e2ca6d1f9cc003363b2905494373401/ezgif.com-resize_point.gif)
+  ![ezgif.com-resize_point](/docs/service2.gif)
 
 - 일정 등록 및 AI 카메라 작동<br/>
-  ![ezgif.com-resize_register_plan](/uploads/fef71f330b54a87f6aee5542acfcbf61/ezgif.com-resize_register_plan.gif)
+  ![ezgif.com-resize_register_plan](/docs/service3.gif)
 
 - AI 어종 판별 및 길이 측정<br/>
-  ![ezgif.com-resize](/uploads/f0ffac18da02b7c76d5fd9336f7787b2/ezgif.com-resize.gif)
+  ![ezgif.com-resize](/docs/service4.gif)
 
 - 도감 등록<br/>
-  ![ezgif.com-resize_collection](/uploads/a90addf4768065c215c91ff23141a4fd/ezgif.com-resize_collection.gif)
+  ![ezgif.com-resize_collection](/docs/service5.gif)
 
 - 어항<br/>
-  ![ezgif.com-video-to-gif-converter_fish_bowl](/uploads/2ba75dd776dd080161cad4b428b29cc0/ezgif.com-video-to-gif-converter_fish_bowl.gif)
-
+  ![ezgif.com-video-to-gif-converter_fish_bowl](/docs/service6.gif)
 ## 주요 기능
 
 1. 맞춤 정보 제공<br/>
@@ -103,13 +102,13 @@
 ## 설계 문서
 
 - ERD<br/>
-  ![image](/uploads/041e5bb3996239d6e8a4f5755ea44515/image.png)
+  ![image](/docs/erd.png)
 
 - Architecture<br/>
-  ![image](/uploads/e1ff1bc81e984661a068bed9e1a26654/image.png)
+  ![image](/docs/architecture.png)
 
 - CI/CD<br/>
-  ![image](/uploads/d0f5b19d3fea0eafe661ad9dfe153a05/image.png)
+  ![image](/docs/cicd.png)
 
 <!-- 자유 양식 -->
 
