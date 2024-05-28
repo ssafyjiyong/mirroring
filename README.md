@@ -107,9 +107,6 @@
 - Architecture<br/>
   ![image](/docs/architecture.png)
 
-- CI/CD<br/>
-  ![image](/docs/cicd.png)
-
 <!-- 자유 양식 -->
 
 ## 팀 소개
