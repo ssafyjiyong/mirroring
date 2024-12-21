@@ -1,4 +1,4 @@
-FROM python:3.12.1
+FROM python:3.14.0a3
 
 RUN apt-get -y update
 RUN apt-get -y install vim
