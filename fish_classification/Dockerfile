@@ -2,7 +2,7 @@
 # syntax=docker/dockerfile:1
 
 # python 3.7 저용량
-FROM python:3.7
+FROM python:3.14.0a3
 
 # work directory
 WORKDIR /code
